@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Test"
-run/main_scene="uid://bde1cbt3lijbp"
+run/main_scene="uid://dq2ix7cgwm5b"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="Test"
 
 [rendering]
 
