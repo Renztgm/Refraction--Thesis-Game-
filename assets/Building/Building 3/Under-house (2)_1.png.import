@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvw1a0wcihk77"
-path.s3tc="res://.godot/imported/House-3A_0.png-85b5bd60de3a90604596427998ce3d8d.s3tc.ctex"
+uid="uid://v33c4wj5xxjp"
+path.s3tc="res://.godot/imported/Under-house (2)_1.png-ca6613d3fc14310b06e98b55632ee984.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "e2a5cd601973d89c7a7b0e964e95b83a"
+"md5": "6e9b693647376784d000b02c23118a24"
 }
 
 [deps]
 
-source_file="res://assets/Building/House-3A_0.png"
-dest_files=["res://.godot/imported/House-3A_0.png-85b5bd60de3a90604596427998ce3d8d.s3tc.ctex"]
+source_file="res://assets/Building/Building 3/Under-house (2)_1.png"
+dest_files=["res://.godot/imported/Under-house (2)_1.png-ca6613d3fc14310b06e98b55632ee984.s3tc.ctex"]
 
 [params]
 
