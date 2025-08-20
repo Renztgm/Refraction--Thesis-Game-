@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsj0kpk4xcpgs"]
+[gd_scene load_steps=8 format=3 uid="uid://bsj0kpk4xcpgs"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/House-1.gltf" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://dysbko8iwr1sr" path="res://assets/Building/Building 2/House-3A.glb" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://b3p0rfsrmughh" path="res://assets/Building/Building 3/Under-house (2).gltf" id="4_jyhfs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -16,7 +18,7 @@ sky = SubResource("Sky_o5qli")
 tonemap_mode = 2
 
 [node name="Main" type="Node3D"]
-transform = Transform3D(0.995701, 0, 0, 0, 0.995701, 0, 0, 0, 0.995701, 0, 0, 0)
+transform = Transform3D(0.995701, 0, 0, 0, 0.995701, 0, 0, 0, 0.995701, 0.109572, -0.0413594, 0.0238333)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0wfyh")
@@ -26,43 +28,44 @@ transform = Transform3D(0.193167, 0.160107, -0.972475, -0.0697566, 0.990713, 0.1
 shadow_enabled = true
 
 [node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.786194, -0.262873, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.453652, -0.0571614, 0.252969)
 use_collision = true
-size = Vector3(100, 0.5, 100)
+size = Vector3(10000, 0.5, 10000)
 
 [node name="Player3d" parent="." instance=ExtResource("1_o5qli")]
-transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, 1.4164, -0.523189, 3.6937)
+transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, 1.47153, -0.495621, -20.1648)
 
-[node name="Testing_house" type="CSGCombiner3D" parent="."]
+[node name="Testing_simbahan" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0494546, 0, 0.119337)
 use_collision = true
 
-[node name="Front_wall2" type="CSGBox3D" parent="Testing_house"]
+[node name="Front_wall2" type="CSGBox3D" parent="Testing_simbahan"]
 transform = Transform3D(1.00002, -0.00484559, 0.000630333, 0.00484554, 1.00002, 7.9579e-05, -0.000630711, -7.65263e-05, 1.00003, 1.58862, 4.64653, -23.9674)
 use_collision = true
 size = Vector3(15, 10, 0.25)
 
-[node name="Front_wall" type="CSGBox3D" parent="Testing_house"]
+[node name="Front_wall" type="CSGBox3D" parent="Testing_simbahan"]
 transform = Transform3D(1.00001, -0.00242276, 0.00031521, 0.00242275, 1.00001, 3.94071e-05, -0.000315305, -3.86446e-05, 1.00001, 1.69758, 4.7205, 0.988882)
 use_collision = true
 size = Vector3(15, 10, 0.25)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Testing_house/Front_wall"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Testing_simbahan/Front_wall"]
 transform = Transform3D(0.989359, 1.45519e-10, 9.53332e-09, -4.47655e-09, -0.00580184, -4.77733, 2.03727e-10, 1.00428, -0.0275992, -0.00774574, -5.12693, -0.164842)
 operation = 2
 radius = 1.3252
 height = 1.07959
 sides = 50
 
-[node name="Left_wall" type="CSGBox3D" parent="Testing_house"]
+[node name="Left_wall" type="CSGBox3D" parent="Testing_simbahan"]
 transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, -5.59021, 4.55233, -11.469)
 size = Vector3(0.25, 10, 25)
 
-[node name="Right_wall" type="CSGBox3D" parent="Testing_house"]
+[node name="Right_wall" type="CSGBox3D" parent="Testing_simbahan"]
 transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 9.31371, 4.49875, -11.4309)
 size = Vector3(0.25, 10, 25)
 
 [node name="House1" parent="." instance=ExtResource("2_0wfyh")]
-transform = Transform3D(0.250278, 0, 29.999, 0, 30, 0, -29.999, 0, 0.250278, -16.7133, 0.0988285, -7.31326)
+transform = Transform3D(0.250278, 0, 29.999, 0, 30, 0, -29.999, 0, 0.250278, -16.6421, 0.130899, -4.87025)
 
 [node name="CollisionBuilding" type="CSGCombiner3D" parent="House1"]
 transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
@@ -97,3 +100,52 @@ size = Vector3(0.25, 10, 25)
 [node name="CSGBox3D" type="CSGBox3D" parent="House1/CollisionBuilding"]
 transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
 metadata/_edit_group_ = true
+
+[node name="House2" parent="." instance=ExtResource("2_0wfyh")]
+transform = Transform3D(0.255515, 0, -29.999, 0, 30, 0, 29.999, 0, 0.255515, -31.7253, 0.130899, -1.11181)
+
+[node name="CollisionBuilding" type="CSGCombiner3D" parent="House2"]
+transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
+visible = false
+use_collision = true
+
+[node name="Front_wall2" type="CSGBox3D" parent="House2/CollisionBuilding"]
+transform = Transform3D(1.00002, -0.00484559, 0.000630333, 0.00484554, 1.00002, 7.9579e-05, -0.000630711, -7.65263e-05, 1.00003, 1.58862, 4.64653, -23.9674)
+use_collision = true
+size = Vector3(15, 10, 0.25)
+
+[node name="Front_wall" type="CSGBox3D" parent="House2/CollisionBuilding"]
+transform = Transform3D(1.00001, -0.00242276, 0.00031521, 0.00242275, 1.00001, 3.94071e-05, -0.000315305, -3.86446e-05, 1.00001, 1.69758, 4.7205, 0.988882)
+use_collision = true
+size = Vector3(15, 10, 0.25)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="House2/CollisionBuilding/Front_wall"]
+transform = Transform3D(0.989359, 1.45519e-10, 9.53332e-09, -4.47655e-09, -0.00580184, -4.77733, 2.03727e-10, 1.00428, -0.0275992, -0.00774574, -5.12693, -0.164842)
+operation = 2
+radius = 1.3252
+height = 1.07959
+sides = 50
+
+[node name="Left_wall" type="CSGBox3D" parent="House2/CollisionBuilding"]
+transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, -5.59021, 4.55233, -11.469)
+size = Vector3(0.25, 10, 25)
+
+[node name="Right_wall" type="CSGBox3D" parent="House2/CollisionBuilding"]
+transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 9.31371, 4.49875, -11.4309)
+size = Vector3(0.25, 10, 25)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House2/CollisionBuilding"]
+transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
+metadata/_edit_group_ = true
+
+[node name="House3" parent="." instance=ExtResource("3_sugp2")]
+transform = Transform3D(-49.9714, 0, 1.69178, 0, 50, 0, -1.69178, 0, -49.9714, -28.0121, -0.60102, -27.0926)
+
+[node name="House4" parent="." instance=ExtResource("3_sugp2")]
+transform = Transform3D(0.592534, 0, 49.9965, 0, 49.9999, 0, -49.9965, 0, 0.592534, -12.3437, -6.96271, -45.2274)
+
+[node name="blockbench_export" parent="." instance=ExtResource("4_jyhfs")]
+transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e-08, -29.994, 1.71115e-09, 0.597913, 5.68031, -0.775417, -43.798)
+
+[node name="blockbench_export2" parent="." instance=ExtResource("4_jyhfs")]
+transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e-08, -29.994, 1.71115e-09, 0.597913, 18.2895, -6.19309, -15.5351)

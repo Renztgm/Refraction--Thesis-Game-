@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://v33c4wj5xxjp"
+path.s3tc="res://.godot/imported/Under-house (2)_1.png-ca6613d3fc14310b06e98b55632ee984.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "6e9b693647376784d000b02c23118a24"
+}
+
+[deps]
+
+source_file="res://assets/Building/Building 3/Under-house (2)_1.png"
+dest_files=["res://.godot/imported/Under-house (2)_1.png-ca6613d3fc14310b06e98b55632ee984.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
