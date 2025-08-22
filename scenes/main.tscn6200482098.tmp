@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsj0kpk4xcpgs"]
+[gd_scene load_steps=12 format=3 uid="uid://bsj0kpk4xcpgs"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_0wfyh"]
@@ -20,6 +20,10 @@ background_mode = 2
 sky = SubResource("Sky_o5qli")
 tonemap_mode = 2
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_tbgi4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tefeu"]
+
 [node name="Main" type="Node3D"]
 transform = Transform3D(0.995701, 0, 0, 0, 0.995701, 0, 0, 0, 0.995701, 0.109572, -0.0413594, 0.0238333)
 script = SubResource("GDScript_tbgi4")
@@ -28,16 +32,19 @@ script = SubResource("GDScript_tbgi4")
 environment = SubResource("Environment_0wfyh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.193167, 0.160107, -0.972474, -0.0697565, 0.990712, 0.149254, 0.983094, 0.0388379, 0.201671, 0, 27.2953, -5.00797)
-light_color = Color(1, 0.881779, 0.699548, 1)
-light_energy = 0.75
-light_angular_distance = 15.0
+transform = Transform3D(0.193167, 0.160107, -0.972475, -0.0697566, 0.990713, 0.149254, 0.983095, 0.038838, 0.201671, 0, 22.5427, -5.00797)
 shadow_enabled = true
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.453652, -0.0571614, 0.252969)
 use_collision = true
-size = Vector3(1000, 0.5, 1000)
+size = Vector3(10000, 0.5, 10000)
+
+[node name="Player3d" parent="." instance=ExtResource("1_o5qli")]
+transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, 1.47153, -0.495621, -20.1648)
+
+[node name="Npc1" parent="." instance=ExtResource("5_tbgi4")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.1171, 3.21407, -23.1956)
 
 [node name="Buildings" type="Node3D" parent="."]
 
@@ -67,7 +74,7 @@ transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, -5.59021, 4
 size = Vector3(0.25, 10, 25)
 
 [node name="Right_wall" type="CSGBox3D" parent="Buildings/Testing_simbahan"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 8.94156, 4.49875, -11.4309)
+transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 9.31371, 4.49875, -11.4309)
 size = Vector3(0.25, 10, 25)
 
 [node name="House1" parent="Buildings" instance=ExtResource("2_0wfyh")]
@@ -144,114 +151,11 @@ size = Vector3(0.25, 10, 25)
 transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
 metadata/_edit_group_ = true
 
-[node name="House3 - Blue" parent="Buildings" instance=ExtResource("3_sugp2")]
+[node name="House3" parent="Buildings" instance=ExtResource("3_sugp2")]
 transform = Transform3D(-49.9714, 0, 1.69178, 0, 50, 0, -1.69178, 0, -49.9714, -28.0121, -0.60102, -27.0926)
 
-[node name="Wall Right" type="CSGBox3D" parent="Buildings/House3 - Blue"]
-transform = Transform3D(0.194578, 0, -1.11759e-08, 0, 0.532702, 0, 1.39698e-09, 0, 0.547067, -0.168623, 0.124441, 0.0312948)
-visible = false
-use_collision = true
-size = Vector3(0.0316162, 0.391541, 0.491405)
-
-[node name="wall Back" type="CSGBox3D" parent="Buildings/House3 - Blue"]
-transform = Transform3D(0.99687, 0, -1.42609e-09, 0, 0.999999, 0, 3.72529e-09, 0, 0.00838266, 0.00109667, 0.120446, 0.167719)
-visible = false
-use_collision = true
-size = Vector3(0.331, 0.205192, 0.027)
-
-[node name="Wall Front" type="CSGBox3D" parent="Buildings/House3 - Blue"]
-transform = Transform3D(0.998956, 0, -1.39698e-09, 0, 1, 0, 3.72529e-09, 0, 0.203139, -0.00132984, 0.124793, -0.10287)
-visible = false
-use_collision = true
-size = Vector3(0.331, 0.204863, 0.027)
-
-[node name="Door" type="CSGBox3D" parent="Buildings/House3 - Blue/Wall Front"]
-transform = Transform3D(0.999996, 0, 3.25963e-09, 0, 0.999997, 0, -1.3411e-07, 0, 0.999999, -0.0997845, -0.0704267, -0.00316334)
-visible = false
-operation = 2
-size = Vector3(0.05, 0.0782227, 0.05)
-
-[node name="Wall Left" type="CSGBox3D" parent="Buildings/House3 - Blue"]
-transform = Transform3D(0.44111, 0, -5.58794e-09, 0, 0.729864, 0, 9.31323e-10, 0, 0.73964, 0.159776, 0.114531, 0.0305324)
-visible = false
-size = Vector3(0.0316162, 0.317261, 0.359177)
-
-[node name="House4 - Blue" parent="Buildings" instance=ExtResource("3_sugp2")]
+[node name="House4" parent="Buildings" instance=ExtResource("3_sugp2")]
 transform = Transform3D(0.592534, 0, 49.9965, 0, 49.9999, 0, -49.9965, 0, 0.592534, -12.3437, -6.96271, -45.2274)
-
-[node name="House5" parent="Buildings" instance=ExtResource("2_0wfyh")]
-transform = Transform3D(-29.9174, 0, 2.22639, 0, 30, 0, -2.22639, 0, -29.9174, 18.3432, 0.130899, -45.3497)
-
-[node name="CollisionBuilding" type="CSGCombiner3D" parent="Buildings/House5"]
-transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
-visible = false
-use_collision = true
-
-[node name="Front_wall2" type="CSGBox3D" parent="Buildings/House5/CollisionBuilding"]
-transform = Transform3D(1.00002, -0.00484559, 0.000630333, 0.00484554, 1.00002, 7.9579e-05, -0.000630711, -7.65263e-05, 1.00003, 1.58862, 4.64653, -23.9674)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="Front_wall" type="CSGBox3D" parent="Buildings/House5/CollisionBuilding"]
-transform = Transform3D(1.00001, -0.00242276, 0.00031521, 0.00242275, 1.00001, 3.94071e-05, -0.000315305, -3.86446e-05, 1.00001, 1.69758, 4.7205, 0.988882)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Buildings/House5/CollisionBuilding/Front_wall"]
-transform = Transform3D(0.989359, 1.45519e-10, 9.53332e-09, -4.47655e-09, -0.00580184, -4.77733, 2.03727e-10, 1.00428, -0.0275992, -0.00774574, -5.12693, -0.164842)
-operation = 2
-radius = 1.3252
-height = 1.07959
-sides = 50
-
-[node name="Left_wall" type="CSGBox3D" parent="Buildings/House5/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, -5.59021, 4.55233, -11.469)
-size = Vector3(0.25, 10, 25)
-
-[node name="Right_wall" type="CSGBox3D" parent="Buildings/House5/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 9.31371, 4.49875, -11.4309)
-size = Vector3(0.25, 10, 25)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Buildings/House5/CollisionBuilding"]
-transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
-metadata/_edit_group_ = true
-
-[node name="House6" parent="Buildings" instance=ExtResource("2_0wfyh")]
-transform = Transform3D(-1.15425, 0, -29.9779, 0, 30, 0, 29.9779, 0, -1.15425, 30.0963, 0.130899, -39.1091)
-
-[node name="CollisionBuilding" type="CSGCombiner3D" parent="Buildings/House6"]
-transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
-visible = false
-use_collision = true
-
-[node name="Front_wall2" type="CSGBox3D" parent="Buildings/House6/CollisionBuilding"]
-transform = Transform3D(1.00002, -0.00484559, 0.000630333, 0.00484554, 1.00002, 7.9579e-05, -0.000630711, -7.65263e-05, 1.00003, 1.58862, 4.64653, -23.9674)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="Front_wall" type="CSGBox3D" parent="Buildings/House6/CollisionBuilding"]
-transform = Transform3D(1.00001, -0.00242276, 0.00031521, 0.00242275, 1.00001, 3.94071e-05, -0.000315305, -3.86446e-05, 1.00001, 1.69758, 4.7205, 0.988882)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Buildings/House6/CollisionBuilding/Front_wall"]
-transform = Transform3D(0.989359, 1.45519e-10, 9.53332e-09, -4.47655e-09, -0.00580184, -4.77733, 2.03727e-10, 1.00428, -0.0275992, -0.00774574, -5.12693, -0.164842)
-operation = 2
-radius = 1.3252
-height = 1.07959
-sides = 50
-
-[node name="Left_wall" type="CSGBox3D" parent="Buildings/House6/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, -5.59021, 4.55233, -11.469)
-size = Vector3(0.25, 10, 25)
-
-[node name="Right_wall" type="CSGBox3D" parent="Buildings/House6/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 9.31371, 4.49875, -11.4309)
-size = Vector3(0.25, 10, 25)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Buildings/House6/CollisionBuilding"]
-transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
-metadata/_edit_group_ = true
 
 [node name="Abandon1" parent="Buildings" instance=ExtResource("4_jyhfs")]
 transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e-08, -29.994, 1.71115e-09, 0.597913, 5.68031, -0.775417, -43.798)
@@ -259,10 +163,10 @@ transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e
 [node name="Abandon2" parent="Buildings" instance=ExtResource("4_jyhfs")]
 transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e-08, -29.994, 1.71115e-09, 0.597913, 18.2895, -6.19309, -15.5351)
 
-[node name="Entities" type="Node3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4625, -2.62559, -91.0284)
+navigation_mesh = SubResource("NavigationMesh_tbgi4")
 
-[node name="Player3d" parent="Entities" groups=["player"] instance=ExtResource("1_o5qli")]
-transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, -12.6702, -0.495621, -20.1648)
-
-[node name="Npc1" parent="Entities" instance=ExtResource("5_tbgi4")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.1171, 3.21407, -23.1956)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.95907, 0, -2.21372, 49.7299)
+mesh = SubResource("BoxMesh_tefeu")

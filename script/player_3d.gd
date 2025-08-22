@@ -8,6 +8,9 @@ var last_direction = "down"
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+# ✅ Add this so dialogue can freeze player movement
+var can_move: bool = true  
+
 # Camera collision settings
 const CAMERA_COLLISION_LAYERS = 1
 const MIN_CAMERA_DISTANCE = 0.5
@@ -19,26 +22,22 @@ func _ready():
 		original_camera_position = camera_3d.position
 
 func _physics_process(delta: float) -> void:
+	# ✅ stop all player movement if locked by dialogue
+	if not can_move:
+		velocity = Vector3.ZERO
+		move_and_slide()
+		return
+	
 	# Add the gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
-	# Handle jump with Space key (KEY_SPACE = 32)
-	#if Input.is_key_pressed(KEY_SPACE) and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-	
-	# Get WASD input using direct key codes
+		
+	# WASD input
 	var input_dir = Vector2.ZERO
-	
-	# Check for WASD input using key codes
-	if Input.is_key_pressed(KEY_A):      # A key (65)
-		input_dir.x -= 1
-	if Input.is_key_pressed(KEY_D):      # D key (68)
-		input_dir.x += 1
-	if Input.is_key_pressed(KEY_W):      # W key (87)
-		input_dir.y -= 1
-	if Input.is_key_pressed(KEY_S):      # S key (83)
-		input_dir.y += 1
+	if Input.is_key_pressed(KEY_A): input_dir.x -= 1
+	if Input.is_key_pressed(KEY_D): input_dir.x += 1
+	if Input.is_key_pressed(KEY_W): input_dir.y -= 1
+	if Input.is_key_pressed(KEY_S): input_dir.y += 1
 	
 	# Convert 2D input to 3D direction
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

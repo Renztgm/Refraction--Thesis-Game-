@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwht0l0wspj27"]
+
+[ext_resource type="Script" uid="uid://8y58q1bxm54k" path="res://script/npc_1.gd" id="1_58t84"]
+[ext_resource type="Texture2D" uid="uid://dsltnn338ealc" path="res://addons/3 SteamMan/SteamMan.png" id="1_wxkf0"]
+[ext_resource type="Texture2D" uid="uid://cfovpf0xnhv76" path="res://addons/3 SteamMan/SteamMan_idle.png" id="2_jao5w"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jao5w"]
+height = 1.1333
+radius = 0.37793
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58t84"]
+atlas = ExtResource("2_jao5w")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l61c3"]
+atlas = ExtResource("2_jao5w")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxb81"]
+atlas = ExtResource("2_jao5w")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60bcp"]
+atlas = ExtResource("2_jao5w")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skpjv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58t84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l61c3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxb81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60bcp")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Npc1" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00719, 0)
+script = ExtResource("1_58t84")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.219688, -0.281004, 0.0426259)
+visible = false
+billboard = 1
+texture = ExtResource("1_wxkf0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0506608, -0.438416, 0)
+shape = SubResource("CylinderShape3D_jao5w")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.219948, -0.27257, 0)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_skpjv")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.307613

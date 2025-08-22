@@ -1,6 +1,6 @@
 [gd_scene load_steps=76 format=3 uid="uid://c8jfqypwf5vw5"]
 
-[ext_resource type="Script" uid="uid://cw3dugmb5cg08" path="res://scenes/player_3d.gd" id="1_526tg"]
+[ext_resource type="Script" uid="uid://cw3dugmb5cg08" path="res://script/player_3d.gd" id="1_526tg"]
 [ext_resource type="Texture2D" uid="uid://804g24je5jxs" path="res://assets/sprites/Sprites/IDLE/idle_down.png" id="1_nhnhj"]
 [ext_resource type="Texture2D" uid="uid://cnmf2h7n2u06t" path="res://assets/sprites/Sprites/IDLE/idle_left.png" id="2_526tg"]
 [ext_resource type="Texture2D" uid="uid://cm8xnslvnflpn" path="res://assets/sprites/Sprites/IDLE/idle_right.png" id="3_60cg0"]
@@ -528,4 +528,4 @@ texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_q5i2v")
 animation = &"idle_down"
 autoplay = "idle_down"
-frame_progress = 0.399055
+frame_progress = 0.942703
