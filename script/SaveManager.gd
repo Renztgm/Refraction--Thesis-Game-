@@ -1,90 +1,110 @@
-# SaveManager.gd
-# Autoload singleton
 extends Node
 
 const SAVE_FILE = "user://savegame.save"
 
-# Data stored in the save file
+# Game data
 var game_data = {
 	"player_name": "Player",
 	"current_scene": "",
-	"player_position": {"x": 0.0, "y": 0.0, "z": 0.0},
-	"player_direction": "down",
+	"player_position": {"x": 0, "y": 0, "z": 0},
+	"player_direction": "down",  # store as string
 	"has_save": false
 }
 
 func _ready():
 	print("SaveManager ready!")
+	print("Save file will be stored at: ", ProjectSettings.globalize_path(SAVE_FILE))
 
-# Save the current game state
+# ---------------- SAVE ----------------
 func save_game() -> bool:
-	# Save current scene path
 	game_data["current_scene"] = get_tree().current_scene.scene_file_path
 	
-	# Save player data
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
-		var pos: Vector3 = player.global_position
-		game_data["player_position"] = {"x": pos.x, "y": pos.y, "z": pos.z}
+		# Save position
+		game_data["player_position"] = {
+			"x": player.position.x,
+			"y": player.position.y,
+			"z": player.position.z
+		}
+		# Save direction
+		if "last_direction" in player:
+			game_data["player_direction"] = str(player.last_direction)
 		
-		if player.has_method("get_last_direction"):
-			game_data["player_direction"] = player.get_last_direction()
+		# 🔹 Debug output for saved values
+		print("💾 Saving player position: ", player.position)
+		print("💾 Saving player direction: ", player.last_direction)
 	
-	# Mark save as valid
 	game_data["has_save"] = true
 	
-	# Write JSON file
-	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify(game_data))
-		file.close()
-		print("Game saved successfully!")
+	var save_file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+	if save_file:
+		save_file.store_string(JSON.stringify(game_data))
+		save_file.close()
+		print("✅ Game saved successfully at: ", ProjectSettings.globalize_path(SAVE_FILE))
 		return true
-	else:
-		push_error("SaveManager: Could not save game!")
-		return false
+	return false
 
-# Load the saved game
+# ---------------- LOAD ----------------
+func has_save_file() -> bool:
+	return FileAccess.file_exists(SAVE_FILE)
+
 func load_game() -> bool:
 	if not FileAccess.file_exists(SAVE_FILE):
-		print("No save file found")
+		print("⚠️ No save file found at: ", ProjectSettings.globalize_path(SAVE_FILE))
 		return false
 	
-	var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
-	if not file:
-		print("Error: Could not open save file")
+	var save_file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	if not save_file:
+		print("⚠️ Could not open save file")
 		return false
 	
-	var json_string = file.get_as_text()
-	file.close()
+	var json_string = save_file.get_as_text()
+	save_file.close()
 	
 	var json = JSON.new()
-	if json.parse(json_string) != OK:
-		print("Error: Could not parse save file")
+	var parse_result = json.parse(json_string)
+	
+	if parse_result != OK:
+		print("⚠️ Could not parse save file")
 		return false
 	
 	game_data = json.data
-	print("Game loaded successfully!")
+	
+	# 🔹 Debug output for loaded values
+	if game_data.has("player_position"):
+		print("📂 Loaded player position: ", Vector3(
+			game_data["player_position"]["x"],
+			game_data["player_position"]["y"],
+			game_data["player_position"]["z"]
+		))
+	if game_data.has("player_direction"):
+		print("📂 Loaded player direction: ", game_data["player_direction"])
+	
+	print("✅ Game loaded successfully from: ", ProjectSettings.globalize_path(SAVE_FILE))
 	return true
 
-# Check if save exists
-func has_save_file() -> bool:
-	return FileAccess.file_exists(SAVE_FILE) and game_data.get("has_save", false)
+# ---------------- CONTINUE ----------------
+func continue_game():
+	if not load_game():
+		print("⚠️ No save file to continue from.")
+		return
+	
+	if game_data.has("current_scene") and game_data["current_scene"] != "":
+		var scene_path = game_data["current_scene"]
+		print("➡️ Continuing game from scene: ", scene_path)
+		get_tree().change_scene_to_file(scene_path)
+	else:
+		print("⚠️ Save file has no scene path.")
 
-# Continue from save
-func continue_game() -> bool:
-	if load_game():
-		if game_data.has("current_scene") and game_data["current_scene"] != "":
-			get_tree().change_scene_to_file(game_data["current_scene"])
-			return true
-	return false
-
-# --- Accessors for Player.gd ---
+# ---------------- GETTERS ----------------
 func get_saved_player_position() -> Vector3:
 	if game_data.has("player_position"):
 		var pos = game_data["player_position"]
-		return Vector3(pos.get("x", 0.0), pos.get("y", 0.0), pos.get("z", 0.0))
+		return Vector3(pos["x"], pos["y"], pos["z"])
 	return Vector3.ZERO
 
 func get_saved_player_direction() -> String:
-	return game_data.get("player_direction", "down")
+	if game_data.has("player_direction"):
+		return str(game_data["player_direction"])
+	return "down"

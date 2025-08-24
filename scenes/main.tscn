@@ -35,7 +35,7 @@ light_energy = 0.75
 light_angular_distance = 15.0
 shadow_enabled = true
 
-[node name="Floor" type="CSGBox3D" parent="." groups=["player"]]
+[node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.453652, -0.0571614, 0.252969)
 use_collision = true
 size = Vector3(1000, 0.5, 1000)
@@ -262,7 +262,7 @@ transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e
 
 [node name="Entities" type="Node3D" parent="."]
 
-[node name="Player3d" parent="Entities" groups=["player"] instance=ExtResource("1_o5qli")]
+[node name="Player3d" parent="Entities" instance=ExtResource("1_o5qli")]
 transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, -12.6702, -0.495621, -20.1648)
 
 [node name="Npc1" parent="Entities" instance=ExtResource("5_tbgi4")]
