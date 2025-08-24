@@ -9,7 +9,7 @@ func _ready():
 	continue_button.pressed.connect(_on_continue_pressed)
 	new_game_button.pressed.connect(_on_new_game_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
-
+	
 	# Enable/disable continue button based on whether a save exists
 	continue_button.disabled = not SaveManager.has_save_file()
 
@@ -19,7 +19,11 @@ func _on_continue_pressed():
 
 func _on_new_game_pressed():
 	print("MainMenu: New Game pressed")
-	# Start fresh new game -> load your main gameplay scene
+	
+	# Clear any existing save data for a fresh start
+	SaveManager.start_new_game()
+	
+	# Load the main gameplay scene
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_quit_pressed():
