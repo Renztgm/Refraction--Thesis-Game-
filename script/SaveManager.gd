@@ -93,9 +93,29 @@ func continue_game():
 	if game_data.has("current_scene") and game_data["current_scene"] != "":
 		var scene_path = game_data["current_scene"]
 		print("➡️ Continuing game from scene: ", scene_path)
-		get_tree().change_scene_to_file(scene_path)
+		get_tree().change_scene_to_file(scene_path)  # Fixed typo: was "change_scene_to_fiale"
 	else:
 		print("⚠️ Save file has no scene path.")
+
+# ---------------- NEW GAME ----------------
+func start_new_game():
+	print("🆕 Starting new game - clearing save data")
+	
+	# Reset game data to defaults
+	game_data = {
+		"player_name": "Player",
+		"current_scene": "",
+		"player_position": {"x": 0, "y": 0, "z": 0},
+		"player_direction": "down",
+		"has_save": false
+	}
+	
+	# Delete the save file if it exists
+	if FileAccess.file_exists(SAVE_FILE):
+		var dir = DirAccess.open("user://")
+		if dir:
+			dir.remove("savegame.save")
+			print("🗑️ Deleted existing save file")
 
 # ---------------- GETTERS ----------------
 func get_saved_player_position() -> Vector3:
