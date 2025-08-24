@@ -1,47 +1,29 @@
-class_name MainMenu
+# MainMenu.gd
+# Attach this to your main menu scene
 extends Control
 
-@onready var start_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/Start_Button as Button
-@onready var exit_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/Exit_Button as Button
-@onready var start_level = preload("res://scenes/main.tscn") as PackedScene
-
-# Store original button texts
-var start_button_original_text: String
-var exit_button_original_text: String
+@onready var continue_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/ContinueButton
+@onready var new_game_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/NewGameButton
+@onready var quit_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/QuitButton
 
 func _ready():
-	# Store original texts
-	start_button_original_text = start_button.text
-	exit_button_original_text = exit_button.text
+	# Connect button signals
+	continue_button.pressed.connect(_on_continue_pressed)
+	new_game_button.pressed.connect(_on_new_game_pressed)
+	quit_button.pressed.connect(_on_quit_pressed)
 	
-	# Connect button press signals
-	start_button.button_down.connect(on_start_pressed)
-	exit_button.button_down.connect(on_exit_pressed)
-	
-	# Connect hover signals for start button
-	start_button.mouse_entered.connect(on_start_button_hover_enter)
-	start_button.mouse_exited.connect(on_start_button_hover_exit)
-	
-	# Connect hover signals for exit button
-	exit_button.mouse_entered.connect(on_exit_button_hover_enter)
-	exit_button.mouse_exited.connect(on_exit_button_hover_exit)
+	# Enable/disable continue button based on save file
+	continue_button.disabled = not SaveManager.has_save_file()
 
-func on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(start_level)
+func _on_continue_pressed():
+	if SaveManager.continue_game():
+		print("Continuing game...")
+	else:
+		print("Failed to load save file!")
 
-func on_exit_pressed() -> void:
+func _on_new_game_pressed():
+	# Change this to your first game scene
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
+
+func _on_quit_pressed():
 	get_tree().quit()
-
-# Hover effects for start button
-func on_start_button_hover_enter() -> void:
-	start_button.text = "➤ " + start_button_original_text
-
-func on_start_button_hover_exit() -> void:
-	start_button.text = start_button_original_text
-
-# Hover effects for exit button
-func on_exit_button_hover_enter() -> void:
-	exit_button.text = "➤ " + exit_button_original_text
-
-func on_exit_button_hover_exit() -> void:
-	exit_button.text = exit_button_original_text

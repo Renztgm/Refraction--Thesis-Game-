@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsj0kpk4xcpgs"]
+[gd_scene load_steps=11 format=3 uid="uid://bsj0kpk4xcpgs"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dysbko8iwr1sr" path="res://assets/Building/Building 2/House-3A.glb" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b3p0rfsrmughh" path="res://assets/Building/Building 3/Under-house (2).gltf" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dwht0l0wspj27" path="res://scenes/NPC 1.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="6_tefeu"]
 
 [sub_resource type="GDScript" id="GDScript_tbgi4"]
 
@@ -34,7 +35,7 @@ light_energy = 0.75
 light_angular_distance = 15.0
 shadow_enabled = true
 
-[node name="Floor" type="CSGBox3D" parent="."]
+[node name="Floor" type="CSGBox3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.453652, -0.0571614, 0.252969)
 use_collision = true
 size = Vector3(1000, 0.5, 1000)
@@ -266,3 +267,5 @@ transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, -12.6702, -
 
 [node name="Npc1" parent="Entities" instance=ExtResource("5_tbgi4")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.1171, 3.21407, -23.1956)
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_tefeu")]

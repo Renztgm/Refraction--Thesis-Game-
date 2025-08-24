@@ -13,6 +13,7 @@ var direction = Vector3.ZERO
 var spawn_position: Vector3
 var current_facing = "down"  # Track current facing direction
 var player_in_range: bool = false
+var dialogue_active: bool = false  # ✅ Prevent multiple dialogues
 
 # ✅ This fixes your error
 var can_move: bool = true
@@ -67,13 +68,14 @@ func _physics_process(delta):
 # ==============================
 
 func _unhandled_input(event: InputEvent) -> void:
-	if player_in_range and event.is_action_pressed("interact"):
+	# ✅ Only allow interaction if player is in range AND no dialogue is active
+	if player_in_range and not dialogue_active and event.is_action_pressed("interact"):
 		talk()
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		player_in_range = true
-		if interact_label:
+		if interact_label and not dialogue_active:  # ✅ Only show label if no dialogue active
 			interact_label.visible = true
 		print("Player entered NPC range")
 
@@ -85,19 +87,33 @@ func _on_body_exited(body: Node) -> void:
 		print("Player left NPC range")
 
 func talk():
+	# ✅ Double-check that dialogue isn't already active
+	if dialogue_active:
+		return
+		
+	dialogue_active = true  # ✅ Mark dialogue as active
+	can_move = false  # Freeze NPC during dialogue
+	
+	# Hide interaction label during dialogue
+	if interact_label:
+		interact_label.visible = false
+	
 	var dialogue_box = preload("res://scenes/DialogueBox.tscn").instantiate()
 	get_tree().current_scene.add_child(dialogue_box)
-
-	can_move = false  # Freeze NPC during dialogue
 
 	dialogue_box.start_dialogue(
 		["Hello traveler!", "Be careful, the roads ahead are dangerous."],
 		get_tree().get_first_node_in_group("player")
 	)
 
-	# ✅ Correct signal name from dialogue_box.gd
+	# ✅ Reset dialogue state when finished
 	dialogue_box.dialogue_finished.connect(func():
+		dialogue_active = false  # ✅ Allow new dialogues
 		can_move = true
+		
+		# Show interaction label again if player still in range
+		if player_in_range and interact_label:
+			interact_label.visible = true
 	)
 
 # ==============================
