@@ -102,7 +102,7 @@ func talk():
 	get_tree().current_scene.add_child(dialogue_box)
 
 	dialogue_box.start_dialogue(
-		["Hello traveler!", "Be careful, the roads ahead are dangerous."],
+		["Yabang mo ah?!", "Gusto mo masaksak? nasa Tondo ka Boy."],
 		get_tree().get_first_node_in_group("player")
 	)
 
