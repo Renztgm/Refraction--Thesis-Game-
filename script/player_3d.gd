@@ -5,6 +5,8 @@ extends CharacterBody3D
 @onready var camera_3d: Camera3D = $Camera_Mount/Camera3D
 @onready var pause_menu: Control = get_node_or_null("../../PauseMenu")  
 
+@onready var audio_manager = get_node("/root/Main/AudioManager")
+
 var last_direction: String = "down"
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5

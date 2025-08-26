@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dr5meypknvg1q"]
+[gd_scene load_steps=4 format=3 uid="uid://dr5meypknvg1q"]
 
 [ext_resource type="Script" uid="uid://bdoeycu1q3vm7" path="res://script/Dialogue/dialogue_box.gd" id="1_r2og1"]
+[ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_giuoe"]
+
+[sub_resource type="FontVariation" id="FontVariation_1n5wf"]
+base_font = ExtResource("2_giuoe")
 
 [node name="DialogueBox" type="Control"]
 layout_mode = 3
@@ -27,6 +31,7 @@ offset_left = 21.0
 offset_top = 15.0
 offset_right = 96.0
 offset_bottom = 38.0
+theme_override_fonts/font = SubResource("FontVariation_1n5wf")
 text = "TextLabel"
 
 [node name="NextButton" type="Button" parent="Panel"]
@@ -36,12 +41,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -35.0
-offset_right = -2.0
-offset_bottom = -27.0
+offset_left = -53.0
+offset_top = -65.0
+offset_right = -6.0
+offset_bottom = -37.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_1n5wf")
 text = "Next"
 
 [node name="AutoButton" type="Button" parent="Panel"]
@@ -51,8 +57,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -8.0
+offset_left = -53.0
+offset_top = -33.0
+offset_right = -7.0
+offset_bottom = -5.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_1n5wf")
 text = "Auto"
