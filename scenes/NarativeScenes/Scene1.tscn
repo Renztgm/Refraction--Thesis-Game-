@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ch1ttkvnsghnw"]
+[gd_scene load_steps=26 format=3 uid="uid://ch1ttkvnsghnw"]
 
 [ext_resource type="Script" uid="uid://b42wy2r64e4a" path="res://scenes/NarativeScenes/Script/awakening_environment.gd" id="1_ebp8x"]
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_le1v4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b3p0rfsrmughh" path="res://assets/Building/Building 3/Under-house (2).gltf" id="4_swwvq"]
 [ext_resource type="Script" uid="uid://cogfo7kfktfg4" path="res://scenes/NarativeScenes/Script/player_character.gd" id="5_f4tgv"]
 [ext_resource type="Script" uid="uid://dgfq3w021r67s" path="res://scenes/NarativeScenes/Script/awakening_camera_controller.gd" id="6_bjme1"]
+[ext_resource type="Texture2D" uid="uid://804g24je5jxs" path="res://assets/sprites/Sprites/IDLE/idle_down.png" id="6_le1v4"]
 [ext_resource type="Script" uid="uid://c86wt7sw6gv5p" path="res://script/NarrativeSceneScripts/camera_controller.gd" id="7_pp1vh"]
 [ext_resource type="Script" uid="uid://dc2jevgscgkfi" path="res://script/NarrativeSceneScripts/dialogue_ui.gd" id="8_4igs4"]
 [ext_resource type="Script" uid="uid://b16kko6yesh4g" path="res://scenes/NarativeScenes/Script/awakening_audio.gd" id="9_t2ff0"]
@@ -22,6 +23,73 @@ sky = SubResource("Sky_4bumr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icf0h"]
 albedo_color = Color(0.403922, 0.403922, 0.403922, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_876vf"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(0, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swwvq"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(96, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4tgv"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(192, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjme1"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(288, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp1vh"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(384, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4igs4"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(480, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2ff0"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(576, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_722yh"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(672, 0, 96, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2oxmw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_876vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swwvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4tgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjme1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp1vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4igs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2ff0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_722yh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n1iqc"]
+size = Vector3(1, 1.67432, 1)
 
 [node name="NarrativeScene3d" type="Node3D"]
 
@@ -267,7 +335,19 @@ transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e
 [node name="Characters" type="Node3D" parent="."]
 
 [node name="Player" type="CharacterBody3D" parent="Characters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.03933, 0)
 script = ExtResource("5_f4tgv")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Characters/Player"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_2oxmw")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0952148, 0)
+shape = SubResource("BoxShape3D_n1iqc")
 
 [node name="Camera" type="Node3D" parent="."]
 script = ExtResource("6_bjme1")

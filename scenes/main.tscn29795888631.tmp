@@ -287,6 +287,9 @@ script = ExtResource("8_tipki")
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
 
+[node name="HumPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+bus = &"Music"
+
 [node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
 

@@ -271,6 +271,9 @@ transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, 0, 0, 0)
 [node name="Npc1" parent="Entities" instance=ExtResource("5_tbgi4")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.1171, 3.21407, -23.1956)
 
+[node name="HumPlayer" type="AudioStreamPlayer" parent="Entities/Npc1"]
+bus = &"Music"
+
 [node name="PauseMenu" parent="." instance=ExtResource("6_tefeu")]
 
 [node name="UIAudio" type="Node" parent="."]

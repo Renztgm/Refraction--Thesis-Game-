@@ -33,17 +33,18 @@ func create_distorted_birds():
 	print("Playing distorted bird sounds...")
 	
 	# You would load actual audio files like this:
-	# var bird_sound = preload("res://audio/distorted_birds.ogg")
-	# sfx_player.stream = bird_sound
-	# sfx_player.play()
+	var bird_sound = preload("res://assets/audio/ambient/BirdChirping.mp3")
+	sfx_player.stream = bird_sound
+	sfx_player.play()
 
 func play_soft_humming():
 	print("Playing soft humming...")
 	
-	# You would load actual audio files like this:
-	# var hum_sound = preload("res://audio/soft_hum.ogg")
-	# ambient_player.stream = hum_sound
-	# ambient_player.play()
+	 #You would load actual audio files like this:
+	var hum_sound = preload("res://assets/audio/ambient/humming.mp3")
+	ambient_player.stream = hum_sound
+	ambient_player.volume_db = -30
+	ambient_player.play()
 
 func fade_in_from_black():
 	# Audio cue for fade in
