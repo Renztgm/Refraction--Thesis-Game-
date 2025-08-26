@@ -1,17 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq2ix7cgwm5b"]
+[gd_scene load_steps=10 format=3 uid="uid://dq2ix7cgwm5b"]
 
 [ext_resource type="Script" uid="uid://bbr3ag0pe55xm" path="res://scenes/Main Menu/main_menu.gd" id="1_hk6sr"]
 [ext_resource type="Texture2D" uid="uid://d0iauasyqnr50" path="res://assets/background/Frame 2.png" id="2_1o70l"]
 [ext_resource type="Texture2D" uid="uid://bwivixqba5yfe" path="res://assets/background/Group 2.png" id="3_iscfu"]
 [ext_resource type="FontFile" uid="uid://bvrundhiy7tsu" path="res://assets/fonts/KumarOne-Regular.ttf" id="4_iscfu"]
-
-[sub_resource type="SystemFont" id="SystemFont_hk6sr"]
-font_names = PackedStringArray("Impact")
+[ext_resource type="Texture2D" uid="uid://cr43kayxip62v" path="res://assets/MainMenu/Glasses/GlassBase.png" id="5_3e4a6"]
+[ext_resource type="Texture2D" uid="uid://bowcieu5it7wf" path="res://assets/MainMenu/Glasses/Glass1.png" id="6_gc41w"]
 
 [sub_resource type="FontVariation" id="FontVariation_3e4a6"]
 base_font = ExtResource("4_iscfu")
 
 [sub_resource type="FontVariation" id="FontVariation_gc41w"]
+base_font = ExtResource("4_iscfu")
+
+[sub_resource type="FontVariation" id="FontVariation_uq0hi"]
 base_font = ExtResource("4_iscfu")
 
 [node name="Main_Menu" type="Control"]
@@ -64,17 +66,6 @@ theme_override_constants/separation = 120
 
 [node name="Seperator" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 8
-theme_override_constants/shadow_offset_y = 8
-theme_override_constants/outline_size = 24
-theme_override_fonts/font = SubResource("SystemFont_hk6sr")
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -144,3 +135,47 @@ theme_override_fonts/font = SubResource("FontVariation_gc41w")
 theme_override_font_sizes/font_size = 20
 text = "Exit Game"
 flat = true
+
+[node name="Refraction - Title" type="Label" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 12.0
+offset_top = 132.0
+offset_right = 1140.0
+offset_bottom = 293.0
+theme_override_fonts/font = SubResource("FontVariation_uq0hi")
+theme_override_font_sizes/font_size = 90
+text = "Refraction"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GlassBase" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -67.0
+offset_top = -46.0
+offset_right = 58.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_3e4a6")
+expand_mode = 1
+
+[node name="Glass1" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 934.0
+offset_top = 451.0
+offset_right = 1279.0
+offset_bottom = 804.0
+texture = ExtResource("6_gc41w")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

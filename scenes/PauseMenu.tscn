@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cowfut2pi6gjg"]
+[gd_scene load_steps=3 format=3 uid="uid://cowfut2pi6gjg"]
 
-[ext_resource type="Script" uid="uid://twc3ucts3ymp" path="res://PauseMenu.gd" id="1_jvnd5"]
+[ext_resource type="Script" uid="uid://twc3ucts3ymp" path="res://script/PauseMenu.gd" id="1_jvnd5"]
+[ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_g4jo0"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +12,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jvnd5")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -18,29 +27,39 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -81.5
-offset_right = 48.0
-offset_bottom = 81.5
+offset_left = -125.0
+offset_top = -99.0
+offset_right = 125.0
+offset_bottom = 99.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_font_sizes/font_size = 24
 text = "Save"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_font_sizes/font_size = 24
 text = "Main Menu"
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_font_sizes/font_size = 24
 text = "Resume
 "
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_font_sizes/font_size = 24
 text = "Settings"
 
 [node name="SavedLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_font_sizes/font_size = 24

@@ -1,75 +1,113 @@
-<<<<<<< Settings-Update
-[gd_scene load_steps=12 format=3 uid="uid://bou71pl0jh1d1"]
+[gd_scene load_steps=26 format=3 uid="uid://ch1ttkvnsghnw"]
 
-[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_o5qli"]
-[ext_resource type="Script" uid="uid://bsrhx4ajssyfa" path="res://script/main.gd" id="1_o6xl0"]
-=======
-[gd_scene load_steps=16 format=3 uid="uid://bou71pl0jh1d1"]
+[ext_resource type="Script" uid="uid://b42wy2r64e4a" path="res://scenes/NarativeScenes/Script/awakening_environment.gd" id="1_ebp8x"]
+[ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_le1v4"]
+[ext_resource type="PackedScene" uid="uid://dysbko8iwr1sr" path="res://assets/Building/Building 2/House-3A.glb" id="3_876vf"]
+[ext_resource type="PackedScene" uid="uid://b3p0rfsrmughh" path="res://assets/Building/Building 3/Under-house (2).gltf" id="4_swwvq"]
+[ext_resource type="Script" uid="uid://cogfo7kfktfg4" path="res://scenes/NarativeScenes/Script/player_character.gd" id="5_f4tgv"]
+[ext_resource type="Script" uid="uid://dgfq3w021r67s" path="res://scenes/NarativeScenes/Script/awakening_camera_controller.gd" id="6_bjme1"]
+[ext_resource type="Texture2D" uid="uid://804g24je5jxs" path="res://assets/sprites/Sprites/IDLE/idle_down.png" id="6_le1v4"]
+[ext_resource type="Script" uid="uid://c86wt7sw6gv5p" path="res://script/NarrativeSceneScripts/camera_controller.gd" id="7_pp1vh"]
+[ext_resource type="Script" uid="uid://dc2jevgscgkfi" path="res://script/NarrativeSceneScripts/dialogue_ui.gd" id="8_4igs4"]
+[ext_resource type="Script" uid="uid://b16kko6yesh4g" path="res://scenes/NarativeScenes/Script/awakening_audio.gd" id="9_t2ff0"]
+[ext_resource type="Script" uid="uid://dcf0677e4iaao" path="res://scenes/NarativeScenes/Script/awakening_narrative.gd" id="10_722yh"]
 
-[ext_resource type="PackedScene" path="res://scenes/Player3d.tscn" id="1_o5qli"]
-[ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_tipki"]
->>>>>>> main
-[ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://dysbko8iwr1sr" path="res://assets/Building/Building 2/House-3A.glb" id="3_sugp2"]
-[ext_resource type="PackedScene" uid="uid://b3p0rfsrmughh" path="res://assets/Building/Building 3/Under-house (2).gltf" id="4_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://do4qavs2kvrld" path="res://scenes/NPC 1.tscn" id="5_tbgi4"]
-<<<<<<< Settings-Update
-[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="6_tefeu"]
-[ext_resource type="Script" uid="uid://bc48klt8h66o6" path="res://script/audio_manager.gd" id="8_tipki"]
-=======
-[ext_resource type="PackedScene" path="res://scenes/PauseMenu.tscn" id="6_tefeu"]
-[ext_resource type="Texture2D" uid="uid://ci8p2flumhkwq" path="res://road.png" id="7_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://tuhxc6oinf65" path="res://assets/Building/arko/Arko.gltf" id="9_85g3d"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kq5kl"]
 
-[sub_resource type="GDScript" id="GDScript_tbgi4"]
->>>>>>> main
+[sub_resource type="Sky" id="Sky_4bumr"]
+sky_material = SubResource("ProceduralSkyMaterial_kq5kl")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_o5qli"]
-sky_material = SubResource("ProceduralSkyMaterial_sgp6g")
-
-[sub_resource type="Environment" id="Environment_0wfyh"]
+[sub_resource type="Environment" id="Environment_qurli"]
 background_mode = 2
-sky = SubResource("Sky_o5qli")
-tonemap_mode = 2
+sky = SubResource("Sky_4bumr")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85g3d"]
-albedo_texture = ExtResource("1_tipki")
-uv1_scale = Vector3(0.4, 0.4, 0.4)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 50.2134
-uv2_triplanar = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icf0h"]
+albedo_color = Color(0.403922, 0.403922, 0.403922, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tipki"]
-albedo_texture = ExtResource("7_o6xl0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_876vf"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(0, 0, 96, 80)
 
-[node name="Main" type="Node3D"]
-transform = Transform3D(0.995701, 0, 0, 0, 0.995701, 0, 0, 0, 0.995701, 0, 0, 0)
-script = ExtResource("1_o6xl0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_swwvq"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(96, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4tgv"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(192, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjme1"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(288, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp1vh"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(384, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4igs4"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(480, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2ff0"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(576, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_722yh"]
+atlas = ExtResource("6_le1v4")
+region = Rect2(672, 0, 96, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2oxmw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_876vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swwvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4tgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjme1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp1vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4igs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2ff0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_722yh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n1iqc"]
+size = Vector3(1, 1.67432, 1)
+
+[node name="NarrativeScene3d" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
+script = ExtResource("1_ebp8x")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_0wfyh")
+environment = SubResource("Environment_qurli")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(0.193167, 0.160107, -0.972474, -0.0697565, 0.990712, 0.149254, 0.983094, 0.0388378, 0.201671, 0, 27.2953, -5.00797)
-light_color = Color(1, 0.881779, 0.699548, 1)
-light_energy = 0.75
-light_angular_distance = 15.0
-shadow_enabled = true
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 5, 5)
 
-<<<<<<< Settings-Update
+[node name="Background" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -10)
+
 [node name="Floor" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.453652, -0.0571614, 0.252969)
-=======
-[node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(0.999987, 2.21242e-10, 0.00506143, -2.21242e-10, 1, -5.60161e-13, -0.00506143, -5.60161e-13, 0.999987, 0.513963, -0.304624, 0.343198)
-material_override = SubResource("StandardMaterial3D_85g3d")
->>>>>>> main
+material_override = SubResource("StandardMaterial3D_icf0h")
 use_collision = true
 size = Vector3(1000, 0.5, 1000)
 
@@ -105,7 +143,7 @@ size = Vector3(0.25, 10, 25)
 transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 8.94156, 4.49875, -11.4309)
 size = Vector3(0.25, 10, 25)
 
-[node name="House1" parent="Environment/Buildings" instance=ExtResource("2_0wfyh")]
+[node name="House1" parent="Environment/Buildings" instance=ExtResource("2_le1v4")]
 transform = Transform3D(0.250278, 0, 29.999, 0, 30, 0, -29.999, 0, 0.250278, -16.6421, 0.130899, -4.87025)
 
 [node name="CollisionBuilding" type="CSGCombiner3D" parent="Environment/Buildings/House1"]
@@ -142,11 +180,12 @@ size = Vector3(0.25, 10, 25)
 transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
 metadata/_edit_group_ = true
 
-[node name="House2" parent="Environment/Buildings" instance=ExtResource("2_0wfyh")]
+[node name="House2" parent="Environment/Buildings" instance=ExtResource("2_le1v4")]
 transform = Transform3D(0.255515, 0, -29.999, 0, 30, 0, 29.999, 0, 0.255515, -31.7253, 0.130899, -1.11181)
 
 [node name="CollisionBuilding" type="CSGCombiner3D" parent="Environment/Buildings/House2"]
 transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
+visible = false
 use_collision = true
 
 [node name="Front_wall2" type="CSGBox3D" parent="Environment/Buildings/House2/CollisionBuilding"]
@@ -178,7 +217,7 @@ size = Vector3(0.25, 10, 25)
 transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
 metadata/_edit_group_ = true
 
-[node name="House3 - Blue" parent="Environment/Buildings" instance=ExtResource("3_sugp2")]
+[node name="House3 - Blue" parent="Environment/Buildings" instance=ExtResource("3_876vf")]
 transform = Transform3D(-49.9714, 0, 1.69178, 0, 50, 0, -1.69178, 0, -49.9714, -28.0121, -0.60102, -27.0926)
 
 [node name="Wall Right" type="CSGBox3D" parent="Environment/Buildings/House3 - Blue"]
@@ -210,10 +249,10 @@ transform = Transform3D(0.44111, 0, -5.58794e-09, 0, 0.729864, 0, 9.31323e-10, 0
 visible = false
 size = Vector3(0.0316162, 0.317261, 0.359177)
 
-[node name="House4 - Blue" parent="Environment/Buildings" instance=ExtResource("3_sugp2")]
+[node name="House4 - Blue" parent="Environment/Buildings" instance=ExtResource("3_876vf")]
 transform = Transform3D(0.592534, 0, 49.9965, 0, 49.9999, 0, -49.9965, 0, 0.592534, -12.3437, -6.96271, -45.2274)
 
-[node name="House5" parent="Environment/Buildings" instance=ExtResource("2_0wfyh")]
+[node name="House5" parent="Environment/Buildings" instance=ExtResource("2_le1v4")]
 transform = Transform3D(-29.9174, 0, 2.22639, 0, 30, 0, -2.22639, 0, -29.9174, 18.3432, 0.130899, -45.3497)
 
 [node name="CollisionBuilding" type="CSGCombiner3D" parent="Environment/Buildings/House5"]
@@ -250,7 +289,7 @@ size = Vector3(0.25, 10, 25)
 transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
 metadata/_edit_group_ = true
 
-[node name="House6" parent="Environment/Buildings" instance=ExtResource("2_0wfyh")]
+[node name="House6" parent="Environment/Buildings" instance=ExtResource("2_le1v4")]
 transform = Transform3D(-1.15425, 0, -29.9779, 0, 30, 0, 29.9779, 0, -1.15425, 30.0963, 0.130899, -39.1091)
 
 [node name="CollisionBuilding" type="CSGCombiner3D" parent="Environment/Buildings/House6"]
@@ -287,141 +326,149 @@ size = Vector3(0.25, 10, 25)
 transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
 metadata/_edit_group_ = true
 
-[node name="Abandon1" parent="Environment/Buildings" instance=ExtResource("4_jyhfs")]
+[node name="Abandon1" parent="Environment/Buildings" instance=ExtResource("4_swwvq")]
 transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e-08, -29.994, 1.71115e-09, 0.597913, 5.68031, -0.775417, -43.798)
 
-[node name="Abandon2" parent="Environment/Buildings" instance=ExtResource("4_jyhfs")]
+[node name="Abandon2" parent="Environment/Buildings" instance=ExtResource("4_swwvq")]
 transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e-08, -29.994, 1.71115e-09, 0.597913, 18.2895, -6.19309, -15.5351)
 
-[node name="Entities" type="Node3D" parent="."]
+[node name="Characters" type="Node3D" parent="."]
 
-[node name="Player3d" parent="Entities" instance=ExtResource("1_o5qli")]
-transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, 0, 0, 0)
+[node name="Player" type="CharacterBody3D" parent="Characters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.03933, 0)
+script = ExtResource("5_f4tgv")
 
-[node name="Npc1" parent="Entities" instance=ExtResource("5_tbgi4")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.1171, 3.21407, -23.1956)
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Characters/Player"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_2oxmw")
+animation = &"Idle"
+autoplay = "Idle"
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_tefeu")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0952148, 0)
+shape = SubResource("BoxShape3D_n1iqc")
 
-<<<<<<< Settings-Update
-[node name="UIAudio" type="Node" parent="."]
+[node name="Camera" type="Node3D" parent="."]
+script = ExtResource("6_bjme1")
 
-[node name="ButtonClickSFX" type="AudioStreamPlayer" parent="UIAudio"]
-bus = &"Music"
+[node name="Camera3D" type="Camera3D" parent="Camera"]
 
-[node name="MenuMusicSFX" type="AudioStreamPlayer" parent="UIAudio"]
-bus = &"Music"
+[node name="CameraController" type="Node3D" parent="Camera"]
+script = ExtResource("7_pp1vh")
+
+[node name="CameraAnimator" type="AnimationPlayer" parent="Camera"]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="FadeOverlay" type="ColorRect" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="ChoiceBox" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UILayer/ChoiceBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/ChoiceBox/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 218.0
+offset_top = -63.0
+offset_right = 218.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueBox" type="Control" parent="UILayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_4igs4")
+
+[node name="Panel" type="Panel" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -148.0
+offset_right = 103.0
+offset_bottom = -125.0
+grow_vertical = 0
+text = "NPC Name"
+
+[node name="DialogueText" type="RichTextLabel" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -123.0
+offset_right = -32.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "This is the Dialogue"
+
+[node name="NextButton" type="Button" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -48.0
+offset_right = -57.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next"
 
 [node name="AudioManager" type="Node" parent="."]
-script = ExtResource("8_tipki")
+script = ExtResource("9_t2ff0")
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
-bus = &"Music"
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
-[node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
-bus = &"Music"
+[node name="SFXPlayer" type="AudioStreamPlayer3D" parent="AudioManager"]
 
-[node name="WaterPlayer" type="AudioStreamPlayer" parent="AudioManager"]
-bus = &"Music"
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
-[node name="UISounds" type="AudioStreamPlayer" parent="AudioManager"]
-bus = &"Music"
-=======
-[node name="Roads" type="Node3D" parent="."]
-transform = Transform3D(0.999987, 2.54729e-10, 0.00506143, -2.21242e-10, 1.15136, -5.60161e-13, -0.00506143, -6.44937e-13, 0.999987, -9.87159, -0.276969, 10.8049)
+[node name="AmbientPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
-[node name="road area 1" type="Node3D" parent="Roads"]
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1"]
-transform = Transform3D(1, -3.00847e-15, 4.84288e-08, -9.98461e-18, 1, 3.79471e-19, -4.84288e-08, -1.10589e-17, 1, -30.9092, 0, -0.174174)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1/road"]
-transform = Transform3D(1, -3.00847e-15, 4.84288e-08, -9.95793e-18, 1, 5.96311e-19, -4.84288e-08, -1.06252e-17, 1, 64.7532, 0, -0.0275507)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1/road/road"]
-transform = Transform3D(1, -3.17499e-15, 4.84288e-08, -9.9304e-18, 1, 7.58942e-19, -4.84288e-08, -1.11131e-17, 1, -129.475, -2.98023e-08, 0.0649395)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road/road/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road/road/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1"]
-transform = Transform3D(1, -3.23052e-15, 5.21541e-08, -9.98271e-18, 1, 7.04731e-19, -5.21541e-08, -1.21431e-17, 1, -224.881, -1.78814e-07, -0.130927)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1/road2"]
-transform = Transform3D(1, -3.00847e-15, 4.84288e-08, -9.95793e-18, 1, 5.96311e-19, -4.84288e-08, -1.06252e-17, 1, 64.7532, 0, -0.0275507)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road2/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road2/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1/road2/road"]
-transform = Transform3D(1, -3.17499e-15, 4.84288e-08, -9.9304e-18, 1, 7.58942e-19, -4.84288e-08, -1.11131e-17, 1, -129.475, -2.98023e-08, 0.0649395)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road2/road/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road2/road/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road2"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road2/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="blockbench_export" parent="." instance=ExtResource("9_85g3d")]
-transform = Transform3D(-0.223095, 0, 13.6991, 0, 13.7009, 0, -13.6991, 0, -0.223095, -51.4974, -0.423756, -1.67537)
->>>>>>> main
+[node name="NarrativeController" type="Node" parent="."]
+script = ExtResource("10_722yh")

@@ -11,9 +11,86 @@ var game_data = {
 	"has_save": false
 }
 
+# Prevent multiple dialogs
+var is_dialog_open = false
+
 func _ready():
 	print("SaveManager ready!")
 	print("Save file will be stored at: ", ProjectSettings.globalize_path(SAVE_FILE))
+	
+	# Prevent immediate quit - we want to show a dialog first
+	get_tree().set_auto_accept_quit(false)
+
+func _notification(what):
+	match what:
+		NOTIFICATION_WM_CLOSE_REQUEST:
+			print("❌ Close button (X) pressed - showing save dialog...")
+			_show_save_confirmation_dialog()
+		NOTIFICATION_WM_GO_BACK_REQUEST:  # Android back button
+			print("🔙 Back button pressed - showing save dialog...")
+			_show_save_confirmation_dialog()
+
+func _show_save_confirmation_dialog():
+	# Prevent multiple dialogs from opening
+	if is_dialog_open:
+		print("⚠️ Dialog already open - ignoring request")
+		return
+	
+	# Check if we're in gameplay (not in menus)
+	var current_scene_name = get_tree().current_scene.scene_file_path
+	
+	# Add your gameplay scene paths here
+	var gameplay_scenes = [
+		"res://scenes/main.tscn",
+		"res://scenes/level1.tscn",
+		"res://scenes/overworld.tscn"
+		# Add other gameplay scenes where saving makes sense
+	]
+	
+	if current_scene_name in gameplay_scenes:
+		# Set flag to prevent multiple dialogs
+		is_dialog_open = true
+		
+		# Load the custom dialog scene
+		var dialog_scene = preload("res://scenes/SaveConfirmDialog.tscn")
+		var dialog_instance = dialog_scene.instantiate()
+		
+		# Connect the signals from the custom dialog
+		dialog_instance.save_and_quit_requested.connect(_on_save_and_quit)
+		dialog_instance.quit_without_save_requested.connect(_on_quit_without_saving)
+		dialog_instance.dialog_cancelled.connect(_on_cancel_quit)
+		
+		# Connect to tree_exiting to reset flag when dialog is freed
+		dialog_instance.tree_exiting.connect(_on_dialog_closed)
+		
+		# Add dialog to the current scene
+		get_tree().current_scene.add_child(dialog_instance)
+	else:
+		# In menu - just quit without asking
+		print("📋 In menu - quitting immediately")
+		get_tree().quit()
+
+func _on_dialog_closed():
+	# Reset the flag when dialog is closed
+	is_dialog_open = false
+	print("🔄 Dialog closed - ready for next request")
+
+# Updated signal handlers (no dialog parameter needed)
+func _on_save_and_quit():
+	print("💾 Player chose to save and quit")
+	is_dialog_open = false  # Reset flag before quitting
+	save_game()
+	get_tree().quit()
+
+func _on_quit_without_saving():
+	print("🚪 Player chose to quit without saving")
+	is_dialog_open = false  # Reset flag before quitting
+	get_tree().quit()
+
+func _on_cancel_quit():
+	print("❌ Player cancelled quit - continuing game")
+	is_dialog_open = false  # Reset flag when cancelled
+	# The SaveConfirmDialog handles its own cleanup
 
 # ---------------- SAVE ----------------
 func save_game() -> bool:
@@ -93,7 +170,7 @@ func continue_game():
 	if game_data.has("current_scene") and game_data["current_scene"] != "":
 		var scene_path = game_data["current_scene"]
 		print("➡️ Continuing game from scene: ", scene_path)
-		get_tree().change_scene_to_file(scene_path)  # Fixed typo: was "change_scene_to_fiale"
+		get_tree().change_scene_to_file(scene_path)
 	else:
 		print("⚠️ Save file has no scene path.")
 

@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch11xswsa1vge"]
+
+[ext_resource type="Script" uid="uid://dhc0t44joa8yx" path="res://script/save_confirm_dialog.gd" id="1_x23vs"]
+[ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_bma35"]
+
+[node name="SaveConfirmDialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x23vs")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DialogPanel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/DialogPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -31.0
+offset_right = 115.5
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Control/DialogPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bma35")
+theme_override_font_sizes/font_size = 24
+text = "⚠️ QUIT GAME"
+
+[node name="Message" type="Label" parent="Control/DialogPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bma35")
+theme_override_font_sizes/font_size = 24
+text = "Do you want the game saved?"
+
+[node name="ButtonContainer" type="VBoxContainer" parent="Control/DialogPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="Control/DialogPanel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bma35")
+theme_override_font_sizes/font_size = 24
+text = "💾 Save & Quit"
+flat = true
+
+[node name="DontSaveButton" type="Button" parent="Control/DialogPanel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bma35")
+theme_override_font_sizes/font_size = 24
+text = "🚪 Don't Save & Quit"
+flat = true
+
+[node name="CancelButton" type="Button" parent="Control/DialogPanel/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bma35")
+theme_override_font_sizes/font_size = 24
+text = "Back To Game"
+flat = true

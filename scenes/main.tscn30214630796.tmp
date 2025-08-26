@@ -1,28 +1,13 @@
-<<<<<<< Settings-Update
 [gd_scene load_steps=12 format=3 uid="uid://bou71pl0jh1d1"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://bsrhx4ajssyfa" path="res://script/main.gd" id="1_o6xl0"]
-=======
-[gd_scene load_steps=16 format=3 uid="uid://bou71pl0jh1d1"]
-
-[ext_resource type="PackedScene" path="res://scenes/Player3d.tscn" id="1_o5qli"]
-[ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_tipki"]
->>>>>>> main
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dysbko8iwr1sr" path="res://assets/Building/Building 2/House-3A.glb" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b3p0rfsrmughh" path="res://assets/Building/Building 3/Under-house (2).gltf" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://do4qavs2kvrld" path="res://scenes/NPC 1.tscn" id="5_tbgi4"]
-<<<<<<< Settings-Update
 [ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://bc48klt8h66o6" path="res://script/audio_manager.gd" id="8_tipki"]
-=======
-[ext_resource type="PackedScene" path="res://scenes/PauseMenu.tscn" id="6_tefeu"]
-[ext_resource type="Texture2D" uid="uid://ci8p2flumhkwq" path="res://road.png" id="7_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://tuhxc6oinf65" path="res://assets/Building/arko/Arko.gltf" id="9_85g3d"]
-
-[sub_resource type="GDScript" id="GDScript_tbgi4"]
->>>>>>> main
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -35,16 +20,6 @@ sky_material = SubResource("ProceduralSkyMaterial_sgp6g")
 background_mode = 2
 sky = SubResource("Sky_o5qli")
 tonemap_mode = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85g3d"]
-albedo_texture = ExtResource("1_tipki")
-uv1_scale = Vector3(0.4, 0.4, 0.4)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 50.2134
-uv2_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tipki"]
-albedo_texture = ExtResource("7_o6xl0")
 
 [node name="Main" type="Node3D"]
 transform = Transform3D(0.995701, 0, 0, 0, 0.995701, 0, 0, 0, 0.995701, 0, 0, 0)
@@ -62,14 +37,8 @@ light_energy = 0.75
 light_angular_distance = 15.0
 shadow_enabled = true
 
-<<<<<<< Settings-Update
 [node name="Floor" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.453652, -0.0571614, 0.252969)
-=======
-[node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(0.999987, 2.21242e-10, 0.00506143, -2.21242e-10, 1, -5.60161e-13, -0.00506143, -5.60161e-13, 0.999987, 0.513963, -0.304624, 0.343198)
-material_override = SubResource("StandardMaterial3D_85g3d")
->>>>>>> main
 use_collision = true
 size = Vector3(1000, 0.5, 1000)
 
@@ -147,6 +116,7 @@ transform = Transform3D(0.255515, 0, -29.999, 0, 30, 0, 29.999, 0, 0.255515, -31
 
 [node name="CollisionBuilding" type="CSGCombiner3D" parent="Environment/Buildings/House2"]
 transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
+visible = false
 use_collision = true
 
 [node name="Front_wall2" type="CSGBox3D" parent="Environment/Buildings/House2/CollisionBuilding"]
@@ -301,9 +271,11 @@ transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, 0, 0, 0)
 [node name="Npc1" parent="Entities" instance=ExtResource("5_tbgi4")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.1171, 3.21407, -23.1956)
 
+[node name="HumPlayer" type="AudioStreamPlayer" parent="Entities/Npc1"]
+bus = &"Music"
+
 [node name="PauseMenu" parent="." instance=ExtResource("6_tefeu")]
 
-<<<<<<< Settings-Update
 [node name="UIAudio" type="Node" parent="."]
 
 [node name="ButtonClickSFX" type="AudioStreamPlayer" parent="UIAudio"]
@@ -326,102 +298,3 @@ bus = &"Music"
 
 [node name="UISounds" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
-=======
-[node name="Roads" type="Node3D" parent="."]
-transform = Transform3D(0.999987, 2.54729e-10, 0.00506143, -2.21242e-10, 1.15136, -5.60161e-13, -0.00506143, -6.44937e-13, 0.999987, -9.87159, -0.276969, 10.8049)
-
-[node name="road area 1" type="Node3D" parent="Roads"]
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1"]
-transform = Transform3D(1, -3.00847e-15, 4.84288e-08, -9.98461e-18, 1, 3.79471e-19, -4.84288e-08, -1.10589e-17, 1, -30.9092, 0, -0.174174)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1/road"]
-transform = Transform3D(1, -3.00847e-15, 4.84288e-08, -9.95793e-18, 1, 5.96311e-19, -4.84288e-08, -1.06252e-17, 1, 64.7532, 0, -0.0275507)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1/road/road"]
-transform = Transform3D(1, -3.17499e-15, 4.84288e-08, -9.9304e-18, 1, 7.58942e-19, -4.84288e-08, -1.11131e-17, 1, -129.475, -2.98023e-08, 0.0649395)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road/road/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road/road/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1"]
-transform = Transform3D(1, -3.23052e-15, 5.21541e-08, -9.98271e-18, 1, 7.04731e-19, -5.21541e-08, -1.21431e-17, 1, -224.881, -1.78814e-07, -0.130927)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1/road2"]
-transform = Transform3D(1, -3.00847e-15, 4.84288e-08, -9.95793e-18, 1, 5.96311e-19, -4.84288e-08, -1.06252e-17, 1, 64.7532, 0, -0.0275507)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road2/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road2/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Roads/road area 1/road2/road"]
-transform = Transform3D(1, -3.17499e-15, 4.84288e-08, -9.9304e-18, 1, 7.58942e-19, -4.84288e-08, -1.11131e-17, 1, -129.475, -2.98023e-08, 0.0649395)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road2/road/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road2/road/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Roads/road area 1/road2"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Roads/road area 1/road2/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="blockbench_export" parent="." instance=ExtResource("9_85g3d")]
-transform = Transform3D(-0.223095, 0, 13.6991, 0, 13.7009, 0, -13.6991, 0, -0.223095, -51.4974, -0.423756, -1.67537)
->>>>>>> main
