@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcojsd18ujskf"
-path.s3tc="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
+uid="uid://c7dlx0qa2bqpj"
+path.s3tc="res://.godot/imported/Arko_0.png-3a237b4f64d6a6b960e948a53da3dd11.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "8fea217380e9fa06c5e8316355f6a7c3"
+}
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"]
+source_file="res://assets/Building/arko/Arko_0.png"
+dest_files=["res://.godot/imported/Arko_0.png-3a237b4f64d6a6b960e948a53da3dd11.s3tc.ctex"]
 
 [params]
 
@@ -33,6 +36,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
