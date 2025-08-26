@@ -24,7 +24,7 @@ func _on_new_game_pressed():
 	SaveManager.start_new_game()
 	
 	# Load the main gameplay scene
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/NarativeScenes/Scene1.tscn")
 
 func _on_quit_pressed():
 	print("MainMenu: Quit pressed")

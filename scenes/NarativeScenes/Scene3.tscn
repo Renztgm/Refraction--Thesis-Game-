@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7wy45d0d7ne0"]
+[gd_scene load_steps=11 format=3 uid="uid://b7wy45d0d7ne0"]
 
-[ext_resource type="Script" uid="uid://c86wt7sw6gv5p" path="res://script/NarrativeSceneScripts/camera_controller.gd" id="1_wogbo"]
-[ext_resource type="Script" uid="uid://dc2jevgscgkfi" path="res://script/NarrativeSceneScripts/dialogue_ui.gd" id="2_qwi6a"]
-[ext_resource type="Script" uid="uid://daoncjqmrk8tb" path="res://script/NarrativeSceneScripts/audio_manager.gd" id="3_6galm"]
-[ext_resource type="Script" uid="uid://cfyr2mmhjxudw" path="res://script/NarrativeSceneScripts/narrative_controller.gd" id="4_vvtq6"]
+[ext_resource type="Script" uid="uid://c86wt7sw6gv5p" path="res://script/NarrativeSceneScripts/camera_controller.gd" id="1_pg7mk"]
+[ext_resource type="Script" uid="uid://dc2jevgscgkfi" path="res://script/NarrativeSceneScripts/dialogue_ui.gd" id="2_7joti"]
+[ext_resource type="Script" uid="uid://daoncjqmrk8tb" path="res://script/NarrativeSceneScripts/audio_manager.gd" id="3_eb84r"]
+[ext_resource type="Script" uid="uid://cfyr2mmhjxudw" path="res://script/NarrativeSceneScripts/narrative_controller.gd" id="4_l1433"]
+[ext_resource type="PackedScene" uid="uid://djui83c87ryj8" path="res://addons/tree/tree.gltf" id="5_7joti"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_71npg"]
 
@@ -41,7 +42,7 @@ mesh = SubResource("PrismMesh_xi4ek")
 [node name="Camera" type="Node3D" parent="."]
 
 [node name="CameraController" type="Node3D" parent="Camera"]
-script = ExtResource("1_wogbo")
+script = ExtResource("1_pg7mk")
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
 
@@ -56,7 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_qwi6a")
+script = ExtResource("2_7joti")
 
 [node name="Panel" type="Panel" parent="UILayer/DialogueBox"]
 layout_mode = 1
@@ -118,7 +119,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="AudioManager" type="Node" parent="."]
-script = ExtResource("3_6galm")
+script = ExtResource("3_eb84r")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
@@ -127,4 +128,7 @@ script = ExtResource("3_6galm")
 [node name="VoicePlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="NarrativeController" type="Node" parent="."]
-script = ExtResource("4_vvtq6")
+script = ExtResource("4_l1433")
+
+[node name="blockbench_export" parent="." instance=ExtResource("5_7joti")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2.36741, 0, -3.83516)

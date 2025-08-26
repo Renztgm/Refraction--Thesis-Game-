@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ch1ttkvnsghnw"]
+[gd_scene load_steps=27 format=3 uid="uid://ch1ttkvnsghnw"]
 
 [ext_resource type="Script" uid="uid://b42wy2r64e4a" path="res://scenes/NarativeScenes/Script/awakening_environment.gd" id="1_ebp8x"]
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_le1v4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dc2jevgscgkfi" path="res://script/NarrativeSceneScripts/dialogue_ui.gd" id="8_4igs4"]
 [ext_resource type="Script" uid="uid://b16kko6yesh4g" path="res://scenes/NarativeScenes/Script/awakening_audio.gd" id="9_t2ff0"]
 [ext_resource type="Script" uid="uid://dcf0677e4iaao" path="res://scenes/NarativeScenes/Script/awakening_narrative.gd" id="10_722yh"]
+[ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="10_876vf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kq5kl"]
 
@@ -428,6 +429,7 @@ offset_top = -148.0
 offset_right = 103.0
 offset_bottom = -125.0
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("10_876vf")
 text = "NPC Name"
 
 [node name="DialogueText" type="RichTextLabel" parent="UILayer/DialogueBox"]
@@ -442,6 +444,7 @@ offset_right = -32.0
 offset_bottom = -23.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("10_876vf")
 text = "This is the Dialogue"
 
 [node name="NextButton" type="Button" parent="UILayer/DialogueBox"]
@@ -457,6 +460,7 @@ offset_right = -57.0
 offset_bottom = -17.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("10_876vf")
 text = "Next"
 
 [node name="AudioManager" type="Node" parent="."]

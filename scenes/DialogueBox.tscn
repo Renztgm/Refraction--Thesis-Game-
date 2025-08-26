@@ -11,6 +11,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -1.0
+offset_right = -4.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r2og1")
@@ -65,3 +69,15 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = SubResource("FontVariation_1n5wf")
 text = "Auto"
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.638
+anchor_top = -2.937
+anchor_right = 0.638
+anchor_bottom = -2.937
+offset_left = 0.0239868
+offset_top = 0.700012
+offset_right = 40.024
+offset_bottom = 40.7

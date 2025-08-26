@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://do4qavs2kvrld"]
+[gd_scene load_steps=47 format=3 uid="uid://do4qavs2kvrld"]
 
 [ext_resource type="Script" uid="uid://8y58q1bxm54k" path="res://script/npc_1.gd" id="1_58t84"]
 [ext_resource type="Texture2D" uid="uid://bbqhxr8rv3e1n" path="res://addons/Character/Idle/Character_down_idle-Sheet6.png" id="3_l61c3"]
@@ -302,8 +302,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_skpjv"]
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_u2n3y"]
 resource_local_to_scene = true
 
@@ -323,7 +321,6 @@ animation = &"Idle_down"
 autoplay = "Idle_down"
 
 [node name="Area3D" type="Area3D" parent="."]
-script = SubResource("GDScript_skpjv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(2.87693, 0, 0, 0, 3.10604, 0, 0, 0, 3.52812, 0.0161595, -0.468624, 0)

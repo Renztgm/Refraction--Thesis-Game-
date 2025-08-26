@@ -3,7 +3,7 @@ extends CharacterBody3D
 @onready var animated_sprite_3d: AnimatedSprite3D = $Camera_Mount/Visual/AnimatedSprite3D
 @onready var camera_mount: Node3D = $Camera_Mount
 @onready var camera_3d: Camera3D = $Camera_Mount/Camera3D
-@onready var pause_menu: Control = get_node_or_null("../../PauseMenu")  
+@onready var pause_menu: Control = get_node_or_null("../PauseMenu")
 
 @onready var audio_manager = get_node("/root/Main/AudioManager")
 
