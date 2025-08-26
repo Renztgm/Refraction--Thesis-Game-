@@ -6,7 +6,6 @@ enum State { IDLE, WALKING, CHASING, RETURNING }
 @onready var state_timer = Timer.new()
 @onready var interact_area: Area3D = $Area3D
 @onready var interact_label: Label3D = $InteractLabel3D
-@onready var hum_player: AudioStreamPlayer3D = $hum_player
 var has_started_humming: bool = false
 
 var current_state = State.IDLE
@@ -32,13 +31,6 @@ func _ready():
 	# Hide label initially
 	if interact_label:
 		interact_label.visible = false
-		
-	# Setup humming (but don’t start yet)
-	hum_player.stream = preload("res://assets/audio/ambient/humming.mp3")
-	hum_player.volume_db = -12
-	hum_player.unit_size = 1.0      # how far sound carries
-	hum_player.max_distance = 30.0  # fades out at 30 units
-	hum_player.autoplay = false
 
 	change_state(State.IDLE)
 
@@ -94,20 +86,6 @@ func _on_body_exited(body: Node) -> void:
 		if interact_label:
 			interact_label.visible = false
 		print("Player left NPC range")
-		
-		# Start humming only once
-		if not has_started_humming:
-			hum_player.play()
-			has_started_humming = true
-			# Trigger background music after 30s
-			start_background_music_after_delay()
-
-func start_background_music_after_delay():
-	await get_tree().create_timer(30.0).timeout
-	var audio_manager = get_tree().get_first_node_in_group("audio_manager")
-	if audio_manager:
-		audio_manager.play_background_music()
-
 
 func talk():
 	# ✅ Double-check that dialogue isn't already active

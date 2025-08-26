@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://boogtrxcf6jrh"]
+[gd_scene load_steps=17 format=3 uid="uid://boogtrxcf6jrh"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_tipki"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3p0rfsrmughh" path="res://assets/Building/Building 3/Under-house (2).gltf" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://do4qavs2kvrld" path="res://scenes/NPC 1.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://bd1dd8utxi0ok" path="res://scenes/Npc2.tscn" id="7_choun"]
 [ext_resource type="Texture2D" uid="uid://ci8p2flumhkwq" path="res://road.png" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://2jfhowbc6vl8" path="res://script/main/audio_manager.gd" id="9_85g3d"]
 
@@ -282,6 +283,9 @@ transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, -12.6702, -
 [node name="Npc1" parent="Entities" instance=ExtResource("5_tbgi4")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.1171, 3.21407, -23.1956)
 
+[node name="Npc2" parent="Entities" instance=ExtResource("7_choun")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 23.7664, 3.28988, 0.0439088)
+
 [node name="PauseMenu" parent="." instance=ExtResource("6_tefeu")]
 
 [node name="Roads" type="Node3D" parent="."]
@@ -379,11 +383,13 @@ transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-
 material_override = SubResource("StandardMaterial3D_tipki")
 size = Vector3(21.6968, 1, 10.0948)
 
-[node name="AudioManager" type="Node" parent="."]
+[node name="AudioManager" type="Node" parent="." groups=["player"]]
 script = ExtResource("9_85g3d")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
 
-[node name="AmbientSounds" type="AudioStreamPlayer" parent="AudioManager"]
-
 [node name="UISounds" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="WaterPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
