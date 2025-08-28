@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr5meypknvg1q"]
+[gd_scene load_steps=5 format=3 uid="uid://dr5meypknvg1q"]
 
 [ext_resource type="Script" uid="uid://bdoeycu1q3vm7" path="res://script/Dialogue/dialogue_box.gd" id="1_r2og1"]
 [ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_giuoe"]
+
+[sub_resource type="SystemFont" id="SystemFont_giuoe"]
+font_names = PackedStringArray("Consolas")
 
 [sub_resource type="FontVariation" id="FontVariation_1n5wf"]
 base_font = ExtResource("2_giuoe")
@@ -11,10 +14,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -1.0
-offset_right = -4.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r2og1")
@@ -25,6 +24,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 5.0
 offset_top = -100.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -35,7 +35,7 @@ offset_left = 21.0
 offset_top = 15.0
 offset_right = 96.0
 offset_bottom = 38.0
-theme_override_fonts/font = SubResource("FontVariation_1n5wf")
+theme_override_fonts/font = SubResource("SystemFont_giuoe")
 text = "TextLabel"
 
 [node name="NextButton" type="Button" parent="Panel"]
@@ -77,7 +77,8 @@ anchor_left = 0.638
 anchor_top = -2.937
 anchor_right = 0.638
 anchor_bottom = -2.937
-offset_left = 0.0239868
-offset_top = 0.700012
-offset_right = 40.024
-offset_bottom = 40.7
+offset_left = 169.024
+offset_top = -6.29999
+offset_right = 209.024
+offset_bottom = 33.7
+metadata/_edit_use_anchors_ = true

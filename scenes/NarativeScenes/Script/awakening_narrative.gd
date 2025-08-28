@@ -176,4 +176,4 @@ func end_scene():
 	await tween.finished
 	
 	# Load next scene or return to main menu
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/NarativeScenes/scene2.tscn")
