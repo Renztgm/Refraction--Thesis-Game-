@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://boogtrxcf6jrh"]
+[gd_scene load_steps=18 format=3 uid="uid://boogtrxcf6jrh"]
 
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="1_4fa0y"]
 [ext_resource type="PackedScene" uid="uid://dysbko8iwr1sr" path="res://assets/Building/Building 2/House-3A.glb" id="2_opeos"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ci8p2flumhkwq" path="res://road.png" id="4_a013g"]
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="5_ou6ii"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="6_ko7wd"]
+[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://addons/dubai_clouds.glb" id="6_opeos"]
 [ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="7_cqnqw"]
 [ext_resource type="PackedScene" uid="uid://do4qavs2kvrld" path="res://scenes/NPC 1.tscn" id="8_wtt4a"]
 [ext_resource type="PackedScene" uid="uid://cpgkwqyew3a2j" path="res://scenes/Npc2.tscn" id="9_xjyl5"]
@@ -15,26 +16,29 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tipki"]
 albedo_texture = ExtResource("4_a013g")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ya4ey"]
-sky_top_color = Color(0.105882, 0.368627, 0.290196, 1)
-sky_horizon_color = Color(0.313726, 0.784314, 0.470588, 1)
-sky_cover_modulate = Color(0.647059, 1, 0.478431, 1)
-ground_bottom_color = Color(0.0509804, 0.14902, 0.117647, 1)
-ground_horizon_color = Color(0.180392, 0.490196, 0.403922, 1)
-
-[sub_resource type="Sky" id="Sky_4fa0y"]
-sky_material = SubResource("ProceduralSkyMaterial_ya4ey")
-
-[sub_resource type="Environment" id="Environment_trceg"]
-background_mode = 2
-sky = SubResource("Sky_4fa0y")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85g3d"]
 albedo_texture = ExtResource("5_ou6ii")
 uv1_scale = Vector3(0.4, 0.4, 0.4)
 uv1_triplanar = true
 uv1_triplanar_sharpness = 50.2134
 uv2_triplanar = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4fa0y"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_curve = 0.243676
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_eb6dy"]
+sky_material = SubResource("ProceduralSkyMaterial_4fa0y")
+
+[sub_resource type="Environment" id="Environment_opeos"]
+background_mode = 2
+sky = SubResource("Sky_eb6dy")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 
 [node name="Main" type="Node3D"]
 transform = Transform3D(0.995701, 0, 0, 0, 0.995701, 0, 0, 0, 0.995701, 0, 0, 0)
@@ -327,19 +331,22 @@ transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-
 material_override = SubResource("StandardMaterial3D_tipki")
 size = Vector3(21.6968, 1, 10.0948)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_trceg")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(-0.00411926, 0, -1.00431, 0, 1.00432, 0, 1.00431, 0, -0.00411926, 0, 0, 0)
-light_color = Color(0.647059, 1, 0.478431, 1)
-sky_mode = 1
-
 [node name="Floor" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(0.999987, 2.21242e-10, 0.00506143, -2.21242e-10, 1, -5.60161e-13, -0.00506143, -5.60161e-13, 0.999987, 0.513963, -0.304624, 0.343198)
 material_override = SubResource("StandardMaterial3D_85g3d")
 use_collision = true
 size = Vector3(1000, 0.5, 1000)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_opeos")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.39002e-08, 0, -1.00432, 0, 1.00432, 0, 1.00432, 0, -4.39002e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+sky_mode = 1
+
+[node name="Sky" parent="Environment" instance=ExtResource("6_opeos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841215, 5.63674, 2.09051)
 
 [node name="Player3d" parent="." instance=ExtResource("6_ko7wd")]
 transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, 1, 0, 1)
@@ -370,5 +377,5 @@ bus = &"Music"
 [node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
 
-[node name="blockbench_export" parent="." instance=ExtResource("11_yuuax")]
+[node name="tree" parent="." instance=ExtResource("11_yuuax")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 27.0382, -0.708833, -2.56096)

@@ -158,11 +158,13 @@ radius = 2.17188
 [sub_resource type="SphereShape3D" id="SphereShape3D_2xsjv"]
 
 [node name="Npc2" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
 script = ExtResource("1_2xsjv")
 
 [node name="CompanionSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 flip_h = true
+shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_06rm7")
 animation = &"Idle"
