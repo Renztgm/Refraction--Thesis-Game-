@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7wy45d0d7ne0"]
+
+[ext_resource type="Script" uid="uid://c86wt7sw6gv5p" path="res://script/NarrativeSceneScripts/camera_controller.gd" id="1_pg7mk"]
+[ext_resource type="Script" uid="uid://dc2jevgscgkfi" path="res://script/NarrativeSceneScripts/dialogue_ui.gd" id="2_7joti"]
+[ext_resource type="Script" uid="uid://daoncjqmrk8tb" path="res://script/NarrativeSceneScripts/audio_manager.gd" id="3_eb84r"]
+[ext_resource type="Script" uid="uid://cfyr2mmhjxudw" path="res://script/NarrativeSceneScripts/narrative_controller.gd" id="4_l1433"]
+[ext_resource type="PackedScene" uid="uid://djui83c87ryj8" path="res://addons/tree/tree.gltf" id="5_7joti"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_71npg"]
+
+[sub_resource type="Sky" id="Sky_7gqqc"]
+sky_material = SubResource("ProceduralSkyMaterial_71npg")
+
+[sub_resource type="Environment" id="Environment_t6i5a"]
+background_mode = 2
+sky = SubResource("Sky_7gqqc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7qrgo"]
+size = Vector2(20, 20)
+
+[sub_resource type="PrismMesh" id="PrismMesh_xi4ek"]
+
+[node name="NarrativeScene3d" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_t6i5a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 5, 5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -10)
+mesh = SubResource("PlaneMesh_7qrgo")
+
+[node name="Characters" type="Node3D" parent="."]
+
+[node name="Magello" type="MeshInstance3D" parent="Characters"]
+mesh = SubResource("PrismMesh_xi4ek")
+
+[node name="Camera" type="Node3D" parent="."]
+
+[node name="CameraController" type="Node3D" parent="Camera"]
+script = ExtResource("1_pg7mk")
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_7joti")
+
+[node name="Panel" type="Panel" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -148.0
+offset_right = 103.0
+offset_bottom = -125.0
+grow_vertical = 0
+text = "NPC Name"
+
+[node name="DialogueText" type="RichTextLabel" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -123.0
+offset_right = -32.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "This is the Dialogue"
+
+[node name="NextButton" type="Button" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -68.0
+offset_right = -57.0
+offset_bottom = -37.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next"
+
+[node name="SubtitleText" type="Label" parent="UILayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="InteractionPrompts" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("3_eb84r")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="SFXPlayer" type="AudioStreamPlayer3D" parent="AudioManager"]
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="NarrativeController" type="Node" parent="."]
+script = ExtResource("4_l1433")
+
+[node name="blockbench_export" parent="." instance=ExtResource("5_7joti")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2.36741, 0, -3.83516)

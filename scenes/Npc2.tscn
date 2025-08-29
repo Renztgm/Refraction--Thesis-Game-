@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bd1dd8utxi0ok"]
+[gd_scene load_steps=27 format=3 uid="uid://cpgkwqyew3a2j"]
 
 [ext_resource type="Texture2D" uid="uid://cgm1g5r63m2yc" path="res://addons/Walk.png" id="1_2bvor"]
 [ext_resource type="Script" uid="uid://dipn6482q8rld" path="res://script/npc_2.gd" id="1_2xsjv"]
@@ -160,7 +160,7 @@ radius = 2.17188
 [node name="Npc2" type="CharacterBody3D"]
 script = ExtResource("1_2xsjv")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+[node name="CompanionSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 flip_h = true
 texture_filter = 0
@@ -184,3 +184,9 @@ bus = &"Music"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0)
 shape = SubResource("SphereShape3D_2xsjv")
+
+[node name="InteractLabel3D" type="Label3D" parent="."]
+transform = Transform3D(3.48474, 0, 0, 0, 3.03297, 0, 0, 0, 1, 0, 1.28679, 0)
+visible = false
+billboard = 1
+text = "\"Press E to talk\""
