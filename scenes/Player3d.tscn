@@ -524,6 +524,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.38414, 0)
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Camera_Mount/Visual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85335, 0)
 pixel_size = 0.09
+billboard = 2
+shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_q5i2v")
 animation = &"idle_down"

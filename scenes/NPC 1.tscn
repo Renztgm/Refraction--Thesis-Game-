@@ -315,6 +315,7 @@ shape = SubResource("CylinderShape3D_jao5w")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -0.00354296, -0.489077, 0)
+shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_skpjv")
 animation = &"Idle_down"
