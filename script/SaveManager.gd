@@ -41,9 +41,10 @@ func _show_save_confirmation_dialog():
 	
 	# Add your gameplay scene paths here
 	var gameplay_scenes = [
-		"res://scenes/main.tscn",
-		"res://scenes/level1.tscn",
-		"res://scenes/overworld.tscn"
+		"res://scenes/NarativeScenes/Scene1.tscn",
+		"res://scenes/NarativeScenes/scene2.tscn",
+		"res://scenes/NarativeScenes/Scene3.tscn",
+		"res://scenes/TestingScenes/TestingGrounds.tscn"
 		# Add other gameplay scenes where saving makes sense
 	]
 	
