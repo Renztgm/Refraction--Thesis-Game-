@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7wy45d0d7ne0"]
+[gd_scene load_steps=14 format=3 uid="uid://b7wy45d0d7ne0"]
 
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_eb84r"]
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_l1433"]
-[ext_resource type="PackedScene" uid="uid://bn77iryyr0lj1" path="res://addons/abandoned_railroad.glb" id="3_jjv0t"]
-[ext_resource type="PackedScene" uid="uid://b55aluwshgtss" path="res://assets/old_rusty_car.glb" id="4_5a376"]
-[ext_resource type="PackedScene" uid="uid://dekrm245p0xn7" path="res://assets/abandoned__junk_car.glb" id="5_u74mi"]
-[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://addons/dubai_clouds.glb" id="6_q0b6v"]
+[ext_resource type="PackedScene" uid="uid://bn77iryyr0lj1" path="res://addons/discarded/abandoned_railroad.glb" id="3_jjv0t"]
+[ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="6_eb84r"]
+[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://addons/discarded/dubai_clouds.glb" id="6_q0b6v"]
+[ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="7_5a376"]
+[ext_resource type="PackedScene" uid="uid://btuftvfr512xm" path="res://addons/Station/Station.tscn" id="7_jjv0t"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="7_l1433"]
 [ext_resource type="PackedScene" uid="uid://cpgkwqyew3a2j" path="res://scenes/Npc2.tscn" id="8_jjv0t"]
 
@@ -51,444 +52,460 @@ transform = Transform3D(-4.39002e-08, 0, -1.00432, 0, 1.00432, 0, 1.00432, 0, -4
 light_color = Color(0.647059, 1, 0.478431, 1)
 sky_mode = 1
 
-[node name="Buildings" type="Node3D" parent="Environment"]
-
-[node name="Building 1" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -5.206, 0, -39.0421)
-
-[node name="Building 2" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, 3.18615, 0, -33.4153)
-
-[node name="Building 3" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -12.5737, 0, -39.0421)
-
-[node name="Building 4" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 15.5053, 0, -39.0421)
-
-[node name="Building 5" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 22.6961, 0, -39.0421)
-
-[node name="Building 6" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 36.921, 0, -39.0421)
-
-[node name="Building 7" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, 45.3131, 0, -33.4153)
-
-[node name="Building 8" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 29.5532, 0, -39.0421)
-
-[node name="Building 9" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 57.6323, 0, -39.0421)
-
-[node name="Building 10" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 64.8231, 0, -39.0421)
-
-[node name="Building 11" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -46.945, 0, -39.0421)
-
-[node name="Building 12" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, -38.5528, 0, -33.4153)
-
-[node name="Building 13" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -54.3127, 0, -39.0421)
-
-[node name="Building 14" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -26.2337, 0, -39.0421)
-
-[node name="Building 15" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -19.0428, 0, -39.0421)
-
-[node name="Building 16" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -88.6121, 0, -39.0421)
-
-[node name="Building 17" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, -80.2199, 0, -33.4153)
-
-[node name="Building 18" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -95.9798, 0, -39.0421)
-
-[node name="Building 19" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -67.9008, 0, -39.0421)
-
-[node name="Building 20" parent="Environment/Buildings" instance=ExtResource("2_l1433")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -60.7099, 0, -39.0421)
-
-[node name="railroad" type="Node3D" parent="Environment/Buildings"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6899, 0.184073, -7.15269)
-
-[node name="rails4" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92859, 0, -0.000320435)
-
-[node name="rails3" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8929, 0, -0.000480652)
-
-[node name="rails2" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96429, 0, -0.000160217)
-
-[node name="rails" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-
-[node name="rails5" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8204, 0, -0.000320435)
-
-[node name="rails6" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7847, 0, -0.000480652)
-
-[node name="rails7" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8561, 0, -0.000160217)
-
-[node name="rails8" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8918, 0, 0)
-
-[node name="rails9" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6224, 0, -0.000320435)
-
-[node name="rails10" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5867, 0, -0.000480652)
-
-[node name="rails11" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6581, 0, -0.000160217)
-
-[node name="rails12" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6938, 0, 0)
-
-[node name="rails13" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5142, 0, -0.000320435)
-
-[node name="rails14" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.4785, 0, -0.000480652)
-
-[node name="rails15" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.5499, 0, -0.000160217)
-
-[node name="rails16" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5856, 0, 0)
-
-[node name="rails17" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9196, 0, -0.000320435)
-
-[node name="rails18" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9553, 0, -0.000480652)
-
-[node name="rails19" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.8839, 0, -0.000160217)
-
-[node name="rails20" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8482, 0, 0)
-
-[node name="rails21" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02778, 0, -0.000320435)
-
-[node name="rails22" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06349, 0, -0.000480652)
-
-[node name="rails23" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9921, 0, -0.000160217)
-
-[node name="rails24" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9564, 0, 0)
-
-[node name="rails25" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.3625, 0, -0.000320435)
-
-[node name="rails26" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.3982, 0, -0.000480652)
-
-[node name="rails27" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.3268, 0, -0.000160217)
-
-[node name="rails28" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.2911, 0, 0)
-
-[node name="rails29" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.4707, 0, -0.000320435)
-
-[node name="rails30" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.5064, 0, -0.000480652)
-
-[node name="rails31" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.435, 0, -0.000160217)
-
-[node name="rails32" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.3993, 0, 0)
-
-[node name="rails33" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.6687, 0, -0.000320435)
-
-[node name="rails34" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.7044, 0, -0.000480652)
-
-[node name="rails35" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.633, 0, -0.000160217)
-
-[node name="rails36" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.5973, 0, 0)
-
-[node name="rails37" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.7769, 0, -0.000320435)
-
-[node name="rails38" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.8126, 0, -0.000480652)
-
-[node name="rails39" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7412, 0, -0.000160217)
-
-[node name="rails40" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.7055, 0, 0)
-
-[node name="rails41" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.211, 0, -0.000320435)
-
-[node name="rails42" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.246, 0, -0.000480652)
-
-[node name="rails43" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -123.175, 0, -0.000160217)
-
-[node name="rails44" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -127.139, 0, 0)
-
-[node name="rails45" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.319, 0, -0.000320435)
-
-[node name="rails46" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.3546, 0, -0.000480652)
-
-[node name="rails47" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.283, 0, -0.000160217)
-
-[node name="rails48" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.247, 0, 0)
-
-[node name="rails49" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.929, 0, -0.000320435)
-
-[node name="rails50" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.8933, 0, -0.000480652)
-
-[node name="rails51" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.9647, 0, -0.000160217)
-
-[node name="rails52" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.0004, 0, 0)
-
-[node name="rails53" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5099, 0, -0.000480652)
-
-[node name="rails54" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.5913, 0, -0.000160217)
-
-[node name="rails55" parent="Environment/Buildings/railroad" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.627, 0, 0)
-
-[node name="railroad2" type="Node3D" parent="Environment/Buildings"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1141, 0.364893, -17.9698)
-
-[node name="rails4" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92859, 0, -0.000320435)
-
-[node name="rails3" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8929, 0, -0.000480652)
-
-[node name="rails2" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96429, 0, -0.000160217)
-
-[node name="rails" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-
-[node name="rails5" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8204, 0, -0.000320435)
-
-[node name="rails6" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7847, 0, -0.000480652)
-
-[node name="rails7" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8561, 0, -0.000160217)
-
-[node name="rails8" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8918, 0, 0)
-
-[node name="rails9" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6224, 0, -0.000320435)
-
-[node name="rails10" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5867, 0, -0.000480652)
-
-[node name="rails11" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6581, 0, -0.000160217)
-
-[node name="rails12" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6938, 0, 0)
-
-[node name="rails13" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5142, 0, -0.000320435)
-
-[node name="rails14" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.4785, 0, -0.000480652)
-
-[node name="rails15" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.5499, 0, -0.000160217)
-
-[node name="rails16" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5856, 0, 0)
-
-[node name="rails17" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9196, 0, -0.000320435)
-
-[node name="rails18" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9553, 0, -0.000480652)
-
-[node name="rails19" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.8839, 0, -0.000160217)
-
-[node name="rails20" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8482, 0, 0)
-
-[node name="rails21" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02778, 0, -0.000320435)
-
-[node name="rails22" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06349, 0, -0.000480652)
-
-[node name="rails23" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9921, 0, -0.000160217)
-
-[node name="rails24" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9564, 0, 0)
-
-[node name="rails25" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.9021, 0, -0.000320435)
-
-[node name="rails26" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.9378, 0, -0.000480652)
-
-[node name="rails27" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.8664, 0, -0.000160217)
-
-[node name="rails28" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.8307, 0, 0)
-
-[node name="rails29" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.0103, 0, -0.000320435)
-
-[node name="rails30" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.046, 0, -0.000480652)
-
-[node name="rails31" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.9746, 0, -0.000160217)
-
-[node name="rails32" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.9389, 0, 0)
-
-[node name="rails33" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.2083, 0, -0.000320435)
-
-[node name="rails34" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.244, 0, -0.000480652)
-
-[node name="rails35" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.1726, 0, -0.000160217)
-
-[node name="rails36" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.1369, 0, 0)
-
-[node name="rails37" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.3165, 0, -0.000320435)
-
-[node name="rails38" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3522, 0, -0.000480652)
-
-[node name="rails39" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2808, 0, -0.000160217)
-
-[node name="rails40" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.2451, 0, 0)
-
-[node name="rails41" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.75, 0, -0.000320435)
-
-[node name="rails42" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.786, 0, -0.000480652)
-
-[node name="rails43" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122.715, 0, -0.000160217)
-
-[node name="rails44" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.679, 0, 0)
-
-[node name="rails45" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102.859, 0, -0.000320435)
-
-[node name="rails46" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.8942, 0, -0.000480652)
-
-[node name="rails47" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.823, 0, -0.000160217)
-
-[node name="rails48" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.787, 0, 0)
-
-[node name="rails49" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92859, 0, -0.000320435)
-
-[node name="rails50" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8929, 0, -0.000480652)
-
-[node name="rails51" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96429, 0, -0.000160217)
-
-[node name="rails52" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-
-[node name="rails53" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8204, 0, -0.000320435)
-
-[node name="rails54" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7847, 0, -0.000480652)
-
-[node name="rails55" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92859, 0, -0.000320435)
-
-[node name="rails56" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8929, 0, -0.000480652)
-
-[node name="rails57" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96429, 0, -0.000160217)
-
-[node name="rails58" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-
-[node name="rails59" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8204, 0, -0.000320435)
-
-[node name="rails60" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7847, 0, -0.000480652)
-
-[node name="rails62" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.5307, 0, -0.000320435)
-
-[node name="rails63" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.495, 0, -0.000480652)
-
-[node name="rails64" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.5664, 0, -0.000160217)
-
-[node name="rails65" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.6021, 0, 0)
-
-[node name="rails66" parent="Environment/Buildings/railroad2" instance=ExtResource("3_jjv0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.4616, 0, -0.000320435)
-
-[node name="car" parent="Environment/Buildings" instance=ExtResource("4_5a376")]
-transform = Transform3D(0.0119168, 0, -0.0147983, 0, 0.019, 0, 0.0147983, 0, 0.0119168, -3.186, 0, -24.623)
-
-[node name="car2" parent="Environment/Buildings" instance=ExtResource("4_5a376")]
-transform = Transform3D(0.0131835, 0, -0.013682, 0, 0.019, 0, 0.013682, 0, 0.0131835, 27.4654, 0, -24.6439)
-
-[node name="car3" parent="Environment/Buildings" instance=ExtResource("5_u74mi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -11.4858, 0.0950936, -24.6996)
-
 [node name="Sky" parent="Environment" instance=ExtResource("6_q0b6v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841215, 5.63674, 2.09051)
 
+[node name="Structures" type="Node3D" parent="Environment"]
+
+[node name="Buildings" type="Node3D" parent="Environment/Structures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6424, 0, -9.86592)
+
+[node name="Building 1" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -5.206, 0, -47.634)
+
+[node name="Building 2" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, 3.18615, 0, -42.0072)
+
+[node name="Building 3" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -12.5737, 0, -47.634)
+
+[node name="Building 4" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 15.5053, 0, -47.634)
+
+[node name="Building 5" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 22.6961, 0, -47.634)
+
+[node name="Building 6" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 36.921, 0, -47.634)
+
+[node name="Building 7" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, 45.3131, 0, -42.0072)
+
+[node name="Building 8" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 29.5532, 0, -47.634)
+
+[node name="Building 9" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 57.6323, 0, -47.634)
+
+[node name="Building 10" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 64.8231, 0, -47.634)
+
+[node name="Building 11" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -46.945, 0, -47.634)
+
+[node name="Building 12" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, -38.5528, 0, -42.0072)
+
+[node name="Building 13" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -54.3127, 0, -47.634)
+
+[node name="Building 14" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -26.2337, 0, -47.634)
+
+[node name="Building 15" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -19.0428, 0, -47.634)
+
+[node name="Building 16" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -88.6121, 0, -47.634)
+
+[node name="Building 17" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, -80.2199, 0, -42.0072)
+
+[node name="Building 18" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -95.9798, 0, -47.634)
+
+[node name="Building 19" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -67.9008, 0, -47.634)
+
+[node name="Building 20" parent="Environment/Structures/Buildings" instance=ExtResource("2_l1433")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -60.7099, 0, -47.634)
+
+[node name="Railroads" type="Node3D" parent="Environment/Structures"]
+
+[node name="railroad1" type="Node3D" parent="Environment/Structures/Railroads"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6899, 0.648617, -7.15269)
+
+[node name="rails4" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92859, 0, -0.000320435)
+
+[node name="rails3" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8929, 0, -0.000480652)
+
+[node name="rails2" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96429, 0, -0.000160217)
+
+[node name="rails" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+
+[node name="rails5" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8204, 0, -0.000320435)
+
+[node name="rails6" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7847, 0, -0.000480652)
+
+[node name="rails7" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8561, 0, -0.000160217)
+
+[node name="rails8" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8918, 0, 0)
+
+[node name="rails9" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6224, 0, -0.000320435)
+
+[node name="rails10" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5867, 0, -0.000480652)
+
+[node name="rails11" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6581, 0, -0.000160217)
+
+[node name="rails12" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6938, 0, 0)
+
+[node name="rails13" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5142, 0, -0.000320435)
+
+[node name="rails14" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.4785, 0, -0.000480652)
+
+[node name="rails15" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.5499, 0, -0.000160217)
+
+[node name="rails16" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5856, 0, 0)
+
+[node name="rails17" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9196, 0, -0.000320435)
+
+[node name="rails18" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9553, 0, -0.000480652)
+
+[node name="rails19" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.8839, 0, -0.000160217)
+
+[node name="rails20" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8482, 0, 0)
+
+[node name="rails21" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02778, 0, -0.000320435)
+
+[node name="rails22" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06349, 0, -0.000480652)
+
+[node name="rails23" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9921, 0, -0.000160217)
+
+[node name="rails24" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9564, 0, 0)
+
+[node name="rails25" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.3625, 0, -0.000320435)
+
+[node name="rails26" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.3982, 0, -0.000480652)
+
+[node name="rails27" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.3268, 0, -0.000160217)
+
+[node name="rails28" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.2911, 0, 0)
+
+[node name="rails29" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.4707, 0, -0.000320435)
+
+[node name="rails30" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.5064, 0, -0.000480652)
+
+[node name="rails31" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.435, 0, -0.000160217)
+
+[node name="rails32" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.3993, 0, 0)
+
+[node name="rails33" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.6687, 0, -0.000320435)
+
+[node name="rails34" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.7044, 0, -0.000480652)
+
+[node name="rails35" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.633, 0, -0.000160217)
+
+[node name="rails36" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.5973, 0, 0)
+
+[node name="rails37" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.7769, 0, -0.000320435)
+
+[node name="rails38" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.8126, 0, -0.000480652)
+
+[node name="rails39" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7412, 0, -0.000160217)
+
+[node name="rails40" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.7055, 0, 0)
+
+[node name="rails41" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.211, 0, -0.000320435)
+
+[node name="rails42" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.246, 0, -0.000480652)
+
+[node name="rails43" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -123.175, 0, -0.000160217)
+
+[node name="rails44" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -127.139, 0, 0)
+
+[node name="rails45" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.319, 0, -0.000320435)
+
+[node name="rails46" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.3546, 0, -0.000480652)
+
+[node name="rails47" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -107.283, 0, -0.000160217)
+
+[node name="rails48" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.247, 0, 0)
+
+[node name="rails49" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.929, 0, -0.000320435)
+
+[node name="rails50" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.8933, 0, -0.000480652)
+
+[node name="rails51" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.9647, 0, -0.000160217)
+
+[node name="rails52" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.0004, 0, 0)
+
+[node name="rails53" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5099, 0, -0.000480652)
+
+[node name="rails54" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.5913, 0, -0.000160217)
+
+[node name="rails55" parent="Environment/Structures/Railroads/railroad1" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.627, 0, 0)
+
+[node name="railroad2" type="Node3D" parent="Environment/Structures/Railroads"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1141, 0.364893, -17.9698)
+
+[node name="rails4" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92859, 0, -0.000320435)
+
+[node name="rails3" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8929, 0, -0.000480652)
+
+[node name="rails2" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96429, 0, -0.000160217)
+
+[node name="rails" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+
+[node name="rails5" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8204, 0, -0.000320435)
+
+[node name="rails6" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7847, 0, -0.000480652)
+
+[node name="rails7" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8561, 0, -0.000160217)
+
+[node name="rails8" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8918, 0, 0)
+
+[node name="rails9" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6224, 0, -0.000320435)
+
+[node name="rails10" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5867, 0, -0.000480652)
+
+[node name="rails11" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6581, 0, -0.000160217)
+
+[node name="rails12" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6938, 0, 0)
+
+[node name="rails13" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5142, 0, -0.000320435)
+
+[node name="rails14" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.4785, 0, -0.000480652)
+
+[node name="rails15" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.5499, 0, -0.000160217)
+
+[node name="rails16" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5856, 0, 0)
+
+[node name="rails17" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9196, 0, -0.000320435)
+
+[node name="rails18" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9553, 0, -0.000480652)
+
+[node name="rails19" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.8839, 0, -0.000160217)
+
+[node name="rails20" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8482, 0, 0)
+
+[node name="rails21" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02778, 0, -0.000320435)
+
+[node name="rails22" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06349, 0, -0.000480652)
+
+[node name="rails23" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9921, 0, -0.000160217)
+
+[node name="rails24" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9564, 0, 0)
+
+[node name="rails25" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.9021, 0, -0.000320435)
+
+[node name="rails26" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.9378, 0, -0.000480652)
+
+[node name="rails27" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.8664, 0, -0.000160217)
+
+[node name="rails28" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.8307, 0, 0)
+
+[node name="rails29" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.0103, 0, -0.000320435)
+
+[node name="rails30" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.046, 0, -0.000480652)
+
+[node name="rails31" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.9746, 0, -0.000160217)
+
+[node name="rails32" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.9389, 0, 0)
+
+[node name="rails33" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.2083, 0, -0.000320435)
+
+[node name="rails34" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.244, 0, -0.000480652)
+
+[node name="rails35" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.1726, 0, -0.000160217)
+
+[node name="rails36" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.1369, 0, 0)
+
+[node name="rails37" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.3165, 0, -0.000320435)
+
+[node name="rails38" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3522, 0, -0.000480652)
+
+[node name="rails39" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2808, 0, -0.000160217)
+
+[node name="rails40" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.2451, 0, 0)
+
+[node name="rails41" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.75, 0, -0.000320435)
+
+[node name="rails42" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.786, 0, -0.000480652)
+
+[node name="rails43" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122.715, 0, -0.000160217)
+
+[node name="rails44" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.679, 0, 0)
+
+[node name="rails45" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102.859, 0, -0.000320435)
+
+[node name="rails46" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.8942, 0, -0.000480652)
+
+[node name="rails47" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.823, 0, -0.000160217)
+
+[node name="rails48" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.787, 0, 0)
+
+[node name="rails49" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92859, 0, -0.000320435)
+
+[node name="rails50" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8929, 0, -0.000480652)
+
+[node name="rails51" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96429, 0, -0.000160217)
+
+[node name="rails52" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+
+[node name="rails53" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8204, 0, -0.000320435)
+
+[node name="rails54" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7847, 0, -0.000480652)
+
+[node name="rails55" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92859, 0, -0.000320435)
+
+[node name="rails56" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8929, 0, -0.000480652)
+
+[node name="rails57" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96429, 0, -0.000160217)
+
+[node name="rails58" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+
+[node name="rails59" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8204, 0, -0.000320435)
+
+[node name="rails60" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7847, 0, -0.000480652)
+
+[node name="rails62" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.5307, 0, -0.000320435)
+
+[node name="rails63" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.495, 0, -0.000480652)
+
+[node name="rails64" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.5664, 0, -0.000160217)
+
+[node name="rails65" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.6021, 0, 0)
+
+[node name="rails66" parent="Environment/Structures/Railroads/railroad2" instance=ExtResource("3_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.4616, 0, -0.000320435)
+
+[node name="Walls" type="Node3D" parent="Environment/Structures"]
+
+[node name="Station" parent="Environment/Structures/Walls" instance=ExtResource("7_jjv0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.54947, 0.254856, -28.1344)
+
+[node name="Walls" parent="Environment/Structures/Walls" instance=ExtResource("6_eb84r")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.5867, 0.258544, -38.6013)
+
+[node name="Walls2" parent="Environment/Structures/Walls" instance=ExtResource("6_eb84r")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 63.3891, 0.25, -38.6314)
+
+[node name="Wall" parent="Environment/Structures/Walls" instance=ExtResource("7_5a376")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 68.3832, 0.25, -43.5588)
+
+[node name="Walls3" parent="Environment/Structures/Walls" instance=ExtResource("6_eb84r")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -48.117, 0.25, -38.5979)
+
+[node name="Walls4" parent="Environment/Structures/Walls" instance=ExtResource("6_eb84r")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -103.811, 0.25, -38.5979)
+
 [node name="Player3d" parent="." instance=ExtResource("7_l1433")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.388, 0, -26.8143)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.2537, 0.106935, -13.5042)
 
 [node name="Companion" parent="." instance=ExtResource("8_jjv0t")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 72.201, 3.5, -37.2854)
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 71.163, 3.5, -41.5596)

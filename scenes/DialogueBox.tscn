@@ -38,6 +38,7 @@ offset_top = 40.0
 offset_right = 110.0
 offset_bottom = 63.0
 theme_override_fonts/font = SubResource("SystemFont_giuoe")
+theme_override_font_sizes/font_size = 24
 text = "TextLabel"
 
 [node name="NextButton" type="Button" parent="Panel"]

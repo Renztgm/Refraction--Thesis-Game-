@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://btuftvfr512xm"]
+
+[ext_resource type="PackedScene" uid="uid://cot51bv4mg8vh" path="res://addons/Station/Waiting_Train_Station.gltf" id="1_8e2b2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yubha"]
+size = Vector3(1.49506, 0.0942383, 0.377625)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_otngd"]
+size = Vector3(1.0304, 0.244568, 0.0310059)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qe4xh"]
+size = Vector3(1.17969, 0.0822144, 0.339844)
+
+[node name="Station" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_8e2b2")]
+transform = Transform3D(-30, -0.00638324, -0.00236124, -0.00638324, 30, -0.000153055, 0.00236124, -0.000153054, -30, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="blockbench_export"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0808759, 0)
+
+[node name="Platform" type="CollisionShape3D" parent="blockbench_export/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00723267, -0.0358887, 0.00100708)
+shape = SubResource("BoxShape3D_yubha")
+
+[node name="StealBar" type="CollisionShape3D" parent="blockbench_export/StaticBody3D"]
+transform = Transform3D(1, -2.32088e-11, 0, -8.31648e-09, 1, -2.78305e-10, 0, 0, 1, 0.0151498, 0.132784, 0.151233)
+shape = SubResource("BoxShape3D_otngd")
+
+[node name="Roof" type="CollisionShape3D" parent="blockbench_export/StaticBody3D"]
+transform = Transform3D(1, -2.32088e-11, 0, -3.63076e-09, 1, -1.21872e-10, 0, 0, 1, 0.0185547, 0.28714, 0.0263672)
+shape = SubResource("BoxShape3D_qe4xh")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="blockbench_export"]
+transform = Transform3D(1, -2.32088e-11, 0, -1.09213e-08, 1, -3.65617e-10, 0, 0, 1, -0.87588, 0.0468195, 0.0308647)
+size = Vector3(0.271243, 0.0932159, 0.283936)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="blockbench_export/CSGBox3D"]
+transform = Transform3D(-4.37212e-08, -0.5, -0.866026, -3.18323e-12, 0.866025, -0.5, 1, -2.18461e-08, -3.78568e-08, -0.0697444, 0.0305364, -0.00254866)
+operation = 2
+size = Vector3(0.290864, 0.108231, 0.280624)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="blockbench_export/CSGBox3D"]
+transform = Transform3D(1, -8.65685e-12, 0, 1.01208e-08, 1, 3.38332e-10, 0, 0, 1, 0.0887343, -0.00277752, -0.0309268)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="blockbench_export/CSGBox3D/StaticBody3D"]
+transform = Transform3D(1.00006, -3.77592e-11, 0, 7.19294e-12, 0.999996, -2.27374e-13, 0, -4.54747e-13, 0.293906, -2.68221e-06, 1.71363e-07, 0.0339795)
+polygon = PackedVector2Array(0.0468972, 0.0480683, -0.0192023, 0.0477742, -0.196129, -0.0523046, 0.0469947, -0.0437264)

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhshtkqj6blyb"]
+
+[ext_resource type="Script" uid="uid://dkyaofsxxag4w" path="res://script/DialogueManager.gd" id="1_m70fm"]
+
+[node name="DialogueManager" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_m70fm")
+
+[node name="NPCName" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DialogueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Options" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

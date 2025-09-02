@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ci8p2flumhkwq" path="res://road.png" id="4_a013g"]
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="5_ou6ii"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="6_ko7wd"]
-[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://addons/dubai_clouds.glb" id="6_opeos"]
+[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://addons/discarded/dubai_clouds.glb" id="6_opeos"]
 [ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="7_cqnqw"]
 [ext_resource type="PackedScene" uid="uid://do4qavs2kvrld" path="res://scenes/NPC 1.tscn" id="8_wtt4a"]
 [ext_resource type="PackedScene" uid="uid://cpgkwqyew3a2j" path="res://scenes/Npc2.tscn" id="9_xjyl5"]
@@ -348,6 +348,9 @@ sky_mode = 1
 [node name="Sky" parent="Environment" instance=ExtResource("6_opeos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841215, 5.63674, 2.09051)
 
+[node name="tree" parent="Environment" instance=ExtResource("11_yuuax")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 27.0382, -0.708833, -2.56096)
+
 [node name="Player3d" parent="." instance=ExtResource("6_ko7wd")]
 transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, 1, 0, 1)
 
@@ -376,6 +379,3 @@ bus = &"Music"
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
-
-[node name="tree" parent="." instance=ExtResource("11_yuuax")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 27.0382, -0.708833, -2.56096)
