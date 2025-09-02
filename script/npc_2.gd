@@ -31,7 +31,7 @@ func _ready():
 	hum_player.stream.loop = true
 	hum_player.attenuation_model = AudioStreamPlayer3D.ATTENUATION_DISABLED
 	hum_player.unit_size = 5.0
-	hum_player.max_distance = 50.0
+	hum_player.max_distance = 150.0
 	hum_player.volume_db = -6
 	hum_player.play()
 
