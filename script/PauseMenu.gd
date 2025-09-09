@@ -50,10 +50,34 @@ func _on_settings_pressed():
 func _on_save_pressed():
 	AudioMgr.play_ui_sound()
 	print("PauseMenu: Save button pressed")
-	if SaveManager.save_game():
-		show_saved_message("Game Saved!")
+
+	var ok := false
+	var error_message := ""
+
+	# Wrap in a try/catch style to prevent crash
+	# (Godot GDScript doesn't have real try/catch, so we check manually)
+	if not SaveManager:
+		error_message = "❌ SaveManager is missing"
 	else:
-		show_saved_message("Save Failed!")
+		ok = SaveManager.save_game()
+		if not ok:
+			error_message = "❌ SaveManager.save_game() returned false"
+
+	if ok:
+		show_saved_message("✅ Game Saved!")
+		print("✅ Save succeeded")
+	else:
+		show_saved_message("⚠️ Save Failed!")
+		print("⚠️ Save failed")
+		if error_message != "":
+			print(error_message)
+
+		# Extra debug: check if DB exists and if SaveManager has data
+		if SaveManager and SaveManager.game_data:
+			print("📦 Current game_data: ", SaveManager.game_data)
+		else:
+			print("⚠️ SaveManager.game_data missing or empty")
+
 
 func show_saved_message(msg: String):
 	if saved_label:
