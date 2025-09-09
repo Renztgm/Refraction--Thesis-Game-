@@ -9,13 +9,13 @@ func _ready() -> void:
 	continue_button.pressed.connect(_on_continue_pressed)
 	new_game_button.pressed.connect(_on_new_game_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
-	
-	# Check save file
-	var count = SaveManager.get_save_count()
-	print("📂 Save entries found: ", count)
-	
-	# Enable/disable continue button
-	continue_button.disabled = (count == 0)
+
+	# 🔧 Check if a save exists via SaveManager
+	if SaveManager.has_save_file():
+		continue_button.disabled = false
+	else:
+		continue_button.disabled = true
+
 
 # --------------------
 # Button handlers
@@ -23,6 +23,8 @@ func _ready() -> void:
 func _on_continue_pressed() -> void:
 	AudioMgr.play_ui_sound()
 	print("MainMenu: Continue pressed")
+
+	# Try to continue; if it fails, fallback to new game
 	if not await SaveManager.continue_game():
 		print("⚠️ No save found. Starting new game...")
 		_on_new_game_pressed()
