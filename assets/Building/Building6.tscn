@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce3d7ovhkpl5l"]
+
+[ext_resource type="PackedScene" uid="uid://dva6sn148ervy" path="res://assets/Building/Building 6/House-vine.glb" id="1_2ng3u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydl1b"]
+size = Vector3(0.733826, 0.529541, 0.735077)
+
+[node name="Building6" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_2ng3u")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0.48227, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -1.82299, 7.94029, -3.29153)
+shape = SubResource("BoxShape3D_ydl1b")

@@ -1,100 +1,158 @@
 extends Control
 
+signal dialogue_finished
+
 @onready var npc_name_label = $NPCName
 @onready var dialogue_label = $DialogueLabel
 @onready var next_button = $NextButton
 @onready var options_container = $Options
 
-var dialogue = {}
-var current_node = "start"
+var dialogue: Dictionary = {}
+var current_node: String = "start"
 
-# Example data (replace with JSON load later)
-var dialogue_data = {
-	"start": {
-		"name": "Old Man",
-		"text": "Hello, traveler. What brings you here?",
-		"options": [
-			{"text": "I'm looking for adventure.", "next": "adventure"},
-			{"text": "Just passing by.", "next": "passing"}
-		]
-	},
-	"adventure": {
-		"name": "Old Man",
-		"text": "Adventure, you say? I may have a quest for you.",
-		"options": [
-			{"text": "Tell me more.", "next": "quest"},
-			{"text": "Not interested.", "next": "end"}
-		]
-	},
-	"passing": {
-		"name": "Old Man",
-		"text": "Safe travels, then.",
-		"options": [
-			{"text": "Goodbye.", "next": "end"}
-		]
-	},
-	"quest": {
-		"name": "Village Chief",
-		"text": "A dragon is troubling the village. Will you help?",
-		"options": [
-			{"text": "Yes, I'll help!", "next": "accept_quest"},
-			{"text": "No, that's too dangerous.", "next": "end"}
-		]
-	},
-	"accept_quest": {
-		"name": "Village Chief",
-		"text": "Thank you, hero. The village counts on you!",
-		"options": []
-	},
-	"end": {
-		"name": "Old Man",
-		"text": "Farewell.",
-		"options": []
-	}
-}
+var sentences: Array = []
+var current_sentence: int = 0
+var full_text: String = ""
+var visible_text: String = ""
+var char_index: int = 0
+var typing_speed: float = 0.03
+var typing_timer: Timer
 
 func _ready():
-	dialogue = dialogue_data
-	show_node(current_node)
+	hide()
+
+	typing_timer = Timer.new()
+	typing_timer.wait_time = typing_speed
+	typing_timer.one_shot = false
+	add_child(typing_timer)
+	typing_timer.timeout.connect(_on_typing_step)
+
+	next_button.pressed.connect(_on_NextButton_pressed)
+	
+
+# --- Public API ---
+func load_dialogue(file_path: String, npc_id: String):
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	if file:
+		var content = file.get_as_text()
+		var all_dialogues = JSON.parse_string(content)
+
+		if typeof(all_dialogues) != TYPE_DICTIONARY:
+			push_error("Invalid dialogue file: " + file_path)
+			return
+
+		if not all_dialogues.has(npc_id):
+			push_error("No dialogue for NPC: " + npc_id)
+			return
+
+		dialogue = all_dialogues[npc_id]
+		current_node = "start"
+		show()
 
 func show_node(node_name: String):
-	if not dialogue.has(node_name):
+	if node_name == "end":
+		_close_dialogue()
 		return
+
+	if not dialogue.has(node_name):
+		push_error("Dialogue node not found: " + node_name)
+		return
+
 	current_node = node_name
 	var node = dialogue[node_name]
 
-	# Set NPC name and text
 	npc_name_label.text = node.get("name", "Unknown")
-	dialogue_label.text = node["text"]
 
-	# Clear old options
-	for child in options_container.get_children():
-		child.queue_free()
+	sentences = node.get("sentences", [])
+	current_sentence = 0
 
-	# Show options if any
-	var has_options = node["options"].size() > 0
-	options_container.visible = has_options
-	next_button.visible = not has_options
+	_clear_options()
+	options_container.visible = false
+	next_button.visible = false
 
-	if has_options:
-		for option in node["options"]:
-			var button = Button.new()
-			button.text = option["text"]
-			button.connect("pressed", Callable(self, "_on_option_selected").bind(option["next"]))
-			options_container.add_child(button)
+	var opts = node.get("options", [])
+	for option in opts:
+		var btn = Button.new()
+		btn.text = option["text"]
+		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT 
+		btn.pressed.connect(func(): _on_option_selected(option["next"]))
+		options_container.add_child(btn)
+
+	if sentences.size() > 0:
+		_start_sentence()
+	else:
+		if opts.size() > 0:
+			options_container.visible = true
+		else:
+			# no text and no options, close directly
+			_close_dialogue()
+
+# --- Internals ---
+func _start_sentence():
+	full_text = sentences[current_sentence]
+	visible_text = ""
+	char_index = 0
+	dialogue_label.text = ""
+	next_button.visible = false
+	typing_timer.start()
+
+func _on_typing_step():
+	if char_index < full_text.length():
+		visible_text += full_text[char_index]
+		dialogue_label.text = visible_text
+		char_index += 1
+	else:
+		typing_timer.stop()
+		# show correct button state
+		if current_sentence < sentences.size() - 1:
+			next_button.text = "➤"
+			next_button.visible = true
+		else:
+			var node = dialogue[current_node]
+			var opts: Array = node.get("options", [])
+			if opts.size() > 0:
+				options_container.visible = true
+				next_button.visible = false
+			else:
+				# last sentence & no options → show Finish instead of auto-closing
+				next_button.text = "Finish ✔"
+				next_button.visible = true
+
+func _on_NextButton_pressed():
+	if not typing_timer.is_stopped():
+		typing_timer.stop()
+		dialogue_label.text = full_text
+		return
+
+	if current_sentence < sentences.size() - 1:
+		current_sentence += 1
+		_start_sentence()
+	else:
+		var node = dialogue[current_node]
+		var opts: Array = node.get("options", [])
+		if opts.size() > 0:
+			options_container.visible = true
+			next_button.visible = false
+		else:
+			# "Finish" button pressed
+			_close_dialogue()
 
 func _on_option_selected(next_node: String):
 	if next_node == "end":
-		queue_free() # close dialogue box
+		_close_dialogue()
 	else:
 		show_node(next_node)
 
-func _on_NextButton_pressed():
-	# Auto go to "end" if no next node
-	if not dialogue.has(current_node):
-		queue_free()
-		return
-	var node = dialogue[current_node]
+func _clear_options():
+	for c in options_container.get_children():
+		c.queue_free()
 
-	if node["options"].size() == 0:
-		show_node("end")
+func _close_dialogue():
+	if typing_timer and not typing_timer.is_stopped():
+		typing_timer.stop()
+	dialogue_label.text = ""
+	_clear_options()
+	options_container.visible = false
+	next_button.visible = false
+	hide()
+	emit_signal("dialogue_finished")

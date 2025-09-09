@@ -1,28 +1,143 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhshtkqj6blyb"]
+[gd_scene load_steps=12 format=3 uid="uid://dhshtkqj6blyb"]
 
 [ext_resource type="Script" uid="uid://dkyaofsxxag4w" path="res://script/DialogueManager.gd" id="1_m70fm"]
+[ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="2_cyvvh"]
+[ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_ebjfy"]
+[ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="4_ebjfy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m70fm"]
+
+[sub_resource type="Gradient" id="Gradient_ebjfy"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cyvvh"]
+gradient = SubResource("Gradient_ebjfy")
+width = 128
+height = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, -0.5)
+fill_to = Vector2(0.504274, 0.15812)
+
+[sub_resource type="Gradient" id="Gradient_01vcs"]
+offsets = PackedFloat32Array(0, 0.533654, 1)
+colors = PackedColorArray(0, 0, 0, 0.027451, 0, 0, 0, 0.501961, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xi3yh"]
+gradient = SubResource("Gradient_01vcs")
+
+[sub_resource type="FontVariation" id="FontVariation_ebjfy"]
+base_font = ExtResource("2_ebjfy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xi3yh"]
+texture = ExtResource("2_cyvvh")
 
 [node name="DialogueManager" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_m70fm")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -325.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m70fm")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 63.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_cyvvh")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 448.0
+offset_top = -103.0
+offset_right = -448.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_xi3yh")
+
 [node name="NPCName" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = -222.0
+offset_right = -192.0
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ebjfy")
+text = "NPC Name"
+horizontal_alignment = 1
 
 [node name="DialogueLabel" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = -183.0
+offset_right = -192.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ebjfy")
+text = "Dialogue"
+horizontal_alignment = 1
 
 [node name="NextButton" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -319.0
+offset_top = -49.0
+offset_right = -224.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ebjfy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xi3yh")
+text = "Next"
 
 [node name="Options" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 193.5
+offset_top = -63.5
+offset_right = 288.5
+offset_bottom = 56.5
+grow_vertical = 2
+theme = ExtResource("4_ebjfy")

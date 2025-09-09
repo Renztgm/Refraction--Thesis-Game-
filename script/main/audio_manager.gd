@@ -1,47 +1,62 @@
 extends Node
-class_name AudioManager
 
-#@onready var background_music: AudioStreamPlayer = $BackgroundMusic
-@onready var WindPlayer: AudioStreamPlayer = $WindPlayer
+# --------------------
+# Audio Stream Players (scene nodes)
+# --------------------
+@onready var BackgroundMusicPlayer: AudioStreamPlayer = $BackgroundMusic
+@onready var UISoundPlayer: AudioStreamPlayer = $UISounds
 @onready var WaterPlayer: AudioStreamPlayer = $WaterPlayer
-@onready var ui_sounds: AudioStreamPlayer = $UISounds
+@onready var WindPlayer: AudioStreamPlayer = $WindPlayer
+
+# --------------------
+# Preloaded audio
+# --------------------
+var wind_sound: AudioStream = preload("res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3")
+var water_sound: AudioStream = preload("res://assets/audio/ambient/BirdChirping.mp3")
+var click_sound: AudioStream = preload("res://assets/audio/ui/Click_sound.wav")
+var background_music: AudioStream = preload("res://assets/audio/music/time_for_adventure.mp3")
 
 func _ready():
-	setup_audio_streams()
+	print("📂 AudioManager ready")
+	setup_ambient_sounds()
+	start_background_music()
 
-func setup_audio_streams():
-	# Ambient sounds
-	var wind = preload("res://assets/audio/ambient/BirdChirping.mp3")
-	var water = preload("res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3")
-
-	# After 30 seconds, start background music
-	#start_background_music_after_delay(30.0)
-
-	# Wind (loop)
-	WindPlayer.stream = wind
+# --------------------
+# Ambient Sounds
+# --------------------
+func setup_ambient_sounds():
+	WindPlayer.stream = wind_sound
 	WindPlayer.volume_db = -8
-	WindPlayer.play()
+	WindPlayer.play()  # loops automatically if audio file is imported with loop enabled
 
-	# Water (loop)
-	WaterPlayer.stream = water
+	WaterPlayer.stream = water_sound
 	WaterPlayer.volume_db = -15
-	WaterPlayer.play()
+	WaterPlayer.play()  # loops automatically
 
-#func start_background_music_after_delay(delay: float) -> void:
-	#await get_tree().create_timer(delay).timeout
-	#play_background_music()
+# --------------------
+# Background Music
+# --------------------
+func start_background_music():
+	BackgroundMusicPlayer.stream = background_music
+	BackgroundMusicPlayer.volume_db = -10
+	BackgroundMusicPlayer.play()  # loops automatically if imported with loop enabled
 
-#func play_background_music():
-	#if not background_music.playing:
-		#background_music.stream = preload("res://assets/audio/music/time_for_adventure.mp3")
-		#background_music.volume_db = -10
-		#background_music.play()
+func stop_background_music():
+	BackgroundMusicPlayer.stop()
 
+# --------------------
+# UI Sounds
+# --------------------
 func play_ui_sound():
-	ui_sounds.stream = preload("res://assets/audio/ui/Click_sound.wav")
-	ui_sounds.play()
+	if UISoundPlayer:
+		UISoundPlayer.stop()  # optional: stop previous sound
+		UISoundPlayer.stream = click_sound
+		UISoundPlayer.play()
 
+# --------------------
+# Stop All Music
+# --------------------
 func stop_all_music():
-	#background_music.stop()
 	WindPlayer.stop()
 	WaterPlayer.stop()
+	BackgroundMusicPlayer.stop()

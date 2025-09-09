@@ -530,4 +530,4 @@ texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_q5i2v")
 animation = &"idle_down"
 autoplay = "idle_down"
-frame_progress = 0.942703
+frame_progress = 0.641724

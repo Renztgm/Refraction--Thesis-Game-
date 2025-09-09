@@ -1,29 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://boogtrxcf6jrh"]
+[gd_scene load_steps=22 format=3 uid="uid://b7wy45d0d7ne0"]
 
-[ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="1_4fa0y"]
-[ext_resource type="PackedScene" uid="uid://dysbko8iwr1sr" path="res://assets/Building/Building 2/House-3A.glb" id="2_opeos"]
-[ext_resource type="PackedScene" uid="uid://b3p0rfsrmughh" path="res://assets/Building/Building 3/Under-house (2).gltf" id="3_prwpe"]
-[ext_resource type="Texture2D" uid="uid://ci8p2flumhkwq" path="res://road.png" id="4_a013g"]
-[ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="5_ou6ii"]
-[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="6_ko7wd"]
-[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://addons/discarded/dubai_clouds.glb" id="6_opeos"]
-[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="7_cqnqw"]
-[ext_resource type="PackedScene" uid="uid://do4qavs2kvrld" path="res://scenes/NPC 1.tscn" id="8_wtt4a"]
-[ext_resource type="PackedScene" uid="uid://cpgkwqyew3a2j" path="res://scenes/Npc2.tscn" id="9_xjyl5"]
-[ext_resource type="Script" uid="uid://2jfhowbc6vl8" path="res://script/main/audio_manager.gd" id="10_tbgve"]
-[ext_resource type="PackedScene" uid="uid://djui83c87ryj8" path="res://addons/tree/tree.gltf" id="11_yuuax"]
+[ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_lsmej"]
+[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="2_726uw"]
+[ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="3_j2xb2"]
+[ext_resource type="PackedScene" uid="uid://btuftvfr512xm" path="res://addons/Station/Station.tscn" id="4_2dw8v"]
+[ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="5_g4op0"]
+[ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="6_u7qjb"]
+[ext_resource type="PackedScene" uid="uid://bi1lugsasrj5" path="res://addons/Station/rails/RailTrack.tscn" id="7_ki06i"]
+[ext_resource type="PackedScene" uid="uid://ccpff6cjmmbl4" path="res://addons/tree/trees.tscn" id="8_crp8b"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="9_ss2xu"]
+[ext_resource type="Script" uid="uid://cbr1ecxkwkf7" path="res://scenes/NarativeScenes/FadeLayer.gd" id="10_726uw"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/DialogueManager.tscn" id="10_f32ii"]
+[ext_resource type="PackedScene" uid="uid://2dvrdykgrjqi" path="res://scenes/TestingScenes/Companion.tscn" id="11_5s7pn"]
+[ext_resource type="PackedScene" uid="uid://c3heuy5bku3an" path="res://assets/materials/trashbag/trash.tscn" id="13_j2xb2"]
+[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="15_g4op0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tipki"]
-albedo_texture = ExtResource("4_a013g")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85g3d"]
-albedo_texture = ExtResource("5_ou6ii")
-uv1_scale = Vector3(0.4, 0.4, 0.4)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 50.2134
-uv2_triplanar = true
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4fa0y"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_prnq5"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
 sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
 sky_curve = 0.243676
@@ -31,342 +23,266 @@ sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
 ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
 ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
 
-[sub_resource type="Sky" id="Sky_eb6dy"]
-sky_material = SubResource("ProceduralSkyMaterial_4fa0y")
+[sub_resource type="Sky" id="Sky_2dw8v"]
+sky_material = SubResource("ProceduralSkyMaterial_prnq5")
 
-[sub_resource type="Environment" id="Environment_opeos"]
+[sub_resource type="Environment" id="Environment_iuieq"]
 background_mode = 2
-sky = SubResource("Sky_eb6dy")
+sky = SubResource("Sky_2dw8v")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 
-[node name="Main" type="Node3D"]
-transform = Transform3D(0.995701, 0, 0, 0, 0.995701, 0, 0, 0, 0.995701, 0, 0, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uj4gt"]
+albedo_texture = ExtResource("1_lsmej")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 50.2134
+uv2_triplanar = true
+
+[sub_resource type="Animation" id="Animation_vcs24"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e4m0a"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3riv"]
+_data = {
+&"RESET": SubResource("Animation_vcs24"),
+&"fade_out": SubResource("Animation_e4m0a")
+}
+
+[node name="NarrativeScene3d" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
 
-[node name="Buildings" type="Node3D" parent="Environment"]
-
-[node name="House1" parent="Environment/Buildings" instance=ExtResource("1_4fa0y")]
-transform = Transform3D(0.250278, 0, 29.999, 0, 30, 0, -29.999, 0, 0.250278, -16.6421, 0.130899, -4.87025)
-
-[node name="CollisionBuilding" type="CSGCombiner3D" parent="Environment/Buildings/House1"]
-transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
-visible = false
-use_collision = true
-
-[node name="Front_wall2" type="CSGBox3D" parent="Environment/Buildings/House1/CollisionBuilding"]
-transform = Transform3D(1.00002, -0.00484559, 0.000630333, 0.00484554, 1.00002, 7.9579e-05, -0.000630711, -7.65263e-05, 1.00003, 1.58862, 4.64653, -23.9674)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="Front_wall" type="CSGBox3D" parent="Environment/Buildings/House1/CollisionBuilding"]
-transform = Transform3D(1.00001, -0.00242276, 0.00031521, 0.00242275, 1.00001, 3.94071e-05, -0.000315305, -3.86446e-05, 1.00001, 1.69758, 4.7205, 0.988882)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Buildings/House1/CollisionBuilding/Front_wall"]
-transform = Transform3D(0.989359, 1.45519e-10, 9.53332e-09, -4.47655e-09, -0.00580184, -4.77733, 2.03727e-10, 1.00428, -0.0275992, -0.00774574, -5.12693, -0.164842)
-operation = 2
-radius = 1.3252
-height = 1.07959
-sides = 50
-
-[node name="Left_wall" type="CSGBox3D" parent="Environment/Buildings/House1/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, -5.59021, 4.55233, -11.469)
-size = Vector3(0.25, 10, 25)
-
-[node name="Right_wall" type="CSGBox3D" parent="Environment/Buildings/House1/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 9.31371, 4.49875, -11.4309)
-size = Vector3(0.25, 10, 25)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Buildings/House1/CollisionBuilding"]
-transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
-metadata/_edit_group_ = true
-
-[node name="House2" parent="Environment/Buildings" instance=ExtResource("1_4fa0y")]
-transform = Transform3D(0.255515, 0, -29.999, 0, 30, 0, 29.999, 0, 0.255515, -31.7253, 0.130899, -1.11181)
-
-[node name="CollisionBuilding" type="CSGCombiner3D" parent="Environment/Buildings/House2"]
-transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
-visible = false
-use_collision = true
-
-[node name="Front_wall2" type="CSGBox3D" parent="Environment/Buildings/House2/CollisionBuilding"]
-transform = Transform3D(1.00002, -0.00484559, 0.000630333, 0.00484554, 1.00002, 7.9579e-05, -0.000630711, -7.65263e-05, 1.00003, 1.58862, 4.64653, -23.9674)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="Front_wall" type="CSGBox3D" parent="Environment/Buildings/House2/CollisionBuilding"]
-transform = Transform3D(1.00001, -0.00242276, 0.00031521, 0.00242275, 1.00001, 3.94071e-05, -0.000315305, -3.86446e-05, 1.00001, 1.69758, 4.7205, 0.988882)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Buildings/House2/CollisionBuilding/Front_wall"]
-transform = Transform3D(0.989359, 1.45519e-10, 9.53332e-09, -4.47655e-09, -0.00580184, -4.77733, 2.03727e-10, 1.00428, -0.0275992, -0.00774574, -5.12693, -0.164842)
-operation = 2
-radius = 1.3252
-height = 1.07959
-sides = 50
-
-[node name="Left_wall" type="CSGBox3D" parent="Environment/Buildings/House2/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, -5.59021, 4.55233, -11.469)
-size = Vector3(0.25, 10, 25)
-
-[node name="Right_wall" type="CSGBox3D" parent="Environment/Buildings/House2/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 9.31371, 4.49875, -11.4309)
-size = Vector3(0.25, 10, 25)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Buildings/House2/CollisionBuilding"]
-transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
-metadata/_edit_group_ = true
-
-[node name="House3 - Blue" parent="Environment/Buildings" instance=ExtResource("2_opeos")]
-transform = Transform3D(-49.9714, 0, 1.69178, 0, 50, 0, -1.69178, 0, -49.9714, -28.0121, -0.60102, -27.0926)
-
-[node name="Wall Right" type="CSGBox3D" parent="Environment/Buildings/House3 - Blue"]
-transform = Transform3D(0.194578, 0, -1.11759e-08, 0, 0.532702, 0, 1.39698e-09, 0, 0.547067, -0.168623, 0.124441, 0.0312948)
-visible = false
-use_collision = true
-size = Vector3(0.0316162, 0.391541, 0.491405)
-
-[node name="wall Back" type="CSGBox3D" parent="Environment/Buildings/House3 - Blue"]
-transform = Transform3D(0.99687, 0, -1.42609e-09, 0, 0.999999, 0, 3.72529e-09, 0, 0.00838266, 0.00109667, 0.120446, 0.167719)
-visible = false
-use_collision = true
-size = Vector3(0.331, 0.205192, 0.027)
-
-[node name="Wall Front" type="CSGBox3D" parent="Environment/Buildings/House3 - Blue"]
-transform = Transform3D(0.998956, 0, -1.39698e-09, 0, 1, 0, 3.72529e-09, 0, 0.203139, -0.00132984, 0.124793, -0.10287)
-visible = false
-use_collision = true
-size = Vector3(0.331, 0.204863, 0.027)
-
-[node name="Door" type="CSGBox3D" parent="Environment/Buildings/House3 - Blue/Wall Front"]
-transform = Transform3D(0.999996, 0, 3.25963e-09, 0, 0.999997, 0, -1.3411e-07, 0, 0.999999, -0.0997845, -0.0704267, -0.00316334)
-visible = false
-operation = 2
-size = Vector3(0.05, 0.0782227, 0.05)
-
-[node name="Wall Left" type="CSGBox3D" parent="Environment/Buildings/House3 - Blue"]
-transform = Transform3D(0.44111, 0, -5.58794e-09, 0, 0.729864, 0, 9.31323e-10, 0, 0.73964, 0.159776, 0.114531, 0.0305324)
-visible = false
-size = Vector3(0.0316162, 0.317261, 0.359177)
-
-[node name="House4 - Blue" parent="Environment/Buildings" instance=ExtResource("2_opeos")]
-transform = Transform3D(0.592534, 0, 49.9965, 0, 49.9999, 0, -49.9965, 0, 0.592534, -12.3437, -6.96271, -45.2274)
-
-[node name="House5" parent="Environment/Buildings" instance=ExtResource("1_4fa0y")]
-transform = Transform3D(-29.9174, 0, 2.22639, 0, 30, 0, -2.22639, 0, -29.9174, 18.3432, 0.130899, -45.3497)
-
-[node name="CollisionBuilding" type="CSGCombiner3D" parent="Environment/Buildings/House5"]
-transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
-visible = false
-use_collision = true
-
-[node name="Front_wall2" type="CSGBox3D" parent="Environment/Buildings/House5/CollisionBuilding"]
-transform = Transform3D(1.00002, -0.00484559, 0.000630333, 0.00484554, 1.00002, 7.9579e-05, -0.000630711, -7.65263e-05, 1.00003, 1.58862, 4.64653, -23.9674)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="Front_wall" type="CSGBox3D" parent="Environment/Buildings/House5/CollisionBuilding"]
-transform = Transform3D(1.00001, -0.00242276, 0.00031521, 0.00242275, 1.00001, 3.94071e-05, -0.000315305, -3.86446e-05, 1.00001, 1.69758, 4.7205, 0.988882)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Buildings/House5/CollisionBuilding/Front_wall"]
-transform = Transform3D(0.989359, 1.45519e-10, 9.53332e-09, -4.47655e-09, -0.00580184, -4.77733, 2.03727e-10, 1.00428, -0.0275992, -0.00774574, -5.12693, -0.164842)
-operation = 2
-radius = 1.3252
-height = 1.07959
-sides = 50
-
-[node name="Left_wall" type="CSGBox3D" parent="Environment/Buildings/House5/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, -5.59021, 4.55233, -11.469)
-size = Vector3(0.25, 10, 25)
-
-[node name="Right_wall" type="CSGBox3D" parent="Environment/Buildings/House5/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 9.31371, 4.49875, -11.4309)
-size = Vector3(0.25, 10, 25)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Buildings/House5/CollisionBuilding"]
-transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
-metadata/_edit_group_ = true
-
-[node name="House6" parent="Environment/Buildings" instance=ExtResource("1_4fa0y")]
-transform = Transform3D(-1.15425, 0, -29.9779, 0, 30, 0, 29.9779, 0, -1.15425, 30.0963, 0.130899, -39.1091)
-
-[node name="CollisionBuilding" type="CSGCombiner3D" parent="Environment/Buildings/House6"]
-transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
-visible = false
-use_collision = true
-
-[node name="Front_wall2" type="CSGBox3D" parent="Environment/Buildings/House6/CollisionBuilding"]
-transform = Transform3D(1.00002, -0.00484559, 0.000630333, 0.00484554, 1.00002, 7.9579e-05, -0.000630711, -7.65263e-05, 1.00003, 1.58862, 4.64653, -23.9674)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="Front_wall" type="CSGBox3D" parent="Environment/Buildings/House6/CollisionBuilding"]
-transform = Transform3D(1.00001, -0.00242276, 0.00031521, 0.00242275, 1.00001, 3.94071e-05, -0.000315305, -3.86446e-05, 1.00001, 1.69758, 4.7205, 0.988882)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Buildings/House6/CollisionBuilding/Front_wall"]
-transform = Transform3D(0.989359, 1.45519e-10, 9.53332e-09, -4.47655e-09, -0.00580184, -4.77733, 2.03727e-10, 1.00428, -0.0275992, -0.00774574, -5.12693, -0.164842)
-operation = 2
-radius = 1.3252
-height = 1.07959
-sides = 50
-
-[node name="Left_wall" type="CSGBox3D" parent="Environment/Buildings/House6/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, -5.59021, 4.55233, -11.469)
-size = Vector3(0.25, 10, 25)
-
-[node name="Right_wall" type="CSGBox3D" parent="Environment/Buildings/House6/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 9.31371, 4.49875, -11.4309)
-size = Vector3(0.25, 10, 25)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Buildings/House6/CollisionBuilding"]
-transform = Transform3D(4.80105, 0, 1.66533e-15, 0, 7.38084, 0, -2.84217e-14, 0, 2.06463, 4.11084, 1.53844, 2.61479)
-metadata/_edit_group_ = true
-
-[node name="Abandon1" parent="Environment/Buildings" instance=ExtResource("3_prwpe")]
-transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e-08, -29.994, 1.71115e-09, 0.597913, 5.68031, -0.775417, -43.798)
-
-[node name="Abandon2" parent="Environment/Buildings" instance=ExtResource("3_prwpe")]
-transform = Transform3D(0.597913, 4.70683e-08, 29.994, 7.72718e-10, 30, -4.7093e-08, -29.994, 1.71115e-09, 0.597913, 18.2895, -6.19309, -15.5351)
-
-[node name="Roads" type="Node3D" parent="Environment"]
-transform = Transform3D(0.999987, 2.54729e-10, 0.00506143, -2.21242e-10, 1.15136, -5.60161e-13, -0.00506143, -6.44937e-13, 0.999987, -9.87159, -0.276969, 10.8049)
-
-[node name="road area 1" type="Node3D" parent="Environment/Roads"]
-
-[node name="road" type="CSGBox3D" parent="Environment/Roads/road area 1"]
-transform = Transform3D(1, -3.00847e-15, 4.84288e-08, -9.98461e-18, 1, 3.79471e-19, -4.84288e-08, -1.10589e-17, 1, -30.9092, 0, -0.174174)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Environment/Roads/road area 1/road"]
-transform = Transform3D(1, -3.00847e-15, 4.84288e-08, -9.95793e-18, 1, 5.96311e-19, -4.84288e-08, -1.06252e-17, 1, 64.7532, 0, -0.0275507)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Environment/Roads/road area 1/road/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Environment/Roads/road area 1/road/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Environment/Roads/road area 1/road/road"]
-transform = Transform3D(1, -3.17499e-15, 4.84288e-08, -9.9304e-18, 1, 7.58942e-19, -4.84288e-08, -1.11131e-17, 1, -129.475, -2.98023e-08, 0.0649395)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Environment/Roads/road area 1/road/road/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Environment/Roads/road area 1/road/road/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Environment/Roads/road area 1/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Environment/Roads/road area 1/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Environment/Roads/road area 1"]
-transform = Transform3D(1, -3.23052e-15, 5.21541e-08, -9.98271e-18, 1, 7.04731e-19, -5.21541e-08, -1.21431e-17, 1, -224.881, -1.78814e-07, -0.130927)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Environment/Roads/road area 1/road2"]
-transform = Transform3D(1, -3.00847e-15, 4.84288e-08, -9.95793e-18, 1, 5.96311e-19, -4.84288e-08, -1.06252e-17, 1, 64.7532, 0, -0.0275507)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Environment/Roads/road area 1/road2/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Environment/Roads/road area 1/road2/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road" type="CSGBox3D" parent="Environment/Roads/road area 1/road2/road"]
-transform = Transform3D(1, -3.17499e-15, 4.84288e-08, -9.9304e-18, 1, 7.58942e-19, -4.84288e-08, -1.11131e-17, 1, -129.475, -2.98023e-08, 0.0649395)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Environment/Roads/road area 1/road2/road/road"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Environment/Roads/road area 1/road2/road/road/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road2" type="CSGBox3D" parent="Environment/Roads/road area 1/road2"]
-transform = Transform3D(1, -3.85955e-17, 4.65661e-10, 3.89635e-18, 1, 1.0842e-19, -4.65661e-10, -5.42101e-20, 1, 21.5715, 0, -0.00874329)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
-
-[node name="road3" type="CSGBox3D" parent="Environment/Roads/road area 1/road2/road2"]
-transform = Transform3D(1, -3.11949e-15, 4.98258e-08, -9.95708e-18, 1, 4.33681e-19, -4.98258e-08, -1.16552e-17, 1, 21.5528, 0, -0.0265627)
-material_override = SubResource("StandardMaterial3D_tipki")
-size = Vector3(21.6968, 1, 10.0948)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_iuieq")
 
 [node name="Floor" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(0.999987, 2.21242e-10, 0.00506143, -2.21242e-10, 1, -5.60161e-13, -0.00506143, -5.60161e-13, 0.999987, 0.513963, -0.304624, 0.343198)
-material_override = SubResource("StandardMaterial3D_85g3d")
+transform = Transform3D(0.999987, 2.21242e-10, 0.00506143, -2.21242e-10, 1, -5.60161e-13, -0.00506143, -5.60161e-13, 0.999987, 1.107, 0, 0.411)
+material_override = SubResource("StandardMaterial3D_uj4gt")
 use_collision = true
 size = Vector3(1000, 0.5, 1000)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_opeos")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-4.39002e-08, 0, -1.00432, 0, 1.00432, 0, 1.00432, 0, -4.39002e-08, 0, 0, 0)
 light_color = Color(0.647059, 1, 0.478431, 1)
 sky_mode = 1
 
-[node name="Sky" parent="Environment" instance=ExtResource("6_opeos")]
+[node name="Sky" parent="Environment" instance=ExtResource("2_726uw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841215, 5.63674, 2.09051)
 
-[node name="tree" parent="Environment" instance=ExtResource("11_yuuax")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 27.0382, -0.708833, -2.56096)
+[node name="Structures" type="Node3D" parent="Environment"]
 
-[node name="Player3d" parent="." instance=ExtResource("6_ko7wd")]
-transform = Transform3D(1.00432, 0, 0, 0, 1.00432, 0, 0, 0, 1.00432, 1, 0, 1)
+[node name="Buildings" type="Node3D" parent="Environment/Structures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6424, 0, -9.86592)
 
-[node name="PauseMenu" parent="." instance=ExtResource("7_cqnqw")]
-z_index = 1
+[node name="Building 1" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -5.206, 0, -47.634)
 
-[node name="Entities" type="Node3D" parent="."]
+[node name="Building 2" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, 3.18615, 0, -42.0072)
 
-[node name="Npc1" parent="Entities" instance=ExtResource("8_wtt4a")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -18.1171, 3.21407, -23.1956)
+[node name="Building 3" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -12.5737, 0, -47.634)
 
-[node name="Companion" parent="Entities" instance=ExtResource("9_xjyl5")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 23.7664, 3.28988, 0.0439088)
+[node name="Building 4" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 15.5053, 0, -47.634)
+
+[node name="Building 5" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 22.6961, 0, -47.634)
+
+[node name="Building 6" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 36.921, 0, -47.634)
+
+[node name="Building 7" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, 45.3131, 0, -42.0072)
+
+[node name="Building 8" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 29.5532, 0, -47.634)
+
+[node name="Building 9" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 57.6323, 0, -47.634)
+
+[node name="Building 10" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 64.8231, 0, -47.634)
+
+[node name="Building 11" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -46.945, 0, -47.634)
+
+[node name="Building 12" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, -38.5528, 0, -42.0072)
+
+[node name="Building 13" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -54.3127, 0, -47.634)
+
+[node name="Building 14" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -26.2337, 0, -47.634)
+
+[node name="Building 15" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -19.0428, 0, -47.634)
+
+[node name="Building 16" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -88.6121, 0, -47.634)
+
+[node name="Building 17" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, -80.2199, 0, -42.0072)
+
+[node name="Building 18" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -95.9798, 0, -47.634)
+
+[node name="Building 19" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -67.9008, 0, -47.634)
+
+[node name="Building 20" parent="Environment/Structures/Buildings" instance=ExtResource("3_j2xb2")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -60.7099, 0, -47.634)
+
+[node name="Walls" type="Node3D" parent="Environment/Structures"]
+
+[node name="Station" parent="Environment/Structures/Walls" instance=ExtResource("4_2dw8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.54947, 0.254856, -28.1344)
+
+[node name="Walls" parent="Environment/Structures/Walls" instance=ExtResource("5_g4op0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.5867, 0.258544, -38.6013)
+
+[node name="Walls2" parent="Environment/Structures/Walls" instance=ExtResource("5_g4op0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 63.3891, 0.25, -38.6314)
+
+[node name="Wall" parent="Environment/Structures/Walls" instance=ExtResource("6_u7qjb")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 68.3832, 0.25, -43.5588)
+
+[node name="Walls3" parent="Environment/Structures/Walls" instance=ExtResource("5_g4op0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -48.117, 0.25, -38.5979)
+
+[node name="Walls4" parent="Environment/Structures/Walls" instance=ExtResource("5_g4op0")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -103.811, 0.25, -38.5979)
+
+[node name="Railroads" type="Node3D" parent="Environment/Structures"]
+
+[node name="Rails" type="Node3D" parent="Environment/Structures/Railroads"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.207, 0, 0)
+
+[node name="RailTrack" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 32.1687, 0.292279, -17.9712)
+
+[node name="RailTrack2" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -27.3672, 0.292279, -17.9712)
+
+[node name="RailTrack3" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -86.8777, 0.292279, -17.9712)
+
+[node name="RailTrack4" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -146.294, 0.292279, -17.9712)
+
+[node name="RailTrack5" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -205.824, 0.292279, -17.9712)
+
+[node name="Rails2" type="Node3D" parent="Environment/Structures/Railroads"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.207, 0, 10.9697)
+
+[node name="RailTrack" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 32.1687, 0.292279, -17.9712)
+
+[node name="RailTrack2" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -27.3672, 0.292279, -17.9712)
+
+[node name="RailTrack3" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -86.8777, 0.292279, -17.9712)
+
+[node name="RailTrack4" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -146.294, 0.292279, -17.9712)
+
+[node name="RailTrack5" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("7_ki06i")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -205.824, 0.292279, -17.9712)
+
+[node name="Trees" parent="Environment/Structures" instance=ExtResource("8_crp8b")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -56.2376, 0.25, -34.5761)
+
+[node name="Trees2" parent="Environment/Structures" instance=ExtResource("8_crp8b")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 55.934, 0.25, -37.3691)
+
+[node name="Trash" parent="Environment" instance=ExtResource("13_j2xb2")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -16.9504, 0.250001, -23.3029)
+
+[node name="Trash2" parent="Environment" instance=ExtResource("13_j2xb2")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.378, 0.391861, -22.8189)
+
+[node name="Player3d" parent="." instance=ExtResource("9_ss2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.43026, 0.106935, -13.5042)
+
+[node name="Companion" parent="." instance=ExtResource("11_5s7pn")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 71.0368, 0.25, -41.6483)
+
+[node name="FadeLayer" type="CanvasLayer" parent="."]
+script = ExtResource("10_726uw")
+
+[node name="ColorRect" type="ColorRect" parent="FadeLayer"]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_w3riv")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("10_f32ii")]
 
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
-script = ExtResource("10_tbgve")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
@@ -379,3 +295,8 @@ bus = &"Music"
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
+
+[node name="PauseMenu" parent="." instance=ExtResource("15_g4op0")]
+z_index = 1
+
+[connection signal="animation_finished" from="FadeLayer/AnimationPlayer" to="FadeLayer" method="_on_animation_player_animation_finished"]

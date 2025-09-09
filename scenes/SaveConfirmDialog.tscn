@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ch11xswsa1vge"]
 
-[ext_resource type="Script" uid="uid://dhc0t44joa8yx" path="res://script/save_confirm_dialog.gd" id="1_x23vs"]
+[ext_resource type="Script" path="res://script/save_confirm_dialog.gd" id="1_x23vs"]
 [ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_bma35"]
 
 [node name="SaveConfirmDialog" type="Control"]

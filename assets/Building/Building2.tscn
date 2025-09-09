@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf66clec7ik28"]
+
+[ext_resource type="PackedScene" uid="uid://dysbko8iwr1sr" path="res://assets/Building/Building 2/House-3A.glb" id="1_o86uj"]
+
+[node name="Buidling2" type="Node3D"]
+
+[node name="House3 - Blue" parent="." instance=ExtResource("1_o86uj")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, -0.691162, 0)
+
+[node name="Wall Right" type="CSGBox3D" parent="House3 - Blue"]
+transform = Transform3D(0.194578, 0, -1.11759e-08, 0, 0.532702, 0, 1.39698e-09, 0, 0.547067, -0.168623, 0.124441, 0.0312948)
+visible = false
+use_collision = true
+size = Vector3(0.0316162, 0.391541, 0.491405)
+
+[node name="wall Back" type="CSGBox3D" parent="House3 - Blue"]
+transform = Transform3D(0.99687, 0, -1.42609e-09, 0, 0.999999, 0, 3.72529e-09, 0, 0.00838266, 0.00109667, 0.120446, 0.167719)
+visible = false
+use_collision = true
+size = Vector3(0.331, 0.205192, 0.027)
+
+[node name="Wall Front" type="CSGBox3D" parent="House3 - Blue"]
+transform = Transform3D(0.998956, 0, -1.39698e-09, 0, 1, 0, 3.72529e-09, 0, 0.203139, -0.00132984, 0.124793, -0.10287)
+visible = false
+use_collision = true
+size = Vector3(0.331, 0.204863, 0.027)
+
+[node name="Wall Left" type="CSGBox3D" parent="House3 - Blue"]
+transform = Transform3D(0.44111, 0, -5.58794e-09, 0, 0.729864, 0, 9.31323e-10, 0, 0.73964, 0.159776, 0.114531, 0.0305324)
+visible = false
+use_collision = true
+size = Vector3(0.0316162, 0.317261, 0.359177)

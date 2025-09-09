@@ -1,0 +1,46 @@
+extends Node3D
+
+@export var npc_id: String = "Companion"
+@export var dialogue_file: String = "res://dialogues/CompanionScene2.json"
+@onready var hum_player: AudioStreamPlayer3D = $hum_player
+
+var player_in_range = false
+
+func _ready():
+	hum_player.stream = preload("res://assets/audio/ambient/humming.mp3")
+	hum_player.stream.loop = true
+	hum_player.attenuation_model = AudioStreamPlayer3D.ATTENUATION_DISABLED
+	hum_player.unit_size = 5.0
+	hum_player.max_distance = 100.0
+	hum_player.volume_db = -6
+	hum_player.play()
+	
+	$Area3D.body_entered.connect(_on_body_entered)
+	$Area3D.body_exited.connect(_on_body_exited)
+
+func _on_body_entered(body):
+	if body.is_in_group("player"):
+		player_in_range = true
+
+func _on_body_exited(body):
+	if body.is_in_group("player"):
+		player_in_range = false
+
+func _input(event):
+	if player_in_range and event.is_action_pressed("interact"):
+		start_dialogue()
+		
+func _on_dialogue_finished():
+	var fade_layer = get_tree().root.get_node("NarrativeScene3d/FadeLayer")
+	fade_layer.start_transition("res://scenes/NarativeScenes/Scene3.tscn")
+
+func start_dialogue():
+	var dialogue_manager = get_tree().root.get_node("NarrativeScene3d/CanvasLayer/DialogueManager")
+	dialogue_manager.load_dialogue("res://dialogues/CompanionScene2.json", "Companion")
+	dialogue_manager.show_node("start")
+	dialogue_manager.show()
+	
+	# connect signal if not already connected
+	if not dialogue_manager.is_connected("dialogue_finished", Callable(self, "_on_dialogue_finished")):
+		dialogue_manager.connect("dialogue_finished", Callable(self, "_on_dialogue_finished"))
+		

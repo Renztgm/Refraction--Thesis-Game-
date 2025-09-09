@@ -6,8 +6,6 @@ extends Control
 @onready var main_menu_button: Button = $VBoxContainer/MainMenuButton
 @onready var saved_label: Label = $VBoxContainer/SavedLabel
 
-@onready var audio_manager = get_node("/root/Main/AudioManager")
-
 var is_paused = false
 
 func _ready():
@@ -20,9 +18,8 @@ func _ready():
 
 	hide()
 
-
 func toggle_pause():
-	audio_manager.play_ui_sound()
+	AudioMgr.play_ui_sound()
 	is_paused = not is_paused
 	if is_paused:
 		show()
@@ -31,16 +28,14 @@ func toggle_pause():
 	else:
 		_on_resume_pressed()
 
-
 func _on_resume_pressed():
-	audio_manager.play_ui_sound()
+	AudioMgr.play_ui_sound()
 	is_paused = false
 	hide()
 	get_tree().paused = false
 
-
 func _on_settings_pressed():
-	audio_manager.play_ui_sound()
+	AudioMgr.play_ui_sound()
 	var settings = load("res://scenes/SettingsUI.tscn").instantiate()
 
 	# Connect to signal for when Settings closes
@@ -52,9 +47,8 @@ func _on_settings_pressed():
 	get_tree().root.add_child(settings)
 	hide()  # hide Pause Menu while Settings is open
 
-
 func _on_save_pressed():
-	audio_manager.play_ui_sound()
+	AudioMgr.play_ui_sound()
 	print("PauseMenu: Save button pressed")
 	if SaveManager.save_game():
 		show_saved_message("Game Saved!")
@@ -72,7 +66,7 @@ func show_saved_message(msg: String):
 		tween.tween_callback(func(): saved_label.hide())
 
 func _on_main_menu_pressed():
-	audio_manager.play_ui_sound()
+	AudioMgr.play_ui_sound()
 	
 	get_tree().paused = false
 	is_paused = false

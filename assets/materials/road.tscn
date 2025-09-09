@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://ujnfad0nogiu"]
+
+[ext_resource type="Texture2D" uid="uid://ci8p2flumhkwq" path="res://road.png" id="1_a5k7o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4lus"]
+albedo_texture = ExtResource("1_a5k7o")
+
+[node name="Road" type="Node3D"]
+
+[node name="road" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)
+
+[node name="road2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9935, 0, 0)
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)
+
+[node name="road3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9848, 0, 0)
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)
+
+[node name="road4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9764, 0, 0)
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)
+
+[node name="road5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.0328, 0, 0)
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)
+
+[node name="road6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.9501, 0, 0)
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)
+
+[node name="road7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.9195, 0, 0)
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)
+
+[node name="road8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.924, 0, 0)
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)
+
+[node name="road9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -139.893, 0.00648618, 0)
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)
+
+[node name="road10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.787, 0.00648618, 0)
+material_override = SubResource("StandardMaterial3D_t4lus")
+size = Vector3(20, 0.5, 10)

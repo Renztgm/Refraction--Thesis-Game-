@@ -156,6 +156,7 @@ height = 7.31097
 radius = 2.17188
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2xsjv"]
+radius = 0.103749
 
 [node name="Npc2" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)

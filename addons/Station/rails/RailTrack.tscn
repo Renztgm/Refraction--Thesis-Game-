@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi1lugsasrj5"]
+
+[ext_resource type="PackedScene" uid="uid://cov4xh05xuf5p" path="res://addons/Station/rails/Rails.glb" id="1_0yh4f"]
+
+[node name="RailTrack" type="Node3D"]
+
+[node name="blockbench_export2" parent="." instance=ExtResource("1_0yh4f")]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_0yh4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.987275)
+
+[node name="blockbench_export3" parent="." instance=ExtResource("1_0yh4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.991815)
+
+[node name="blockbench_export4" parent="." instance=ExtResource("1_0yh4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.97917)
+
+[node name="blockbench_export5" parent="." instance=ExtResource("1_0yh4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.99723)
+
+[node name="blockbench_export6" parent="." instance=ExtResource("1_0yh4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.97493)

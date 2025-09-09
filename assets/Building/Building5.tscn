@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwa4jhihkwg0h"]
+
+[ext_resource type="PackedScene" uid="uid://bmrh5lq2n630c" path="res://assets/Building/Building 5/whitehouse.gltf" id="1_id304"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nvwr5"]
+size = Vector3(0.639587, 0.529785, 1.2085)
+
+[node name="Building5" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_id304")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, -0.438499, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, -0.0353742, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0298767, 0.235107, -0.104248)
+shape = SubResource("BoxShape3D_nvwr5")

@@ -1,0 +1,147 @@
+[gd_scene load_steps=14 format=3 uid="uid://b2bjlsidj107l"]
+
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_cb1v0"]
+[ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_cp3ya"]
+[ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="1_xcpug"]
+[ext_resource type="PackedScene" uid="uid://bf66clec7ik28" path="res://assets/Building/Building2.tscn" id="3_pg7mk"]
+[ext_resource type="PackedScene" uid="uid://cyby2eli2s01s" path="res://assets/Building/Building3.tscn" id="4_7joti"]
+[ext_resource type="PackedScene" uid="uid://ce3d7ovhkpl5l" path="res://assets/Building/Building6.tscn" id="6_l1433"]
+[ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_jjv0t"]
+[ext_resource type="PackedScene" uid="uid://cwa4jhihkwg0h" path="res://assets/Building/Building5.tscn" id="7_l1433"]
+[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="9_5a376"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xcpug"]
+size = Vector3(14.4902, 1, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cb1v0"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_curve = 0.243676
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_bx50q"]
+sky_material = SubResource("ProceduralSkyMaterial_cb1v0")
+
+[sub_resource type="Environment" id="Environment_cp3ya"]
+background_mode = 2
+sky = SubResource("Sky_bx50q")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[node name="Scene3" type="Node3D"]
+
+[node name="Structures" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="RoadLayout" type="Node3D" parent="Structures"]
+
+[node name="Road" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.40693, 0.5, -47.0844)
+
+[node name="Road2" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, -47.0844)
+
+[node name="Road3" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, -47.0844)
+
+[node name="Road4" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, -2.17044)
+
+[node name="Road5" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, -2.17044)
+
+[node name="Road6" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, 37.6545)
+
+[node name="Road7" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, 37.6546)
+
+[node name="Building" type="Node3D" parent="Structures"]
+
+[node name="Building1" parent="Structures/Building" instance=ExtResource("1_xcpug")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3309, 0, -69.6199)
+
+[node name="Building2" parent="Structures/Building" instance=ExtResource("1_xcpug")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.28598, 0, -32.8142)
+
+[node name="Building3" parent="Structures/Building" instance=ExtResource("1_xcpug")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -11.8527, 0, -56.5641)
+
+[node name="Building4" parent="Structures/Building" instance=ExtResource("1_xcpug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.1631, 0, -56.2714)
+
+[node name="Building5" parent="Structures/Building" instance=ExtResource("3_pg7mk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 15.8581, 1.18595, -32.2761)
+
+[node name="Building6" parent="Structures/Building" instance=ExtResource("3_pg7mk")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13.1931, 1.36123, -69.4413)
+
+[node name="Building8" parent="Structures/Building" instance=ExtResource("3_pg7mk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1931, 0.361232, -17.4735)
+
+[node name="Building9" parent="Structures/Building" instance=ExtResource("4_7joti")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.3344, 0.546875, 10.958)
+
+[node name="Building10" parent="Structures/Building" instance=ExtResource("4_7joti")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -21.8314, 0.546875, 10.958)
+
+[node name="Building12" parent="Structures/Building" instance=ExtResource("3_pg7mk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -62.2885, 0.722464, 16.4389)
+
+[node name="Building13" parent="Structures/Building" instance=ExtResource("3_pg7mk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16.6665, 0.361232, 14.0848)
+
+[node name="Building7" parent="Structures/Building" instance=ExtResource("7_l1433")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.8751, 1.87588, -15.3873)
+
+[node name="Building11" parent="Structures/Building" instance=ExtResource("6_l1433")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -43.446, 0.58023, 11.4574)
+
+[node name="Building14" parent="Structures/Building" instance=ExtResource("7_jjv0t")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -82.6216, 0.5, 13.2583)
+
+[node name="Barrier" type="Node3D" parent="Structures"]
+
+[node name="Barrier" type="StaticBody3D" parent="Structures/Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53165, 0, -72.871)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662018, 1.22429, 0)
+shape = SubResource("BoxShape3D_xcpug")
+
+[node name="Barrier2" type="StaticBody3D" parent="Structures/Barrier"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.21536, 0, -47.1706)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662018, 1.22429, 0)
+shape = SubResource("BoxShape3D_xcpug")
+
+[node name="Barrier3" type="StaticBody3D" parent="Structures/Barrier"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.32316, 0, -47.1706)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.721428, 1.22429, 1.16858)
+shape = SubResource("BoxShape3D_xcpug")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_cp3ya")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+sky_mode = 1
+
+[node name="Plane" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128864, 0, -0.251266)
+use_collision = true
+size = Vector3(500, 1, 250)
+
+[node name="Player3d" parent="." instance=ExtResource("1_cb1v0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46694, 0, 67.0795)
+
+[node name="PauseMenu" parent="." instance=ExtResource("9_5a376")]
+z_index = 1
