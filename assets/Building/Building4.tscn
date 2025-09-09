@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7veg3cq7ujpn"]
+
+[ext_resource type="PackedScene" uid="uid://ddpvoilo8t2xq" path="res://assets/Building/Building 4/House-3A-11.gltf" id="1_cr5eo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0egia"]
+size = Vector3(0.735352, 0.517029, 0.763794)
+
+[node name="Building4" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_cr5eo")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, -0.440934, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, -0.514305, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.065918, 0.241486, -0.118103)
+shape = SubResource("BoxShape3D_0egia")

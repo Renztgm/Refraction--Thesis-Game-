@@ -1,5 +1,7 @@
 extends Control
 
+signal dialogue_finished
+
 @onready var npc_name_label = $NPCName
 @onready var dialogue_label = $DialogueLabel
 @onready var next_button = $NextButton
@@ -72,6 +74,7 @@ func show_node(node_name: String):
 	for option in opts:
 		var btn = Button.new()
 		btn.text = option["text"]
+		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT 
 		btn.pressed.connect(func(): _on_option_selected(option["next"]))
 		options_container.add_child(btn)
 
@@ -152,3 +155,4 @@ func _close_dialogue():
 	options_container.visible = false
 	next_button.visible = false
 	hide()
+	emit_signal("dialogue_finished")

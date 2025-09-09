@@ -38,12 +38,12 @@ size = Vector3(50, 1, 50)
 [node name="Player3d" parent="." instance=ExtResource("1_l8aje")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.219, 0, 2.083)
 
+[node name="farmer" parent="." instance=ExtResource("4_nhd36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1, -9)
+
 [node name="old_man" parent="." instance=ExtResource("2_l8aje")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.11778, 0.5, -4.6358)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("3_w8og3")]
-
-[node name="farmer" parent="." instance=ExtResource("4_nhd36")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1, -9)

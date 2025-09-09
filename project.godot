@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://n406ir32v2kb"
 
 SaveManager="*res://script/SaveManager.gd"
 SettingsManager="*res://script/SettingsManager.gd"
+AudioMgr="*res://script/AudioManager.gd"
 
 [display]
 
@@ -31,6 +32,10 @@ mouse_cursor/autoload_on_startup=false
 [dotnet]
 
 project/assembly_name="Test"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-sqlite/demo/addons/godot-sqlite/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg")
 
 [input]
 

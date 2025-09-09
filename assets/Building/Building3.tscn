@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyby2eli2s01s"]
+
+[ext_resource type="PackedScene" uid="uid://b3p0rfsrmughh" path="res://assets/Building/Building 3/Under-house (2).gltf" id="1_82tlp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jwka2"]
+size = Vector3(11.5776, 13.5552, 15.3995)
+
+[node name="Building3" type="Node3D"]
+
+[node name="Abandon1" parent="." instance=ExtResource("1_82tlp")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00576401, 6.27759, 0.0315647)
+shape = SubResource("BoxShape3D_jwka2")

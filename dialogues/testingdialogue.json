@@ -8,8 +8,8 @@
 		"I have a quest for you!"
 	  ],
 	  "options": [
-		{"text": "Tell me about the quest.", "next": "quest"},
-		{"text": "Not interested.", "next": "end"}
+		{"text": "💬 Tell me about the quest.", "next": "quest"},
+		{"text": "💬 Not interested.", "next": "end"}
 	  ]
 	},
 	"quest": {
@@ -19,8 +19,8 @@
 		"Monsters lurk beyond the river."
 	  ],
 	  "options": [
-		{"text": "I’ll help.", "next": "accept"},
-		{"text": "Sounds too risky.", "next": "end"}
+		{"text": "💬 I’ll help.", "next": "accept"},
+		{"text": "💬 Sounds too risky.", "next": "end"}
 	  ]
 	},
 	"accept": {
@@ -47,8 +47,8 @@
 		"Are you able to help us to wipe these monsters?"
 	  ],
 	  "options": [
-		{"text": "Yes!, Tell me about the monsters.", "next": "quest"},
-		{"text": "Not interested.", "next": "end"}
+		{"text": "💬 Yes!, Tell me about the monsters.", "next": "quest"},
+		{"text": "💬 Not interested.", "next": "end"}
 	  ]
 	},
 	"quest": {
@@ -58,8 +58,8 @@
 		"I suggest to gear up first to the near blacksmith which is Joana's Stores"
 	  ],
 	  "options": [
-		{"text": "I’ll check that, Thank you for the information!", "next": "accept"},
-		{"text": "I still don't have money.", "next": "money_problems"}
+		{"text": "💬 I’ll check that, Thank you for the information!", "next": "accept"},
+		{"text": "💬 I still don't have money.", "next": "money_problems"}
 	  ]
 	},
 	"accept": {
@@ -75,7 +75,7 @@
 		"sentences": [
 			"if money is problem you can sell some of your items or...",
 			"You can go to dungeons first or kill some.."],
-		"options": [{"text": "Thank you Mr. Farmer, I really Appreciate it.", "next": "accept"},]
+		"options": [{"text": "💬 Thank you Mr. Farmer, I really Appreciate it.", "next": "accept"},]
 	},
 	"end": {
 	  "name": "",

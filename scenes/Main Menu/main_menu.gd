@@ -4,28 +4,36 @@ extends Control
 @onready var new_game_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/NewGameButton
 @onready var quit_button: Button = $MarginContainer/HBoxContainer/VBoxContainer/QuitButton
 
-func _ready():
+func _ready() -> void:
 	# Connect button signals
 	continue_button.pressed.connect(_on_continue_pressed)
 	new_game_button.pressed.connect(_on_new_game_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 	
-	# Enable/disable continue button based on whether a save exists
-	continue_button.disabled = not SaveManager.has_save_file()
+	# Check save file
+	var count = SaveManager.get_save_count()
+	print("📂 Save entries found: ", count)
+	
+	# Enable/disable continue button
+	continue_button.disabled = (count == 0)
 
-func _on_continue_pressed():
+# --------------------
+# Button handlers
+# --------------------
+func _on_continue_pressed() -> void:
+	AudioMgr.play_ui_sound()
 	print("MainMenu: Continue pressed")
-	SaveManager.continue_game()
+	if not await SaveManager.continue_game():
+		print("⚠️ No save found. Starting new game...")
+		_on_new_game_pressed()
 
-func _on_new_game_pressed():
+func _on_new_game_pressed() -> void:
+	AudioMgr.play_ui_sound()
 	print("MainMenu: New Game pressed")
-	
-	# Clear any existing save data for a fresh start
 	SaveManager.start_new_game()
-	
-	# Load the main gameplay scene
 	get_tree().change_scene_to_file("res://scenes/NarativeScenes/Scene1.tscn")
 
-func _on_quit_pressed():
+func _on_quit_pressed() -> void:
+	AudioMgr.play_ui_sound()
 	print("MainMenu: Quit pressed")
 	get_tree().quit()

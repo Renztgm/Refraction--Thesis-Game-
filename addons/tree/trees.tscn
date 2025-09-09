@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccpff6cjmmbl4"]
+
+[ext_resource type="PackedScene" uid="uid://djui83c87ryj8" path="res://addons/tree/tree.gltf" id="1_h2pe5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ip1t"]
+size = Vector3(0.300018, 0.506836, 0.329651)
+
+[node name="Trees" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_h2pe5")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00300598, 0.246582, 0.00326538)
+shape = SubResource("BoxShape3D_5ip1t")

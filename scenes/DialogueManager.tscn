@@ -1,28 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhshtkqj6blyb"]
+[gd_scene load_steps=12 format=3 uid="uid://dhshtkqj6blyb"]
 
 [ext_resource type="Script" uid="uid://dkyaofsxxag4w" path="res://script/DialogueManager.gd" id="1_m70fm"]
+[ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="2_cyvvh"]
+[ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_ebjfy"]
+[ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="4_ebjfy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m70fm"]
 
-[sub_resource type="Gradient" id="Gradient_m70fm"]
+[sub_resource type="Gradient" id="Gradient_ebjfy"]
 interpolation_mode = 2
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cyvvh"]
-gradient = SubResource("Gradient_m70fm")
+gradient = SubResource("Gradient_ebjfy")
 width = 128
 height = 128
 use_hdr = true
 fill = 1
-fill_from = Vector2(0.5, -3)
-fill_to = Vector2(0.5, 0.5)
+fill_from = Vector2(0.5, -0.5)
+fill_to = Vector2(0.504274, 0.15812)
 
-[sub_resource type="Gradient" id="Gradient_cyvvh"]
+[sub_resource type="Gradient" id="Gradient_01vcs"]
 offsets = PackedFloat32Array(0, 0.533654, 1)
 colors = PackedColorArray(0, 0, 0, 0.027451, 0, 0, 0, 0.501961, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xi3yh"]
-gradient = SubResource("Gradient_cyvvh")
+gradient = SubResource("Gradient_01vcs")
+
+[sub_resource type="FontVariation" id="FontVariation_ebjfy"]
+base_font = ExtResource("2_ebjfy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xi3yh"]
+texture = ExtResource("2_cyvvh")
 
 [node name="DialogueManager" type="Control"]
 layout_mode = 3
@@ -49,7 +58,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 61.0
+offset_top = 63.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_cyvvh")
@@ -80,6 +90,7 @@ offset_right = -192.0
 offset_bottom = -199.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ebjfy")
 text = "NPC Name"
 horizontal_alignment = 1
 
@@ -95,6 +106,7 @@ offset_right = -192.0
 offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ebjfy")
 text = "Dialogue"
 horizontal_alignment = 1
 
@@ -106,35 +118,26 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -319.0
-offset_top = -47.0
+offset_top = -49.0
 offset_right = -224.0
-offset_bottom = -16.0
+offset_bottom = -9.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ebjfy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xi3yh")
 text = "Next"
 
 [node name="Options" type="VBoxContainer" parent="."]
+layout_direction = 2
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 194.5
+offset_left = 193.5
 offset_top = -63.5
-offset_right = 269.5
-offset_bottom = 37.5
-grow_horizontal = 2
+offset_right = 288.5
+offset_bottom = 56.5
 grow_vertical = 2
-
-[node name="Button1" type="Button" parent="Options"]
-layout_mode = 2
-text = "Option1 "
-
-[node name="Button2" type="Button" parent="Options"]
-layout_mode = 2
-text = "Option1 "
-
-[node name="Button3" type="Button" parent="Options"]
-layout_mode = 2
-text = "Option1 "
+theme = ExtResource("4_ebjfy")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://btnevx6tvo7sf"]
+
+[ext_resource type="PackedScene" uid="uid://biooohnsqqgrf" path="res://assets/Building/Building 7/Bookstore.glb" id="1_x0p78"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ytjp0"]
+size = Vector3(9.29791, 6.77807, 9.41855)
+
+[node name="Building7" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_x0p78")]
+transform = Transform3D(-50, 0, -4.37114e-06, 0, 50, 0, 4.37114e-06, 0, -50, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57632, 3.38975, -1.52501)
+shape = SubResource("BoxShape3D_ytjp0")
