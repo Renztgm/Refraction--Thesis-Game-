@@ -1,9 +1,11 @@
+# File: scripts/SaveManager.gd
 extends Node
 
-# Path to the SQLite database file
-const DB_PATH: String = "user://game_data.db"
+# ---------------- CONFIG ----------------
+# Default database path, can be overridden for testing
+var db_path: String = "user://game_data.db"
 
-# Game data structure
+# ---------------- GAME DATA ----------------
 var game_data: Dictionary = {
 	"player_name": "Player",
 	"current_scene": "",
@@ -12,18 +14,22 @@ var game_data: Dictionary = {
 	"has_save": false
 }
 
-# SQLite database object
+# ---------------- DATABASE ----------------
 var db: SQLite
 
+# ---------------- INITIALIZATION ----------------
 func _ready() -> void:
-	print("📂 SaveManager ready")
+	_init_db()
 
-	# Create SQLite instance
+func init_with_db_path(path: String) -> void:
+	# Override DB path (useful for tests)
+	db_path = path
+	_init_db()
+
+func _init_db() -> void:
 	db = SQLite.new()
-	db.path = DB_PATH
+	db.path = db_path
 	db.open_db()
-
-	# Ensure save table exists
 	db.query("""
 		CREATE TABLE IF NOT EXISTS save_data (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,6 +45,7 @@ func _ready() -> void:
 
 # ---------------- SAVE ----------------
 func save_game() -> bool:
+	# Optional player node
 	var player := get_tree().get_first_node_in_group("player")
 	if player:
 		game_data["player_position"] = {
@@ -51,7 +58,6 @@ func save_game() -> bool:
 
 	var scene = get_tree().current_scene
 	game_data["current_scene"] = scene.scene_file_path if scene else ""
-
 	game_data["has_save"] = true
 
 	var ok = bool(db.query_with_bindings("""
@@ -70,24 +76,12 @@ func save_game() -> bool:
 
 	if ok:
 		print("💾 Game saved into SQLite")
-		debug_print_saves()
 	else:
 		print("⚠️ Failed to save game")
 
 	return ok
 
 # ---------------- LOAD ----------------
-func has_save_file() -> bool:
-	if db:  # make sure DB is open
-		var result: Array = db.select_rows(
-			"save_data",
-			"player_name, current_scene, pos_x, pos_y, pos_z, direction, has_save",
-			[]
-		)
-	return false
-
-
-# Coroutine-safe load_game
 func load_game() -> bool:
 	var result: Array = db.select_rows(
 		"save_data",
@@ -114,45 +108,8 @@ func load_game() -> bool:
 	print("⚠️ No save data found")
 	return false
 
-# ---------------- CONTINUE ----------------
-# Coroutine-safe continue
-func continue_game() -> void:
-	if not await load_game():
-		print("⚠️ No save file to continue from.")
-		return
-
-	if game_data.has("current_scene") and game_data["current_scene"] != "":
-		var scene_path = game_data["current_scene"]
-		print("➡️ Continuing game from scene: ", scene_path)
-
-		# Load the scene asynchronously
-		await get_tree().change_scene_to_file(scene_path)
-
-		# Wait one frame to ensure nodes are ready
-		await get_tree().process_frame
-
-		# Restore player state
-		var player = get_tree().get_first_node_in_group("player")
-		if player:
-			player.position = Vector3(
-				game_data["player_position"]["x"],
-				game_data["player_position"]["y"],
-				game_data["player_position"]["z"]
-			)
-			if "last_direction" in player:
-				player.last_direction = game_data["player_direction"]
-
-			# Reset velocity if exists
-			if "velocity" in player:
-				player.velocity = Vector3.ZERO
-
-		print("✅ Player restored, movement should work now")
-	else:
-		print("⚠️ Save file has no scene path.")
-
 # ---------------- NEW GAME ----------------
 func start_new_game() -> void:
-	print("🆕 Starting new game - clearing save data")
 	game_data = {
 		"player_name": "Player",
 		"current_scene": "",
@@ -160,11 +117,8 @@ func start_new_game() -> void:
 		"player_direction": "down",
 		"has_save": false
 	}
-	var ok: bool = db.query("DELETE FROM save_data;")
-	if ok:
-		print("🗑️ Cleared all saves from DB")
-	else:
-		print("⚠️ Failed to clear saves")
+	db.query("DELETE FROM save_data;")
+	print("🗑️ Cleared all saves from DB")
 
 # ---------------- GETTERS ----------------
 func get_saved_player_position() -> Vector3:
@@ -187,11 +141,9 @@ func debug_print_saves() -> void:
 	)
 	for row in result:
 		print("📝 Save row: ", row)
-		
-		
-# Returns number of save entries in the database
+
 func get_save_count() -> int:
-	if db:  # make sure the database is initialized
+	if db:
 		var result: Array = db.select_rows("save_data", "id", [])
 		return result.size()
 	return 0
