@@ -25,7 +25,7 @@ func test_save_and_load_game() -> bool:
 	
 	# Mock game state
 	save_manager.game_data["player_name"] = "Tester"
-	save_manager.game_data["current_scene"] = "res://scenes/Level1.tscn"
+	save_manager.game_data["current_scene"] = "res://scenes/NarativeScenes/Scene1.tscn"
 	save_manager.game_data["player_position"] = {"x": 1, "y": 2, "z": 3}
 	save_manager.game_data["player_direction"] = "North"
 	save_manager.game_data["has_save"] = true
@@ -60,7 +60,7 @@ func test_save_and_load_game() -> bool:
 		print("FAIL: player_name mismatch")
 		return false
 	
-	if save_manager.game_data["current_scene"] != "res://scenes/Level1.tscn":
+	if save_manager.game_data["current_scene"] != "res://scenes/NarativeScenes/Scene1.tscn":
 		print("FAIL: current_scene mismatch")
 		return false
 	
