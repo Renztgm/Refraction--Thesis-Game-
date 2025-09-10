@@ -3,7 +3,8 @@
 	"start": {
 	  "name": "Companion",
 	  "sentences": [
-		"You finally woke up. I was starting to think you were just another echo."
+		"You finally woke up.",
+		"I was starting to think you were just another echo wandering the cracks."
 	  ],
 	  "options": [
 		{"text": "💬 Who are you?", "next": "who_are_you"},
@@ -14,390 +15,157 @@
 	"who_are_you": {
 	  "name": "Companion",
 	  "sentences": [
-		"*The companion smirks.*",
-		"Same question to you."
+		"*The figure smirks faintly.*",
+		"Same question to you.",
+		"Names… they don’t last here. But if you need one, call me your Companion."
 	  ],
 	  "options": [
-		{"text": "💬 I don't remember much...", "next": "memory_loss"},
-		{"text": "💬 Where... am I?", "next": "where_am_i"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
+		{"text": "💬 I don’t remember mine.", "next": "memory_loss"},
+		{"text": "💬 Why are you here?", "next": "why_here"},
+		{"text": "💬 Where... am I?", "next": "where_am_i"}
 	  ]
 	},
 	"where_am_i": {
 	  "name": "Companion",
 	  "sentences": [
-		"Somewhere between what was and what isn't."
+		"Somewhere between what was and what isn’t.",
+		"A seam, a broken place where things that shouldn’t touch… do."
 	  ],
 	  "options": [
-		{"text": "💬 That doesn't help me understand.", "next": "confusion"},
-		{"text": "💬 Who are you?", "next": "who_are_you"},
+		{"text": "💬 That doesn’t explain much.", "next": "confusion"},
+		{"text": "💬 So this isn’t the real world?", "next": "not_real_world"},
 		{"text": "💬 (Stay silent)", "next": "stay_silent"}
 	  ]
 	},
 	"stay_silent": {
 	  "name": "Companion",
 	  "sentences": [
-		"Silent type. That's okay. This place prefers quiet."
+		"…Silent type. That’s okay.",
+		"This place prefers quiet. It listens more than it speaks."
 	  ],
 	  "options": [
 		{"text": "💬 This place?", "next": "about_place"},
 		{"text": "💬 Who are you?", "next": "who_are_you"},
-		{"text": "💬 Where... am I?", "next": "where_am_i"}
+		{"text": "💬 Why am I here?", "next": "why_here"}
 	  ]
 	},
 	"memory_loss": {
 	  "name": "Companion",
 	  "sentences": [
-		"Most don't when they first arrive here.",
-		"Memory is... fluid in this realm."
+		"Most don’t remember much when they first arrive.",
+		"Memory here is like water—slipping, pooling, evaporating when you reach for it."
 	  ],
 	  "options": [
-		{"text": "💬 What realm?", "next": "where_am_i"},
-		{"text": "💬 How do I get my memories back?", "next": "memories"},
+		{"text": "💬 Can I get them back?", "next": "memories"},
+		{"text": "💬 What happens if I don’t?", "next": "lost_forever"},
 		{"text": "💬 (Stay silent)", "next": "stay_silent"}
 	  ]
 	},
-	"confusion": {
+	"why_here": {
 	  "name": "Companion",
 	  "sentences": [
-		"Understanding isn't always necessary for survival.",
-		"Sometimes acceptance is enough."
+		"Why you? Why anyone?",
+		"*The Companion tilts their head, eyes catching starlight.*",
+		"This place doesn’t invite—it swallows."
 	  ],
 	  "options": [
-		{"text": "💬 I need answers.", "next": "need_answers"},
-		{"text": "💬 Who are you?", "next": "who_are_you"},
+		{"text": "💬 So I was pulled here?", "next": "pulled_here"},
+		{"text": "💬 Can I leave?", "next": "can_leave"},
+		{"text": "💬 What happens to those who stay?", "next": "what_happens"}
+	  ]
+	},
+	"not_real_world": {
+	  "name": "Companion",
+	  "sentences": [
+		"‘Real’ is a fragile word.",
+		"Does it feel real? Does it hurt? Do you fear it? Then it’s real enough."
+	  ],
+	  "options": [
+		{"text": "💬 That’s not comforting.", "next": "uncomfortable"},
+		{"text": "💬 Are you real?", "next": "are_you_real"},
 		{"text": "💬 (Stay silent)", "next": "stay_silent"}
 	  ]
 	},
 	"about_place": {
 	  "name": "Companion",
 	  "sentences": [
-		"A crossroads of sorts.",
-		"Where lost souls decide their next path."
+		"A crossroads. A fracture.",
+		"Souls wander here when the line between dream and waking breaks."
 	  ],
 	  "options": [
 		{"text": "💬 Am I... dead?", "next": "dead_question"},
-		{"text": "💬 What paths?", "next": "paths"},
-		{"text": "💬 Who are you?", "next": "who_are_you"}
+		{"text": "💬 What decides who ends up here?", "next": "decided_here"},
+		{"text": "💬 (Stay silent)", "next": "final_silence"}
 	  ]
 	},
 	"memories": {
 	  "name": "Companion",
 	  "sentences": [
-		"They return when you're ready.",
-		"Or when this place decides you are."
+		"They return when you stop chasing them.",
+		"Or when this place chooses to give them back."
 	  ],
 	  "options": [
-		{"text": "💬 This place decides?", "next": "place_decides"},
-		{"text": "💬 How long have you been here?", "next": "companion_time"},
+		{"text": "💬 This place chooses?", "next": "place_decides"},
+		{"text": "💬 Then I have no control?", "next": "no_control"},
 		{"text": "💬 (Stay silent)", "next": "stay_silent"}
 	  ]
 	},
-	"need_answers": {
+	"lost_forever": {
 	  "name": "Companion",
 	  "sentences": [
-		"Everyone does, at first.",
-		"But questions here have a way of... changing."
+		"Then you dissolve into the echoes.",
+		"Shadows of people, repeating themselves until they vanish."
 	  ],
 	  "options": [
-		{"text": "💬 Changing how?", "next": "changing_questions"},
-		{"text": "💬 You're being cryptic on purpose.", "next": "cryptic"},
+		{"text": "💬 I don’t want that.", "next": "dont_want_that"},
+		{"text": "💬 How do I stop it?", "next": "how_stop"},
 		{"text": "💬 (Stay silent)", "next": "stay_silent"}
 	  ]
 	},
-	"dead_question": {
+	"pulled_here": {
 	  "name": "Companion",
 	  "sentences": [
-		"Dead, alive... those are very linear concepts.",
-		"Here, you simply are."
+		"Yes. A current stronger than you carried you here.",
+		"It drags many down. Few ever resurface."
 	  ],
 	  "options": [
-		{"text": "💬 That's not an answer.", "next": "not_answer"},
-		{"text": "💬 How long have you been here?", "next": "companion_time"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
+		{"text": "💬 And you?", "next": "companion_time"},
+		{"text": "💬 How do I fight it?", "next": "fight_current"},
+		{"text": "💬 (Stay silent)", "next": "stay_silent"}
 	  ]
 	},
-	"paths": {
+	"can_leave": {
 	  "name": "Companion",
 	  "sentences": [
-		"Forward, backward, sideways through time.",
-		"Each soul chooses differently."
+		"Leaving is possible.",
+		"*Their eyes flicker with something unreadable.*",
+		"But not everyone likes what waits beyond."
 	  ],
 	  "options": [
-		{"text": "💬 What did you choose?", "next": "companion_choice"},
-		{"text": "💬 I want to go back.", "next": "go_back"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
+		{"text": "💬 What waits beyond?", "next": "beyond"},
+		{"text": "💬 I’ll take the risk.", "next": "risk"},
+		{"text": "💬 (Stay silent)", "next": "stay_silent"}
 	  ]
 	},
-	"place_decides": {
+	"what_happens": {
 	  "name": "Companion",
 	  "sentences": [
-		"This realm has its own consciousness.",
-		"It tests, it judges, it remembers."
+		"They fade. They wander. They forget.",
+		"Until even forgetting forgets them."
 	  ],
 	  "options": [
-		{"text": "💬 What is it testing me for?", "next": "testing"},
-		{"text": "💬 I don't like the sound of that.", "next": "uncomfortable"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"companion_time": {
-	  "name": "Companion",
-	  "sentences": [
-		"*The companion's expression grows distant.*",
-		"Time moves strangely here. Could be days, could be centuries."
-	  ],
-	  "options": [
-		{"text": "💬 Don't you want to leave?", "next": "want_to_leave"},
-		{"text": "💬 That sounds lonely.", "next": "lonely"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"changing_questions": {
-	  "name": "Companion",
-	  "sentences": [
-		"You might ask 'Where am I?' but really mean 'Who am I?'",
-		"Questions reveal more about the asker than the asked."
-	  ],
-	  "options": [
-		{"text": "💬 So who am I?", "next": "who_am_i_question"},
-		{"text": "💬 You're avoiding my questions.", "next": "avoiding"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"cryptic": {
-	  "name": "Companion",
-	  "sentences": [
-		"*The companion chuckles softly.*",
-		"Clarity is overrated. Mystery keeps things interesting."
-	  ],
-	  "options": [
-		{"text": "💬 I disagree.", "next": "disagree"},
-		{"text": "💬 You're enjoying this, aren't you?", "next": "enjoying"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"not_answer": {
-	  "name": "Companion",
-	  "sentences": [
-		"The best answers rarely are what they seem.",
-		"Perhaps you're asking the wrong questions."
-	  ],
-	  "options": [
-		{"text": "💬 Then what should I be asking?", "next": "right_questions"},
-		{"text": "💬 This is frustrating.", "next": "frustrated"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"companion_choice": {
-	  "name": "Companion",
-	  "sentences": [
-		"I chose to stay, to guide others like you.",
-		"Every soul that passes through deserves a chance to understand."
-	  ],
-	  "options": [
-		{"text": "💬 That's... kind of you.", "next": "kind_response"},
-		{"text": "💬 Why me?", "next": "why_me"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"go_back": {
-	  "name": "Companion",
-	  "sentences": [
-		"Back assumes there was a before that still exists.",
-		"Sometimes the only way out is through."
-	  ],
-	  "options": [
-		{"text": "💬 Through what?", "next": "through_what"},
-		{"text": "💬 I don't accept that.", "next": "dont_accept"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
+		{"text": "💬 That won’t be me.", "next": "refusal"},
+		{"text": "💬 Is that what happened to you?", "next": "companion_time"},
+		{"text": "💬 (Stay silent)", "next": "stay_silent"}
 	  ]
 	},
 	"final_silence": {
 	  "name": "Companion",
 	  "sentences": [
-		"*The companion nods approvingly.*",
+		"*The Companion’s gaze lingers.*",
 		"Sometimes silence speaks loudest.",
-		"*They begin to fade into the starlit mist.*",
-		"When you're ready for answers, they'll find you."
+		"The city will answer you in its own way soon enough."
 	  ],
-	  "options": []
-	},
-	"testing": {
-	  "name": "Companion",
-	  "sentences": [
-		"Readiness. Acceptance. The strength to face what comes next.",
-		"Not everyone passes."
-	  ],
-	  "options": [
-		{"text": "💬 What happens if you fail?", "next": "fail_test"},
-		{"text": "💬 I'm not afraid.", "next": "not_afraid"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"uncomfortable": {
-	  "name": "Companion",
-	  "sentences": [
-		"Discomfort means you're still fighting.",
-		"That's... not always wise here."
-	  ],
-	  "options": [
-		{"text": "💬 Are you threatening me?", "next": "threatening"},
-		{"text": "💬 I should stop fighting?", "next": "stop_fighting"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"want_to_leave": {
-	  "name": "Companion",
-	  "sentences": [
-		"Want is a funny word.",
-		"I've found purpose here. That's rarer than you might think."
-	  ],
-	  "options": [
-		{"text": "💬 What's your purpose?", "next": "companion_purpose"},
-		{"text": "💬 I want to find mine too.", "next": "find_purpose"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"lonely": {
-	  "name": "Companion",
-	  "sentences": [
-		"Loneliness and solitude are different things.",
-		"I chose this."
-	  ],
-	  "options": [
-		{"text": "💬 Why?", "next": "why_choose"},
-		{"text": "💬 I understand.", "next": "understand"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"who_am_i_question": {
-	  "name": "Companion",
-	  "sentences": [
-		"*The companion's eyes gleam with starlight.*",
-		"Now that's the right question.",
-		"But only you can answer it."
-	  ],
-	  "options": [
-		{"text": "💬 How do I find out?", "next": "find_out"},
-		{"text": "💬 Give me a hint.", "next": "give_hint"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"avoiding": {
-	  "name": "Companion",
-	  "sentences": [
-		"I'm giving you exactly what you need.",
-		"Not always what you want."
-	  ],
-	  "options": [
-		{"text": "💬 How do you know what I need?", "next": "how_know"},
-		{"text": "💬 I want straight answers.", "next": "straight_answers"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"disagree": {
-	  "name": "Companion",
-	  "sentences": [
-		"Good. Disagreement means you still have opinions.",
-		"Hold onto those. They'll serve you well."
-	  ],
-	  "options": [
-		{"text": "💬 Serve me how?", "next": "serve_how"},
-		{"text": "💬 You're still being cryptic.", "next": "still_cryptic"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"enjoying": {
-	  "name": "Companion",
-	  "sentences": [
-		"*The companion's smile fades slightly.*",
-		"Enjoyment would be cruel. I take no pleasure in confusion.",
-		"But watching understanding dawn... that's different."
-	  ],
-	  "options": [
-		{"text": "💬 I'm sorry for assuming.", "next": "apologize"},
-		{"text": "💬 Help me understand then.", "next": "help_understand"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"right_questions": {
-	  "name": "Companion",
-	  "sentences": [
-		"Ask yourself why you're here.",
-		"Ask yourself what you're running from.",
-		"Ask yourself what you're running to."
-	  ],
-	  "options": [
-		{"text": "💬 I don't know the answers.", "next": "dont_know"},
-		{"text": "💬 Those are hard questions.", "next": "hard_questions"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"frustrated": {
-	  "name": "Companion",
-	  "sentences": [
-		"Frustration is the first step toward clarity.",
-		"Embrace it. Let it guide you."
-	  ],
-	  "options": [
-		{"text": "💬 Guide me where?", "next": "guide_where"},
-		{"text": "💬 I don't like feeling this way.", "next": "dont_like_feeling"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"kind_response": {
-	  "name": "Companion",
-	  "sentences": [
-		"Kindness is rare in most realms.",
-		"Here, it's necessary for survival."
-	  ],
-	  "options": [
-		{"text": "💬 Why is kindness necessary?", "next": "kindness_necessary"},
-		{"text": "💬 Will you be kind to me?", "next": "be_kind"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"why_me": {
-	  "name": "Companion",
-	  "sentences": [
-		"Because you asked the right questions.",
-		"Because you listened.",
-		"Because you're here."
-	  ],
-	  "options": [
-		{"text": "💬 That's all it takes?", "next": "all_it_takes"},
-		{"text": "💬 Thank you.", "next": "thank_you"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"through_what": {
-	  "name": "Companion",
-	  "sentences": [
-		"Through acceptance. Through understanding.",
-		"Through becoming who you were meant to be."
-	  ],
-	  "options": [
-		{"text": "💬 How do I do that?", "next": "how_do_that"},
-		{"text": "💬 What if I don't like who I'm meant to be?", "next": "dont_like_destiny"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"dont_accept": {
-	  "name": "Companion",
-	  "sentences": [
-		"Acceptance isn't surrender.",
-		"It's acknowledging what is, so you can choose what will be."
-	  ],
-	  "options": [
-		{"text": "💬 I can choose?", "next": "can_choose"},
-		{"text": "💬 That sounds like surrender to me.", "next": "sounds_surrender"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"end": {
-	  "name": "",
-	  "sentences": [],
 	  "options": []
 	}
   }
