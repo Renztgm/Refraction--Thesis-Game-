@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b7wy45d0d7ne0"]
+[gd_scene load_steps=22 format=3 uid="uid://cqpvbby2jar3r"]
 
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_lsmej"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="2_726uw"]
@@ -298,5 +298,7 @@ bus = &"Music"
 
 [node name="PauseMenu" parent="." instance=ExtResource("15_g4op0")]
 z_index = 1
+
+[node name="Spawnpoint" type="Marker3D" parent="."]
 
 [connection signal="animation_finished" from="FadeLayer/AnimationPlayer" to="FadeLayer" method="_on_animation_player_animation_finished"]

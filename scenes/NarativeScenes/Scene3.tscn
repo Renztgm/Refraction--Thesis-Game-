@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2bjlsidj107l"]
+[gd_scene load_steps=16 format=3 uid="uid://b2bjlsidj107l"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_cb1v0"]
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_cp3ya"]
@@ -8,7 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://ce3d7ovhkpl5l" path="res://assets/Building/Building6.tscn" id="6_l1433"]
 [ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_jjv0t"]
 [ext_resource type="PackedScene" uid="uid://cwa4jhihkwg0h" path="res://assets/Building/Building5.tscn" id="7_l1433"]
+[ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/NarativeScenes/bookstore.gd" id="8_u74mi"]
 [ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="9_5a376"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q0b6v"]
+size = Vector3(14.4083, 9.09265, 11.1161)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xcpug"]
 size = Vector3(14.4902, 1, 1)
@@ -21,12 +25,12 @@ sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
 ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
 ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
 
-[sub_resource type="Sky" id="Sky_bx50q"]
+[sub_resource type="Sky" id="Sky_prnq5"]
 sky_material = SubResource("ProceduralSkyMaterial_cb1v0")
 
 [sub_resource type="Environment" id="Environment_cp3ya"]
 background_mode = 2
-sky = SubResource("Sky_bx50q")
+sky = SubResource("Sky_prnq5")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 
@@ -101,6 +105,13 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -43.44
 
 [node name="Building14" parent="Structures/Building" instance=ExtResource("7_jjv0t")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -82.6216, 0.5, 13.2583)
+
+[node name="Area3D" type="Area3D" parent="Structures/Building/Building14"]
+script = ExtResource("8_u74mi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Building/Building14/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.568665, 4.04633, -1.39862)
+shape = SubResource("BoxShape3D_q0b6v")
 
 [node name="Barrier" type="Node3D" parent="Structures"]
 

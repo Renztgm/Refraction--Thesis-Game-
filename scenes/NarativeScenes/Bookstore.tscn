@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://bf4bbr6ak5t7j"]
+
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_u6ydm"]
+[ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_curve = 0.243676
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_bx50q"]
+sky_material = SubResource("ProceduralSkyMaterial_ecfh2")
+
+[sub_resource type="Environment" id="Environment_u6ydm"]
+background_mode = 2
+sky = SubResource("Sky_bx50q")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_abmj1"]
+size = Vector3(7.11823, 4.82605, 6.53577)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cedyu"]
+
+[node name="Bookstore" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_u6ydm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+sky_mode = 1
+
+[node name="Plane" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.129, -0.5, -0.251)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
+visible = false
+size = Vector3(32, 20, 32)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/CSGBox3D"]
+visible = false
+operation = 2
+size = Vector3(30, 60, 30)
+
+[node name="Player3d" parent="." instance=ExtResource("1_u6ydm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891695, -0.511548, 12.6993)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.7165)
+script = ExtResource("2_cedyu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00674438, 1.91302, 2.76788)
+shape = SubResource("BoxShape3D_abmj1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.824033, 0)
+mesh = SubResource("BoxMesh_cedyu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FlashScreen" type="ColorRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0)
+
+[node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

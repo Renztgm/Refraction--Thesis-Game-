@@ -17,28 +17,54 @@ var original_camera_position: Vector3
 var camera_collision_mask = 0xFFFFFFFF
 
 func _ready():
-	# Load saved position + direction
-	if SaveManager.has_save_file():
-		var saved_pos = SaveManager.get_saved_player_position()
-		var saved_direction = SaveManager.get_saved_player_direction()
-			
-		if saved_pos != Vector3.ZERO:
-			position = saved_pos
-			last_direction = saved_direction
-			print("Player position loaded: ", saved_pos)
-			print("Player direction loaded: ", saved_direction)
-	
-	if camera_3d:
-		original_camera_position = camera_3d.position
-	
 	add_to_group("player")
 	
-	# Fallback check for pause menu
+	# -----------------------------
+	# 1️⃣ Determine if we're continuing a saved game
+	# -----------------------------
+	var continuing_game := false
+	if SaveManager.has_save_file() and SaveManager.is_continuing_game:
+		continuing_game = true
+
+	# -----------------------------
+	# 2️⃣ Set player position and direction
+	# -----------------------------
+	if continuing_game:
+		var saved_pos = SaveManager.get_saved_player_position()
+		var saved_dir = SaveManager.get_saved_player_direction()
+		if saved_pos != Vector3.ZERO:
+			position = saved_pos
+			last_direction = saved_dir
+			print("Player loaded from save:", position, "| Direction:", last_direction)
+	else:
+		# Use scene's spawn point (Marker3D)
+		var spawn_point = $SpawnPoint
+		if spawn_point:
+			position = spawn_point.global_position
+			print("Player spawned at scene spawn point:", position)
+		else:
+			print("⚠️ No spawn point found! Using default position:", position)
+
+	# -----------------------------
+	# 3️⃣ Camera setup
+	# -----------------------------
+	if camera_3d:
+		original_camera_position = camera_3d.position
+
+	# -----------------------------
+	# 4️⃣ Pause menu
+	# -----------------------------
 	if not pause_menu:
 		print("Warning: Pause menu not found. Trying alternative path...")
 		pause_menu = get_tree().get_first_node_in_group("pause_menu")
 	if pause_menu:
 		print("Pause menu found!")
+
+	# -----------------------------
+	# 5️⃣ Debug: Print scene info
+	# -----------------------------
+	print_player_debug()
+
 
 func get_last_direction() -> String:
 	return last_direction
@@ -142,3 +168,10 @@ func set_animation():
 		animated_sprite_3d.play("run_" + animation_suffix)
 	else:
 		animated_sprite_3d.play("idle_" + last_direction)
+
+func print_player_debug():
+	var current_scene = get_tree().current_scene
+	var scene_path = current_scene.scene_file_path if current_scene else "No scene loaded"
+	print("🟢 Scene:", scene_path, 
+		  "| Position:", position, 
+		  "| Direction:", last_direction)
