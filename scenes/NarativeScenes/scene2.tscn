@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c6bf7ffgtir4a"]
+[gd_scene load_steps=22 format=3 uid="uid://c4irk4i63ynmd"]
 
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_5s2s3"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="2_3ni3a"]

@@ -18,41 +18,23 @@ var camera_collision_mask = 0xFFFFFFFF
 
 func _ready():
 	add_to_group("player")
-	
-	# -----------------------------
-	# 1️⃣ Determine if we're continuing a saved game
-	# -----------------------------
-	var continuing_game := false
-	if SaveManager.has_save_file() and SaveManager.is_continuing_game:
-		continuing_game = true
 
 	# -----------------------------
-	# 2️⃣ Set player position and direction
+	# 1️⃣ New game → spawn point
 	# -----------------------------
-	if continuing_game:
-		var saved_pos = SaveManager.get_saved_player_position()
-		var saved_dir = SaveManager.get_saved_player_direction()
-		if saved_pos != Vector3.ZERO:
-			position = saved_pos
-			last_direction = saved_dir
-			print("Player loaded from save:", position, "| Direction:", last_direction)
-	else:
-		# Use scene's spawn point (Marker3D)
-		var spawn_point = $SpawnPoint
-		if spawn_point:
-			position = spawn_point.global_position
-			print("Player spawned at scene spawn point:", position)
-		else:
-			print("⚠️ No spawn point found! Using default position:", position)
+	# If SaveManager.continue_game() was called, it already moved the player.
+	# So here we only set position if no saved data is being applied.
+	if not SaveManager.has_save_data():
+		_set_spawn_position()
 
 	# -----------------------------
-	# 3️⃣ Camera setup
+	# 2️⃣ Camera setup
 	# -----------------------------
 	if camera_3d:
 		original_camera_position = camera_3d.position
 
 	# -----------------------------
-	# 4️⃣ Pause menu
+	# 3️⃣ Pause menu
 	# -----------------------------
 	if not pause_menu:
 		print("Warning: Pause menu not found. Trying alternative path...")
@@ -61,10 +43,21 @@ func _ready():
 		print("Pause menu found!")
 
 	# -----------------------------
-	# 5️⃣ Debug: Print scene info
+	# 4️⃣ Debug: Print scene info
 	# -----------------------------
 	print_player_debug()
 
+
+# -----------------------------
+# Helper: Spawn point setup
+# -----------------------------
+func _set_spawn_position() -> void:
+	var spawn_point: Marker3D = $SpawnPoint
+	if spawn_point:
+		position = spawn_point.global_position
+		print("Player spawned at scene spawn point:", position)
+	else:
+		print("⚠️ No spawn point found! Using default position:", position)
 
 func get_last_direction() -> String:
 	return last_direction
