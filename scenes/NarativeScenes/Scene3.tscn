@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2bjlsidj107l"]
+[gd_scene load_steps=21 format=3 uid="uid://b2bjlsidj107l"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_cb1v0"]
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_cp3ya"]
@@ -10,12 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://cwa4jhihkwg0h" path="res://assets/Building/Building5.tscn" id="7_l1433"]
 [ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/NarativeScenes/bookstore.gd" id="8_u74mi"]
 [ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="9_5a376"]
+[ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_bx50q"]
+[ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="9_q0b6v"]
+[ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/Npc2_No_sound.tscn" id="12_prnq5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q0b6v"]
 size = Vector3(14.4083, 9.09265, 11.1161)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xcpug"]
-size = Vector3(14.4902, 1, 1)
+size = Vector3(76.0434, 10.4154, 2.30859)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cb1v0"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -25,14 +28,24 @@ sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
 ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
 ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
 
-[sub_resource type="Sky" id="Sky_prnq5"]
+[sub_resource type="Sky" id="Sky_bx50q"]
 sky_material = SubResource("ProceduralSkyMaterial_cb1v0")
 
 [sub_resource type="Environment" id="Environment_cp3ya"]
 background_mode = 2
-sky = SubResource("Sky_prnq5")
+sky = SubResource("Sky_bx50q")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_q0b6v"]
+vertices = PackedVector3Array(-99.5, 1.24465, -99.5, -99.5, 1.24465, 99.5, 99.5, 1.24465, 99.5, 99.5, 1.24465, -99.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_height = 2.0
+agent_max_climb = 0.9
+region_min_size = 9.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_prnq5"]
+size = Vector3(200, 1, 200)
 
 [node name="Scene3" type="Node3D"]
 
@@ -60,7 +73,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, -2.17044)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, 37.6545)
 
 [node name="Road7" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, 37.6546)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9319, 0.634049, 37.6546)
 
 [node name="Building" type="Node3D" parent="Structures"]
 
@@ -68,10 +81,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, 37.6546)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3309, 0, -69.6199)
 
 [node name="Building2" parent="Structures/Building" instance=ExtResource("1_xcpug")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.28598, 0, -32.8142)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5083, 0, -32.8142)
 
 [node name="Building3" parent="Structures/Building" instance=ExtResource("1_xcpug")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -11.8527, 0, -56.5641)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -13.326, 0, -56.5641)
 
 [node name="Building4" parent="Structures/Building" instance=ExtResource("1_xcpug")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.1631, 0, -56.2714)
@@ -83,7 +96,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 15.858
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13.1931, 1.36123, -69.4413)
 
 [node name="Building8" parent="Structures/Building" instance=ExtResource("3_pg7mk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1931, 0.361232, -17.4735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3843, 0.361232, -17.4735)
 
 [node name="Building9" parent="Structures/Building" instance=ExtResource("4_7joti")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.3344, 0.546875, 10.958)
@@ -103,15 +116,21 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.875
 [node name="Building11" parent="Structures/Building" instance=ExtResource("6_l1433")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -43.446, 0.58023, 11.4574)
 
-[node name="Building14" parent="Structures/Building" instance=ExtResource("7_jjv0t")]
+[node name="Bookstore" type="Node3D" parent="Structures/Building"]
+
+[node name="Building14" parent="Structures/Building/Bookstore" instance=ExtResource("7_jjv0t")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -82.6216, 0.5, 13.2583)
 
-[node name="Area3D" type="Area3D" parent="Structures/Building/Building14"]
+[node name="Area3D" type="Area3D" parent="Structures/Building/Bookstore/Building14"]
 script = ExtResource("8_u74mi")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Building/Building14/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Building/Bookstore/Building14/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.568665, 4.04633, -1.39862)
 shape = SubResource("BoxShape3D_q0b6v")
+
+[node name="BookstoreMarker" type="Node3D" parent="Structures/Building/Bookstore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.7817, 2.41998, 0.835972)
+script = ExtResource("9_bx50q")
 
 [node name="Barrier" type="Node3D" parent="Structures"]
 
@@ -119,22 +138,31 @@ shape = SubResource("BoxShape3D_q0b6v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53165, 0, -72.871)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662018, 1.22429, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662018, 1.22429, -0.654297)
 shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Barrier2" type="StaticBody3D" parent="Structures/Barrier"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.21536, 0, -47.1706)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.21536, 0.760214, -47.1706)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662018, 1.22429, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1383, 1.22429, -0.651217)
 shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Barrier3" type="StaticBody3D" parent="Structures/Barrier"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.32316, 0, -47.1706)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.65681, -1.15006, -47.1706)
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.721428, 1.22429, 1.16858)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35107, 3.90953, -0.214016)
 shape = SubResource("BoxShape3D_xcpug")
+
+[node name="Walls" type="Node3D" parent="Structures"]
+
+[node name="Walls1" parent="Structures/Walls" instance=ExtResource("9_q0b6v")]
+transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -7.73818, 0.5, 43.342)
+
+[node name="Walls2" parent="Structures/Walls" instance=ExtResource("9_q0b6v")]
+transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -63.3415, 0.5, 43.342)
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -173,3 +201,13 @@ bus = &"Music"
 
 [node name="Spawnpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7604, 0, 72.0895)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.282947, 0)
+navigation_mesh = SubResource("NavigationMesh_q0b6v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("BoxMesh_prnq5")
+
+[node name="Npc2" parent="." instance=ExtResource("12_prnq5")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.28081, 0.953631, 61.1064)

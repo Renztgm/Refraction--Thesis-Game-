@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8j2bt3ea0fny"]
+
+[ext_resource type="PackedScene" uid="uid://83k8xoajdpxl" path="res://assets/bookstore_walls/Wall2/Bookstore_wall_2.gltf" id="1_qkjgb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fuy5i"]
+size = Vector3(0.0327148, 0.373962, 0.377869)
+
+[node name="Wall2Bs" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 2.29372, 5.64073, 0.129089)
+shape = SubResource("BoxShape3D_fuy5i")
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_qkjgb")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, -1.86339, 0)

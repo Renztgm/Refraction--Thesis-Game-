@@ -1,31 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c51atvquonid3"]
+[gd_scene load_steps=3 format=3 uid="uid://c51atvquonid3"]
 
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="1_ef88e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o3j20"]
+size = Vector3(7.55798, 11.407, 15.0684)
 
 [node name="Building1" type="Node3D"]
 
 [node name="House1" parent="." instance=ExtResource("1_ef88e")]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 
-[node name="CollisionBuilding" type="CSGCombiner3D" parent="House1"]
-transform = Transform3D(0.000275086, 0, -0.00993562, 0, 0.043521, 0, 0.0329726, 0, 8.28917e-05, -0.174336, -0.0470055, -0.0569959)
-visible = false
-use_collision = true
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="Back_wall" type="CSGBox3D" parent="House1/CollisionBuilding"]
-transform = Transform3D(0.999157, -0.00438699, 0.000630332, 0.00484136, 0.905375, 7.95789e-05, -0.000630168, -6.92836e-05, 1.00003, 1.58862, 5.60956, -23.9674)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="Front_wall" type="CSGBox3D" parent="House1/CollisionBuilding"]
-transform = Transform3D(0.999424, -0.00211162, 0.00031521, 0.00242133, 0.871587, 3.94071e-05, -0.000315126, -3.36818e-05, 1.00001, 1.69758, 5.36054, 0.988876)
-use_collision = true
-size = Vector3(15, 10, 0.25)
-
-[node name="Left_wall" type="CSGBox3D" parent="House1/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, -1.86265e-09, 0, 1.00001, -5.59021, 5.99241, -11.469)
-size = Vector3(0.25, 10, 25)
-
-[node name="Right_wall" type="CSGBox3D" parent="House1/CollisionBuilding"]
-transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, -1.86265e-09, 0, 1.00001, 9.31371, 5.93883, -11.4309)
-size = Vector3(0.25, 10, 25)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87433, 5.62019, -0.0361328)
+shape = SubResource("BoxShape3D_o3j20")

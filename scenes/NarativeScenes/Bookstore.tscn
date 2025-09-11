@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=11 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
+[ext_resource type="PackedScene" uid="uid://cej8x77gsyixw" path="res://assets/bookstore_walls/Wall1/Wall1_bs.tscn" id="3_abmj1"]
+[ext_resource type="PackedScene" uid="uid://b8j2bt3ea0fny" path="res://assets/bookstore_walls/Wall2/Wall2_bs.tscn" id="4_ichha"]
+[ext_resource type="PackedScene" uid="uid://dry51jm8t8e83" path="res://assets/bookstore_walls/Wall3/Wall3_bs.tscn" id="5_moha3"]
+[ext_resource type="PackedScene" uid="uid://dl1oxf6kjobol" path="res://assets/item/paper/torn_paper_item.gltf" id="6_vasej"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -23,8 +27,6 @@ ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_abmj1"]
 size = Vector3(7.11823, 4.82605, 6.53577)
 
-[sub_resource type="BoxMesh" id="BoxMesh_cedyu"]
-
 [node name="Bookstore" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
@@ -35,6 +37,7 @@ environment = SubResource("Environment_u6ydm")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 light_color = Color(0.647059, 1, 0.478431, 1)
+light_energy = 0.5
 sky_mode = 1
 
 [node name="Plane" type="CSGBox3D" parent="Environment"]
@@ -42,14 +45,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.129, -0.5, -0.251)
 use_collision = true
 size = Vector3(30, 1, 30)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
-visible = false
-size = Vector3(32, 20, 32)
+[node name="Walls" type="Node3D" parent="Environment"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/CSGBox3D"]
-visible = false
-operation = 2
-size = Vector3(30, 60, 30)
+[node name="Wall1Bs" parent="Environment/Walls" instance=ExtResource("3_abmj1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.0687, 0, -7.01294)
+
+[node name="Wall2Bs" parent="Environment/Walls" instance=ExtResource("4_ichha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9998, -0.0179877, 2.30865)
+
+[node name="Wall3Bs" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1608, 0, 8.04971)
+
+[node name="Wall2Bs2" parent="Environment/Walls" instance=ExtResource("4_ichha")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.737, -0.0179877, -9.63849)
+
+[node name="Wall3Bs2" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.8037, 0, 18.3131)
+
+[node name="Wall3Bs3" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.8551, 0, 7.12647)
+
+[node name="Wall2Bs3" parent="Environment/Walls" instance=ExtResource("4_ichha")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.41809, -0.0179877, -17.4183)
+
+[node name="Wall3Bs4" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.27521, -1.90735e-06, -14.5864)
+
+[node name="Wall3Bs5" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.1828, -1.90735e-06, -14.5864)
 
 [node name="Player3d" parent="." instance=ExtResource("1_u6ydm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891695, -0.511548, 12.6993)
@@ -62,16 +85,20 @@ script = ExtResource("2_cedyu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00674438, 1.91302, 2.76788)
 shape = SubResource("BoxShape3D_abmj1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.824033, 0)
-mesh = SubResource("BoxMesh_cedyu")
+[node name="blockbench_export" parent="Area3D" instance=ExtResource("6_vasej")]
+transform = Transform3D(-4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 0, 0.879109, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FlashScreen" type="ColorRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(1, 1, 1, 0)
+visible = false
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = 15
