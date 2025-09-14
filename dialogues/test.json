@@ -1,86 +1,173 @@
 {
-  "Juan": {
+  "Companion": {
 	"start": {
-	  "name": "Juan",
-	  "sentences": ["Hello there adventurer! How are you doing today?"],
-	  "options": [
-		{"text": "I'm doing great!", "next": "great_response"},
-		{"text": "Not so good...", "next": "bad_response"}
-	  ]
-	},
-	"great_response": {
-	  "name": "Juan",
+	  "name": "Companion",
 	  "sentences": [
-		"That's wonderful to hear!",
-		"By the way, we have some fresh carrots in stock today.",
-		"Would you like to buy some or just chat?"
+		"You finally woke up.",
+		"I was starting to think you were just another echo wandering the cracks."
 	  ],
 	  "options": [
-		{"text": "I want carrots.", "next": "carrots_response"},
-		{"text": "Let's chat.", "next": "chat_response"}
+		{
+		  "text": "💬 Who are you?",
+		  "full_text": "You: Who are you? I need to know if I can trust you in this strange place.",
+		  "next": "who_are_you"
+		},
+		{
+		  "text": "💬 Where... am I?",
+		  "full_text": "You: Where... am I? Everything feels so strange.",
+		  "next": "where_am_i"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "You: …",
+		  "next": "stay_silent"
+		}
 	  ]
 	},
-	"bad_response": {
-	  "name": "Juan",
+	"who_are_you": {
+	  "name": "Companion",
 	  "sentences": [
-		"Oh, I’m sorry to hear that.",
-		"Maybe a little adventure or some fresh carrots will cheer you up!",
-		"Would you like to buy carrots or just talk?"
+		"*The figure smirks faintly.*",
+		"Same question to you.",
+		"Names… they don’t last here. But if you need one, call me your Companion."
 	  ],
 	  "options": [
-		{"text": "I want carrots.", "next": "carrots_response"},
-		{"text": "Let's chat.", "next": "chat_response"}
+		{
+		  "text": "💬 I don’t remember mine.",
+		  "full_text": "You: I don’t remember my name…",
+		  "next": "memory_loss"
+		},
+		{
+		  "text": "💬 Why are you here?",
+		  "full_text": "You: Why are you here? And why am I here?",
+		  "next": "why_here"
+		},
+		{
+		  "text": "💬 Where... am I?",
+		  "full_text": "You: Where am I exactly?",
+		  "next": "where_am_i"
+		}
 	  ]
 	},
-	"carrots_response": {
-	  "name": "Juan",
+	"where_am_i": {
+	  "name": "Companion",
 	  "sentences": [
-		"Excellent choice! How many carrots would you like to buy?",
-		"We have them in bundles of 5 or 10."
+		"Somewhere between what was and what isn’t.",
+		"A seam, a broken place where things that shouldn’t touch… do."
 	  ],
 	  "options": [
-		{"text": "5 carrots.", "next": "buy5"},
-		{"text": "10 carrots.", "next": "buy10"}
+		{
+		  "text": "💬 That doesn’t explain much.",
+		  "full_text": "You: That doesn’t explain much.",
+		  "next": "confusion"
+		},
+		{
+		  "text": "💬 So this isn’t the real world?",
+		  "full_text": "You: So this isn’t the real world?",
+		  "next": "not_real_world"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "You: …",
+		  "next": "stay_silent"
+		}
 	  ]
 	},
-	"chat_response": {
-	  "name": "Juan",
+	"stay_silent": {
+	  "name": "Companion",
 	  "sentences": [
-		"Ah, a fellow adventurer who likes to chat!",
-		"Have you been exploring the northern forest lately?",
-		"I hear there are rare herbs you can collect there."
+		"…Silent type. That’s okay.",
+		"This place prefers quiet. It listens more than it speaks."
 	  ],
 	  "options": [
-		{"text": "Yes, I explored it.", "next": "explored_forest"},
-		{"text": "No, not yet.", "next": "not_explored_forest"}
+		{
+		  "text": "💬 This place?",
+		  "full_text": "You: This place? What is it?",
+		  "next": "about_place"
+		},
+		{
+		  "text": "💬 Who are you?",
+		  "full_text": "You: Who are you again?",
+		  "next": "who_are_you"
+		},
+		{
+		  "text": "💬 Why am I here?",
+		  "full_text": "You: Why am I here?",
+		  "next": "why_here"
+		}
 	  ]
 	},
-	"buy5": {
-	  "name": "Juan",
+	"memory_loss": {
+	  "name": "Companion",
 	  "sentences": [
-		"Here are 5 fresh carrots for you!",
-		"Thank you for your purchase, adventurer."
+		"Most don’t remember much when they first arrive.",
+		"Memory here is like water—slipping, pooling, evaporating when you reach for it."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 Can I get them back?",
+		  "full_text": "You: Can I get my memories back?",
+		  "next": "memories"
+		},
+		{
+		  "text": "💬 What happens if I don’t?",
+		  "full_text": "You: What happens if I never get them back?",
+		  "next": "lost_forever"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "You: …",
+		  "next": "stay_silent"
+		}
 	  ]
 	},
-	"buy10": {
-	  "name": "Juan",
+	"why_here": {
+	  "name": "Companion",
 	  "sentences": [
-		"Here are 10 fresh carrots for you!",
-		"Thank you very much! You are a loyal customer."
+		"Why you? Why anyone?",
+		"*The Companion tilts their head, eyes catching starlight.*",
+		"This place doesn’t invite—it swallows."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 So I was pulled here?",
+		  "full_text": "You: So I was pulled here?",
+		  "next": "pulled_here"
+		},
+		{
+		  "text": "💬 Can I leave?",
+		  "full_text": "You: Can I leave?",
+		  "next": "can_leave"
+		},
+		{
+		  "text": "💬 What happens to those who stay?",
+		  "full_text": "You: What happens to those who stay here?",
+		  "next": "what_happens"
+		}
 	  ]
 	},
-	"explored_forest": {
-	  "name": "Juan",
+	"not_real_world": {
+	  "name": "Companion",
 	  "sentences": [
-		"Amazing! Did you find any of those rare herbs?",
-		"They can be quite valuable in the market."
-	  ]
-	},
-	"not_explored_forest": {
-	  "name": "Juan",
-	  "sentences": [
-		"Oh, you should definitely check it out when you have time.",
-		"It’s a beautiful place and you might find some rare herbs."
+		"‘Real’ is a fragile word.",
+		"Does it feel real? Does it hurt? Do you fear it? Then it’s real enough."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 That’s not comforting.",
+		  "full_text": "You: That’s not comforting.",
+		  "next": "uncomfortable"
+		},
+		{
+		  "text": "💬 Are you real?",
+		  "full_text": "You: Are you real?",
+		  "next": "are_you_real"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "You: …",
+		  "next": "stay_silent"
+		}
 	  ]
 	}
   }

@@ -7,9 +7,21 @@
 		"I was starting to think you were just another echo wandering the cracks."
 	  ],
 	  "options": [
-		{"text": "💬 Who are you?", "next": "who_are_you"},
-		{"text": "💬 Where... am I?", "next": "where_am_i"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
+		{
+		  "text": "💬 Who are you?",
+		  "full_text": "You: Who are you? I need to know if I can trust you in this strange place.",
+		  "next": "who_are_you"
+		},
+		{
+		  "text": "💬 Where... am I?",
+		  "full_text": "You: Where... am I? Everything feels so strange.",
+		  "next": "where_am_i"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "You: …",
+		  "next": "stay_silent"
+		}
 	  ]
 	},
 	"who_are_you": {
@@ -20,9 +32,21 @@
 		"Names… they don’t last here. But if you need one, call me your Companion."
 	  ],
 	  "options": [
-		{"text": "💬 I don’t remember mine.", "next": "memory_loss"},
-		{"text": "💬 Why are you here?", "next": "why_here"},
-		{"text": "💬 Where... am I?", "next": "where_am_i"}
+		{
+		  "text": "💬 I don’t remember mine.",
+		  "full_text": "You: I don’t remember my name…",
+		  "next": "memory_loss"
+		},
+		{
+		  "text": "💬 Why are you here?",
+		  "full_text": "You: Why are you here? And why am I here?",
+		  "next": "why_here"
+		},
+		{
+		  "text": "💬 Where... am I?",
+		  "full_text": "You: Where am I exactly?",
+		  "next": "where_am_i"
+		}
 	  ]
 	},
 	"where_am_i": {
@@ -32,9 +56,21 @@
 		"A seam, a broken place where things that shouldn’t touch… do."
 	  ],
 	  "options": [
-		{"text": "💬 That doesn’t explain much.", "next": "confusion"},
-		{"text": "💬 So this isn’t the real world?", "next": "not_real_world"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
+		{
+		  "text": "💬 That doesn’t explain much.",
+		  "full_text": "You: That doesn’t explain much.",
+		  "next": "confusion"
+		},
+		{
+		  "text": "💬 So this isn’t the real world?",
+		  "full_text": "You: So this isn’t the real world?",
+		  "next": "not_real_world"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "You: …",
+		  "next": "stay_silent"
+		}
 	  ]
 	},
 	"stay_silent": {
@@ -44,9 +80,21 @@
 		"This place prefers quiet. It listens more than it speaks."
 	  ],
 	  "options": [
-		{"text": "💬 This place?", "next": "about_place"},
-		{"text": "💬 Who are you?", "next": "who_are_you"},
-		{"text": "💬 Why am I here?", "next": "why_here"}
+		{
+		  "text": "💬 This place?",
+		  "full_text": "You: This place? What is it?",
+		  "next": "about_place"
+		},
+		{
+		  "text": "💬 Who are you?",
+		  "full_text": "You: Who are you again?",
+		  "next": "who_are_you"
+		},
+		{
+		  "text": "💬 Why am I here?",
+		  "full_text": "You: Why am I here?",
+		  "next": "why_here"
+		}
 	  ]
 	},
 	"memory_loss": {
@@ -56,9 +104,21 @@
 		"Memory here is like water—slipping, pooling, evaporating when you reach for it."
 	  ],
 	  "options": [
-		{"text": "💬 Can I get them back?", "next": "memories"},
-		{"text": "💬 What happens if I don’t?", "next": "lost_forever"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
+		{
+		  "text": "💬 Can I get them back?",
+		  "full_text": "You: Can I get my memories back?",
+		  "next": "memories"
+		},
+		{
+		  "text": "💬 What happens if I don’t?",
+		  "full_text": "You: What happens if I never get them back?",
+		  "next": "lost_forever"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "You: …",
+		  "next": "stay_silent"
+		}
 	  ]
 	},
 	"why_here": {
@@ -69,9 +129,21 @@
 		"This place doesn’t invite—it swallows."
 	  ],
 	  "options": [
-		{"text": "💬 So I was pulled here?", "next": "pulled_here"},
-		{"text": "💬 Can I leave?", "next": "can_leave"},
-		{"text": "💬 What happens to those who stay?", "next": "what_happens"}
+		{
+		  "text": "💬 So I was pulled here?",
+		  "full_text": "You: So I was pulled here?",
+		  "next": "pulled_here"
+		},
+		{
+		  "text": "💬 Can I leave?",
+		  "full_text": "You: Can I leave?",
+		  "next": "can_leave"
+		},
+		{
+		  "text": "💬 What happens to those who stay?",
+		  "full_text": "You: What happens to those who stay here?",
+		  "next": "what_happens"
+		}
 	  ]
 	},
 	"not_real_world": {
@@ -81,92 +153,22 @@
 		"Does it feel real? Does it hurt? Do you fear it? Then it’s real enough."
 	  ],
 	  "options": [
-		{"text": "💬 That’s not comforting.", "next": "uncomfortable"},
-		{"text": "💬 Are you real?", "next": "are_you_real"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
+		{
+		  "text": "💬 That’s not comforting.",
+		  "full_text": "You: That’s not comforting.",
+		  "next": "uncomfortable"
+		},
+		{
+		  "text": "💬 Are you real?",
+		  "full_text": "You: Are you real?",
+		  "next": "are_you_real"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "You: …",
+		  "next": "stay_silent"
+		}
 	  ]
-	},
-	"about_place": {
-	  "name": "Companion",
-	  "sentences": [
-		"A crossroads. A fracture.",
-		"Souls wander here when the line between dream and waking breaks."
-	  ],
-	  "options": [
-		{"text": "💬 Am I... dead?", "next": "dead_question"},
-		{"text": "💬 What decides who ends up here?", "next": "decided_here"},
-		{"text": "💬 (Stay silent)", "next": "final_silence"}
-	  ]
-	},
-	"memories": {
-	  "name": "Companion",
-	  "sentences": [
-		"They return when you stop chasing them.",
-		"Or when this place chooses to give them back."
-	  ],
-	  "options": [
-		{"text": "💬 This place chooses?", "next": "place_decides"},
-		{"text": "💬 Then I have no control?", "next": "no_control"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
-	  ]
-	},
-	"lost_forever": {
-	  "name": "Companion",
-	  "sentences": [
-		"Then you dissolve into the echoes.",
-		"Shadows of people, repeating themselves until they vanish."
-	  ],
-	  "options": [
-		{"text": "💬 I don’t want that.", "next": "dont_want_that"},
-		{"text": "💬 How do I stop it?", "next": "how_stop"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
-	  ]
-	},
-	"pulled_here": {
-	  "name": "Companion",
-	  "sentences": [
-		"Yes. A current stronger than you carried you here.",
-		"It drags many down. Few ever resurface."
-	  ],
-	  "options": [
-		{"text": "💬 And you?", "next": "companion_time"},
-		{"text": "💬 How do I fight it?", "next": "fight_current"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
-	  ]
-	},
-	"can_leave": {
-	  "name": "Companion",
-	  "sentences": [
-		"Leaving is possible.",
-		"*Their eyes flicker with something unreadable.*",
-		"But not everyone likes what waits beyond."
-	  ],
-	  "options": [
-		{"text": "💬 What waits beyond?", "next": "beyond"},
-		{"text": "💬 I’ll take the risk.", "next": "risk"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
-	  ]
-	},
-	"what_happens": {
-	  "name": "Companion",
-	  "sentences": [
-		"They fade. They wander. They forget.",
-		"Until even forgetting forgets them."
-	  ],
-	  "options": [
-		{"text": "💬 That won’t be me.", "next": "refusal"},
-		{"text": "💬 Is that what happened to you?", "next": "companion_time"},
-		{"text": "💬 (Stay silent)", "next": "stay_silent"}
-	  ]
-	},
-	"final_silence": {
-	  "name": "Companion",
-	  "sentences": [
-		"*The Companion’s gaze lingers.*",
-		"Sometimes silence speaks loudest.",
-		"The city will answer you in its own way soon enough."
-	  ],
-	  "options": []
 	}
   }
 }

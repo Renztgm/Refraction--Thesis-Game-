@@ -96,7 +96,7 @@ func show_node(node_name: String):
 		var btn = Button.new()
 		btn.text = option["text"]
 		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		btn.pressed.connect(func(): _on_option_selected(option["next"], option["text"]))
+		btn.pressed.connect(func(): _on_option_selected(option))
 		options_container.add_child(btn)
 
 	if sentences.size() > 0:
@@ -170,22 +170,32 @@ func _on_next_pressed():
 		_close_dialogue()
 
 # --- Player selects an option ---
-func _on_option_selected(next_node: String, option_text: String):
+# --- Player selects an option ---
+# --- Player selects an option ---
+func _on_option_selected(option_data: Dictionary):
 	_clear_options()
 	options_container.visible = false
 
-	# Store the MC text to be typed
-	pending_mc_text = option_text
+	# Use full_text if it exists, fallback to short text
+	var mc_text = option_data.get("full_text", option_data.get("text", "…"))
+
+	# Determine next node safely
+	var next_node = option_data.get("next", "end")
+	if not dialogue.has(next_node):
+		next_node = "end"
 	pending_next_node = next_node
 
 	# Start typing player text immediately
-	full_text = "You: " + pending_mc_text
-	pending_mc_text = ""  # clear after storing
+	full_text = "You: " + mc_text
 	visible_text = ""
 	char_index = 0
 	is_typing = true
 	dialogue_label.text = ""
-	next_button.visible = true  # keep visible so player can click Next after typing
+	next_button.visible = true
+
+	# Clear pending_mc_text so Next doesn’t retrigger
+	pending_mc_text = ""
+
 	typing_timer.start()
 
 # --- Clear all options ---
