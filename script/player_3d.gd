@@ -3,7 +3,9 @@ extends CharacterBody3D
 @onready var animated_sprite_3d: AnimatedSprite3D = $Camera_Mount/Visual/AnimatedSprite3D
 @onready var camera_mount: Node3D = $Camera_Mount
 @onready var camera_3d: Camera3D = $Camera_Mount/Camera3D
-@onready var pause_menu: Control = get_node_or_null("../PauseMenu")
+
+# Access the PauseMenu through the CanvasPause autoload
+@onready var pause_menu: Control = CanvasPause.pause_menu
 
 @onready var audio_manager = get_node("/root/Main/AudioManager")
 
@@ -22,8 +24,6 @@ func _ready():
 	# -----------------------------
 	# 1️⃣ New game → spawn point
 	# -----------------------------
-	# If SaveManager.continue_game() was called, it already moved the player.
-	# So here we only set position if no saved data is being applied.
 	if not SaveManager.has_save_data():
 		_set_spawn_position()
 
@@ -34,13 +34,12 @@ func _ready():
 		original_camera_position = camera_3d.position
 
 	# -----------------------------
-	# 3️⃣ Pause menu
+	# 3️⃣ Pause menu debug
 	# -----------------------------
-	if not pause_menu:
-		print("Warning: Pause menu not found. Trying alternative path...")
-		pause_menu = get_tree().get_first_node_in_group("pause_menu")
 	if pause_menu:
-		print("Pause menu found!")
+		print("Pause menu found via CanvasPause!")
+	else:
+		print("⚠️ Pause menu is null – check your CanvasPause autoload setup.")
 
 	# -----------------------------
 	# 4️⃣ Debug: Print scene info
@@ -62,9 +61,14 @@ func _set_spawn_position() -> void:
 func get_last_direction() -> String:
 	return last_direction
 
+
+# -----------------------------
+# Input handling
+# -----------------------------
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):  # ESC
-		toggle_pause_menu()
+		CanvasPause.toggle_pause_menu()
+		print("napindot")
 		return
 	
 	if get_tree().paused:
@@ -73,27 +77,26 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"): # Enter
 		save_game_here()
 
-func toggle_pause_menu():
-	if pause_menu:
-		if pause_menu.has_method("toggle_pause"):
-			pause_menu.toggle_pause()
-		else:
-			if pause_menu.visible:
-				pause_menu.hide()
-				get_tree().paused = false
-				print("Player: Hiding pause menu")
-			else:
-				pause_menu.show()
-				get_tree().paused = true
-				print("Player: Showing pause menu")
-	else:
-		print("Player: No pause menu reference found!")
-		get_tree().paused = not get_tree().paused
+
+#func toggle_pause_menu():
+	## Use the autoload directly instead of checking for methods
+	#if get_tree().paused:
+		#CanvasPause.hide_pause()
+		#print("Player: Hiding pause menu")
+	#else:
+		#CanvasPause.show_pause()
+		#print("Player: Showing pause menu")
+		#
+
 
 func save_game_here():
 	if SaveManager.save_game():
 		print("Game saved at position: ", position, " facing: ", last_direction)
 
+
+# -----------------------------
+# Movement and animation
+# -----------------------------
 func _physics_process(delta: float) -> void:
 	if not can_move or get_tree().paused:
 		velocity = Vector3.ZERO
@@ -122,6 +125,7 @@ func _physics_process(delta: float) -> void:
 	handle_camera_collision()
 	set_animation()
 
+
 func handle_camera_collision():
 	if not camera_3d or not camera_mount:
 		return
@@ -144,6 +148,7 @@ func handle_camera_collision():
 	else:
 		camera_3d.position = original_camera_position
 
+
 func set_animation():
 	var is_moving = velocity.length() > 0.1
 	var animation_suffix = ""
@@ -161,6 +166,7 @@ func set_animation():
 		animated_sprite_3d.play("run_" + animation_suffix)
 	else:
 		animated_sprite_3d.play("idle_" + last_direction)
+
 
 func print_player_debug():
 	var current_scene = get_tree().current_scene

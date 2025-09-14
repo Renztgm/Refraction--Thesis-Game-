@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b2bjlsidj107l"]
+[gd_scene load_steps=20 format=3 uid="uid://b2bjlsidj107l"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_cb1v0"]
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_cp3ya"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_jjv0t"]
 [ext_resource type="PackedScene" uid="uid://cwa4jhihkwg0h" path="res://assets/Building/Building5.tscn" id="7_l1433"]
 [ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/NarativeScenes/bookstore.gd" id="8_u74mi"]
-[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="9_5a376"]
 [ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_bx50q"]
 [ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="9_q0b6v"]
 [ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/Npc2_No_sound.tscn" id="12_prnq5"]
@@ -164,6 +163,9 @@ transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -7.
 [node name="Walls2" parent="Structures/Walls" instance=ExtResource("9_q0b6v")]
 transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -63.3415, 0.5, 43.342)
 
+[node name="Walls3" parent="Structures/Walls" instance=ExtResource("9_q0b6v")]
+transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -118.903, 0.5, 43.342)
+
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
@@ -181,9 +183,6 @@ size = Vector3(500, 1, 250)
 
 [node name="Player3d" parent="." instance=ExtResource("1_cb1v0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46694, 0, 67.0795)
-
-[node name="PauseMenu" parent="." instance=ExtResource("9_5a376")]
-z_index = 1
 
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 
@@ -211,3 +210,4 @@ mesh = SubResource("BoxMesh_prnq5")
 
 [node name="Npc2" parent="." instance=ExtResource("12_prnq5")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.28081, 0.953631, 61.1064)
+speed = 3.0

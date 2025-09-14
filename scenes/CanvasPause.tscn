@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct4evco87vqtv"]
+
+[ext_resource type="Script" uid="uid://es15vvar8ks7" path="res://scenes/NarativeScenes/canvas_pause.gd" id="1_x3n2j"]
+[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="2_lbkp4"]
+[ext_resource type="PackedScene" uid="uid://dhtiik766w01r" path="res://scenes/SettingsUI.tscn" id="3_4cfi5"]
+
+[node name="CanvasPause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x3n2j")
+
+[node name="CanvasPause" type="CanvasLayer" parent="."]
+layer = 127
+
+[node name="PauseMenu" parent="CanvasPause" instance=ExtResource("2_lbkp4")]
+z_index = 1
+
+[node name="SettingsUI" parent="CanvasPause" instance=ExtResource("3_4cfi5")]

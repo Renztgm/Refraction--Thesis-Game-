@@ -21,8 +21,9 @@ buses/default_bus_layout="uid://n406ir32v2kb"
 
 [autoload]
 
-SaveManager="*res://script/SaveManager.gd"
 SettingsManager="*res://script/SettingsManager.gd"
+SaveManager="*res://script/SaveManager.gd"
+CanvasPause="*res://scenes/NarativeScenes/canvas_pause.gd"
 AudioMgr="*res://script/AudioManager.gd"
 GameManager="*res://script/GameManager.gd"
 

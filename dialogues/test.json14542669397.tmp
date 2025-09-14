@@ -1,0 +1,27 @@
+{
+  "Juan": {
+	"start": {
+	  "name": "Juan",
+	  "sentences": ["Hello there adventurer! How are you doing?"],
+	  "options": [
+		{"text": "I'm fine...", "next": "fine_response"},
+		{"text": "Not good...", "next": "bad_response"}
+	  ]
+	},
+	"fine_response": {
+	  "name": "Juan",
+	  "sentences": [
+		"I'm glad to hear that! By the way, do you have some carrots?",
+		"Yes! We have some carrots.",
+		"How much do you want?"
+	  ]
+	},
+	"bad_response": {
+	  "name": "Juan",
+	  "sentences": [
+		"Oh no, that’s unfortunate.",
+		"Don’t worry, everything will get better!"
+	  ]
+	}
+  }
+}

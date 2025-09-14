@@ -9,18 +9,26 @@ extends Control
 var is_paused = false
 
 func _ready():
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	z_index = 100
 	process_mode = Node.PROCESS_MODE_ALWAYS   # Interactive while paused
-
+	
+	# Connect button signals
 	resume_button.pressed.connect(_on_resume_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	save_button.pressed.connect(_on_save_pressed)
 	main_menu_button.pressed.connect(_on_main_menu_pressed)
 
-	hide()
+# Helper method for the autoload to focus the resume button
+func focus_resume_button():
+	if resume_button:
+		resume_button.grab_focus()
 
 func toggle_pause():
+	print("able to call the togglepause from pausemenu")
 	AudioMgr.play_ui_sound()
 	is_paused = not is_paused
+	
 	if is_paused:
 		show()
 		get_tree().paused = true
@@ -37,32 +45,31 @@ func _on_resume_pressed():
 func _on_settings_pressed():
 	AudioMgr.play_ui_sound()
 	var settings = load("res://scenes/SettingsUI.tscn").instantiate()
-
+	
 	# Connect to signal for when Settings closes
 	settings.closed.connect(func():
 		show()
 		resume_button.grab_focus()
 	)
-
+	
 	get_tree().root.add_child(settings)
 	hide()  # hide Pause Menu while Settings is open
 
 func _on_save_pressed():
 	AudioMgr.play_ui_sound()
 	print("PauseMenu: Save button pressed")
-
+	
 	var ok := false
 	var error_message := ""
-
-	# Wrap in a try/catch style to prevent crash
-	# (Godot GDScript doesn't have real try/catch, so we check manually)
+	
+	# Check if SaveManager exists and try to save
 	if not SaveManager:
 		error_message = "❌ SaveManager is missing"
 	else:
 		ok = SaveManager.save_game()
 		if not ok:
 			error_message = "❌ SaveManager.save_game() returned false"
-
+	
 	if ok:
 		show_saved_message("✅ Game Saved!")
 		print("✅ Save succeeded")
@@ -71,19 +78,19 @@ func _on_save_pressed():
 		print("⚠️ Save failed")
 		if error_message != "":
 			print(error_message)
-
+		
 		# Extra debug: check if DB exists and if SaveManager has data
 		if SaveManager and SaveManager.game_data:
 			print("📦 Current game_data: ", SaveManager.game_data)
 		else:
 			print("⚠️ SaveManager.game_data missing or empty")
 
-
 func show_saved_message(msg: String):
 	if saved_label:
 		saved_label.text = msg
 		saved_label.show()
 		saved_label.modulate = Color.WHITE
+		
 		var tween = create_tween()
 		tween.tween_interval(1.0)
 		tween.tween_property(saved_label, "modulate", Color.TRANSPARENT, 1.0)

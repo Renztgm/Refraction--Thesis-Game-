@@ -1,0 +1,87 @@
+{
+  "Juan": {
+	"start": {
+	  "name": "Juan",
+	  "sentences": ["Hello there adventurer! How are you doing today?"],
+	  "options": [
+		{"text": "I'm doing great!", "next": "great_response"},
+		{"text": "Not so good...", "next": "bad_response"}
+	  ]
+	},
+	"great_response": {
+	  "name": "Juan",
+	  "sentences": [
+		"That's wonderful to hear!",
+		"By the way, we have some fresh carrots in stock today.",
+		"Would you like to buy some or just chat?"
+	  ],
+	  "options": [
+		{"text": "I want carrots.", "next": "carrots_response"},
+		{"text": "Let's chat.", "next": "chat_response"}
+	  ]
+	},
+	"bad_response": {
+	  "name": "Juan",
+	  "sentences": [
+		"Oh, I’m sorry to hear that.",
+		"Maybe a little adventure or some fresh carrots will cheer you up!",
+		"Would you like to buy carrots or just talk?"
+	  ],
+	  "options": [
+		{"text": "I want carrots.", "next": "carrots_response"},
+		{"text": "Let's chat.", "next": "chat_response"}
+	  ]
+	},
+	"carrots_response": {
+	  "name": "Juan",
+	  "sentences": [
+		"Excellent choice! How many carrots would you like to buy?",
+		"We have them in bundles of 5 or 10."
+	  ],
+	  "options": [
+		{"text": "5 carrots.", "next": "buy5"},
+		{"text": "10 carrots.", "next": "buy10"}
+	  ]
+	},
+	"chat_response": {
+	  "name": "Juan",
+	  "sentences": [
+		"Ah, a fellow adventurer who likes to chat!",
+		"Have you been exploring the northern forest lately?",
+		"I hear there are rare herbs you can collect there."
+	  ],
+	  "options": [
+		{"text": "Yes, I explored it.", "next": "explored_forest"},
+		{"text": "No, not yet.", "next": "not_explored_forest"}
+	  ]
+	},
+	"buy5": {
+	  "name": "Juan",
+	  "sentences": [
+		"Here are 5 fresh carrots for you!",
+		"Thank you for your purchase, adventurer."
+	  ]
+	},
+	"buy10": {
+	  "name": "Juan",
+	  "sentences": [
+		"Here are 10 fresh carrots for you!",
+		"Thank you very much! You are a loyal customer."
+	  ]
+	},
+	"explored_forest": {
+	  "name": "Juan",
+	  "sentences": [
+		"Amazing! Did you find any of those rare herbs?",
+		"They can be quite valuable in the market."
+	  ]
+	},
+	"not_explored_forest": {
+	  "name": "Juan",
+	  "sentences": [
+		"Oh, you should definitely check it out when you have time.",
+		"It’s a beautiful place and you might find some rare herbs."
+	  ]
+	}
+  }
+}

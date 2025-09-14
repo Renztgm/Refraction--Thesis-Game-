@@ -1,24 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhshtkqj6blyb"]
+[gd_scene load_steps=11 format=3 uid="uid://dhshtkqj6blyb"]
 
-[ext_resource type="Script" uid="uid://dkyaofsxxag4w" path="res://script/DialogueManager.gd" id="1_m70fm"]
+[ext_resource type="Script" uid="uid://5w8bp5qmr0ma" path="res://script/DialogueMngr.gd" id="1_xi3yh"]
 [ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="2_cyvvh"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_ebjfy"]
 [ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="4_ebjfy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m70fm"]
 
-[sub_resource type="Gradient" id="Gradient_ebjfy"]
-interpolation_mode = 2
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cyvvh"]
-gradient = SubResource("Gradient_ebjfy")
-width = 128
-height = 128
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, -0.5)
-fill_to = Vector2(0.504274, 0.15812)
+[sub_resource type="CanvasTexture" id="CanvasTexture_ebjfy"]
 
 [sub_resource type="Gradient" id="Gradient_01vcs"]
 offsets = PackedFloat32Array(0, 0.533654, 1)
@@ -40,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_m70fm")
+script = ExtResource("1_xi3yh")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -54,6 +43,7 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_m70fm")
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
+modulate = Color(0.117647, 0.117647, 0.184314, 0.392157)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,7 +52,7 @@ offset_top = 63.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_cyvvh")
+texture = SubResource("CanvasTexture_ebjfy")
 
 [node name="TextureRect2" type="TextureRect" parent="Panel"]
 layout_mode = 1
@@ -90,7 +80,9 @@ offset_right = -192.0
 offset_bottom = -199.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.917647, 0.917647, 0.917647, 1)
 theme_override_fonts/font = SubResource("FontVariation_ebjfy")
+theme_override_font_sizes/font_size = 24
 text = "NPC Name"
 horizontal_alignment = 1
 
@@ -106,7 +98,9 @@ offset_right = -192.0
 offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.917647, 0.917647, 0.917647, 1)
 theme_override_fonts/font = SubResource("FontVariation_ebjfy")
+theme_override_font_sizes/font_size = 20
 text = "Dialogue"
 horizontal_alignment = 1
 

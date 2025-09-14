@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 # --- Settings ---
 @export var speed: float = 5.0
-@export var follow_distance: float = 3.0
 @export var idle_threshold: float = 0.1
 @export var grid_size: float = 1.0
 @export var world_size: Vector2 = Vector2(400, 400) # bigger so bookstore fits
@@ -11,7 +10,6 @@ extends CharacterBody3D
 # --- References ---
 @onready var bookstore_marker: Node3D = $"../Structures/Building/Bookstore/BookstoreMarker"
 
-var player: CharacterBody3D
 var bookstore_position: Vector3
 var current_path: Array[Vector3] = []
 var path_index: int = 0
@@ -29,10 +27,8 @@ var stuck_timeout: float = 2.0
 var grid: Dictionary = {} # Vector2 -> walkable (true/false)
 
 # --- States ---
-enum NPCState { GOING_TO_BOOKSTORE, FOLLOWING_PLAYER, IDLE_WAITING }
+enum NPCState { GOING_TO_BOOKSTORE, IDLE_WAITING }
 var current_state = NPCState.GOING_TO_BOOKSTORE
-var idle_timer: float = 0.0
-var idle_wait_time: float = 0.5
 
 # --- Pathfinding Node Class ---
 class PathNode:
@@ -55,7 +51,6 @@ class PathNode:
 
 # --- Ready ---
 func _ready():
-	player = get_tree().get_first_node_in_group("player")
 	if bookstore_marker:
 		bookstore_position = bookstore_marker.global_position
 		print("📍 Bookstore grid: ", world_to_grid(bookstore_position))
@@ -105,12 +100,10 @@ func is_walkable(grid_pos: Vector2) -> bool:
 
 # --- Physics Process ---
 func _physics_process(delta: float):
-	update_state(delta)
+	update_state()
 	match current_state:
 		NPCState.GOING_TO_BOOKSTORE:
 			follow_path()
-		NPCState.FOLLOWING_PLAYER:
-			follow_player()
 		NPCState.IDLE_WAITING:
 			idle_behavior()
 
@@ -121,35 +114,17 @@ func _physics_process(delta: float):
 			print("⚠️ NPC STUCK at ", global_position, " | Recalculating path...")
 			if current_state == NPCState.GOING_TO_BOOKSTORE:
 				go_to_bookstore()
-			elif current_state == NPCState.FOLLOWING_PLAYER:
-				update_path_to_player()
 			stuck_timer = 0.0
 	else:
 		stuck_timer = 0.0
 	last_position = global_position
 
 # --- State Update ---
-func update_state(delta: float):
-	if not player:
-		return
-	var player_moving = player.velocity.length() > idle_threshold
+func update_state():
 	match current_state:
 		NPCState.GOING_TO_BOOKSTORE:
 			if current_path.is_empty() or path_index >= current_path.size():
-				current_state = NPCState.FOLLOWING_PLAYER
-		NPCState.FOLLOWING_PLAYER:
-			if player_moving:
-				idle_timer = 0.0
-				if randf() < 0.05:
-					update_path_to_player()
-			else:
-				idle_timer += delta
-				if idle_timer >= idle_wait_time:
-					current_state = NPCState.IDLE_WAITING
-					idle_timer = 0.0
-		NPCState.IDLE_WAITING:
-			if player_moving:
-				current_state = NPCState.FOLLOWING_PLAYER
+				current_state = NPCState.IDLE_WAITING
 
 # --- Movement ---
 func follow_path():
@@ -171,36 +146,17 @@ func follow_path():
 	if dir.length() > 0:
 		look_at(global_position + dir, Vector3.UP)
 
-func follow_player():
-	if not player:
-		return
-	var dist = global_position.distance_to(player.global_position)
-	if dist > follow_distance:
-		follow_path()
-	else:
-		velocity = Vector3.ZERO
-		move_and_slide()
-		var dir = (player.global_position - global_position).normalized()
-		if dir.length() > 0:
-			look_at(global_position + dir, Vector3.UP)
-
 func idle_behavior():
 	velocity = Vector3.ZERO
 	move_and_slide()
 
 # --- Path Updates ---
-func update_path_to_player():
-	if player:
-		current_path = find_path(global_position, player.global_position)
-		path_index = 0
-		draw_debug_path(current_path)
-
 func go_to_bookstore():
 	current_path = find_path(global_position, bookstore_position)
 	path_index = 0
 	draw_debug_path(current_path)
 
-# --- A* Pathfinding ---
+# --- A* Pathfinding (Minecraft style) ---
 func find_path(start: Vector3, target: Vector3) -> Array[Vector3]:
 	var start_grid = world_to_grid(start)
 	var target_grid = world_to_grid(target)
@@ -218,11 +174,10 @@ func find_path(start: Vector3, target: Vector3) -> Array[Vector3]:
 	open_set.append(start_node)
 
 	while open_set.size() > 0:
-		var current = open_set[0]
-		for n in open_set:
-			if n.f_cost < current.f_cost:
-				current = n
-		open_set.erase(current)
+		# Pick lowest f_cost
+		open_set.sort_custom(func(a, b): return a.f_cost < b.f_cost)
+		var current: PathNode = open_set[0]
+		open_set.remove_at(0)
 		closed_set[current.pos] = current
 
 		if current.pos == target_grid:
@@ -232,14 +187,22 @@ func find_path(start: Vector3, target: Vector3) -> Array[Vector3]:
 			if closed_set.has(neighbor) or not is_walkable(neighbor):
 				continue
 
-			var neighbor_node = null
+			# Movement cost: 10 straight, 14 diagonal
+			var move_cost = 10
+			if abs(neighbor.x - current.pos.x) == 1 and abs(neighbor.y - current.pos.y) == 1:
+				# Diagonal, prevent cutting corners
+				if not (is_walkable(Vector2(neighbor.x, current.pos.y)) and is_walkable(Vector2(current.pos.x, neighbor.y))):
+					continue
+				move_cost = 14
+
+			var tentative_g = current.g_cost + move_cost
+			var neighbor_world = grid_to_world(neighbor)
+
+			var neighbor_node: PathNode = null
 			for n in open_set:
 				if n.pos == neighbor:
 					neighbor_node = n
 					break
-
-			var tentative_g = current.g_cost + (neighbor - current.pos).length()
-			var neighbor_world = grid_to_world(neighbor)
 
 			if neighbor_node == null:
 				neighbor_node = PathNode.new(neighbor, neighbor_world)
@@ -255,10 +218,11 @@ func find_path(start: Vector3, target: Vector3) -> Array[Vector3]:
 
 	return [target]
 
+# Manhattan heuristic (like Minecraft)
 func heuristic(a: Vector2, b: Vector2) -> float:
 	var dx = abs(a.x - b.x)
 	var dz = abs(a.y - b.y)
-	return dx + dz - min(dx, dz) # octile distance
+	return (dx + dz) * 10
 
 func get_neighbors(pos: Vector2) -> Array[Vector2]:
 	var dirs = [
@@ -321,7 +285,7 @@ func draw_debug_path(path: Array[Vector3]):
 	var multimesh_instance := MultiMeshInstance3D.new()
 	multimesh_instance.multimesh = multimesh
 	
-	# Material (green for path, blue for bookstore)
+	# Material (red for path, blue for bookstore)
 	var mat := StandardMaterial3D.new()
 	mat.albedo_color = Color.RED
 	multimesh_instance.material_override = mat
