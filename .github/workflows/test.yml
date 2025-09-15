@@ -1,10 +1,6 @@
 name: Godot CI
 
-on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+on: [push, pull_request]
 
 jobs:
   test:
@@ -21,8 +17,8 @@ jobs:
       - name: Verify Godot installation
         run: godot --version
 
-      - name: Import project (optional, can skip if fast)
-        run: godot --headless --quit
+      # - name: Import project (optional, can skip if fast)
+      #   run: godot --headless --quit
 
       - name: Run Godot Tests
         run: godot --headless -s res://test_runner.gd
