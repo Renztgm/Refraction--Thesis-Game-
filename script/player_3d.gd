@@ -13,6 +13,7 @@ var last_direction: String = "down"
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var can_move: bool = true  
+var is_frozen: bool = false  # New: Track freeze state separately from can_move
 const CAMERA_COLLISION_LAYERS = 1
 const MIN_CAMERA_DISTANCE = 0.5
 var original_camera_position: Vector3
@@ -63,9 +64,46 @@ func get_last_direction() -> String:
 
 
 # -----------------------------
+# NEW: Freeze/Unfreeze Methods
+# -----------------------------
+func freeze_player() -> void:
+	if is_frozen:
+		return
+	
+	is_frozen = true
+	can_move = false
+	
+	# Stop all movement immediately
+	velocity = Vector3.ZERO
+	
+	# Force idle animation
+	if animated_sprite_3d:
+		animated_sprite_3d.play("idle_" + last_direction)
+	
+	print("DEBUG: Player frozen")
+
+func unfreeze_player() -> void:
+	if not is_frozen:
+		return
+	
+	is_frozen = false
+	can_move = true
+	
+	print("DEBUG: Player unfrozen")
+
+# Optional: Check if player is currently frozen
+func is_player_frozen() -> bool:
+	return is_frozen
+
+
+# -----------------------------
 # Input handling
 # -----------------------------
 func _input(event):
+	# Don't process input if frozen (except pause)
+	if is_frozen and not event.is_action_pressed("ui_cancel"):
+		return
+		
 	if event.is_action_pressed("ui_cancel"):  # ESC
 		CanvasPause.toggle_pause_menu()
 		print("napindot")
@@ -78,17 +116,6 @@ func _input(event):
 		save_game_here()
 
 
-#func toggle_pause_menu():
-	## Use the autoload directly instead of checking for methods
-	#if get_tree().paused:
-		#CanvasPause.hide_pause()
-		#print("Player: Hiding pause menu")
-	#else:
-		#CanvasPause.show_pause()
-		#print("Player: Showing pause menu")
-		#
-
-
 func save_game_here():
 	if SaveManager.save_game():
 		print("Game saved at position: ", position, " facing: ", last_direction)
@@ -98,7 +125,8 @@ func save_game_here():
 # Movement and animation
 # -----------------------------
 func _physics_process(delta: float) -> void:
-	if not can_move or get_tree().paused:
+	# Check both can_move and frozen state
+	if not can_move or is_frozen or get_tree().paused:
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
@@ -150,6 +178,10 @@ func handle_camera_collision():
 
 
 func set_animation():
+	# Don't change animations if frozen (keep idle animation)
+	if is_frozen:
+		return
+		
 	var is_moving = velocity.length() > 0.1
 	var animation_suffix = ""
 	

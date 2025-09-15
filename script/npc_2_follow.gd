@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 # --- Settings ---
 @export var speed: float = 5.0
-@export var follow_distance: float = 3.0
-@export var obstacle_check_radius: float = 0.5
+@export var follow_distance: float = 20.0 #Ito ung variable para malaman ng NPC gaano kalayo makikita ung Player.
+@export var obstacle_check_radius: float = 3.0
 @export var grid_size: float = 1.0
 @export var world_size: Vector2 = Vector2(400, 400)
 
@@ -47,6 +47,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	last_position = global_position
 	initialize_grid()
+	set_notify_transform(true)
 
 func initialize_grid():
 	for x in range(int(-world_size.x/2), int(world_size.x/2)):
@@ -119,6 +120,10 @@ func move_along_path(delta: float):
 	
 	var distance_to_player = global_position.distance_to(player.global_position)
 	
+	if distance_to_player < follow_distance * 0.2:  # Stop at 80% of follow distance
+		velocity = Vector3.ZERO
+		move_and_slide()
+		return
 	# If we have no path or finished the path, move directly toward player
 	if current_path.is_empty() or path_index >= current_path.size():
 		move_toward_player(distance_to_player)
@@ -158,7 +163,7 @@ func move_toward_player(distance_to_player: float):
 
 func calculate_movement_speed(distance_to_player: float) -> float:
 	# Adjust speed based on distance to player
-	if distance_to_player < 1.0:
+	if distance_to_player < 2.0:
 		return speed * 0.2  # Very slow when very close
 	elif distance_to_player < follow_distance:
 		return speed * 0.5  # Half speed when close
@@ -245,3 +250,9 @@ func reconstruct_path(node: PathNode) -> Array[Vector3]:
 		current = current.parent
 	path.reverse()
 	return path
+
+func _draw_debug_path():
+	for i in range(current_path.size()):
+		var waypoint = current_path[i]
+		# Draw a small sphere or use DebugDraw to show waypoint positions
+		print("Waypoint ", i, ": ", waypoint)

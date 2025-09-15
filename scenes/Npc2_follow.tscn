@@ -162,6 +162,7 @@ script = ExtResource("1_t505e")
 [node name="CompanionSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 6.42569, 0)
 flip_h = true
+billboard = 2
 shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_06rm7")

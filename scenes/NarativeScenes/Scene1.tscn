@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="14_pp1vh"]
 [ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="14_t2ff0"]
 [ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="15_bjme1"]
+[ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="16_722yh"]
 [ext_resource type="PackedScene" uid="uid://c3heuy5bku3an" path="res://assets/materials/trashbag/trash.tscn" id="17_4igs4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bjme1"]
@@ -187,14 +188,12 @@ Button/styles/pressed = SubResource("StyleBoxFlat_722yh")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp1vh"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_2oxmw"]
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1iqc"]
 texture = ExtResource("14_t2ff0")
-texture_margin_left = 40.0
-texture_margin_top = 15.0
-texture_margin_right = 40.0
-texture_margin_bottom = 15.0
+texture_margin_left = 10.0
+texture_margin_top = 2.0
+texture_margin_right = 10.0
+texture_margin_bottom = 2.0
 
 [node name="NarrativeScene3d" type="Node3D"]
 
@@ -462,16 +461,18 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pp1vh")
 
 [node name="TextureRect" type="TextureRect" parent="UILayer/DialogueBox/Panel"]
-modulate = Color(0.117647, 0.117647, 0.184314, 0.392157)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 63.0
-offset_bottom = 2.0
+offset_left = -5.0
+offset_top = 106.0
+offset_right = 6.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("CanvasTexture_2oxmw")
+texture = ExtResource("16_722yh")
+expand_mode = 3
 
 [node name="NameLabel" type="Label" parent="UILayer/DialogueBox"]
 layout_mode = 1
@@ -479,9 +480,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
-offset_top = -230.0
+offset_top = -165.0
 offset_right = 1024.0
-offset_bottom = -200.0
+offset_bottom = -135.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("14_pp1vh")
 theme_override_font_sizes/font_size = 24
@@ -494,10 +495,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -168.0
-offset_right = -22.0
-offset_bottom = -72.0
+offset_left = 192.0
+offset_top = -133.0
+offset_right = -192.0
+offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("14_pp1vh")
@@ -512,14 +513,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -320.0
-offset_top = -55.0
-offset_right = -255.0
-offset_bottom = -17.0
+offset_left = -152.0
+offset_top = -88.0
+offset_right = -67.0
+offset_bottom = -49.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("14_pp1vh")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_n1iqc")
 text = "Next"
 
