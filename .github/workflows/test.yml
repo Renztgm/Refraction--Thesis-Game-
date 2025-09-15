@@ -12,26 +12,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Set up Godot
         uses: lihop/setup-godot@v2
         with:
           version: '4.4.1'
-          
+
       - name: Verify Godot installation
         run: godot --version
-        
-      - name: Import project
+
+      - name: Import project (optional, can skip if fast)
         run: godot --headless --editor --quit
-        
+
       - name: Run Godot Tests
-        run: godot --headless --script res://test_runner.gd
-        
+        run: godot --headless -s res://test_runner.gd
+
       - name: Upload test results (on failure)
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: test-logs
           path: |
-            ~/.local/share/godot/logs/
-            user://logs/
+            ~/.local/share/godot
