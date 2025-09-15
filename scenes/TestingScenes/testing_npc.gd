@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var npc_id: String = "old_man"
-@export var dialogue_file: String = "res://dialogues/testingdialogue.json"
+@export var npc_id: String = "Companion"
+@export var dialogue_file: String = "res://dialogues/test.json"
 
 var player_in_range = false
 
@@ -23,6 +23,6 @@ func _input(event):
 
 func start_dialogue():
 	var dialogue_manager = get_tree().root.get_node("TestingGrounds/CanvasLayer/DialogueManager")
-	dialogue_manager.load_dialogue("res://dialogues/testingdialogue.json", "old_man")
+	dialogue_manager.load_dialogue("res://dialogues/test.json", "Companion")
 	dialogue_manager.show_node("start")
 	dialogue_manager.show()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ch1ttkvnsghnw"]
+[gd_scene load_steps=43 format=3 uid="uid://ch1ttkvnsghnw"]
 
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_le1v4"]
 [ext_resource type="PackedScene" uid="uid://bi1lugsasrj5" path="res://addons/Station/rails/RailTrack.tscn" id="4_bjme1"]
@@ -13,10 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://ccpff6cjmmbl4" path="res://addons/tree/trees.tscn" id="8_t2ff0"]
 [ext_resource type="Script" uid="uid://b16kko6yesh4g" path="res://scenes/NarativeScenes/Script/awakening_audio.gd" id="9_t2ff0"]
 [ext_resource type="Script" uid="uid://dcf0677e4iaao" path="res://scenes/NarativeScenes/Script/awakening_narrative.gd" id="10_722yh"]
-[ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="12_pp1vh"]
 [ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="14_f4tgv"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="14_pp1vh"]
+[ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="14_t2ff0"]
 [ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="15_bjme1"]
+[ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="16_722yh"]
 [ext_resource type="PackedScene" uid="uid://c3heuy5bku3an" path="res://assets/materials/trashbag/trash.tscn" id="17_4igs4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bjme1"]
@@ -112,27 +113,87 @@ size = Vector3(1, 1.67432, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_876vf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2ff0"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.105882, 0.105882, 0.105882, 0.392157)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c62j0"]
+texture = ExtResource("14_t2ff0")
+texture_margin_left = 20.0
+texture_margin_top = 5.0
+texture_margin_right = 20.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6nk5b"]
+texture = ExtResource("14_t2ff0")
+texture_margin_left = 20.0
+texture_margin_top = 5.0
+texture_margin_right = 20.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xbbi1"]
+texture = ExtResource("14_t2ff0")
+texture_margin_left = 20.0
+texture_margin_top = 5.0
+texture_margin_right = 20.0
+texture_margin_bottom = 5.0
+modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_722yh"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_722yh"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/line_spacing = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("14_pp1vh")
+Button/styles/disabled = SubResource("StyleBoxFlat_t2ff0")
+Button/styles/focus = SubResource("StyleBoxTexture_c62j0")
+Button/styles/hover = SubResource("StyleBoxTexture_6nk5b")
+Button/styles/normal = SubResource("StyleBoxTexture_xbbi1")
+Button/styles/pressed = SubResource("StyleBoxFlat_722yh")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp1vh"]
 
-[sub_resource type="Gradient" id="Gradient_m70fm"]
-interpolation_mode = 2
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4igs4"]
-gradient = SubResource("Gradient_m70fm")
-width = 128
-height = 128
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, -0.5)
-fill_to = Vector2(0.504274, 0.15812)
-
-[sub_resource type="Gradient" id="Gradient_cyvvh"]
-offsets = PackedFloat32Array(0, 0.533654, 1)
-colors = PackedColorArray(0, 0, 0, 0.027451, 0, 0, 0, 0.501961, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_t2ff0"]
-gradient = SubResource("Gradient_cyvvh")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1iqc"]
+texture = ExtResource("14_t2ff0")
+texture_margin_left = 10.0
+texture_margin_top = 2.0
+texture_margin_right = 10.0
+texture_margin_bottom = 2.0
 
 [node name="NarrativeScene3d" type="Node3D"]
 
@@ -375,7 +436,7 @@ offset_left = -196.0
 offset_right = -106.0
 offset_bottom = 120.0
 grow_vertical = 2
-theme = ExtResource("12_pp1vh")
+theme = SubResource("Theme_722yh")
 metadata/_edit_use_anchors_ = true
 
 [node name="DialogueBox" type="Control" parent="UILayer"]
@@ -404,25 +465,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 63.0
-offset_bottom = 2.0
+offset_left = -5.0
+offset_top = 106.0
+offset_right = 6.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_4igs4")
-
-[node name="TextureRect2" type="TextureRect" parent="UILayer/DialogueBox/Panel"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 448.0
-offset_top = -103.0
-offset_right = -448.0
-offset_bottom = -101.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture1D_t2ff0")
+texture = ExtResource("16_722yh")
+expand_mode = 3
 
 [node name="NameLabel" type="Label" parent="UILayer/DialogueBox"]
 layout_mode = 1
@@ -430,9 +480,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
-offset_top = -230.0
+offset_top = -165.0
 offset_right = 1024.0
-offset_bottom = -200.0
+offset_bottom = -135.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("14_pp1vh")
 theme_override_font_sizes/font_size = 24
@@ -445,14 +495,14 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -168.0
-offset_right = -22.0
-offset_bottom = -72.0
+offset_left = 192.0
+offset_top = -133.0
+offset_right = -192.0
+offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("14_pp1vh")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 20
 text = "This is the Dialogue"
 horizontal_alignment = 1
 
@@ -463,14 +513,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -320.0
-offset_top = -55.0
-offset_right = -255.0
-offset_bottom = -17.0
+offset_left = -152.0
+offset_top = -88.0
+offset_right = -67.0
+offset_bottom = -49.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("14_pp1vh")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_n1iqc")
 text = "Next"
 
 [node name="AudioManager" type="Node" parent="."]

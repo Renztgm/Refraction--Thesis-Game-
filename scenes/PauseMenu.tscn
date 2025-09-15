@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cowfut2pi6gjg"]
 
-[ext_resource type="Script" path="res://script/PauseMenu.gd" id="1_jvnd5"]
+[ext_resource type="Script" uid="uid://twc3ucts3ymp" path="res://script/PauseMenu.gd" id="1_jvnd5"]
 [ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_g4jo0"]
 
 [node name="PauseMenu" type="Control"]

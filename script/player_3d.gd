@@ -3,7 +3,9 @@ extends CharacterBody3D
 @onready var animated_sprite_3d: AnimatedSprite3D = $Camera_Mount/Visual/AnimatedSprite3D
 @onready var camera_mount: Node3D = $Camera_Mount
 @onready var camera_3d: Camera3D = $Camera_Mount/Camera3D
-@onready var pause_menu: Control = get_node_or_null("../PauseMenu")
+
+# Access the PauseMenu through the CanvasPause autoload
+@onready var pause_menu: Control = CanvasPause.pause_menu
 
 @onready var audio_manager = get_node("/root/Main/AudioManager")
 
@@ -11,6 +13,7 @@ var last_direction: String = "down"
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var can_move: bool = true  
+var is_frozen: bool = false  # New: Track freeze state separately from can_move
 const CAMERA_COLLISION_LAYERS = 1
 const MIN_CAMERA_DISTANCE = 0.5
 var original_camera_position: Vector3
@@ -22,8 +25,6 @@ func _ready():
 	# -----------------------------
 	# 1️⃣ New game → spawn point
 	# -----------------------------
-	# If SaveManager.continue_game() was called, it already moved the player.
-	# So here we only set position if no saved data is being applied.
 	if not SaveManager.has_save_data():
 		_set_spawn_position()
 
@@ -34,13 +35,12 @@ func _ready():
 		original_camera_position = camera_3d.position
 
 	# -----------------------------
-	# 3️⃣ Pause menu
+	# 3️⃣ Pause menu debug
 	# -----------------------------
-	if not pause_menu:
-		print("Warning: Pause menu not found. Trying alternative path...")
-		pause_menu = get_tree().get_first_node_in_group("pause_menu")
 	if pause_menu:
-		print("Pause menu found!")
+		print("Pause menu found via CanvasPause!")
+	else:
+		print("⚠️ Pause menu is null – check your CanvasPause autoload setup.")
 
 	# -----------------------------
 	# 4️⃣ Debug: Print scene info
@@ -62,9 +62,51 @@ func _set_spawn_position() -> void:
 func get_last_direction() -> String:
 	return last_direction
 
+
+# -----------------------------
+# NEW: Freeze/Unfreeze Methods
+# -----------------------------
+func freeze_player() -> void:
+	if is_frozen:
+		return
+	
+	is_frozen = true
+	can_move = false
+	
+	# Stop all movement immediately
+	velocity = Vector3.ZERO
+	
+	# Force idle animation
+	if animated_sprite_3d:
+		animated_sprite_3d.play("idle_" + last_direction)
+	
+	print("DEBUG: Player frozen")
+
+func unfreeze_player() -> void:
+	if not is_frozen:
+		return
+	
+	is_frozen = false
+	can_move = true
+	
+	print("DEBUG: Player unfrozen")
+
+# Optional: Check if player is currently frozen
+func is_player_frozen() -> bool:
+	return is_frozen
+
+
+# -----------------------------
+# Input handling
+# -----------------------------
 func _input(event):
+	# Don't process input if frozen (except pause)
+	if is_frozen and not event.is_action_pressed("ui_cancel"):
+		return
+		
 	if event.is_action_pressed("ui_cancel"):  # ESC
-		toggle_pause_menu()
+		CanvasPause.toggle_pause_menu()
+		print("napindot")
 		return
 	
 	if get_tree().paused:
@@ -73,29 +115,18 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"): # Enter
 		save_game_here()
 
-func toggle_pause_menu():
-	if pause_menu:
-		if pause_menu.has_method("toggle_pause"):
-			pause_menu.toggle_pause()
-		else:
-			if pause_menu.visible:
-				pause_menu.hide()
-				get_tree().paused = false
-				print("Player: Hiding pause menu")
-			else:
-				pause_menu.show()
-				get_tree().paused = true
-				print("Player: Showing pause menu")
-	else:
-		print("Player: No pause menu reference found!")
-		get_tree().paused = not get_tree().paused
 
 func save_game_here():
 	if SaveManager.save_game():
 		print("Game saved at position: ", position, " facing: ", last_direction)
 
+
+# -----------------------------
+# Movement and animation
+# -----------------------------
 func _physics_process(delta: float) -> void:
-	if not can_move or get_tree().paused:
+	# Check both can_move and frozen state
+	if not can_move or is_frozen or get_tree().paused:
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
@@ -122,6 +153,7 @@ func _physics_process(delta: float) -> void:
 	handle_camera_collision()
 	set_animation()
 
+
 func handle_camera_collision():
 	if not camera_3d or not camera_mount:
 		return
@@ -144,7 +176,12 @@ func handle_camera_collision():
 	else:
 		camera_3d.position = original_camera_position
 
+
 func set_animation():
+	# Don't change animations if frozen (keep idle animation)
+	if is_frozen:
+		return
+		
 	var is_moving = velocity.length() > 0.1
 	var animation_suffix = ""
 	
@@ -161,6 +198,7 @@ func set_animation():
 		animated_sprite_3d.play("run_" + animation_suffix)
 	else:
 		animated_sprite_3d.play("idle_" + last_direction)
+
 
 func print_player_debug():
 	var current_scene = get_tree().current_scene
