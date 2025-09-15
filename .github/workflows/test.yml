@@ -18,7 +18,7 @@ jobs:
         run: godot --version
 
       - name: Import assets
-        run: godot --headless --quit --path .
+        run: godot --headless --editor --quit --path .
 
       - name: Run Godot Tests
         run: godot --headless -s res://test_runner.gd
