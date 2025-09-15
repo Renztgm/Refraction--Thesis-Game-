@@ -17,8 +17,8 @@ jobs:
       - name: Verify Godot installation
         run: godot --version
 
-      - name: Import project
-        run: godot --headless --path . --import
+      - name: Run Godot Tests
+        run: godot --headless -s res://test_runner.gd --path .
 
       - name: Run Godot Tests
         run: godot --headless -s res://test_runner.gd
