@@ -22,7 +22,7 @@ jobs:
         run: godot --version
 
       - name: Import project (optional, can skip if fast)
-        run: godot --headless --editor --quit
+        run: godot --headless --quit
 
       - name: Run Godot Tests
         run: godot --headless -s res://test_runner.gd
