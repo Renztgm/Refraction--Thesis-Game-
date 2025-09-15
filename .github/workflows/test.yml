@@ -17,8 +17,8 @@ jobs:
       - name: Verify Godot installation
         run: godot --version
 
-      # - name: Import project (optional, can skip if fast)
-      #   run: godot --headless --quit
+      - name: Import assets
+        run: godot --headless --quit --path .
 
       - name: Run Godot Tests
         run: godot --headless -s res://test_runner.gd
