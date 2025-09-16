@@ -18,12 +18,14 @@ jobs:
 
       - name: Run GUT tests (headless)
         run: |
-          mkdir -p test_results
-          godot4 --headless -s --path . addons/gut/gut_cmdln.gd \
-            -gdir=res://tests/ \
-            -gexit \
-            -gjunit_xml_file=res://test_results/result.xml \
+          echo "Ensuring test_results exists"
+          pwsh -Command "New-Item -ItemType Directory -Force -Path test_results" 
+          godot4 --headless -s --path . addons/gut/gut_cmdln.gd `
+            -gdir=res://tests/ `
+            -gexit `
+            -gjunit_xml_file=res://test_results/result.xml `
             > test_results/result.txt 2>&1
+
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
