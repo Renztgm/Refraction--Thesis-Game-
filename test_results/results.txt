@@ -69,8 +69,8 @@ Time              0.916s
 
 [33m[Orphans]:  [0mTotal orphans in run 1.0
 Note:  This count does not include GUT objects that will be freed upon exit.
-       It also does not include any orphans created by global scripts
-       loaded before tests were ran.
+	   It also does not include any orphans created by global scripts
+	   loaded before tests were ran.
 Total orphans = 3.0
 
 [32m---- All tests passed! ----
