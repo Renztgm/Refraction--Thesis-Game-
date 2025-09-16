@@ -1,0 +1,93 @@
+Godot Engine v4.4.1.stable.mono.official.49a5bc7b6 - https://godotengine.org
+
+=== AUDIO BUSES DEBUG ===
+Bus 0: Master
+Bus 1: Music
+Master bus index: 0
+Music bus index: 1
+🔧 Initializing database at: C:/Users/bacon/AppData/Roaming/Godot/app_userdata/Test/game_data.db
+Opened database successfully (C:/Users/bacon/AppData/Roaming/Godot/app_userdata/Test/game_data.db)
+✅ Database opened successfully
+🔧 Table creation result: true
+ERROR: Node not found: "CanvasPause" (relative to "/root/CanvasPause").
+   at: get_node (scene/main/node.cpp:1877)
+ERROR: Node not found: "CanvasPause/PauseMenu" (relative to "/root/CanvasPause").
+   at: get_node (scene/main/node.cpp:1877)
+ERROR: Node not found: "CanvasPause/SettingsUI" (relative to "/root/CanvasPause").
+   at: get_node (scene/main/node.cpp:1877)
+🔍 CanvasPause Debug:
+  - Children count: 0
+  ⚠️ NO CHILDREN FOUND! Creating structure programmatically...
+  ✅ PauseMenu created from scene file
+ERROR: Condition "p_z > RenderingServer::CANVAS_ITEM_Z_MAX" is true.
+   at: set_z_index (scene/main/canvas_item.cpp:633)
+=== SETTINGS UI NODE CHECK ===
+apply_button: ApplyButton:<Button#59290682993>
+cancel_button: CancelButton:<Button#59341014644>
+reset_button: ResetButton:<Button#59391346295>
+music_slider: MusicSlider:<HSlider#58636371530>
+volume_label: VolumeLabel:<Label#58669925964>
+music_check_box: MusicCheckBox:<CheckBox#58770589266>
+brightness_slider: BrightnessSlider:<HSlider#58955138653>
+brightness_label: BrightnessLabel:<Label#58988693087>
+fullscreen_check_box: FullscreenCheckBox:<CheckBox#59089356389>
+v_sync_check_box: VSyncCheckBox:<CheckBox#59206796908>
+✅ Apply button connected and configured
+✅ Cancel button connected and configured
+✅ Reset button connected and configured
+=== SLIDER SETUP DEBUG ===
+Music slider - Min: 0.0, Max: 100.0, Current: 80.0
+Brightness slider - Min: 0.5, Max: 100.0, Current: 1.5
+  ✅ SettingsUI created from scene file
+ERROR: Node not found: "BackgroundMusic" (relative to "/root/AudioMgr").
+   at: get_node (scene/main/node.cpp:1877)
+ERROR: Node not found: "UISounds" (relative to "/root/AudioMgr").
+   at: get_node (scene/main/node.cpp:1877)
+ERROR: Node not found: "WaterPlayer" (relative to "/root/AudioMgr").
+   at: get_node (scene/main/node.cpp:1877)
+ERROR: Node not found: "WindPlayer" (relative to "/root/AudioMgr").
+   at: get_node (scene/main/node.cpp:1877)
+📂 AudioManager ready
+---  GUT  ---
+[1m[INFO]:  [0musing [C:/Users/bacon/AppData/Roaming/Godot/app_userdata/Test] for temporary output.
+Godot version:  4.4.1
+GUT version:  9.4.0
+[4m
+
+res://tests/test_example.gd
+[0m* test_true_is_true
+[1m1/1 passed.
+[0m[4m
+
+res://tests/test_npc_scene3.gd
+[0m* test_npc_in_scene3_moves
+Bookstore marker ready at: (73.7817, 2.41998, -0.835978)
+ERROR: Node not found: "/root/Main/AudioManager" (absolute path attempted from "/root/GutRunner/@Node@7/Scene3/Player3d").
+   at: get_node (scene/main/node.cpp:1874)
+ERROR: Node not found: "SpawnPoint" (relative to "/root/GutRunner/@Node@7/Scene3/Player3d").
+   at: get_node (scene/main/node.cpp:1877)
+⚠️ No spawn point found! Using default position:(-1.46694, 0.0, 67.0795)
+Pause menu found via CanvasPause!
+🟢 Scene:No scene loaded| Position:(-1.46694, 0.0, 67.0795)| Direction:down
+📍 Bookstore grid: (73.0, -1.0)
+[1m1/1 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m
+---- Totals ----
+Scripts           2
+Tests             2
+  Passing         2
+Asserts           3
+Time              1.18s
+
+
+[32m---- All tests passed! ----
+[0m
+Results saved to res://test_results/result.xml
+Closed database (C:/Users/bacon/AppData/Roaming/Godot/app_userdata/Test/game_data.db)

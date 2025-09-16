@@ -8,13 +8,14 @@ func simulate_physics(node: Node, frames: int, delta: float = 1.0 / 60.0) -> voi
 		if node.has_method("_physics_process"):
 			node._physics_process(delta)
 
-# --- Test 1: NPC moves in Scene3 ---
+# --- Test: NPC moves in Scene3 ---
 func test_npc_in_scene3_moves():
 	var scene = SCENE3.instantiate()
 	add_child_autofree(scene)
+	await get_tree().process_frame  # allow _ready() to run
 
-	# ⚠️ Adjust this path to match your NPC node name inside Scene3
-	var npc = scene.get_node("Npc2")
+	var npc = scene.get_node_or_null("Npc2")
+	assert_not_null(npc, "Npc2 should exist in Scene3")
 
 	var start_pos = npc.global_position
 	simulate_physics(npc, 120)  # ~2 seconds at 60fps

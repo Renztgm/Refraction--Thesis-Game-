@@ -1,6 +1,6 @@
 name: Godot CI
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   test:
@@ -14,7 +14,19 @@ jobs:
         uses: lihop/setup-godot@v2
         with:
           version: '4.4.1'
+          mono: false   # set to true if you need Mono
 
       - name: Run GUT tests (headless)
         run: |
-          godot4 --headless --path . --script res://test_runner.gd
+          mkdir -p test_results
+          godot4 --headless -s --path . addons/gut/gut_cmdln.gd \
+            -gdir=res://tests/ \
+            -gexit \
+            -gjunit_xml_file=res://test_results/result.xml \
+            > test_results/result.txt 2>&1
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: gut-test-results
+          path: test_results/
