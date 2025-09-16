@@ -1,6 +1,6 @@
 name: Godot CI
 
-on: [pull_request, push]
+on: [pull_request]
 
 jobs:
   test:
@@ -14,18 +14,19 @@ jobs:
         uses: lihop/setup-godot@v2
         with:
           version: '4.4.1'
-          mono: false   # set to true if you need Mono
+          use-dotnet: false   # disable Mono unless you need C#
+
+      - name: Verify Godot install
+        run: godot4 --version
 
       - name: Run GUT tests (headless)
         run: |
-          echo "Ensuring test_results exists"
-          pwsh -Command "New-Item -ItemType Directory -Force -Path test_results" 
-          godot4 --headless -s --path . addons/gut/gut_cmdln.gd `
-            -gdir=res://tests/ `
-            -gexit `
-            -gjunit_xml_file=res://test_results/result.xml `
+          mkdir -p test_results
+          godot4 --headless -s --path . addons/gut/gut_cmdln.gd \
+            -gdir=res://tests/ \
+            -gexit \
+            -gjunit_xml_file=res://test_results/result.xml \
             > test_results/result.txt 2>&1
-
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
