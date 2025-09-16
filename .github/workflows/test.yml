@@ -1,6 +1,6 @@
 name: Godot CI
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test:
@@ -14,19 +14,7 @@ jobs:
         with:
           version: '4.4.1'
 
-      - name: Verify Godot installation
-        run: godot --version
-
-      - name: Run Godot Tests
-        run: godot --headless -s res://test_runner.gd --path .
-
-      - name: Run Godot Tests
-        run: godot --headless -s res://test_runner.gd
-
-      - name: Upload test results (on failure)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-logs
-          path: |
-            ~/.local/share/godot
+                # Run GUT tests headlessly
+      - name: Run Tests
+        run: |
+          godot4 --headless -s res://test_runner.gd
