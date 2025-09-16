@@ -14,7 +14,7 @@ jobs:
         uses: lihop/setup-godot@v2
         with:
           version: '4.4.1'
-          use-dotnet: false   # disable Mono unless you need C#
+          
 
       - name: Verify Godot install
         run: godot4 --version
