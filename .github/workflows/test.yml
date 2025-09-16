@@ -5,6 +5,7 @@ on: [pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -14,7 +15,6 @@ jobs:
         with:
           version: '4.4.1'
 
-                # Run GUT tests headlessly
-      - name: Run Tests
+      - name: Run GUT tests (headless)
         run: |
-          godot4 --headless -s res://test_runner.gd
+          godot4 --headless --path . --script res://test_runner.gd

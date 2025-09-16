@@ -278,9 +278,11 @@ func draw_debug_path(path: Array[Vector3]):
 	
 	# Create a MultiMesh for dots
 	var multimesh := MultiMesh.new()
+	multimesh.transform_format = MultiMesh.TRANSFORM_3D  # 👈 Add this line
 	multimesh.mesh = SphereMesh.new()
 	multimesh.mesh.radius = 0.1
 	multimesh.instance_count = 0
+
 	
 	var multimesh_instance := MultiMeshInstance3D.new()
 	multimesh_instance.multimesh = multimesh
