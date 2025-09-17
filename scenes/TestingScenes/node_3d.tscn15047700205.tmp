@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqajbu24xh8af"]
+[gd_scene load_steps=14 format=3 uid="uid://cqajbu24xh8af"]
 
 [ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="1_to5kf"]
 [ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/NarativeScenes/bookstore.gd" id="2_w8ahc"]
@@ -37,6 +37,9 @@ ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 size = Vector3(14.4083, 9.09265, 11.1161)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to5kf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8ahc"]
+albedo_color = Color(1, 0.92193, 0.31792, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -85,32 +88,17 @@ size = Vector3(4.71667, 8.35059, 4.05518)
 material = SubResource("StandardMaterial3D_to5kf")
 
 [node name="Npc2" parent="." instance=ExtResource("4_ptomh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.652, 2.65567, -1.99558)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.6839, 2.65567, 0.518143)
 collision_mask = 2
 
 [node name="walls" type="Node3D" parent="."]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.6343, 2.44678, -3.85489)
-layers = 2
-use_collision = true
-collision_layer = 2
-size = Vector3(4.71667, 8.35059, 15.4962)
-material = SubResource("StandardMaterial3D_to5kf")
-
 [node name="CSGBox3D" type="CSGBox3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 0.999253, -0.0386494, 0, 0.0386494, 0.999253, 47.457, 2.44678, 5.19602)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0363, 3.50026, -2.80157)
 use_collision = true
 collision_layer = 2
-size = Vector3(18.4539, 8.35059, 4.05518)
-material = SubResource("StandardMaterial3D_to5kf")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 0.999253, -0.0386494, 0, 0.0386494, 0.999253, 47.457, 2.44678, -13.5597)
-use_collision = true
-collision_layer = 2
-size = Vector3(18.4539, 8.35059, 4.05518)
-material = SubResource("StandardMaterial3D_to5kf")
+size = Vector3(2, 10, 10)
+material = SubResource("StandardMaterial3D_w8ahc")
 
 [node name="Grid" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28204, 0)
