@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddqf37d4ocg2o"]
+
+[ext_resource type="Script" uid="uid://bdhn0g682bifb" path="res://scenes/TestingScenes/AStar.gd" id="1_kvu8f"]
+[ext_resource type="Script" uid="uid://6pofi3oxul4i" path="res://scenes/TestingScenes/character_body_3d.gd" id="2_55rfw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_55rfw"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_8h5n3"]
+sky_material = SubResource("ProceduralSkyMaterial_55rfw")
+
+[sub_resource type="Environment" id="Environment_bauvr"]
+background_mode = 2
+sky = SubResource("Sky_8h5n3")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_55rfw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8h5n3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8h5n3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bauvr"]
+size = Vector3(9.99457, 1, 9.98117)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfwfd"]
+albedo_color = Color(0.230315, 0.230315, 0.230315, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4jval"]
+material = SubResource("StandardMaterial3D_yfwfd")
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bauvr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+
+[node name="Navigation" type="Node3D" parent="."]
+script = ExtResource("1_kvu8f")
+
+[node name="NPC" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85424, 0)
+disable_mode = 2
+script = ExtResource("2_55rfw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NPC"]
+mesh = SubResource("BoxMesh_55rfw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC"]
+shape = SubResource("BoxShape3D_8h5n3")
+
+[node name="Obstacles" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_8h5n3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles"]
+transform = Transform3D(1.00358, 0, 0, 0, 0.501792, 0, 0, 0, 1.00358, 0, 0, 0)
+shape = SubResource("BoxShape3D_bauvr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles"]
+transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_4jval")
+
+[node name="DestinationMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51214, 0.38718, 0)

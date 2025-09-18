@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2bjlsidj107l"]
+[gd_scene load_steps=21 format=3 uid="uid://b2bjlsidj107l"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_cb1v0"]
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_cp3ya"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_bx50q"]
 [ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="9_q0b6v"]
 [ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/Npc2_No_sound.tscn" id="12_prnq5"]
+[ext_resource type="Script" uid="uid://bd0jlfvbuskwa" path="res://scenes/TestingScenes/grid.gd" id="13_bx50q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q0b6v"]
 size = Vector3(14.4083, 9.09265, 11.1161)
@@ -211,3 +212,9 @@ mesh = SubResource("BoxMesh_prnq5")
 [node name="Npc2" parent="." instance=ExtResource("12_prnq5")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.28081, 0.953631, 61.1064)
 speed = 3.0
+
+[node name="Grid" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28204, 0)
+script = ExtResource("13_bx50q")
+
+[node name="Grid_MeshInstance" type="MeshInstance3D" parent="Grid"]

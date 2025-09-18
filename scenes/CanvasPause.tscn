@@ -14,7 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_x3n2j")
 
 [node name="CanvasPause" type="CanvasLayer" parent="."]
-layer = 127
+layer = 128
 
 [node name="PauseMenu" parent="CanvasPause" instance=ExtResource("2_lbkp4")]
 z_index = 1

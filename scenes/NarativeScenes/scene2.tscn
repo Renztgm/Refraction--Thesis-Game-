@@ -282,6 +282,7 @@ libraries = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="DialogueManager" parent="CanvasLayer" instance=ExtResource("13_0qvas")]
 

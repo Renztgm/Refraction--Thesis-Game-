@@ -1,36 +1,38 @@
-name: Godot CI
+name: Godot GUT Tests
 
 on:
   push:
-    branches: [main, master]
+    branches:
+      - Scene-3
   pull_request:
-    branches: [main, master]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      # 1. Checkout the repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Godot
-        uses: lihop/setup-godot@v2
-        with:
-          version: '4.4.1'
+      # 2. Download Godot 4.4.1 headless Mono
+      - name: Download Godot
+        run: |
+          GODOT_VERSION="4.4.1"
+          GODOT_URL="https://downloads.tuxfamily.org/godotengine/$GODOT_VERSION/mono/Godot_v${GODOT_VERSION}-stable_mono_linux_headless.x86_64.zip"
+          wget -O godot.zip $GODOT_URL
+          unzip godot.zip -d godot
+          chmod +x godot/Godot_v${GODOT_VERSION}-stable_mono_linux_headless.x86_64
 
-      - name: Verify Godot installation
-        run: godot --version
+      # 3. Display Godot version (optional)
+      - name: Check Godot version
+        run: godot/Godot_v4.4.1-stable_mono_linux_headless.x86_64 --version
 
-      - name: Import project (optional, can skip if fast)
-        run: godot --headless --editor --quit
-
-      - name: Run Godot Tests
-        run: godot --headless -s res://test_runner.gd
-
-      - name: Upload test results (on failure)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-logs
-          path: |
-            ~/.local/share/godot
+      # 4. Run GUT tests headless
+      - name: Run GUT tests
+        run: |
+          godot/Godot_v4.4.1-stable_mono_linux_headless.x86_64 \
+            --headless -d -s \
+            --path . addons/gut/gut_cmdln.gd \
+            -gdir=res://tests/ \
+            -gexit
