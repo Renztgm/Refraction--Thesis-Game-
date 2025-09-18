@@ -104,33 +104,44 @@ func build_grid_for_large_plane():
 
 # Improved obstacle check for large areas
 func check_obstacle(world_pos: Vector3) -> bool:
-	# Skip obstacle check if position is way outside reasonable bounds
-	if abs(world_pos.x) > 150 or abs(world_pos.z) > 150:
-		return true  # Consider it blocked
+	var half = grid_size * 0.5
+	var offsets = [
+		Vector3(0, 0, 0),  # center
+		Vector3(half, 0, 0),  # right
+		Vector3(-half, 0, 0), # left
+		Vector3(0, 0, half),  # forward
+		Vector3(0, 0, -half), # back
+		Vector3(half, 0, half),   # corner
+		Vector3(-half, 0, half),
+		Vector3(half, 0, -half),
+		Vector3(-half, 0, -half)
+	]
 	
+	for offset in offsets:
+		if check_single_point(world_pos + offset):
+			return true
+	
+	return false
+
+func check_single_point(point: Vector3) -> bool:
 	var sphere = SphereShape3D.new()
 	sphere.radius = obstacle_check_radius
 	var query = PhysicsShapeQueryParameters3D.new()
 	query.shape = sphere
-	query.transform.origin = world_pos
-	
-	# Check for obstacles (walls, props, etc.)
+	query.transform.origin = point
 	query.collision_mask = 2  # Obstacle layer
+	
 	var obstacles = get_world_3d().direct_space_state.intersect_shape(query, 1)
 	
-	# Also check if we're too far below or above the ground
 	var ground_check = PhysicsRayQueryParameters3D.create(
-		Vector3(world_pos.x, world_pos.y + 5, world_pos.z),
-		Vector3(world_pos.x, world_pos.y - 5, world_pos.z)
+		point + Vector3(0, 5, 0),
+		point + Vector3(0, -5, 0)
 	)
 	ground_check.collision_mask = 1  # Ground layer
 	var ground_hit = get_world_3d().direct_space_state.intersect_ray(ground_check)
 	
-	# If no ground found within reasonable range, consider blocked
-	if ground_hit.is_empty():
-		return true
-	
-	return obstacles.size() > 0
+	return obstacles.size() > 0 or ground_hit.is_empty()
+
 
 func grid_to_world(grid_pos: Vector2) -> Vector3:
 	return Vector3(

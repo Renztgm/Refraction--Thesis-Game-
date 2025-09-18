@@ -7,6 +7,8 @@
 base_font = ExtResource("2_q0hoj")
 
 [node name="SettingsUI" type="Control"]
+z_index = 4096
+y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

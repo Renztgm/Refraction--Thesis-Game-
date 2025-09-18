@@ -192,6 +192,7 @@ path_desired_distance = 0.5
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177582, 5.5, 0.117279)
+visible = false
 size = Vector3(3.47015, 12, 2.47272)
 
 [node name="RayForward" type="RayCast3D" parent="."]

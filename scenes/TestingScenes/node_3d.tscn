@@ -1,7 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqajbu24xh8af"]
+[gd_scene load_steps=10 format=3 uid="uid://cqajbu24xh8af"]
 
-[ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="1_to5kf"]
-[ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/NarativeScenes/bookstore.gd" id="2_w8ahc"]
 [ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="3_apgs4"]
 [ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/Npc2_No_sound.tscn" id="4_ptomh"]
 [ext_resource type="Script" uid="uid://bd0jlfvbuskwa" path="res://scenes/TestingScenes/grid.gd" id="6_apgs4"]
@@ -33,9 +31,6 @@ sky = SubResource("Sky_prnq5")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vgeqt"]
-size = Vector3(14.4083, 9.09265, 11.1161)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to5kf"]
 
 [node name="Node3D" type="Node3D"]
@@ -63,53 +58,110 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128864, 0, -0.251266)
 use_collision = true
 size = Vector3(200, 1, 200)
 
-[node name="Bookstore" type="Node3D" parent="."]
-
-[node name="Building14" parent="Bookstore" instance=ExtResource("1_to5kf")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -82.6216, 0.5, 13.2583)
-
-[node name="Area3D" type="Area3D" parent="Bookstore/Building14"]
-script = ExtResource("2_w8ahc")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bookstore/Building14/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.568665, 4.04633, -1.39862)
-shape = SubResource("BoxShape3D_vgeqt")
-
-[node name="BookstoreMarker" type="Node3D" parent="Bookstore"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.616, 1.11304, 0)
-script = ExtResource("3_apgs4")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Bookstore/BookstoreMarker"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85834, 2.44678, -1.52759)
-size = Vector3(4.71667, 8.35059, 4.05518)
-material = SubResource("StandardMaterial3D_to5kf")
-
 [node name="Npc2" parent="." instance=ExtResource("4_ptomh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.652, 2.65567, -1.99558)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.5352, 2.65567, 84.0536)
 collision_mask = 2
 
 [node name="walls" type="Node3D" parent="."]
 
+[node name="CSGBox3D5" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 0.997013, -0.0772411, 0, 0.0772411, 0.997013, -3.20424, 3.97364, 5.47466)
+use_collision = true
+collision_layer = 2
+size = Vector3(125.444, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.6343, 2.44678, -3.85489)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.4741, 2.44678, -77.1453)
 layers = 2
 use_collision = true
 collision_layer = 2
-size = Vector3(4.71667, 8.35059, 15.4962)
-material = SubResource("StandardMaterial3D_to5kf")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 0.999253, -0.0386494, 0, 0.0386494, 0.999253, 47.457, 2.44678, 5.19602)
-use_collision = true
-collision_layer = 2
-size = Vector3(18.4539, 8.35059, 4.05518)
+size = Vector3(4.71667, 8.35059, 38.5211)
 material = SubResource("StandardMaterial3D_to5kf")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 0.999253, -0.0386494, 0, 0.0386494, 0.999253, 47.457, 2.44678, -13.5597)
+transform = Transform3D(1, 0, 0, 0, 0.999253, -0.0386494, 0, 0.0386494, 0.999253, 46.5744, 2.44678, -28.7856)
 use_collision = true
 collision_layer = 2
-size = Vector3(18.4539, 8.35059, 4.05518)
+size = Vector3(107.705, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 0.999253, -0.0386494, 0, 0.0386494, 0.999253, -51.028, 2.44678, 72.3173)
+use_collision = true
+collision_layer = 2
+size = Vector3(36.9263, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.9965, 2.44678, -0.399891)
+layers = 2
+use_collision = true
+collision_layer = 2
+size = Vector3(5, 10, 199.847)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 0.997013, -0.077241, 0, 0.077241, 0.997013, -0.441513, 3.43464, -98.1777)
+use_collision = true
+collision_layer = 2
+size = Vector3(201.065, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9521, 2.44678, 83.5029)
+use_collision = true
+collision_layer = 2
+size = Vector3(32.4437, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.40577, 1.95702, -62.8231)
+use_collision = true
+collision_layer = 2
+size = Vector3(121.114, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 0.988068, -0.154021, 0, 0.154021, 0.988068, -15.9177, 1.60752, 36.0161)
+use_collision = true
+collision_layer = 2
+size = Vector3(170.952, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50.7488, 2.44678, -26.0777)
+use_collision = true
+collision_layer = 2
+size = Vector3(70.7611, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -32.6663, 2.44678, 85.4841)
+use_collision = true
+collision_layer = 2
+size = Vector3(31.5228, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.89679, 2.44678, 54.0256)
+use_collision = true
+collision_layer = 2
+size = Vector3(42.5681, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 0.988068, -0.154021, 0, 0.154021, 0.988068, 58.0262, 1.60752, 69.5329)
+use_collision = true
+collision_layer = 2
+size = Vector3(67.0112, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 57.2862, 1.42745, 5.98315)
+use_collision = true
+collision_layer = 2
+size = Vector3(26.9212, 8.35059, 4.05518)
 material = SubResource("StandardMaterial3D_to5kf")
 
 [node name="Grid" type="Node3D" parent="."]
@@ -125,3 +177,21 @@ fov = 92.1493
 [node name="Structures" type="Node3D" parent="."]
 
 [node name="Building" type="Node3D" parent="Structures"]
+
+[node name="Bookstore" type="Node3D" parent="Structures/Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.0894, 0, -84.5569)
+
+[node name="BookstoreMarker" type="Node3D" parent="Structures/Building/Bookstore"]
+script = ExtResource("3_apgs4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Structures/Building/Bookstore/BookstoreMarker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2386, 2.44678, -1.52759)
+size = Vector3(4.71667, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 62.9208, 2.44678, 80.541)
+use_collision = true
+collision_layer = 2
+size = Vector3(22.5538, 8.35059, 4.05518)
+material = SubResource("StandardMaterial3D_to5kf")

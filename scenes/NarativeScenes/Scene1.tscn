@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ch1ttkvnsghnw"]
+[gd_scene load_steps=39 format=3 uid="uid://ch1ttkvnsghnw"]
 
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_le1v4"]
 [ext_resource type="PackedScene" uid="uid://bi1lugsasrj5" path="res://addons/Station/rails/RailTrack.tscn" id="4_bjme1"]
@@ -13,11 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://ccpff6cjmmbl4" path="res://addons/tree/trees.tscn" id="8_t2ff0"]
 [ext_resource type="Script" uid="uid://b16kko6yesh4g" path="res://scenes/NarativeScenes/Script/awakening_audio.gd" id="9_t2ff0"]
 [ext_resource type="Script" uid="uid://dcf0677e4iaao" path="res://scenes/NarativeScenes/Script/awakening_narrative.gd" id="10_722yh"]
+[ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="13_2oxmw"]
 [ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="14_f4tgv"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="14_pp1vh"]
-[ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="14_t2ff0"]
 [ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="15_bjme1"]
 [ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="16_722yh"]
+[ext_resource type="Texture2D" uid="uid://c5utx7vxnxej0" path="res://addons/pngs/Button.png" id="17_2oxmw"]
 [ext_resource type="PackedScene" uid="uid://c3heuy5bku3an" path="res://assets/materials/trashbag/trash.tscn" id="17_4igs4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bjme1"]
@@ -113,87 +114,26 @@ size = Vector3(1, 1.67432, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_876vf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2ff0"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.105882, 0.105882, 0.105882, 0.392157)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c62j0"]
-texture = ExtResource("14_t2ff0")
-texture_margin_left = 20.0
-texture_margin_top = 5.0
-texture_margin_right = 20.0
-texture_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6nk5b"]
-texture = ExtResource("14_t2ff0")
-texture_margin_left = 20.0
-texture_margin_top = 5.0
-texture_margin_right = 20.0
-texture_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xbbi1"]
-texture = ExtResource("14_t2ff0")
-texture_margin_left = 20.0
-texture_margin_top = 5.0
-texture_margin_right = 20.0
-texture_margin_bottom = 5.0
-modulate_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_722yh"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="Theme" id="Theme_722yh"]
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
-Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_outline_color = Color(0, 0, 0, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
-Button/colors/icon_focus_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_normal_color = Color(1, 1, 1, 1)
-Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
-Button/constants/align_to_largest_stylebox = 0
-Button/constants/h_separation = 4
-Button/constants/icon_max_width = 0
-Button/constants/line_spacing = 0
-Button/constants/outline_size = 0
-Button/font_sizes/font_size = 20
-Button/fonts/font = ExtResource("14_pp1vh")
-Button/styles/disabled = SubResource("StyleBoxFlat_t2ff0")
-Button/styles/focus = SubResource("StyleBoxTexture_c62j0")
-Button/styles/hover = SubResource("StyleBoxTexture_6nk5b")
-Button/styles/normal = SubResource("StyleBoxTexture_xbbi1")
-Button/styles/pressed = SubResource("StyleBoxFlat_722yh")
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp1vh"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2oxmw"]
+texture = ExtResource("17_2oxmw")
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+modulate_color = Color(0.854902, 0.854902, 0.854902, 1)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1iqc"]
-texture = ExtResource("14_t2ff0")
-texture_margin_left = 10.0
-texture_margin_top = 2.0
-texture_margin_right = 10.0
-texture_margin_bottom = 2.0
+texture = ExtResource("17_2oxmw")
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="NarrativeScene3d" type="Node3D"]
 
@@ -436,7 +376,8 @@ offset_left = -196.0
 offset_right = -106.0
 offset_bottom = 120.0
 grow_vertical = 2
-theme = SubResource("Theme_722yh")
+theme = ExtResource("13_2oxmw")
+theme_override_constants/separation = 30
 metadata/_edit_use_anchors_ = true
 
 [node name="DialogueBox" type="Control" parent="UILayer"]
@@ -521,6 +462,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("14_pp1vh")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/hover = SubResource("StyleBoxTexture_2oxmw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_n1iqc")
 text = "Next"
 
