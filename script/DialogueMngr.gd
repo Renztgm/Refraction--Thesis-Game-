@@ -43,16 +43,12 @@ func load_dialogue(file_path: String, npc_id: String):
 	var content = file.get_as_text()
 	file.close()
 
-	# Parse JSON (Godot 4)
-	var all_dialogues: Dictionary = {}
-	
-	# parse_string returns Variant directly
 	var json_data = JSON.parse_string(content)
 	if typeof(json_data) != TYPE_DICTIONARY:
 		push_error("Failed to parse JSON. Make sure the file is valid!")
 		return
 
-	all_dialogues = json_data as Dictionary
+	var all_dialogues: Dictionary = json_data
 
 	if not all_dialogues.has(npc_id):
 		push_error("No dialogue for NPC: " + npc_id)
@@ -90,7 +86,6 @@ func show_node(node_name: String):
 	options_container.visible = false
 	next_button.visible = false
 
-	# Show options only if node has them
 	var opts = node.get("options", [])
 	for option in opts:
 		var btn = Button.new()
@@ -99,10 +94,16 @@ func show_node(node_name: String):
 		btn.pressed.connect(func(): _on_option_selected(option))
 		options_container.add_child(btn)
 
+	# Store auto-next if provided
+	pending_next_node = node.get("next", "")
+
 	if sentences.size() > 0:
 		_start_sentence()
 	elif opts.size() > 0:
 		options_container.visible = true
+	elif pending_next_node != "":
+		# No sentences or options → jump to next node
+		show_node(pending_next_node)
 	else:
 		_close_dialogue()
 
@@ -125,15 +126,30 @@ func _on_typing_step():
 	else:
 		typing_timer.stop()
 		is_typing = false
-		next_button.visible = true  # Next remains visible after typing
+
+		# Distinguish between NPC lines and MC lines
+		if npc_name_label.text != "You":
+			# NPC speaking
+			var node = dialogue.get(current_node, {})
+			var opts = node.get("options", [])
+			if current_sentence >= sentences.size() - 1 and opts.size() > 0 and pending_mc_text == "":
+				# Last NPC line → show options immediately
+				options_container.visible = true
+				next_button.visible = false
+			else:
+				# NPC mid-line or no options → Next button
+				next_button.visible = true
+		else:
+			# MC speaking → always Next after line finishes
+			next_button.visible = true
 
 # --- Next button pressed ---
 func _on_next_pressed():
 	if is_typing:
-		# Finish typing immediately
 		typing_timer.stop()
 		dialogue_label.text = full_text
 		is_typing = false
+		next_button.visible = true
 		return
 
 	# Move to next sentence in the current node
@@ -144,17 +160,21 @@ func _on_next_pressed():
 
 	# If MC text is pending, type it now
 	if pending_mc_text != "":
-		full_text = "You: " + pending_mc_text
+		full_text = pending_mc_text
 		pending_mc_text = ""
 		visible_text = ""
 		char_index = 0
 		is_typing = true
+
+		# Show player as the speaker
+		npc_name_label.text = "You"
+
 		dialogue_label.text = ""
 		next_button.visible = false
 		typing_timer.start()
 		return
 
-	# Otherwise, move to next node
+	# Otherwise, move to next node if defined
 	if pending_next_node != "":
 		var next_node = pending_next_node
 		pending_next_node = ""
@@ -170,8 +190,6 @@ func _on_next_pressed():
 		_close_dialogue()
 
 # --- Player selects an option ---
-# --- Player selects an option ---
-# --- Player selects an option ---
 func _on_option_selected(option_data: Dictionary):
 	_clear_options()
 	options_container.visible = false
@@ -183,20 +201,13 @@ func _on_option_selected(option_data: Dictionary):
 	var next_node = option_data.get("next", "end")
 	if not dialogue.has(next_node):
 		next_node = "end"
+
+	# Queue MC line and next node
+	pending_mc_text = mc_text
 	pending_next_node = next_node
 
-	# Start typing player text immediately
-	full_text = "You: " + mc_text
-	visible_text = ""
-	char_index = 0
-	is_typing = true
-	dialogue_label.text = ""
-	next_button.visible = true
-
-	# Clear pending_mc_text so Next doesn’t retrigger
-	pending_mc_text = ""
-
-	typing_timer.start()
+	# Simulate pressing Next so MC text will type
+	_on_next_pressed()
 
 # --- Clear all options ---
 func _clear_options():

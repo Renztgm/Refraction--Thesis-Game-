@@ -72,9 +72,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, -2.17044)
 [node name="Road6" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, 37.6545)
 
-[node name="Road7" parent="Structures/RoadLayout" instance=ExtResource("1_cp3ya")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9319, 0.634049, 37.6546)
-
 [node name="Building" type="Node3D" parent="Structures"]
 
 [node name="Building1" parent="Structures/Building" instance=ExtResource("1_xcpug")]
@@ -132,6 +129,9 @@ shape = SubResource("BoxShape3D_q0b6v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.7817, 2.41998, 0.835972)
 script = ExtResource("9_bx50q")
 
+[node name="Building14" parent="Structures/Building" instance=ExtResource("3_pg7mk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -111.905, 0.722464, 17.6356)
+
 [node name="Barrier" type="Node3D" parent="Structures"]
 
 [node name="Barrier" type="StaticBody3D" parent="Structures/Barrier"]
@@ -157,6 +157,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35107, 3.90953, -0.214016)
 shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Walls" type="Node3D" parent="Structures"]
+transform = Transform3D(0.999996, 0, 0, 0, 0.999996, 0, 0, 0, 0.999996, 0, 0, 0)
 
 [node name="Walls1" parent="Structures/Walls" instance=ExtResource("9_q0b6v")]
 transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -7.73818, 0.5, 43.342)
@@ -164,8 +165,14 @@ transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -7.
 [node name="Walls2" parent="Structures/Walls" instance=ExtResource("9_q0b6v")]
 transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -63.3415, 0.5, 43.342)
 
+[node name="Walls4" parent="Structures/Walls" instance=ExtResource("9_q0b6v")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -95.1075, 0.5, 12.686)
+
 [node name="Walls3" parent="Structures/Walls" instance=ExtResource("9_q0b6v")]
-transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -118.903, 0.5, 43.342)
+transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -53.8208, 0.5, 27.8286)
+
+[node name="Walls5" parent="Structures/Walls" instance=ExtResource("9_q0b6v")]
+transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -89.9776, 0.5, 28.6321)
 
 [node name="Environment" type="Node3D" parent="."]
 

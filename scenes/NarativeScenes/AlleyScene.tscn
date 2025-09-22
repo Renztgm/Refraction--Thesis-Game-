@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://g3gndto2e636"]
+[gd_scene load_steps=28 format=3 uid="uid://g3gndto2e636"]
 
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_6er7q"]
 [ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="2_hjv4e"]
@@ -13,6 +13,10 @@
 [ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/NarativeScenes/AlleyScene.gdshader" id="11_lkvvi"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="11_oly33"]
 [ext_resource type="Script" uid="uid://cuby3fgy78mac" path="res://script/Trigger_Flicker.gd" id="12_hjv4e"]
+[ext_resource type="Texture2D" uid="uid://dc1f157akrxne" path="res://addons/pngs/shadow.png" id="14_lkvvi"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/DialogueManager.tscn" id="15_kqxkw"]
+[ext_resource type="AudioStream" uid="uid://b7xyc2jckr8uq" path="res://assets/audio/ambient/Static_Sound.mp3" id="16_21pj3"]
+[ext_resource type="Shader" uid="uid://p2trvwfmiiq6" path="res://scenes/NarativeScenes/AlleySceneScreenWarp.gdshader" id="16_fd1bb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7igll"]
 size = Vector3(14.4083, 9.09265, 11.1161)
@@ -37,6 +41,31 @@ ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjybt"]
 size = Vector3(9.72504, 4.36279, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqxkw"]
+atlas = ExtResource("14_lkvvi")
+region = Rect2(0, 0, 414, 602)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fd1bb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqxkw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_21pj3"]
+size = Vector3(2.19507, 5.62384, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21pj3"]
+shader = ExtResource("16_fd1bb")
+shader_parameter/strength = 0.25
+shader_parameter/time_scale = 1.0
+shader_parameter/noise_amount = 0.15
+shader_parameter/scanlines = 120.0
 
 [node name="AlleyScene" type="Node3D"]
 
@@ -206,3 +235,34 @@ script = ExtResource("12_hjv4e")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32486, 1.6814, 0)
 shape = SubResource("BoxShape3D_jjybt")
+
+[node name="shadow" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.806, 0, -64.177)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="shadow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_fd1bb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shadow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00817871, 4.0217, 0)
+shape = SubResource("BoxShape3D_21pj3")
+
+[node name="DialogueManager" parent="." instance=ExtResource("15_kqxkw")]
+z_index = 4096
+
+[node name="StaticAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_21pj3")
+
+[node name="ScreenWarp" type="ColorRect" parent="."]
+visible = false
+z_index = -4090
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_21pj3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.00392157, 0.00392157, 0.00392157, 0)
