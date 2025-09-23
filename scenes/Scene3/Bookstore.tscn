@@ -1,0 +1,242 @@
+[gd_scene load_steps=19 format=3 uid="uid://bf4bbr6ak5t7j"]
+
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_u6ydm"]
+[ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
+[ext_resource type="PackedScene" uid="uid://cej8x77gsyixw" path="res://assets/bookstore_walls/Wall1/Wall1_bs.tscn" id="3_abmj1"]
+[ext_resource type="PackedScene" uid="uid://b8j2bt3ea0fny" path="res://assets/bookstore_walls/Wall2/Wall2_bs.tscn" id="4_ichha"]
+[ext_resource type="PackedScene" uid="uid://dry51jm8t8e83" path="res://assets/bookstore_walls/Wall3/Wall3_bs.tscn" id="5_moha3"]
+[ext_resource type="PackedScene" uid="uid://dl1oxf6kjobol" path="res://assets/item/paper/torn_paper_item.gltf" id="6_vasej"]
+[ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="7_h2wqw"]
+[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="7_rg60h"]
+[ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="8_bo7vp"]
+[ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/Npc2_follow.tscn" id="8_iarg8"]
+[ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="8_mn76v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_curve = 0.243676
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_bx50q"]
+sky_material = SubResource("ProceduralSkyMaterial_ecfh2")
+
+[sub_resource type="Environment" id="Environment_u6ydm"]
+background_mode = 2
+sky = SubResource("Sky_bx50q")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_abmj1"]
+size = Vector3(7.11823, 4.82605, 6.53577)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bo7vp"]
+
+[sub_resource type="FontVariation" id="FontVariation_mn76v"]
+base_font = ExtResource("7_h2wqw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qhwtn"]
+texture = ExtResource("8_bo7vp")
+
+[node name="Bookstore" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_u6ydm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+light_energy = 0.5
+sky_mode = 1
+
+[node name="Plane" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.129, -0.5, -0.251)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="Walls" type="Node3D" parent="Environment"]
+
+[node name="Wall1Bs" parent="Environment/Walls" instance=ExtResource("3_abmj1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.0687, 0, -7.01294)
+
+[node name="Wall2Bs" parent="Environment/Walls" instance=ExtResource("4_ichha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9998, -0.0179877, 2.30865)
+
+[node name="Wall3Bs" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1608, 0, 8.04971)
+
+[node name="Wall2Bs2" parent="Environment/Walls" instance=ExtResource("4_ichha")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.737, -0.0179877, -9.63849)
+
+[node name="Wall3Bs2" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.8037, 0, 18.3131)
+
+[node name="Wall3Bs3" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.8551, 0, 7.12647)
+
+[node name="Wall2Bs3" parent="Environment/Walls" instance=ExtResource("4_ichha")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.41809, -0.0179877, -17.4183)
+
+[node name="Wall3Bs4" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.27521, -1.90735e-06, -14.5864)
+
+[node name="Wall3Bs5" parent="Environment/Walls" instance=ExtResource("5_moha3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.1828, -1.90735e-06, -14.5864)
+
+[node name="Npc2" parent="." instance=ExtResource("8_iarg8")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.34813, 0.02369, 13.3065)
+
+[node name="Player3d" parent="." instance=ExtResource("1_u6ydm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891695, -0.511548, 12.6993)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.7165)
+script = ExtResource("2_cedyu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00674438, 1.91302, 2.76788)
+shape = SubResource("BoxShape3D_abmj1")
+
+[node name="blockbench_export" parent="Area3D" instance=ExtResource("6_vasej")]
+transform = Transform3D(-4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 0, 0.879109, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+z_as_relative = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -261.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bo7vp")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 106.0
+offset_right = 6.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_mn76v")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0486111
+anchor_top = 0.82716
+anchor_right = 0.9375
+anchor_bottom = 0.91358
+offset_top = -66.8889
+offset_bottom = -66.8889
+grow_horizontal = 2
+grow_vertical = 2
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FlashScreen" type="ColorRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="NextButton" type="Button" parent="CanvasLayer"]
+z_index = 1
+z_as_relative = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -64.0
+offset_right = -65.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_mn76v")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qhwtn")
+text = "Next"
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasPause" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PauseMenu" parent="CanvasPause" instance=ExtResource("7_rg60h")]
+z_index = 1
+
+[node name="MemoryShard" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ShardPanel" type="Panel" parent="MemoryShard"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShardImage" type="TextureRect" parent="MemoryShard/ShardPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -72.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShardDescription" type="Label" parent="MemoryShard/ShardPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = 60.0
+offset_right = 82.5
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = " Memory Shard 1"
+
+[node name="CloseButton" type="Button" parent="MemoryShard/ShardPanel"]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -319.0
+offset_top = -47.0
+offset_right = -224.0
+offset_bottom = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_mn76v")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qhwtn")
+text = "Close"

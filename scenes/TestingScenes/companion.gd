@@ -32,7 +32,7 @@ func _input(event):
 		
 func _on_dialogue_finished():
 	var fade_layer = get_tree().root.get_node("NarrativeScene3d/FadeLayer")
-	fade_layer.start_transition("res://scenes/NarativeScenes/Scene3.tscn")
+	fade_layer.start_transition("res://scenes/Scene3/Scene3.tscn")
 
 func start_dialogue():
 	var dialogue_manager = get_tree().root.get_node("NarrativeScene3d/CanvasLayer/DialogueManager")

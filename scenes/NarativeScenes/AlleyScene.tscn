@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cwa4jhihkwg0h" path="res://assets/Building/Building5.tscn" id="5_kqxkw"]
 [ext_resource type="PackedScene" uid="uid://ce3d7ovhkpl5l" path="res://assets/Building/Building6.tscn" id="6_fd1bb"]
 [ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_21pj3"]
-[ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/NarativeScenes/bookstore.gd" id="8_ajmjj"]
+[ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/Scene3/bookstore.gd" id="8_ajmjj"]
 [ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_puurg"]
 [ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="10_b228b"]
 [ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/NarativeScenes/AlleyScene.gdshader" id="11_lkvvi"]

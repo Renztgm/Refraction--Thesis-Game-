@@ -26,6 +26,7 @@ SaveManager="*res://script/SaveManager.gd"
 CanvasPause="*res://scenes/NarativeScenes/canvas_pause.gd"
 AudioMgr="*res://script/AudioManager.gd"
 GameManager="*res://script/GameManager.gd"
+SceneTransitionManager="*res://script/SceneTransitionManager.gd"
 
 [display]
 
