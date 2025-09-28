@@ -1,15 +1,15 @@
 [gd_scene load_steps=19 format=3 uid="uid://bf4bbr6ak5t7j"]
 
-[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_u6ydm"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
 [ext_resource type="PackedScene" uid="uid://cej8x77gsyixw" path="res://assets/bookstore_walls/Wall1/Wall1_bs.tscn" id="3_abmj1"]
 [ext_resource type="PackedScene" uid="uid://b8j2bt3ea0fny" path="res://assets/bookstore_walls/Wall2/Wall2_bs.tscn" id="4_ichha"]
 [ext_resource type="PackedScene" uid="uid://dry51jm8t8e83" path="res://assets/bookstore_walls/Wall3/Wall3_bs.tscn" id="5_moha3"]
 [ext_resource type="PackedScene" uid="uid://dl1oxf6kjobol" path="res://assets/item/paper/torn_paper_item.gltf" id="6_vasej"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="7_h2wqw"]
-[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="7_rg60h"]
+[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/UI/PauseMenu.tscn" id="7_rg60h"]
 [ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="8_bo7vp"]
-[ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/Npc2_follow.tscn" id="8_iarg8"]
+[ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/NPCs/Npc2_follow.tscn" id="8_iarg8"]
 [ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="8_mn76v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]

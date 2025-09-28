@@ -23,7 +23,7 @@ buses/default_bus_layout="uid://n406ir32v2kb"
 
 SettingsManager="*res://script/SettingsManager.gd"
 SaveManager="*res://script/SaveManager.gd"
-CanvasPause="*res://scenes/NarativeScenes/canvas_pause.gd"
+CanvasPause="*res://scenes/UI/canvas_pause.gd"
 AudioMgr="*res://script/AudioManager.gd"
 GameManager="*res://script/GameManager.gd"
 SceneTransitionManager="*res://script/SceneTransitionManager.gd"

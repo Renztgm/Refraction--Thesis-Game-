@@ -7,11 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="5_8rdtq"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="6_n7li0"]
 [ext_resource type="PackedScene" uid="uid://djui83c87ryj8" path="res://addons/tree/tree.gltf" id="7_tekff"]
-[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="8_kts81"]
-[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/PauseMenu.tscn" id="9_3868a"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="8_kts81"]
+[ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/UI/PauseMenu.tscn" id="9_3868a"]
 [ext_resource type="Script" uid="uid://cw3dugmb5cg08" path="res://script/player_3d.gd" id="9_fhmpg"]
-[ext_resource type="PackedScene" uid="uid://do4qavs2kvrld" path="res://scenes/NPC 1.tscn" id="10_sc2nd"]
-[ext_resource type="PackedScene" uid="uid://cpgkwqyew3a2j" path="res://scenes/Npc2.tscn" id="11_b00ac"]
+[ext_resource type="PackedScene" uid="uid://do4qavs2kvrld" path="res://scenes/NPCs/NPC 1.tscn" id="10_sc2nd"]
+[ext_resource type="PackedScene" uid="uid://cpgkwqyew3a2j" path="res://scenes/NPCs/Npc2.tscn" id="11_b00ac"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tipki"]
 albedo_texture = ExtResource("4_0nkk0")

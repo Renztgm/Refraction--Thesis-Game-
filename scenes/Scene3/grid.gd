@@ -13,9 +13,28 @@ var current_route: Array[Vector2] = []  # Current path in grid coordinates
 var grid_mesh_instance: MeshInstance3D
 var route_mesh_instance: MeshInstance3D
 
+# Debug visibility control
+var debug_visible: bool = false
+
 func _ready():
 	build_grid_for_large_plane()  # Use this instead of build_grid()
 
+func _input(event):
+	"""Handle debug visibility toggle"""
+	if event is InputEventKey and event.pressed:
+		if event.ctrl_pressed and event.keycode == KEY_F4:
+			toggle_debug_visibility()
+
+func toggle_debug_visibility():
+	"""Toggle the visibility of grid debug visualization"""
+	debug_visible = !debug_visible
+	
+	if grid_mesh_instance:
+		grid_mesh_instance.visible = debug_visible
+	if route_mesh_instance:
+		route_mesh_instance.visible = debug_visible
+	
+	print("🔧 Grid debug visibility: ", "ON" if debug_visible else "OFF")
 
 func auto_adjust_for_target(target_pos: Vector3):
 	"""Automatically adjust grid to include a target position"""
@@ -100,6 +119,7 @@ func build_grid_for_large_plane():
 	print("   Blocked: ", blocked_count)
 	print("   Unchecked (outside plane): ", grid.size() - checked_count)
 	
+	# Build visualization but keep it hidden by default
 	draw_grid_visualization()
 
 # Improved obstacle check for large areas
@@ -270,6 +290,9 @@ func draw_grid_visualization():
 		mat.cull_mode = BaseMaterial3D.CULL_DISABLED  # Show both sides
 		grid_mesh_instance.material_override = mat
 		
+		# Set initial visibility based on debug state
+		grid_mesh_instance.visible = debug_visible
+		
 		add_child(grid_mesh_instance)
 
 func draw_route_on_grid():
@@ -340,6 +363,9 @@ func draw_route_on_grid():
 		mat.vertex_color_use_as_albedo = true
 		mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 		route_mesh_instance.material_override = mat
+		
+		# Set initial visibility based on debug state
+		route_mesh_instance.visible = debug_visible
 		
 		add_child(route_mesh_instance)
 
@@ -423,6 +449,7 @@ func get_grid_info() -> Dictionary:
 		"blocked_cells": blocked_count,
 		"grid_size": grid_size,
 		"current_route_length": current_route.size(),
+		"debug_visible": debug_visible,
 		"world_bounds": {
 			"x_min": -grid_dimensions.x / 2 * grid_size,
 			"x_max": grid_dimensions.x / 2 * grid_size,
@@ -444,3 +471,19 @@ func update_route_from_world_path(world_path: Array[Vector3]):
 func force_rebuild():
 	"""Force rebuild the grid (useful for runtime changes)"""
 	build_grid_for_large_plane()  # Use this instead of build_grid()
+
+func show_debug():
+	"""Programmatically show debug visualization"""
+	debug_visible = true
+	if grid_mesh_instance:
+		grid_mesh_instance.visible = true
+	if route_mesh_instance:
+		route_mesh_instance.visible = true
+
+func hide_debug():
+	"""Programmatically hide debug visualization"""
+	debug_visible = false
+	if grid_mesh_instance:
+		grid_mesh_instance.visible = false
+	if route_mesh_instance:
+		route_mesh_instance.visible = false

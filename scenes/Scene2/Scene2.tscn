@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://bi1lugsasrj5" path="res://addons/Station/rails/RailTrack.tscn" id="7_j1gm7"]
 [ext_resource type="PackedScene" uid="uid://ccpff6cjmmbl4" path="res://addons/tree/trees.tscn" id="8_qoist"]
 [ext_resource type="PackedScene" uid="uid://c3heuy5bku3an" path="res://assets/materials/trashbag/trash.tscn" id="9_7pkh2"]
-[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="10_j4sli"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="10_j4sli"]
 [ext_resource type="PackedScene" uid="uid://2dvrdykgrjqi" path="res://scenes/TestingScenes/Companion.tscn" id="11_701qu"]
 [ext_resource type="Script" uid="uid://cbr1ecxkwkf7" path="res://scenes/NarativeScenes/FadeLayer.gd" id="12_cxdkv"]
-[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/DialogueManager.tscn" id="13_0qvas"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="13_0qvas"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_prnq5"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)

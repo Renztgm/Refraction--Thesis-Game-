@@ -5,7 +5,7 @@ extends Node
 signal scene_transition_started
 signal scene_transition_finished
 
-var loading_screen_scene: PackedScene = preload("res://scenes/LoadingScreen.tscn")
+var loading_screen_scene: PackedScene = preload("res://scenes/UI/LoadingScreen.tscn")
 var loading_screen_instance: Node = null
 var target_scene_path: String = ""
 

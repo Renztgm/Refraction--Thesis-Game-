@@ -6,7 +6,7 @@ extends Control
 
 # Quotes
 var messages: Array = []
-var message_index: int = 0
+var message_index: int = -1   # -1 means no quote chosen yet
 
 # Fade variables
 var alpha: float = 0.0
@@ -20,6 +20,8 @@ var dot_timer: float = 0.0
 var dot_count: int = 0
 
 func _ready():
+	randomize() # Seed random number generator
+
 	# Load JSON quotes
 	var file := FileAccess.open("res://dialogues/qoutes.json", FileAccess.READ)
 	if file:
@@ -41,7 +43,7 @@ func _ready():
 
 	# Initialize first quote
 	if messages.size() > 0:
-		quote_label.text = messages[0]
+		_pick_new_quote()
 		quote_label.modulate.a = 0.0
 		alpha = 0.0
 		fade_in = true
@@ -68,9 +70,8 @@ func _process(delta: float) -> void:
 				alpha -= fade_speed * delta
 				if alpha <= 0.0:
 					alpha = 0.0
-					# Move to next quote
-					message_index = (message_index + 1) % messages.size()
-					quote_label.text = messages[message_index]
+					# Pick a new random quote
+					_pick_new_quote()
 					fade_in = true
 					display_timer = 0.0
 
@@ -84,3 +85,17 @@ func _process(delta: float) -> void:
 		dot_timer = 0.0
 		dot_count = (dot_count + 1) % 4
 		loading_label.text = "Loading" + ".".repeat(dot_count)
+
+# -------------------------------
+# Helper: Pick new random quote (no immediate repeats)
+# -------------------------------
+func _pick_new_quote() -> void:
+	if messages.size() == 0:
+		return
+
+	var new_index := message_index
+	while new_index == message_index and messages.size() > 1:
+		new_index = randi() % messages.size()
+
+	message_index = new_index
+	quote_label.text = messages[message_index]

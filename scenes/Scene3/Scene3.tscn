@@ -10,18 +10,18 @@
 [ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/Scene3/bookstore.gd" id="8_ljopq"]
 [ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_ynfyr"]
 [ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="10_iaw0c"]
-[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="11_aq08c"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="11_aq08c"]
 [ext_resource type="AudioStream" uid="uid://kc6yxx08keph" path="res://assets/audio/music/background_music.wav" id="12_ogqrk"]
 [ext_resource type="AudioStream" uid="uid://d3eleqvy3v1op" path="res://assets/audio/ui/Click_sound.wav" id="13_foqjr"]
 [ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_kv2g0"]
-[ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/Npc2_No_sound.tscn" id="15_u4lah"]
-[ext_resource type="Script" uid="uid://bd0jlfvbuskwa" path="res://scenes/TestingScenes/grid.gd" id="16_3ahl2"]
+[ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/NPCs/Npc2_No_sound.tscn" id="15_u4lah"]
+[ext_resource type="Script" uid="uid://bd0jlfvbuskwa" path="res://scenes/Scene3/grid.gd" id="16_3ahl2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q0b6v"]
 size = Vector3(14.4083, 9.09265, 11.1161)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xcpug"]
-size = Vector3(76.0434, 10.4154, 2.30859)
+size = Vector3(76.0434, 10.4154, 1.56982)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cb1v0"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -156,7 +156,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.656
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35107, 3.90953, -0.214016)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35107, 3.90953, -0.5834)
 shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Walls" type="Node3D" parent="Structures"]

@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_g4jo0"]
 
 [node name="PauseMenu" type="Control"]
+z_index = 4090
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -6,6 +6,8 @@ uniform float time_scale : hint_range(0.1, 5.0) = 1.0;
 uniform float noise_amount : hint_range(0.0, 1.0) = 0.15;
 uniform float scanlines : hint_range(0.0, 400.0) = 120.0;
 
+uniform float fade_amount : hint_range(0.0, 1.0) = 0.0; // 🔹 new fade parameter
+
 float rnd(vec2 co) {
     return fract(sin(dot(co, vec2(12.9898,78.233))) * 43758.5453);
 }
@@ -29,5 +31,6 @@ void fragment() {
     float line = sin((SCREEN_UV.y + t * 0.05) * scanlines) * 0.5 + 0.5;
     screen_col.rgb += (line - 0.5) * 0.06 * noise_amount;
 
-    COLOR = screen_col;
+    // 🔹 blend with black based on fade_amount
+    COLOR = mix(screen_col, vec4(0.0, 0.0, 0.0, 1.0), fade_amount);
 }

@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cqajbu24xh8af"]
 
 [ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="3_apgs4"]
-[ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/Npc2_No_sound.tscn" id="4_ptomh"]
-[ext_resource type="Script" uid="uid://bd0jlfvbuskwa" path="res://scenes/TestingScenes/grid.gd" id="6_apgs4"]
+[ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/NPCs/Npc2_No_sound.tscn" id="4_ptomh"]
+[ext_resource type="Script" uid="uid://bd0jlfvbuskwa" path="res://scenes/Scene3/grid.gd" id="6_apgs4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_fergp"]
 vertices = PackedVector3Array(-99.5, -0.58868, -99.5, -99.5, -0.58868, 99.5, 99.5, -0.58868, 99.5, 99.5, -0.58868, -99.5)

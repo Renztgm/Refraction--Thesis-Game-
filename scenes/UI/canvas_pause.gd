@@ -27,7 +27,7 @@ func create_ui_structure():
 	add_child(canvas_layer)
 	
 	# Try to load and instantiate PauseMenu
-	var pause_menu_scene = load("res://scenes/PauseMenu.tscn")  # Adjust path as needed
+	var pause_menu_scene = load("res://scenes/UI/PauseMenu.tscn")  # Adjust path as needed
 	if pause_menu_scene:
 		pause_menu = pause_menu_scene.instantiate()
 		canvas_layer.add_child(pause_menu)
@@ -38,7 +38,7 @@ func create_ui_structure():
 		print("  ❌ Could not load PauseMenu scene - check the path")
 	
 	# Try to load and instantiate SettingsUI
-	var settings_ui_scene = load("res://scenes/SettingsUI.tscn")  # Adjust path as needed
+	var settings_ui_scene = load("res://scenes/UI/SettingsUI.tscn")  # Adjust path as needed
 	if settings_ui_scene:
 		settings_ui = settings_ui_scene.instantiate()
 		canvas_layer.add_child(settings_ui)
