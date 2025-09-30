@@ -19,21 +19,17 @@ jobs:
         mv $HOME/godot/Godot_v4.5-stable_linux.x86_64 $HOME/godot/godot
         chmod +x $HOME/godot/godot
 
-    - name: Import project assets (ignore failure)
-      id: import
-      continue-on-error: true
-      run: $HOME/godot/godot --headless --import
-
-    - name: Check import result
-      if: steps.import.outcome != 'success'
-      run: echo "⚠️ Asset import failed, but continuing with tests."
+    - name: Import project assets
+      run: |
+        mkdir -p logs
+        $HOME/godot/godot --headless --import 2>&1 | tee logs/import.log
 
     - name: Run GUT Tests
       run: |
-        mkdir -p test_results
+        mkdir -p test_results logs
         $HOME/godot/godot --headless -d -s --path . addons/gut/gut_cmdln.gd \
           -gdir=res://tests/ \
-          -gexit | tee test_results/results.txt
+          -gexit 2>&1 | tee test_results/results.txt | tee logs/tests.log
 
     - name: Upload test results
       if: always()
@@ -41,3 +37,10 @@ jobs:
       with:
         name: gut-test-results
         path: test_results/results.txt
+
+    - name: Upload debug logs
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: godot-debug-logs
+        path: logs/
