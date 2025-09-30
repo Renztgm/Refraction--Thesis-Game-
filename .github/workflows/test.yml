@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - Scene-3
-  pull_request:
 
 jobs:
   test:
@@ -13,7 +12,7 @@ jobs:
     steps:
       # 1. Checkout the repo
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2. Download Godot 4.4.1 headless Mono
       - name: Download Godot
@@ -24,15 +23,28 @@ jobs:
           unzip godot.zip -d godot
           chmod +x godot/Godot_v${GODOT_VERSION}-stable_mono_linux_headless.x86_64
 
-      # 3. Display Godot version (optional)
+      # 3. Import project assets (important for tests to find resources)
+      - name: Import project assets
+        run: godot/Godot_v4.4.1-stable_mono_linux_headless.x86_64 --headless --import
+
+      # 4. Display Godot version (optional)
       - name: Check Godot version
         run: godot/Godot_v4.4.1-stable_mono_linux_headless.x86_64 --version
 
-      # 4. Run GUT tests headless
+      # 5. Run GUT tests headless
       - name: Run GUT tests
         run: |
+          mkdir -p test_results
           godot/Godot_v4.4.1-stable_mono_linux_headless.x86_64 \
             --headless -d -s \
             --path . addons/gut/gut_cmdln.gd \
             -gdir=res://tests/ \
-            -gexit
+            -gexit | tee test_results/results.txt
+
+      # 6. Upload test results as artifact
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gut-test-results
+          path: test_results/results.txt

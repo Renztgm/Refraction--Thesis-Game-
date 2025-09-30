@@ -13,7 +13,7 @@ var dialogue_triggered: bool = false  # Prevent retriggering
 # Dialogue settings
 var dialogue_file_path: String = "res://dialogues/Scene5Dialogue.json"  # Path to your dialogue JSON
 var npc_id: String = "Scene5Dialogue"  # ID of this NPC in the dialogue file
-var next_scene_path: String = "res://scenes/NextScene.tscn"  # Path to next scene
+var next_scene_path: String = "res://scenes/Scene6/Scene6.tscn"  # Path to next scene
 var player_node: Node = null
 
 func _ready():

@@ -1,6 +1,6 @@
 extends GutTest
 
-const SCENE3 = preload("res://scenes/NarativeScenes/Scene3.tscn")
+const SCENE3 = preload("res://scenes/Scene3/Scene3.tscn")
 
 # Helper: simulate physics frames
 func simulate_physics(node: Node, frames: int, delta: float = 1.0 / 60.0) -> void:
