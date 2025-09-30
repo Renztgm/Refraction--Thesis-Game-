@@ -12,6 +12,21 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Verify tracked assets
+      run: |
+        echo "===== Git-tracked assets ====="
+        git ls-files assets/ || true
+
+        echo "===== Missing common asset types (if any) ====="
+        for ext in ttf mp3 wav ogg; do
+          missing=$(find assets -type f -name "*.${ext}" | grep -v -F -f <(git ls-files assets/ | grep ".${ext}$") || true)
+          if [ -n "$missing" ]; then
+            echo "⚠️ Missing from git: ${ext} files"
+            echo "$missing"
+            exit 1
+          fi
+        done
+
     - name: Download Godot 4.5
       run: |
         wget https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_linux.x86_64.zip -O godot.zip
