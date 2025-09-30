@@ -21,6 +21,13 @@ jobs:
         mv $HOME/godot/Godot_v4.5-stable_linux.x86_64 $HOME/godot/godot
         chmod +x $HOME/godot/godot
 
+    - name: Check assets folder
+      run: |
+        if [ ! -d "assets" ]; then
+          echo "⚠️ No assets folder found. Skipping asset-heavy steps."
+          exit 0
+        fi
+
     # 3. Run the simplest GUT test only
     - name: Run GUT Test Example
       run: |
