@@ -21,14 +21,8 @@ jobs:
         mv $HOME/godot/Godot_v4.5-stable_linux.x86_64 $HOME/godot/godot
         chmod +x $HOME/godot/godot
 
-    # 3. Import project assets (optional, still useful for unit tests)
-    - name: Import project assets
-      run: |
-        mkdir -p logs
-        $HOME/godot/godot --headless --import 2>&1 | tee logs/import.log || true
-
-    # 4. Run ONLY unit tests with GUT
-    - name: Run GUT Unit Tests
+    # 3. Run the simplest GUT test only
+    - name: Run GUT Test Example
       run: |
         mkdir -p test_results logs
         $HOME/godot/godot --headless -d -s --path . addons/gut/gut_cmdln.gd \
@@ -42,7 +36,7 @@ jobs:
         cat test_results/summary.txt || true
         echo "========================"
 
-    # 5. Upload test results (summary + full logs)
+    # 4. Upload results and logs
     - name: Upload test results
       if: always()
       uses: actions/upload-artifact@v4
