@@ -38,28 +38,23 @@ jobs:
       run: |
         mkdir -p logs
         $HOME/godot/godot --headless --import 2>&1 | tee logs/import.log
-
-    - name: Run GUT Tests
+        
+    - name: Run GUT Unit Tests
       run: |
         mkdir -p test_results logs
-        # Run tests and save full log
         $HOME/godot/godot --headless -d -s --path . addons/gut/gut_cmdln.gd \
-          -gdir=res://tests/ \
+          -gdir=res://tests/unit \
           -gexit 2>&1 | tee logs/tests_full.log
 
-        # Extract only summary lines (PASS/FAIL/ERROR)
         grep -E "PASS|FAIL|ERROR|Ran" logs/tests_full.log > test_results/summary.txt || true
 
-        echo "===== TEST SUMMARY ====="
-        cat test_results/summary.txt
-        echo "========================"
 
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: gut-test-results
-        path: test_results/
+        - name: Upload test results
+          if: always()
+          uses: actions/upload-artifact@v4
+          with:
+            name: gut-test-results
+            path: test_results/
 
     - name: Upload full debug logs
       if: always()
