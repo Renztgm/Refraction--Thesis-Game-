@@ -25,12 +25,13 @@ jobs:
     - name: Run GUT Test Example
       run: |
         mkdir -p test_results logs
-        $HOME/godot/godot --headless -d -s --path tests_minimal addons/gut/gut_cmdln.gd \
+        $HOME/godot/godot --headless -d -s --path . addons/gut/gut_cmdln.gd \
           -gdir=res://tests \
           -gexit 2>&1 | tee logs/tests_full.log
 
         grep -E "PASS|FAIL|ERROR|Ran" logs/tests_full.log > test_results/summary.txt || true
         cat test_results/summary.txt || true
+
 
 
     # 4. Upload results and logs
