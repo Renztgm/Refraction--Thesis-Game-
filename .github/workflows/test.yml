@@ -27,18 +27,26 @@ jobs:
     - name: Run GUT Tests
       run: |
         mkdir -p test_results logs
+        # Run tests and save full log
         $HOME/godot/godot --headless -d -s --path . addons/gut/gut_cmdln.gd \
           -gdir=res://tests/ \
-          -gexit 2>&1 | tee test_results/results.txt | tee logs/tests.log
+          -gexit 2>&1 | tee logs/tests_full.log
+
+        # Extract only summary lines (PASS/FAIL/ERROR)
+        grep -E "PASS|FAIL|ERROR|Ran" logs/tests_full.log > test_results/summary.txt || true
+
+        echo "===== TEST SUMMARY ====="
+        cat test_results/summary.txt
+        echo "========================"
 
     - name: Upload test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: gut-test-results
-        path: test_results/results.txt
+        path: test_results/
 
-    - name: Upload debug logs
+    - name: Upload full debug logs
       if: always()
       uses: actions/upload-artifact@v4
       with:
