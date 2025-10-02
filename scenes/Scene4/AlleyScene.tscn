@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://g3gndto2e636"]
+[gd_scene load_steps=37 format=3 uid="uid://g3gndto2e636"]
 
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_6er7q"]
 [ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="2_hjv4e"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://c1boiuwcd58i6" path="res://assets/hollow echo/Idle silo.png" id="15_nn26f"]
 [ext_resource type="AudioStream" uid="uid://b7xyc2jckr8uq" path="res://assets/audio/ambient/Static_Sound.mp3" id="16_21pj3"]
 [ext_resource type="Shader" uid="uid://p2trvwfmiiq6" path="res://scenes/Scene4/AlleySceneScreenWarp.gdshader" id="16_fd1bb"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="18_nn26f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7igll"]
 size = Vector3(14.4083, 9.09265, 11.1161)
@@ -364,3 +365,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.00392157, 0.00392157, 0.00392157, 0)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("18_nn26f")]

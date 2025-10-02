@@ -7,6 +7,9 @@ extends CharacterBody3D
 # Access the PauseMenu through the CanvasPause autoload
 @onready var pause_menu: Control = CanvasPause.pause_menu
 
+# InventoryUI.Tcsn
+@onready var inventory_ui: Control = null
+
 @onready var audio_manager = get_node("/root/Main/AudioManager")
 
 var last_direction: String = "down"
@@ -21,6 +24,22 @@ var camera_collision_mask = 0xFFFFFFFF
 
 func _ready():
 	add_to_group("player")
+	
+	# -----------------------------
+	#  InventoryUI
+	# -----------------------------
+	
+	# Load inventory UI into the CanvasLayer
+	var ui_layer = get_tree().current_scene.get_node("UI")
+	if not ui_layer:
+		push_warning("⚠️ UI CanvasLayer not found in scene!")
+		return
+	
+	if ui_layer:
+		var inv_scene = preload("res://scenes/Inventory/InventoryUI.tscn")
+		inventory_ui = inv_scene.instantiate()
+		ui_layer.add_child(inventory_ui)
+		inventory_ui.visible = false  # start hidden
 
 	# -----------------------------
 	# 1️⃣ New game → spawn point
@@ -46,6 +65,7 @@ func _ready():
 	# 4️⃣ Debug: Print scene info
 	# -----------------------------
 	print_player_debug()
+	
 
 
 # -----------------------------
@@ -114,11 +134,22 @@ func _input(event):
 		
 	if event.is_action_pressed("ui_accept"): # Enter
 		save_game_here()
-
+		
 
 func save_game_here():
 	if SaveManager.save_game():
 		print("Game saved at position: ", position, " facing: ", last_direction)
+
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("inventory"):
+		if inventory_ui:
+			inventory_ui.visible = not inventory_ui.visible
+			print("Inventory toggled:", inventory_ui.visible)
+
+			if inventory_ui.visible:
+				freeze_player()
+			else:
+				unfreeze_player()
 
 
 # -----------------------------

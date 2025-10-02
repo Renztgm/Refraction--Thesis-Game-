@@ -7,12 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="5_swwvq"]
 [ext_resource type="Script" uid="uid://dgfq3w021r67s" path="res://scenes/NarativeScenes/Script/awakening_camera_controller.gd" id="6_bjme1"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="6_f4tgv"]
-[ext_resource type="Texture2D" uid="uid://804g24je5jxs" path="res://assets/sprites/Sprites/IDLE/idle_down.png" id="6_le1v4"]
 [ext_resource type="Script" uid="uid://c86wt7sw6gv5p" path="res://script/NarrativeSceneScripts/camera_controller.gd" id="7_pp1vh"]
 [ext_resource type="Script" uid="uid://dc2jevgscgkfi" path="res://script/NarrativeSceneScripts/dialogue_ui.gd" id="8_4igs4"]
 [ext_resource type="PackedScene" uid="uid://ccpff6cjmmbl4" path="res://addons/tree/trees.tscn" id="8_t2ff0"]
 [ext_resource type="Script" uid="uid://b16kko6yesh4g" path="res://scenes/NarativeScenes/Script/awakening_audio.gd" id="9_t2ff0"]
 [ext_resource type="Script" uid="uid://dcf0677e4iaao" path="res://scenes/NarativeScenes/Script/awakening_narrative.gd" id="10_722yh"]
+[ext_resource type="Texture2D" uid="uid://8g4clas8oawq" path="res://assets/Character/Justine -Character/idle_down_mc-Sheet-final.png" id="10_m7pfs"]
 [ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="13_2oxmw"]
 [ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="14_f4tgv"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="14_pp1vh"]
@@ -45,64 +45,64 @@ uv1_triplanar = true
 uv1_triplanar_sharpness = 50.2134
 uv2_triplanar = true
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_876vf"]
-atlas = ExtResource("6_le1v4")
-region = Rect2(0, 0, 96, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl7m3"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(0, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_swwvq"]
-atlas = ExtResource("6_le1v4")
-region = Rect2(96, 0, 96, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7feot"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(256, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f4tgv"]
-atlas = ExtResource("6_le1v4")
-region = Rect2(192, 0, 96, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhc0e"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(512, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bjme1"]
-atlas = ExtResource("6_le1v4")
-region = Rect2(288, 0, 96, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycs6u"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(768, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pp1vh"]
-atlas = ExtResource("6_le1v4")
-region = Rect2(384, 0, 96, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwhgw"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(1024, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4igs4"]
-atlas = ExtResource("6_le1v4")
-region = Rect2(480, 0, 96, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xl7a"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(1280, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t2ff0"]
-atlas = ExtResource("6_le1v4")
-region = Rect2(576, 0, 96, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxfdp"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(1536, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_722yh"]
-atlas = ExtResource("6_le1v4")
-region = Rect2(672, 0, 96, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jil6p"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(1792, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2oxmw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_876vf")
+"texture": SubResource("AtlasTexture_cl7m3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_swwvq")
+"texture": SubResource("AtlasTexture_7feot")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f4tgv")
+"texture": SubResource("AtlasTexture_qhc0e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bjme1")
+"texture": SubResource("AtlasTexture_ycs6u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pp1vh")
+"texture": SubResource("AtlasTexture_lwhgw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4igs4")
+"texture": SubResource("AtlasTexture_6xl7a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t2ff0")
+"texture": SubResource("AtlasTexture_gxfdp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_722yh")
+"texture": SubResource("AtlasTexture_jil6p")
 }],
 "loop": true,
 "name": &"Idle",
@@ -116,6 +116,15 @@ size = Vector3(1, 1.67432, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp1vh"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1iqc"]
+texture = ExtResource("17_2oxmw")
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2oxmw"]
 texture = ExtResource("17_2oxmw")
 expand_margin_left = 10.0
@@ -125,15 +134,6 @@ expand_margin_bottom = 10.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 modulate_color = Color(0.854902, 0.854902, 0.854902, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1iqc"]
-texture = ExtResource("17_2oxmw")
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
 
 [node name="NarrativeScene3d" type="Node3D"]
 
@@ -314,7 +314,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.03933, 0)
 script = ExtResource("5_f4tgv")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Characters/Player"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.04237032, 0)
 shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2oxmw")
@@ -462,8 +462,8 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("14_pp1vh")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/hover = SubResource("StyleBoxTexture_2oxmw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_n1iqc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2oxmw")
 text = "Next"
 
 [node name="AudioManager" type="Node" parent="."]

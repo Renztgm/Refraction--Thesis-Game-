@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=20 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="8_bo7vp"]
 [ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/NPCs/Npc2_follow.tscn" id="8_iarg8"]
 [ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="8_mn76v"]
+[ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="9_qwy0o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -173,6 +174,7 @@ offset_right = -65.0
 offset_bottom = -24.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("9_qwy0o")
 theme_override_fonts/font = SubResource("FontVariation_mn76v")
 theme_override_styles/normal = SubResource("StyleBoxTexture_qhwtn")
 text = "Next"

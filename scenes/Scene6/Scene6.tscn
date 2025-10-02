@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://damdcitec257m"]
 
-[ext_resource type="Script" uid="uid://dwvj44qtr8i7u" path="res://Scene6_MemoryRoom.gd" id="1_aa3rn"]
+[ext_resource type="Script" uid="uid://dwvj44qtr8i7u" path="res://script/Scene6_MemoryRoom.gd" id="1_aa3rn"]
 
 [node name="Scene6" type="Node3D"]
 

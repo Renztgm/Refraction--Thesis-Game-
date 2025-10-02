@@ -56,6 +56,7 @@ size = Vector3(200, 1, 200)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="RoadLayout" type="Node3D" parent="Structures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20048308, 0)
 
 [node name="Road" parent="Structures/RoadLayout" instance=ExtResource("1_fnou3")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.40693, 0.5, -47.0844)
@@ -193,7 +194,7 @@ use_collision = true
 size = Vector3(500, 1, 250)
 
 [node name="Player3d" parent="." instance=ExtResource("11_aq08c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46694, 0, 67.0795)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46694, 0.41571736, 67.0795)
 
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 
@@ -228,7 +229,7 @@ navigation_mesh = SubResource("NavigationMesh_q0b6v")
 mesh = SubResource("BoxMesh_prnq5")
 
 [node name="Npc2" parent="." instance=ExtResource("15_u4lah")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.28081, 0.953631, 61.1064)
+transform = Transform3D(0.51, 0, 0, 0, 0.51, 0, 0, 0, 0.51, -4.28081, 0.5857809, 61.1064)
 speed = 3.0
 
 [node name="Grid" type="Node3D" parent="."]
