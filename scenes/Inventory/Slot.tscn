@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://xcocbdvh126v" path="res://scenes/Inventory/slot.gd" id="1_ksvlt"]
 
 [node name="Slot" type="Control"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,18 +20,24 @@ size_flags_horizontal = 4
 script = ExtResource("1_ksvlt")
 
 [node name="Slot" type="Button" parent="."]
-custom_minimum_size = Vector2(96, 96)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
 
 [node name="TextureRect" type="TextureRect" parent="Slot"]
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
+expand_mode = 3
 
 [node name="Label" type="Label" parent="Slot"]
 layout_mode = 1

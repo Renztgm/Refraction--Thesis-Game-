@@ -126,7 +126,6 @@ func _input(event):
 		
 	if event.is_action_pressed("ui_cancel"):  # ESC
 		CanvasPause.toggle_pause_menu()
-		print("napindot")
 		return
 	
 	if get_tree().paused:

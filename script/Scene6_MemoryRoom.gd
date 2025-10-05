@@ -1,61 +1,92 @@
-# SimpleMemoryRoom.gd
-# Simplified version for easier testing
 extends Control
 
-# Manual node assignment - drag from scene dock
-@export var fade_overlay: ColorRect
-@export var wake_up_text: RichTextLabel
-@export var voice_text: RichTextLabel
-@export var mc_thought_text: RichTextLabel
+# -----------------------
+# NODES
+# -----------------------
+@onready var fade_overlay: ColorRect = $FadeOverlay
+@onready var wake_up_text: RichTextLabel = $UILayer/WakeupText
+@onready var voice_text: RichTextLabel = $UILayer/VoiceText
+@onready var mc_thought_text: RichTextLabel = $UILayer/MCThoughtText
+@onready var shard_text: RichTextLabel = $UILayer/ShardText
 
-# Audio players
-@export var static_player: AudioStreamPlayer
-@export var whispers_player: AudioStreamPlayer
-@export var voice_player: AudioStreamPlayer
-@export var heartbeat_player: AudioStreamPlayer
+@onready var hospital_bed: TextureRect = $FlashContainer/HospitalBed
+@onready var hallway: TextureRect = $FlashContainer/Hallway
+@onready var calendar: TextureRect = $FlashContainer/Calendar
+@onready var shard_memory: TextureRect = $FlashContainer/ShardMemory
+@onready var mc_reflection: TextureRect = $FlashContainer/MCReflection
 
-# Audio streams
-@export var static_audio: AudioStream
+# -----------------------
+# AUDIO
+# -----------------------
+@onready var static_player: AudioStreamPlayer = $StaticPlayer
+@onready var whispers_player: AudioStreamPlayer = $WhisperPlayer
+@onready var heartbeat_player: AudioStreamPlayer = $HeartbeatPlayer
+@onready var voice_player: AudioStreamPlayer = $VoicePlayer
+@onready var tinnitus_player: AudioStreamPlayer = $tinnitusPlayer
+@onready var footsteps_player: AudioStreamPlayer = $footstepPlayer
+
+var static_audio: AudioStream = preload("res://assets/audio/ambient/Static_Sound.mp3")
 @export var whispers_audio: AudioStream
 @export var voice_audio: AudioStream
 @export var heartbeat_audio: AudioStream
+@export var tinnitus_audio: AudioStream
+@export var footsteps_audio: AudioStream
 
-var scene_phase = 0
-var phase_timer = 0.0
-var is_scene_active = false
+# -----------------------
+# STATE
+# -----------------------
+var scene_phase := 0
+var phase_timer := 0.0
+var is_scene_active := false
+var phase_started := false
 
-# Simplified phase timing
-var PHASE_TIMES = [2.0, 1.5, 2.0, 1.5, 2.0, 3.0]
+# Phase durations (in seconds)
+var PHASE_TIMES := [
+	2.0, # Phase 0: Static Flicker
+	3.0, # Phase 1: Hospital Bed flash
+	3.0, # Phase 2: Hallway flash
+	3.0, # Phase 3: Calendar flash
+	5.0, # Phase 4: MC Reflection
+	5.0, # Phase 5: Wake Up text
+	5.0, # Phase 6: Voice line
+	5.0, # Phase 7: MC Thought
+	9999.0 # Phase 8: Memory Shard (final, waits → fade out)
+]
 
+signal sequence_completed
+
+# -----------------------
+# SETUP
+# -----------------------
 func _ready():
 	setup_simple_scene()
-
+	trigger_sequence()
+	
 func setup_simple_scene():
-	# Ensure we have the basic elements
-	if not fade_overlay:
-		push_error("Please assign fade_overlay in the inspector!")
-		return
-		
-	# Initial setup
-	fade_overlay.color = Color.BLACK
-	fade_overlay.modulate.a = 0.0
-	
-	# Setup text elements if available
+	if fade_overlay:
+		fade_overlay.color = Color(0, 0, 0, 1)
+
 	if wake_up_text:
-		wake_up_text.add_theme_color_override("default_color", Color.WHITE)
-		wake_up_text.add_theme_font_size_override("normal_font_size", 48)
-		wake_up_text.text = "[center]Wake up.[/center]"
-		wake_up_text.modulate.a = 0.0
-	
+		wake_up_text.text = ""
+		wake_up_text.visible = false
 	if voice_text:
-		voice_text.add_theme_color_override("default_color", Color(0.9, 0.8, 0.8))
-		voice_text.add_theme_font_size_override("normal_font_size", 36)
-		voice_text.modulate.a = 0.0
-	
+		voice_text.text = ""
+		voice_text.visible = false
 	if mc_thought_text:
-		mc_thought_text.add_theme_color_override("default_color", Color(0.8, 0.9, 1.0))
-		mc_thought_text.add_theme_font_size_override("normal_font_size", 28)
-		mc_thought_text.modulate.a = 0.0
+		mc_thought_text.text = ""
+		mc_thought_text.visible = false
+	if shard_text:
+		shard_text.text = ""
+		shard_text.visible = false
+	
+	if hospital_bed: hospital_bed.visible = false
+	if hallway: hallway.visible = false
+	if calendar: calendar.visible = false
+	if shard_memory: shard_memory.visible = false
+	if mc_reflection: mc_reflection.visible = false
+
+func trigger_sequence():
+	start_memory_room()
 
 func start_memory_room():
 	if is_scene_active:
@@ -64,97 +95,191 @@ func start_memory_room():
 	is_scene_active = true
 	scene_phase = 0
 	phase_timer = 0.0
+	phase_started = false
 	
-	print("Starting Memory Room sequence...")
-	
-	# Start basic audio
+	print("🎬 Starting Memory Room sequence...")
+
 	if static_player and static_audio:
 		static_player.stream = static_audio
-		static_player.volume_db = -10.0
+		static_player.volume_db = -15.0
 		static_player.play()
+		print("🎵 Static playing:", static_audio)
+
+	if whispers_player and whispers_audio:
+		whispers_player.stream = whispers_audio
+		whispers_player.volume_db = -6.0
+		whispers_player.play()
+		print("🎵 Whispers playing:", whispers_audio)
 
 func _process(delta):
 	if not is_scene_active:
 		return
 		
 	phase_timer += delta
-	
-	# Handle current phase
+
 	match scene_phase:
-		0: phase_fade_in()
-		1: phase_wake_up_text()
-		2: phase_voice_line()
-		3: phase_mc_thought()
-		4: phase_heartbeat()
-		5: phase_complete()
+		0: phase_static_flicker()
+		1: phase_hospital_flash()
+		2: phase_hallway_flash()
+		3: phase_calendar_flash()
+		4: phase_mc_reflection()
+		5: phase_wake_up_text()
+		6: phase_voice_line()
+		7: phase_mc_thought()
+		8: phase_memory_fragment()
 	
-	# Check for phase advancement
-	if scene_phase < PHASE_TIMES.size() and phase_timer >= PHASE_TIMES[scene_phase]:
+	# Advance only if NOT the shard phase
+	if scene_phase < PHASE_TIMES.size() - 1 and phase_timer >= PHASE_TIMES[scene_phase]:
 		advance_phase()
 
-func phase_fade_in():
-	var progress = phase_timer / PHASE_TIMES[0]
-	if fade_overlay:
-		fade_overlay.modulate.a = progress * 0.8
+# -----------------------
+# PHASES
+# -----------------------
+func phase_static_flicker():
+	if not phase_started:
+		print("➡ Phase 0: Static Flicker")
+		phase_started = true
+
+	var flicker = randf()
+	if flicker > 0.5:
+		fade_overlay.color = Color(0, 0, 0, 0.7)
+	else:
+		fade_overlay.color = Color(0, 0, 0, 0.0)
+
+
+func phase_hospital_flash():
+	if not phase_started:
+		print("➡ Phase 1: Hospital Bed Flash")
+		_show_background(hospital_bed)
+		phase_started = true
+	hospital_bed.visible = randf() > 0.5
+
+func phase_hallway_flash():
+	if not phase_started:
+		print("➡ Phase 2: Hallway Flash")
+		_show_background(hallway)
+		phase_started = true
+	hallway.visible = randf() > 0.5
+
+func phase_calendar_flash():
+	if not phase_started:
+		print("➡ Phase 3: Calendar Flash")
+		_show_background(calendar)
+		phase_started = true
+	calendar.visible = randf() > 0.5
+
+func phase_mc_reflection():
+	if not phase_started:
+		print("➡ Phase 4: MC Reflection")
+		_show_background(mc_reflection)
+		mc_reflection.visible = true
+		phase_started = true
+	mc_reflection.visible = randf() > 0.5
+	if phase_timer >= PHASE_TIMES[4] - 0.1 and fade_overlay:
+		fade_overlay.color = Color(0, 0, 0, 1)
 
 func phase_wake_up_text():
-	if wake_up_text:
-		var flicker = sin(phase_timer * 20.0) * 0.3 + 0.7
-		wake_up_text.modulate.a = flicker
+	if not phase_started:
+		print("➡ Phase 5: Wake Up Text")
+		wake_up_text.text = "Wake up."
+		wake_up_text.visible = true
+		phase_started = true
 
 func phase_voice_line():
-	var progress = (phase_timer - PHASE_TIMES[1]) / PHASE_TIMES[2]
-	
-	if progress < 0.1 and voice_player and voice_audio:
-		voice_player.stream = voice_audio
-		voice_player.volume_db = -5.0
-		voice_player.pitch_scale = 0.8
-		voice_player.play()
-		
-		if voice_text:
-			voice_text.text = "[center]You don't belong here.[/center]"
-			var tween = create_tween()
-			tween.tween_property(voice_text, "modulate:a", 1.0, 0.5)
+	if not phase_started:
+		print("➡ Phase 6: Voice Line")
+		if voice_player and voice_audio:
+			voice_player.stream = voice_audio
+			voice_player.play()
+		voice_text.text = "You don't belong here."
+		voice_text.visible = true
+		phase_started = true
 
 func phase_mc_thought():
-	var progress = (phase_timer - PHASE_TIMES[1] - PHASE_TIMES[2]) / PHASE_TIMES[3]
-	
-	if progress < 0.2 and mc_thought_text:
-		mc_thought_text.text = "[center][i]What... was that voice?[/i][/center]"
-		var tween = create_tween()
-		tween.tween_property(mc_thought_text, "modulate:a", 1.0, 0.3)
+	if not phase_started:
+		print("➡ Phase 7: MC Thought")
+		mc_thought_text.text = "What... was that voice?"
+		mc_thought_text.visible = true
+		phase_started = true
 
-func phase_heartbeat():
-	var total_time = PHASE_TIMES[0] + PHASE_TIMES[1] + PHASE_TIMES[2] + PHASE_TIMES[3]
-	var progress = (phase_timer - total_time) / PHASE_TIMES[4]
-	
-	if progress < 0.1 and heartbeat_player and heartbeat_audio:
-		if static_player:
-			static_player.stop()
-		
-		heartbeat_player.stream = heartbeat_audio
-		heartbeat_player.volume_db = -8.0
-		heartbeat_player.play()
-	
-	# Visual heartbeat pulse
+func phase_memory_fragment():
+	if not phase_started:
+		print("➡ Phase 8: Memory Shard Appears (final)")
+		_show_background(shard_memory)
+
+		# Fade in shard + text
+		shard_memory.visible = true
+		shard_memory.modulate.a = 0.0
+		shard_text.text = "A broken shard of memory surfaces..."
+		shard_text.visible = true
+		shard_text.modulate.a = 0.0
+
+		if fade_overlay:
+			fade_overlay.color = Color(0, 0, 0, 0)
+
+		var tween_in = create_tween()
+		tween_in.tween_property(shard_memory, "modulate:a", 1.0, 2.0)
+		tween_in.tween_property(shard_text, "modulate:a", 1.0, 2.0)
+
+		phase_started = true
+
+		# After showing for a while, fade out
+		await get_tree().create_timer(3.0).timeout
+		_fade_out_shard()
+
+func _fade_out_shard():
+	print("✨ Fading shard out, preparing scene transition...")
+
+	var tween = create_tween()
+	if shard_memory:
+		tween.tween_property(shard_memory, "modulate:a", 0.0, 2.0)
+	if shard_text:
+		tween.tween_property(shard_text, "modulate:a", 0.0, 2.0)
 	if fade_overlay:
-		var pulse = sin(phase_timer * 2.0) * 0.2 + 0.8
-		fade_overlay.modulate = Color(pulse * 0.1, 0, 0, 0.9)
+		tween.tween_property(fade_overlay, "color", Color(0, 0, 0, 1), 2.0)
 
-func phase_complete():
+	tween.connect("finished", Callable(self, "_on_shard_fade_complete"))
+
+func _on_shard_fade_complete():
+	print("➡ Shard fade complete → load next scene")
 	complete_sequence()
 
+# -----------------------
+# SEQUENCE CONTROL
+# -----------------------
 func advance_phase():
+	if wake_up_text: wake_up_text.visible = false
+	if voice_text: voice_text.visible = false
+	if mc_thought_text: mc_thought_text.visible = false
+
 	scene_phase += 1
-	print("Advancing to phase: ", scene_phase)
+	phase_timer = 0.0
+	phase_started = false
+	print("➡ ADVANCED TO PHASE:", scene_phase)
+
+	if scene_phase >= PHASE_TIMES.size():
+		complete_sequence()
 
 func complete_sequence():
 	is_scene_active = false
-	print("Memory Room sequence complete!")
+	print("✅ Memory Room sequence complete! → Loading Scene7")
 	sequence_completed.emit()
 
-# Public method to start
-func trigger_sequence():
-	start_memory_room()
+	var next_scene_path = "res://scenes/Scene7/Scene7.tscn"
+	if ResourceLoader.exists(next_scene_path):
+		get_tree().change_scene_to_file(next_scene_path)
+	else:
+		push_error("❌ Could not find next scene: " + next_scene_path)
 
-signal sequence_completed
+# -----------------------
+# BACKGROUND CONTROL
+# -----------------------
+func _show_background(bg_node: Node):
+	if hospital_bed: hospital_bed.visible = false
+	if hallway: hallway.visible = false
+	if calendar: calendar.visible = false
+	if shard_memory: shard_memory.visible = false
+	if mc_reflection: mc_reflection.visible = false
+	
+	if bg_node:
+		bg_node.visible = true

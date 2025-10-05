@@ -113,16 +113,16 @@ func ipakita_pause_menu():
 		elif pause_menu.get("resume_button"):
 			pause_menu.resume_button.grab_focus()
 
-func itago_pause_menu():
-	print("Pumunta sa itago_pause_menu")
-	if pause_menu:
-		pause_menu.hide()
-		get_tree().paused = false
-		naka_pause = false
+#func itago_pause_menu():
+	#print("Pumunta sa itago_pause_menu")
+	#if pause_menu:
+		#pause_menu.hide()
+		#get_tree().paused = false
+		#naka_pause = false
 
 func toggle_pause_menu():
 	print("Pumunta sa toggle_pause_menu")
-	if naka_pause:
-		itago_pause_menu()
-	else:
-		ipakita_pause_menu()
+	#if naka_pause:
+		#itago_pause_menu()
+	#else:
+	ipakita_pause_menu()

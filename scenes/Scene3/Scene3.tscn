@@ -237,3 +237,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28204, 0)
 script = ExtResource("16_3ahl2")
 
 [node name="Grid_MeshInstance" type="MeshInstance3D" parent="Grid"]
+
+[node name="UI" type="CanvasLayer" parent="."]

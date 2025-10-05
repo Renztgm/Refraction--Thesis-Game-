@@ -28,11 +28,14 @@ AudioMgr="*res://script/AudioManager.gd"
 GameManager="*res://script/GameManager.gd"
 SceneTransitionManager="*res://script/SceneTransitionManager.gd"
 InventoryManager="*res://script/InventoryManager.gd"
+DisplayManager="*res://script/DisplayManager.gd"
 
 [display]
 
-window/size/mode=2
+window/size/mode=3
+window/size/initial_position_type=3
 window/size/resizable=false
+window/size/borderless=true
 mouse_cursor/autoload_on_startup=false
 
 [dotnet]

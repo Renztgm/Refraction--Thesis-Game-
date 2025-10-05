@@ -1,9 +1,9 @@
 extends Control
 
-@onready var slot_grid = $SlotGrid
-@onready var item_icon = $ItemInfoPanel/ItemIcon
-@onready var item_name = $ItemInfoPanel/ItemName
-@onready var item_desc = $ItemInfoPanel/ItemDesc
+@onready var slot_grid = $HBoxContainer/SlotGrid
+@onready var item_icon = $HBoxContainer/ItemInfoPanel/ItemIcon
+@onready var item_name = $HBoxContainer/ItemInfoPanel/ItemName
+@onready var item_desc = $HBoxContainer/ItemInfoPanel/ItemDesc
 
 var SlotScene = preload("res://scenes/Inventory/Slot.tscn")
 

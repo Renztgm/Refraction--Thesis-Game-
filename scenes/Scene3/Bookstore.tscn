@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=27 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
@@ -8,10 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dl1oxf6kjobol" path="res://assets/item/paper/torn_paper_item.gltf" id="6_vasej"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="7_h2wqw"]
 [ext_resource type="PackedScene" uid="uid://cowfut2pi6gjg" path="res://scenes/UI/PauseMenu.tscn" id="7_rg60h"]
-[ext_resource type="Texture2D" uid="uid://ccph8tmkqf87m" path="res://addons/pngs/Frame 1.png" id="8_bo7vp"]
 [ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/NPCs/Npc2_follow.tscn" id="8_iarg8"]
 [ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="8_mn76v"]
-[ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="9_qwy0o"]
+[ext_resource type="Texture2D" uid="uid://c5utx7vxnxej0" path="res://addons/pngs/Button.png" id="10_cudmw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -38,8 +37,32 @@ size = Vector3(7.11823, 4.82605, 6.53577)
 [sub_resource type="FontVariation" id="FontVariation_mn76v"]
 base_font = ExtResource("7_h2wqw")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qhwtn"]
-texture = ExtResource("8_bo7vp")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qwy0o"]
+texture = ExtResource("10_cudmw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3alfa"]
+texture = ExtResource("10_cudmw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x0oou"]
+texture = ExtResource("10_cudmw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ksjg"]
+texture = ExtResource("10_cudmw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbmbb"]
+texture = ExtResource("10_cudmw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l061f"]
+texture = ExtResource("10_cudmw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qkotb"]
+texture = ExtResource("10_cudmw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2412b"]
+texture = ExtResource("10_cudmw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d83rn"]
+texture = ExtResource("10_cudmw")
 
 [node name="Bookstore" type="Node3D"]
 
@@ -174,9 +197,11 @@ offset_right = -65.0
 offset_bottom = -24.0
 grow_horizontal = 0
 grow_vertical = 0
-theme = ExtResource("9_qwy0o")
 theme_override_fonts/font = SubResource("FontVariation_mn76v")
-theme_override_styles/normal = SubResource("StyleBoxTexture_qhwtn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qwy0o")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3alfa")
+theme_override_styles/hover = SubResource("StyleBoxTexture_x0oou")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_5ksjg")
 text = "Next"
 metadata/_edit_use_anchors_ = true
 
@@ -197,6 +222,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ShardImage" type="TextureRect" parent="MemoryShard/ShardPanel"]
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -240,5 +266,11 @@ offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = SubResource("FontVariation_mn76v")
-theme_override_styles/normal = SubResource("StyleBoxTexture_qhwtn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lbmbb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_l061f")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qkotb")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_2412b")
+theme_override_styles/focus = SubResource("StyleBoxTexture_d83rn")
 text = "Close"
+
+[node name="UI" type="CanvasLayer" parent="."]
