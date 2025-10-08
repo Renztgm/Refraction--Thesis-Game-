@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=33 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
@@ -11,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/NPCs/Npc2_follow.tscn" id="8_iarg8"]
 [ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="8_mn76v"]
 [ext_resource type="Texture2D" uid="uid://c5utx7vxnxej0" path="res://addons/pngs/Button.png" id="10_cudmw"]
+[ext_resource type="PackedScene" uid="uid://bce3kihq4jlus" path="res://assets/Bookshelf/BS6.tscn" id="12_l061f"]
+[ext_resource type="PackedScene" uid="uid://c1crep4q853we" path="res://assets/Bookshelf/BS1.tscn" id="13_qkotb"]
+[ext_resource type="PackedScene" uid="uid://bui3sxjervjrh" path="res://assets/Bookshelf/BS2.tscn" id="14_2412b"]
+[ext_resource type="PackedScene" uid="uid://ojhvhrl2nhjm" path="res://assets/Bookshelf/BS5.tscn" id="15_d83rn"]
+[ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="16_yli1t"]
+[ext_resource type="PackedScene" uid="uid://cctgl8qi55o8o" path="res://assets/Bookshelf/BS3.tscn" id="17_nemvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -274,3 +280,47 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_d83rn")
 text = "Close"
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Bookshelves" type="Node3D" parent="."]
+
+[node name="Bs6" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.380127, 0.30756998, 9.406025)
+
+[node name="Bs7" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.380127, 0.30756998, 1.5051193)
+
+[node name="Bs8" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.380127, 0.30756998, -5.574091)
+
+[node name="Bs9" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, 12.123938)
+
+[node name="Bs10" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, 4.0567408)
+
+[node name="Bs11" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, -4.0141487)
+
+[node name="Bs1" parent="." instance=ExtResource("13_qkotb")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -9.984751, 0.0062499996, 6.447307)
+
+[node name="Bs2" parent="." instance=ExtResource("14_2412b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9886527, 0.0062499996, -13.994272)
+
+[node name="Bs5" parent="." instance=ExtResource("15_d83rn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.461703, 0.0062499996, -13.840574)
+
+[node name="Bs4" parent="." instance=ExtResource("16_yli1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.290194, 11.309868, -13.994271)
+
+[node name="Bs6" parent="." instance=ExtResource("15_d83rn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.838861, 0.0062499996, -0.930105)
+
+[node name="Bs3" parent="." instance=ExtResource("17_nemvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.686391, 11.309868, -13.917422)
+
+[node name="Bs7" parent="." instance=ExtResource("14_2412b")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 4.7700715, 0.0062499996, 2.9122982)
+
+[node name="Bs8" parent="." instance=ExtResource("16_yli1t")]
+transform = Transform3D(0.35836798, 0, -0.9335804, 0, 1, 0, 0.9335804, 0, 0.35836798, 6.8449693, 0.0062499996, 9.060141)

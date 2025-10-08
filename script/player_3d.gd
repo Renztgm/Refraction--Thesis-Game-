@@ -131,8 +131,8 @@ func _input(event):
 	if get_tree().paused:
 		return
 		
-	if event.is_action_pressed("ui_accept"): # Enter
-		save_game_here()
+	#if event.is_action_pressed("ui_accept"): # Enter
+		#save_game_here()
 		
 
 func save_game_here():

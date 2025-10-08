@@ -5,6 +5,8 @@ extends Node3D
 @onready var hum_player: AudioStreamPlayer3D = $hum_player
 
 var player_in_range = false
+var dialogue_started = false
+var player_ref: Node = null  # store reference to player
 
 func _ready():
 	hum_player.stream = preload("res://assets/audio/ambient/humming.mp3")
@@ -21,13 +23,30 @@ func _ready():
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		player_in_range = true
+		player_ref = body
+
+		# Automatically start dialogue when entering area (only once)
+		if not dialogue_started:
+			dialogue_started = true
+
+			# freeze the player before starting dialogue
+			if player_ref.has_method("freeze_player"):
+				player_ref.freeze_player()
+
+			start_dialogue()
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):
 		player_in_range = false
 
 func _input(event):
-	if player_in_range and event.is_action_pressed("interact"):
+	if player_in_range and event.is_action_pressed("interact") and not dialogue_started:
+		dialogue_started = true
+
+		# freeze the player before starting dialogue
+		if player_ref and player_ref.has_method("freeze_player"):
+			player_ref.freeze_player()
+
 		start_dialogue()
 		
 func _on_dialogue_finished():
@@ -36,11 +55,10 @@ func _on_dialogue_finished():
 
 func start_dialogue():
 	var dialogue_manager = get_tree().root.get_node("NarrativeScene3d/CanvasLayer/DialogueManager")
-	dialogue_manager.load_dialogue("res://dialogues/CompanionScene2.json", "Companion")
+	dialogue_manager.load_dialogue(dialogue_file, npc_id)
 	dialogue_manager.show_node("start")
 	dialogue_manager.show()
 	
 	# connect signal if not already connected
 	if not dialogue_manager.is_connected("dialogue_finished", Callable(self, "_on_dialogue_finished")):
 		dialogue_manager.connect("dialogue_finished", Callable(self, "_on_dialogue_finished"))
-		

@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bq3k5itqo8x2y" path="res://assets/Character/Justine -Character/walk-forward-animation-Sheet.png" id="17_k65kc"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_s7x7m"]
-height = 3.0
+height = 3.6953125
 radius = 0.75
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0c6nk"]
@@ -453,7 +453,7 @@ animations = [{
 script = ExtResource("1_526tg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00856668, 1.68228, -0.00675368)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00856668, 1.8639206, -0.00675368)
 shape = SubResource("CylinderShape3D_s7x7m")
 
 [node name="Camera_Mount" type="Node3D" parent="."]
@@ -472,6 +472,6 @@ billboard = 2
 shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_t0ssm")
-animation = &"idle_up"
+animation = &"run_right"
 autoplay = "idle_down"
-frame_progress = 0.5382837
+frame_progress = 0.7768376
