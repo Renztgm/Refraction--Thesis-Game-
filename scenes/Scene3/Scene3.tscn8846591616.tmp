@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b2bjlsidj107l"]
+[gd_scene load_steps=24 format=3 uid="uid://b2bjlsidj107l"]
 
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_fnou3"]
 [ext_resource type="Script" uid="uid://05eg81tfg5nx" path="res://scenes/Scene3/pathfindingsystem.gd" id="1_otrxq"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/Scene3/bookstore.gd" id="8_ljopq"]
 [ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_ynfyr"]
 [ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="10_iaw0c"]
-[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="11_aq08c"]
 [ext_resource type="AudioStream" uid="uid://kc6yxx08keph" path="res://assets/audio/music/background_music.wav" id="12_ogqrk"]
 [ext_resource type="AudioStream" uid="uid://d3eleqvy3v1op" path="res://assets/audio/ui/Click_sound.wav" id="13_foqjr"]
 [ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_kv2g0"]
@@ -52,6 +51,7 @@ region_min_size = 9.0
 size = Vector3(200, 1, 200)
 
 [node name="Scene3" type="Node3D"]
+script = ExtResource("1_otrxq")
 
 [node name="Structures" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -131,7 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.568665, 4.04633, -1.39862)
 shape = SubResource("BoxShape3D_q0b6v")
 
 [node name="BookstoreMarker" type="Node3D" parent="Structures/Building/Bookstore"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.72459, 1.6978092, 1.7687347)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.72459, -2.5377088, 1.7687347)
 script = ExtResource("9_ynfyr")
 
 [node name="Building14" parent="Structures/Building" instance=ExtResource("3_8hrhf")]
@@ -141,7 +141,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -111.9
 
 [node name="Barrier" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53165, 0, -72.871)
-collision_layer = 3
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662018, 1.22429, -0.654297)
@@ -149,7 +149,7 @@ shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Barrier2" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.21536, 0.760214, -47.1706)
-collision_layer = 3
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1383, 1.22429, -0.651217)
@@ -157,7 +157,7 @@ shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Barrier3" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.65681, -1.15006, -47.1706)
-collision_layer = 3
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35107, 3.90953, -0.5834)
@@ -228,7 +228,14 @@ navigation_mesh = SubResource("NavigationMesh_q0b6v")
 mesh = SubResource("BoxMesh_prnq5")
 
 [node name="Npc2" parent="." instance=ExtResource("15_u4lah")]
-transform = Transform3D(0.51, 0, 0, 0, 0.51, 0, 0, 0, 0.51, 0.5029535, 0.5881989, 63.12042)
+transform = Transform3D(0.51, 0, 0, 0, 0.51, 0, 0, 0, 0.51, -4.281, 0.54, 61.106)
+speed = null
+idle_threshold = null
+recalc_distance = null
+raycast_distance = null
+player_avoidance_radius = null
+player_wait_timeout = null
+debug_pathfinding = null
 
 [node name="Grid" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28204, 0)
@@ -238,8 +245,5 @@ script = ExtResource("16_3ahl2")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Player3d" parent="." instance=ExtResource("11_aq08c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59115887, 0.8313031, 67.50688)
-
-[node name="PathfindingSystem" type="Node3D" parent="."]
-script = ExtResource("1_otrxq")
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 28.659885, 40.358665, 0)

@@ -32,6 +32,7 @@ func _on_continue_pressed() -> void:
 func _on_new_game_pressed() -> void:
 	AudioMgr.play_ui_sound()
 	print("MainMenu: New Game pressed")
+	InventoryManager.clear_all_game_data()
 	SaveManager.start_new_game()
 	get_tree().change_scene_to_file("res://scenes/Scene1/Scene1.tscn")
 

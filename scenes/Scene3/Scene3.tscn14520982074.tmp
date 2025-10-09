@@ -131,7 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.568665, 4.04633, -1.39862)
 shape = SubResource("BoxShape3D_q0b6v")
 
 [node name="BookstoreMarker" type="Node3D" parent="Structures/Building/Bookstore"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.72459, 1.6978092, 1.7687347)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.72459, -2.5377088, 1.7687347)
 script = ExtResource("9_ynfyr")
 
 [node name="Building14" parent="Structures/Building" instance=ExtResource("3_8hrhf")]
@@ -141,7 +141,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -111.9
 
 [node name="Barrier" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53165, 0, -72.871)
-collision_layer = 3
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662018, 1.22429, -0.654297)
@@ -149,7 +149,7 @@ shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Barrier2" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.21536, 0.760214, -47.1706)
-collision_layer = 3
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1383, 1.22429, -0.651217)
@@ -157,7 +157,7 @@ shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Barrier3" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.65681, -1.15006, -47.1706)
-collision_layer = 3
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35107, 3.90953, -0.5834)
@@ -228,7 +228,7 @@ navigation_mesh = SubResource("NavigationMesh_q0b6v")
 mesh = SubResource("BoxMesh_prnq5")
 
 [node name="Npc2" parent="." instance=ExtResource("15_u4lah")]
-transform = Transform3D(0.51, 0, 0, 0, 0.51, 0, 0, 0, 0.51, 0.5029535, 0.5881989, 63.12042)
+transform = Transform3D(0.51, 0, 0, 0, 0.51, 0, 0, 0, 0.51, -4.281, 1.5261383, 61.106)
 
 [node name="Grid" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28204, 0)

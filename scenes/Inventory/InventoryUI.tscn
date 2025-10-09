@@ -55,13 +55,11 @@ expand_mode = 3
 [node name="ItemName" type="Label" parent="HBoxContainer/ItemInfoPanel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Item Name"
 horizontal_alignment = 1
 
 [node name="ItemDesc" type="RichTextLabel" parent="HBoxContainer/ItemInfoPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 20
-text = "\" This is the Description.\" "
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true

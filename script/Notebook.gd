@@ -15,11 +15,13 @@ extends Area3D
 # Dialogue text
 var notebook_message: String = "I used to come here. Someone read to me here... but who?"
 var mc_line: String = "It's... still a little fuzzy."
-var companion_line: String = "Companion: Careful. Touching pieces like that… it might hurt. Or help. Depends on what you’ve forgotten."
+var companion_line: String = "Companion: Careful. Touching pieces like that… it might hurt. Or help. Depends on what you've forgotten."
 
 # Memory Shard data
 var shard_texture: Texture2D = preload("res://addons/pngs/shard.png")
 var shard_text: String = "This shard contains a memory of warmth and a forgotten voice..."
+var shard_name: String = "Memory_shard_1"  # Unique identifier for this shard
+var shard_scene_location: String = "Library Notebook Area"
 
 # Dialogue state
 enum DialogueState { NONE, NOTEBOOK, MC, COMPANION, SHARD }
@@ -30,9 +32,19 @@ var has_triggered: bool = false
 var player_ref: Node = null
 var text_is_showing: bool = false
 
+# Reference to InventoryManager
+var inventory_manager: Node = null
+
 
 func _ready():
 	body_entered.connect(_on_body_entered)
+	
+	# Get InventoryManager reference
+	inventory_manager = get_node_or_null("/root/InventoryManager")
+	if not inventory_manager:
+		print("ERROR: InventoryManager autoload not found!")
+	else:
+		print("DEBUG: InventoryManager successfully loaded")
 
 	if next_button:
 		print("DEBUG: Button found and connecting signal")
@@ -70,16 +82,40 @@ func _on_next_button_pressed():
 			dialogue_state = DialogueState.COMPANION
 
 		DialogueState.COMPANION:
-			# End dialogue, show MemoryShard UI
+			# End dialogue, show MemoryShard UI and save to database
 			hide_text()
 			if memory_shard_layer:
 				shard_image.texture = shard_texture
 				shard_description.text = shard_text
 				memory_shard_layer.visible = true
+				
+				# Save memory shard to database
+				save_memory_shard_to_db()
+			
 			dialogue_state = DialogueState.SHARD
 
 		_:
 			hide_text()
+
+
+# Save the memory shard to database
+func save_memory_shard_to_db():
+	if not inventory_manager:
+		print("ERROR: Cannot save memory shard - InventoryManager not available")
+		return
+	
+	var icon_path = shard_texture.resource_path if shard_texture else ""
+	var success = inventory_manager.save_memory_shard(
+		shard_name,
+		shard_text,
+		icon_path,
+		shard_scene_location
+	)
+	
+	if success:
+		print("Memory shard '%s' successfully saved!" % shard_name)
+	else:
+		print("Memory shard '%s' was already collected" % shard_name)
 
 
 # Trigger when player enters the area

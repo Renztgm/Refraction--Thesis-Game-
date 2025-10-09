@@ -311,13 +311,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9886527, 0.0062499996, -13
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.461703, 0.0062499996, -13.840574)
 
 [node name="Bs4" parent="." instance=ExtResource("16_yli1t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.290194, 11.309868, -13.994271)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.29, 0, -13.994)
 
 [node name="Bs6" parent="." instance=ExtResource("15_d83rn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.838861, 0.0062499996, -0.930105)
 
 [node name="Bs3" parent="." instance=ExtResource("17_nemvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.686391, 11.309868, -13.917422)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.686, 0, -13.917)
 
 [node name="Bs7" parent="." instance=ExtResource("14_2412b")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 4.7700715, 0.0062499996, 2.9122982)

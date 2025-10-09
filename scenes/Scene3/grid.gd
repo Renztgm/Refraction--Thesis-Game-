@@ -1,8 +1,9 @@
 extends Node3D
 
+
 @export var grid_size: float = 3.0
 @export var grid_dimensions: Vector2i = Vector2i(10, 10)  # Starting grid size
-@export var obstacle_check_radius: float = 1
+@export var obstacle_check_radius: float = 1.0
 @export var auto_expand: bool = true  # Enable automatic grid expansion
 
 # Grid data
@@ -15,6 +16,9 @@ var route_mesh_instance: MeshInstance3D
 
 # Debug visibility control
 var debug_visible: bool = false
+
+# Height cache (speeds up repeated raycasts)
+var _height_cache: Dictionary = {}  # Vector2 -> float
 
 func _ready():
 	build_grid_for_large_plane()  # Use this instead of build_grid()
@@ -29,9 +33,9 @@ func toggle_debug_visibility():
 	"""Toggle the visibility of grid debug visualization"""
 	debug_visible = !debug_visible
 	
-	if grid_mesh_instance:
+	if is_instance_valid(grid_mesh_instance):
 		grid_mesh_instance.visible = debug_visible
-	if route_mesh_instance:
+	if is_instance_valid(route_mesh_instance):
 		route_mesh_instance.visible = debug_visible
 	
 	print("🔧 Grid debug visibility: ", "ON" if debug_visible else "OFF")
@@ -48,24 +52,27 @@ func auto_adjust_for_target(target_pos: Vector3):
 	
 	var needs_rebuild = false
 	var old_dimensions = grid_dimensions
-	
-	# Check if target is outside current bounds and expand if needed
+
+	var new_width = grid_dimensions.x
+	var new_height = grid_dimensions.y
+
 	if abs(target_grid.x) >= half_width:
-		var needed_width = int(abs(target_grid.x) * 2.5)  # 25% margin
+		var needed_width = int(abs(target_grid.x) * 2.5)
 		if needed_width > grid_dimensions.x:
-			grid_dimensions.x = needed_width
+			new_width = needed_width
 			needs_rebuild = true
-		
+
 	if abs(target_grid.y) >= half_height:
-		var needed_height = int(abs(target_grid.y) * 2.5)  # 25% margin
+		var needed_height = int(abs(target_grid.y) * 2.5)
 		if needed_height > grid_dimensions.y:
-			grid_dimensions.y = needed_height
+			new_height = needed_height
 			needs_rebuild = true
-		
+
 	if needs_rebuild:
+		grid_dimensions = Vector2i(new_width, new_height)
 		print("🔄 Auto-expanding grid from ", old_dimensions, " to ", grid_dimensions)
 		print("🎯 Target at world: ", target_pos, " -> grid: ", target_grid)
-		build_grid_for_large_plane()  # Use this instead of build_grid()
+		build_grid_for_large_plane()
 		return true
 	else:
 		print("✅ Target ", target_grid, " already within grid bounds ", grid_dimensions)
@@ -74,6 +81,7 @@ func auto_adjust_for_target(target_pos: Vector3):
 func build_grid_for_large_plane():
 	"""Build grid specifically for 200x200 plane"""
 	grid.clear()
+	_height_cache.clear()
 	
 	# Calculate dimensions needed for 200x200 plane
 	var plane_size = 200.0
@@ -96,7 +104,8 @@ func build_grid_for_large_plane():
 	for x in range(-half_width, half_width):
 		for z in range(-half_height, half_height):
 			var cell = Vector2(x, z)
-			var world_pos = grid_to_world(cell)
+			# Use get_world_with_height to populate Y, but for obstacle check we only need X/Z
+			var world_pos = grid_to_world(cell)  # grid_to_world is now height-aware and cached
 			
 			# Only check cells that are within reasonable bounds of the plane
 			if abs(world_pos.x) <= plane_size/2 + 10 and abs(world_pos.z) <= plane_size/2 + 10:
@@ -160,21 +169,78 @@ func check_single_point(point: Vector3) -> bool:
 	ground_check.collision_mask = 1  # Ground layer
 	var ground_hit = get_world_3d().direct_space_state.intersect_ray(ground_check)
 	
+	# If there's an obstacle OR there is NO ground below this point -> treat as blocked
 	return obstacles.size() > 0 or ground_hit.is_empty()
 
+# ---------- HEIGHT / COORD CONVERSIONS ----------
 
 func grid_to_world(grid_pos: Vector2) -> Vector3:
-	return Vector3(
-		grid_pos.x * grid_size + grid_size * 0.5,
-		global_position.y,
-		grid_pos.y * grid_size + grid_size * 0.5
-	)
+	"""
+	Convert integer grid coordinates (Vector2) to a world position (Vector3),
+	sampling ground height via a downward raycast. Cached for performance.
+	"""
+	# Use integer key to avoid float mismatch in cache keys
+	var key = Vector2(int(grid_pos.x), int(grid_pos.y))
+	
+	# world center position for cell (X,Z)
+	var world_x = key.x * grid_size + grid_size * 0.5
+	var world_z = key.y * grid_size + grid_size * 0.5
+	
+	# Return cached height if available
+	if _height_cache.has(key):
+		return Vector3(world_x, _height_cache[key], world_z)
+	
+	# Raycast from above down to find ground height
+	var from = Vector3(world_x, 50.0, world_z)
+	var to   = Vector3(world_x, -50.0, world_z)
+	var params = PhysicsRayQueryParameters3D.create(from, to)
+	# Make sure this matches your ground collision layer
+	params.collision_mask = 1
+	var res = get_world_3d().direct_space_state.intersect_ray(params)
+	
+	var world_y = global_position.y  # fallback
+	if not res.is_empty() and res.has("position"):
+		world_y = res["position"].y
+	
+	# Cache the height to avoid repeated raycasts for the same cell
+	_height_cache[key] = world_y
+	return Vector3(world_x, world_y, world_z)
+
+func get_world_with_height(grid_pos: Vector2) -> Vector3:
+	"""Same as grid_to_world but forces a fresh raycast (ignores cache)."""
+	var world_x = int(grid_pos.x) * grid_size + grid_size * 0.5
+	var world_z = int(grid_pos.y) * grid_size + grid_size * 0.5
+	var from = Vector3(world_x, 50.0, world_z)
+	var to   = Vector3(world_x, -50.0, world_z)
+	var params = PhysicsRayQueryParameters3D.create(from, to)
+	params.collision_mask = 1
+	var res = get_world_3d().direct_space_state.intersect_ray(params)
+	var world_y = global_position.y
+	if not res.is_empty() and res.has("position"):
+		world_y = res["position"].y
+	# update cache
+	_height_cache[Vector2(int(grid_pos.x), int(grid_pos.y))] = world_y
+	return Vector3(world_x, world_y, world_z)
+
+func get_height_at_world_pos(world_pos: Vector3) -> float:
+	"""Raycasts down from world_pos.xz to find the ground height."""
+	var from = world_pos + Vector3(0, 50.0, 0)
+	var to   = world_pos + Vector3(0, -50.0, 0)
+	var params = PhysicsRayQueryParameters3D.create(from, to)
+	params.collision_mask = 1
+	var res = get_world_3d().direct_space_state.intersect_ray(params)
+	if not res.is_empty() and res.has("position"):
+		return res["position"].y
+	return global_position.y
 
 func world_to_grid(world_pos: Vector3) -> Vector2:
-	return Vector2(
-		floorf(world_pos.x / grid_size),
-		floorf(world_pos.z / grid_size)
-	)
+	var gx = floorf(world_pos.x / grid_size)
+	var gz = floorf(world_pos.z / grid_size)
+	var half_width = grid_dimensions.x / 2
+	var half_height = grid_dimensions.y / 2
+	gx = clamp(gx, -half_width, half_width - 1)
+	gz = clamp(gz, -half_height, half_height - 1)
+	return Vector2(gx, gz)
 
 func is_walkable(grid_pos: Vector2) -> bool:
 	return grid.get(grid_pos, false)
@@ -188,19 +254,17 @@ func is_valid_cell(grid_pos: Vector2) -> bool:
 func get_neighbors(cell: Vector2) -> Array[Vector2]:
 	var neighbors: Array[Vector2] = []
 	var directions = [Vector2(0, 1), Vector2(1, 0), Vector2(0, -1), Vector2(-1, 0)]
-	
 	for dir in directions:
 		var neighbor = cell + dir
 		if is_valid_cell(neighbor) and is_walkable(neighbor):
 			neighbors.append(neighbor)
-	
 	return neighbors
 
 func find_nearest_walkable(cell: Vector2) -> Vector2:
 	if is_walkable(cell):
 		return cell
 	
-	var max_radius = min(grid_dimensions.x, grid_dimensions.y) / 2
+	var max_radius = int(min(grid_dimensions.x, grid_dimensions.y) / 2)
 	for r in range(1, max_radius):
 		for dx in range(-r, r + 1):
 			for dz in range(-r, r + 1):
@@ -227,9 +291,9 @@ func clear_route():
 	print("🧹 Route cleared")
 
 func draw_grid_visualization():
-	"""Draw the base grid with walkable/blocked cells"""
+	"""Draw the base grid with walkable/blocked cells using ArrayMesh (Godot 4)"""
 	# Clear existing grid visualization
-	if grid_mesh_instance and grid_mesh_instance.is_inside_tree():
+	if is_instance_valid(grid_mesh_instance) and grid_mesh_instance.is_inside_tree():
 		grid_mesh_instance.queue_free()
 	
 	var verts := PackedVector3Array()
@@ -298,7 +362,7 @@ func draw_grid_visualization():
 func draw_route_on_grid():
 	"""Draw the current route on top of the grid"""
 	# Clear existing route visualization
-	if route_mesh_instance and route_mesh_instance.is_inside_tree():
+	if is_instance_valid(route_mesh_instance) and route_mesh_instance.is_inside_tree():
 		route_mesh_instance.queue_free()
 	
 	if current_route.is_empty():
@@ -470,20 +534,20 @@ func update_route_from_world_path(world_path: Array[Vector3]):
 
 func force_rebuild():
 	"""Force rebuild the grid (useful for runtime changes)"""
-	build_grid_for_large_plane()  # Use this instead of build_grid()
+	build_grid_for_large_plane()
 
 func show_debug():
 	"""Programmatically show debug visualization"""
 	debug_visible = true
-	if grid_mesh_instance:
+	if is_instance_valid(grid_mesh_instance):
 		grid_mesh_instance.visible = true
-	if route_mesh_instance:
+	if is_instance_valid(route_mesh_instance):
 		route_mesh_instance.visible = true
 
 func hide_debug():
 	"""Programmatically hide debug visualization"""
 	debug_visible = false
-	if grid_mesh_instance:
+	if is_instance_valid(grid_mesh_instance):
 		grid_mesh_instance.visible = false
-	if route_mesh_instance:
+	if is_instance_valid(route_mesh_instance):
 		route_mesh_instance.visible = false
