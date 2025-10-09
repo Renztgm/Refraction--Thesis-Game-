@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://jjwwj1v4ia2"]
+
+[ext_resource type="Script" uid="uid://chfoixqq7suew" path="res://script/npc_2_follow.gd" id="1_t505e"]
+[ext_resource type="Texture2D" uid="uid://gaoifk5ai3jh" path="res://assets/Companion/com-idle.png" id="2_enpqd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npboh"]
+atlas = ExtResource("2_enpqd")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nblp"]
+atlas = ExtResource("2_enpqd")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3svh"]
+atlas = ExtResource("2_enpqd")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk1ar"]
+atlas = ExtResource("2_enpqd")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjrxd"]
+atlas = ExtResource("2_enpqd")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpn0b"]
+atlas = ExtResource("2_enpqd")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r65dp"]
+atlas = ExtResource("2_enpqd")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8g64"]
+atlas = ExtResource("2_enpqd")
+region = Rect2(1792, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_06rm7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npboh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nblp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3svh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk1ar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjrxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpn0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r65dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8g64")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 7.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bytxk"]
+height = 7.197998
+radius = 1.4819336
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2xsjv"]
+radius = 0.103749
+
+[node name="Npc2" type="CharacterBody3D"]
+script = ExtResource("1_t505e")
+
+[node name="CompanionSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3.4, 0, 0, 0, 3.4, 0, 0, 0, 3.4, 0, 3.9425836, 0)
+flip_h = true
+billboard = 2
+shaded = true
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_06rm7")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0928802, 3.574092, 0.0271606)
+shape = SubResource("CylinderShape3D_bytxk")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.42569, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0)
+shape = SubResource("SphereShape3D_2xsjv")
+
+[node name="InteractLabel3D" type="Label3D" parent="."]
+transform = Transform3D(3.48474, 0, 0, 0, 3.03297, 0, 0, 0, 1, 0, 7.71248, 0)
+visible = false
+billboard = 1
+text = "\"Press E to talk\""
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5

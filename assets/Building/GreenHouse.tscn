@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1vv6nri75xqr"]
+
+[ext_resource type="PackedScene" uid="uid://d0grdb8xqsjwu" path="res://assets/Building/GreenHouse/Greenhouse.gltf" id="1_b0ntp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b0ntp"]
+size = Vector3(0.88671875, 0.27191162, 0.031188965)
+
+[node name="GreenHouse" type="Node3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_b0ntp")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="blockbench_export"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.18152018)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blockbench_export/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056640625, 0.12307739, -0.005706787)
+shape = SubResource("BoxShape3D_b0ntp")

@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfktk12g8ivvp"]
+
+[ext_resource type="PackedScene" uid="uid://cj1ujlfeop8ro" path="res://assets/roads/alleyway road.glb" id="1_5p8v3"]
+
+[node name="Alleyroad" type="Node3D"]
+
+[node name="blockbench_export4" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 5.01308, 0, 10.4777)
+
+[node name="blockbench_export5" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 5.00945, 0, 0.46771)
+
+[node name="blockbench_export6" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 5.01114, 0, -9.5348)
+
+[node name="blockbench_export10" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 5.01639, 0, -19.5325)
+
+[node name="blockbench_export11" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 5.02317, 0, -29.5288)
+
+[node name="blockbench_export12" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 5.02995, 0, -39.5382)
+
+[node name="blockbench_export7" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.0195251, 0, 10.5452)
+
+[node name="blockbench_export8" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.015893, 0, 0.535228)
+
+[node name="blockbench_export9" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.0175877, 0, -9.46729)
+
+[node name="blockbench_export13" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.0228391, 0, -19.465)
+
+[node name="blockbench_export14" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.0296164, 0, -29.4613)
+
+[node name="blockbench_export15" parent="." instance=ExtResource("1_5p8v3")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.0363917, 0, -39.4707)

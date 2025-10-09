@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://du6qcuvatfwy4"]
+
+[ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/Scene4/AlleyScene.gdshader" id="1_tkree"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="2_uyai8"]
+[ext_resource type="PackedScene" uid="uid://cfktk12g8ivvp" path="res://assets/roads/alleyroad.tscn" id="3_pw00n"]
+[ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="4_aeluw"]
+[ext_resource type="PackedScene" uid="uid://dw8pkwvdjmuhe" path="res://scenes/NPCs/Scene5NPC.tscn" id="4_sknra"]
+[ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="5_og53i"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="5_ve4oa"]
+[ext_resource type="PackedScene" uid="uid://d1vv6nri75xqr" path="res://assets/Building/GreenHouse.tscn" id="6_2bead"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uyai8"]
+shader = ExtResource("1_tkree")
+shader_parameter/emerald = Color(0.31, 0.78, 0.47, 1)
+shader_parameter/dull_gray = Color(0.66, 0.66, 0.66, 1)
+shader_parameter/flicker = 0.0
+
+[sub_resource type="Sky" id="Sky_sknra"]
+sky_material = SubResource("ShaderMaterial_uyai8")
+
+[sub_resource type="Environment" id="Environment_pw00n"]
+background_mode = 2
+sky = SubResource("Sky_sknra")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[node name="Scene5" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_pw00n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+sky_mode = 1
+
+[node name="Plane" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128864, 0, -0.251266)
+use_collision = true
+size = Vector3(75, 1, 75)
+
+[node name="Structures" type="Node3D" parent="."]
+
+[node name="Road" type="Node3D" parent="Structures"]
+
+[node name="Alleyroad" parent="Structures/Road" instance=ExtResource("3_pw00n")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.85118, 0.498637, -16.271524)
+
+[node name="GreenHouse" parent="Structures" instance=ExtResource("6_2bead")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -14.607355, 0.26458955, -13.819666)
+
+[node name="Walls" parent="Structures" instance=ExtResource("4_aeluw")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 31.425743, -0.33181584, -17.563011)
+
+[node name="Wall" parent="Structures" instance=ExtResource("5_og53i")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, -6.593962, -0.32840848, -16.812456)
+
+[node name="Wall2" parent="Structures" instance=ExtResource("5_og53i")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 7.561132, -0.32840848, -13.537534)
+
+[node name="Wall3" parent="Structures" instance=ExtResource("5_og53i")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, -22.064444, -0.32840848, -13.537534)
+
+[node name="Wall4" parent="Structures" instance=ExtResource("5_og53i")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, -22.064444, -0.32840848, -6.1041827)
+
+[node name="Walls2" parent="Structures" instance=ExtResource("4_aeluw")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 15.8923645, -0.33181584, -7.4234667)
+
+[node name="Wall5" parent="Structures" instance=ExtResource("5_og53i")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 7.561132, -0.32840848, -6.1420326)
+
+[node name="Spawnpoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8498, 0, 0)
+
+[node name="Npc2" parent="." instance=ExtResource("4_sknra")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.91135, 0.5, -15.832968)
+
+[node name="Player3d" parent="." instance=ExtResource("2_uyai8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.572472, 0, -12.484327)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("5_ve4oa")]

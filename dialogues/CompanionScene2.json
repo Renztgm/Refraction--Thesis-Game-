@@ -9,17 +9,17 @@
 	  "options": [
 		{
 		  "text": "💬 Who are you?",
-		  "full_text": "You: Who are you? I need to know if I can trust you in this strange place.",
+		  "full_text": "Who are you? I need to know if I can trust you in this strange place.",
 		  "next": "who_are_you"
 		},
 		{
 		  "text": "💬 Where... am I?",
-		  "full_text": "You: Where... am I? Everything feels so strange.",
+		  "full_text": "Where... am I? Everything feels so strange.",
 		  "next": "where_am_i"
 		},
 		{
 		  "text": "💬 (Stay silent)",
-		  "full_text": "You: …",
+		  "full_text": "…",
 		  "next": "stay_silent"
 		}
 	  ]
@@ -34,17 +34,17 @@
 	  "options": [
 		{
 		  "text": "💬 I don’t remember mine.",
-		  "full_text": "You: I don’t remember my name…",
+		  "full_text": "I don’t remember my name…",
 		  "next": "memory_loss"
 		},
 		{
 		  "text": "💬 Why are you here?",
-		  "full_text": "You: Why are you here? And why am I here?",
+		  "full_text": "Why are you here? And why am I here?",
 		  "next": "why_here"
 		},
 		{
 		  "text": "💬 Where... am I?",
-		  "full_text": "You: Where am I exactly?",
+		  "full_text": "Where am I exactly?",
 		  "next": "where_am_i"
 		}
 	  ]
@@ -58,17 +58,17 @@
 	  "options": [
 		{
 		  "text": "💬 That doesn’t explain much.",
-		  "full_text": "You: That doesn’t explain much.",
+		  "full_text": "That doesn’t explain much.",
 		  "next": "confusion"
 		},
 		{
 		  "text": "💬 So this isn’t the real world?",
-		  "full_text": "You: So this isn’t the real world?",
+		  "full_text": "So this isn’t the real world?",
 		  "next": "not_real_world"
 		},
 		{
 		  "text": "💬 (Stay silent)",
-		  "full_text": "You: …",
+		  "full_text": "…",
 		  "next": "stay_silent"
 		}
 	  ]
@@ -82,17 +82,17 @@
 	  "options": [
 		{
 		  "text": "💬 This place?",
-		  "full_text": "You: This place? What is it?",
+		  "full_text": "This place? What is it?",
 		  "next": "about_place"
 		},
 		{
 		  "text": "💬 Who are you?",
-		  "full_text": "You: Who are you again?",
+		  "full_text": "Who are you again?",
 		  "next": "who_are_you"
 		},
 		{
 		  "text": "💬 Why am I here?",
-		  "full_text": "You: Why am I here?",
+		  "full_text": "Why am I here?",
 		  "next": "why_here"
 		}
 	  ]
@@ -106,17 +106,17 @@
 	  "options": [
 		{
 		  "text": "💬 Can I get them back?",
-		  "full_text": "You: Can I get my memories back?",
+		  "full_text": "Can I get my memories back?",
 		  "next": "memories"
 		},
 		{
 		  "text": "💬 What happens if I don’t?",
-		  "full_text": "You: What happens if I never get them back?",
+		  "full_text": "What happens if I never get them back?",
 		  "next": "lost_forever"
 		},
 		{
 		  "text": "💬 (Stay silent)",
-		  "full_text": "You: …",
+		  "full_text": "…",
 		  "next": "stay_silent"
 		}
 	  ]
@@ -131,17 +131,17 @@
 	  "options": [
 		{
 		  "text": "💬 So I was pulled here?",
-		  "full_text": "You: So I was pulled here?",
+		  "full_text": "So I was pulled here?",
 		  "next": "pulled_here"
 		},
 		{
 		  "text": "💬 Can I leave?",
-		  "full_text": "You: Can I leave?",
+		  "full_text": "Can I leave?",
 		  "next": "can_leave"
 		},
 		{
 		  "text": "💬 What happens to those who stay?",
-		  "full_text": "You: What happens to those who stay here?",
+		  "full_text": "What happens to those who stay here?",
 		  "next": "what_happens"
 		}
 	  ]
@@ -155,17 +155,17 @@
 	  "options": [
 		{
 		  "text": "💬 That’s not comforting.",
-		  "full_text": "You: That’s not comforting.",
+		  "full_text": "That’s not comforting.",
 		  "next": "uncomfortable"
 		},
 		{
 		  "text": "💬 Are you real?",
-		  "full_text": "You: Are you real?",
+		  "full_text": "Are you real?",
 		  "next": "are_you_real"
 		},
 		{
 		  "text": "💬 (Stay silent)",
-		  "full_text": "You: …",
+		  "full_text": "…",
 		  "next": "stay_silent"
 		}
 	  ]

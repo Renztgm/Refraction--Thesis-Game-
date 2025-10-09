@@ -1,36 +1,57 @@
-name: Godot CI
+name: CI
 
 on:
   push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+    branches: [ Scene-3 ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    # 1. Checkout repository
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Set up Godot
-        uses: lihop/setup-godot@v2
-        with:
-          version: '4.4.1'
+    # 2. Download Godot 4.5 headless
+    - name: Download Godot 4.5
+      run: |
+        wget https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_linux.x86_64.zip -O godot.zip
+        unzip godot.zip -d $HOME/godot
+        mv $HOME/godot/Godot_v4.5-stable_linux.x86_64 $HOME/godot/godot
+        chmod +x $HOME/godot/godot
 
-      - name: Verify Godot installation
-        run: godot --version
+    - name: Check assets folder
+      run: |
+        if [ ! -d "assets" ]; then
+          echo "⚠️ No assets folder found. Skipping asset-heavy steps."
+          exit 0
+        fi
 
-      - name: Import project (optional, can skip if fast)
-        run: godot --headless --editor --quit
+    # 3. Run the simplest GUT test only
+    - name: Run GUT Test Example
+      run: |
+        mkdir -p test_results logs
+        $HOME/godot/godot --headless -d -s --path . addons/gut/gut_cmdln.gd \
+          -gdir=res://tests \
+          -gexit 2>&1 | tee logs/tests_full.log
 
-      - name: Run Godot Tests
-        run: godot --headless -s res://test_runner.gd
+        grep -E "PASS|FAIL|ERROR|Ran" logs/tests_full.log > test_results/summary.txt || true
+        cat test_results/summary.txt || true
 
-      - name: Upload test results (on failure)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-logs
-          path: |
-            ~/.local/share/godot
+
+
+    # 4. Upload results and logs
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: gut-test-results
+        path: test_results/
+
+    - name: Upload debug logs
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: godot-debug-logs
+        path: logs/

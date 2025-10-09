@@ -1,0 +1,18 @@
+{
+  "npc_1": {
+	"start": {
+	  "name": "Companion",
+	  "sentences": [
+        "…Rough night?"
+	  ],
+	  "next": "mc_response"
+	},
+	"mc_response": {
+	  "name": "You",
+	  "sentences": [
+        "You don’t answer. The words from the dream echo inside you, colder than the city’s air."
+	  ],
+	  "next": "end"
+	}
+  }
+}

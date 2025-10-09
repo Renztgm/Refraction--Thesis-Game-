@@ -1,0 +1,490 @@
+[gd_scene load_steps=39 format=3 uid="uid://ch1ttkvnsghnw"]
+
+[ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_le1v4"]
+[ext_resource type="PackedScene" uid="uid://bi1lugsasrj5" path="res://addons/Station/rails/RailTrack.tscn" id="4_bjme1"]
+[ext_resource type="PackedScene" uid="uid://btuftvfr512xm" path="res://addons/Station/Station.tscn" id="5_bjme1"]
+[ext_resource type="Script" uid="uid://cogfo7kfktfg4" path="res://scenes/NarativeScenes/Script/player_character.gd" id="5_f4tgv"]
+[ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="5_swwvq"]
+[ext_resource type="Script" uid="uid://dgfq3w021r67s" path="res://scenes/NarativeScenes/Script/awakening_camera_controller.gd" id="6_bjme1"]
+[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="6_f4tgv"]
+[ext_resource type="Script" uid="uid://c86wt7sw6gv5p" path="res://script/NarrativeSceneScripts/camera_controller.gd" id="7_pp1vh"]
+[ext_resource type="Script" uid="uid://dc2jevgscgkfi" path="res://script/NarrativeSceneScripts/dialogue_ui.gd" id="8_4igs4"]
+[ext_resource type="PackedScene" uid="uid://ccpff6cjmmbl4" path="res://addons/tree/trees.tscn" id="8_t2ff0"]
+[ext_resource type="Script" uid="uid://b16kko6yesh4g" path="res://scenes/NarativeScenes/Script/awakening_audio.gd" id="9_t2ff0"]
+[ext_resource type="Script" uid="uid://dcf0677e4iaao" path="res://scenes/NarativeScenes/Script/awakening_narrative.gd" id="10_722yh"]
+[ext_resource type="Texture2D" uid="uid://8g4clas8oawq" path="res://assets/Character/Justine -Character/idle_down_mc-Sheet-final.png" id="10_m7pfs"]
+[ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="13_2oxmw"]
+[ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="14_f4tgv"]
+[ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="14_pp1vh"]
+[ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="15_bjme1"]
+[ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="16_722yh"]
+[ext_resource type="Texture2D" uid="uid://c5utx7vxnxej0" path="res://addons/pngs/Button.png" id="17_2oxmw"]
+[ext_resource type="PackedScene" uid="uid://c3heuy5bku3an" path="res://assets/materials/trashbag/trash.tscn" id="17_4igs4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bjme1"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_curve = 0.243676
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_f4tgv"]
+sky_material = SubResource("ProceduralSkyMaterial_bjme1")
+
+[sub_resource type="Environment" id="Environment_pp1vh"]
+background_mode = 2
+sky = SubResource("Sky_f4tgv")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4tgv"]
+albedo_texture = ExtResource("5_swwvq")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 50.2134
+uv2_triplanar = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl7m3"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7feot"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhc0e"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycs6u"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwhgw"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xl7a"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxfdp"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jil6p"]
+atlas = ExtResource("10_m7pfs")
+region = Rect2(1792, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2oxmw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl7m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7feot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhc0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycs6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwhgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xl7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxfdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jil6p")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n1iqc"]
+size = Vector3(1, 1.67432, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_876vf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp1vh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1iqc"]
+texture = ExtResource("17_2oxmw")
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2oxmw"]
+texture = ExtResource("17_2oxmw")
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+modulate_color = Color(0.854902, 0.854902, 0.854902, 1)
+
+[node name="NarrativeScene3d" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_pp1vh")
+
+[node name="Floor" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(0.999987, 2.21242e-10, 0.00506143, -2.21242e-10, 1, -5.60161e-13, -0.00506143, -5.60161e-13, 0.999987, 1.10655, -0.207721, 0.411073)
+material_override = SubResource("StandardMaterial3D_f4tgv")
+use_collision = true
+size = Vector3(1000, 0.5, 1000)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0454946, 0, -0.00318146)
+light_color = Color(0.647059, 1, 0.478431, 1)
+sky_mode = 1
+
+[node name="Sky" parent="Environment" instance=ExtResource("6_f4tgv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841215, 5.63674, 2.09051)
+
+[node name="Structures" type="Node3D" parent="Environment"]
+
+[node name="Buildings" type="Node3D" parent="Environment/Structures"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6424, 0, -9.86592)
+
+[node name="Building 1" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -5.206, 0, -47.634)
+
+[node name="Building 2" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, 3.18615, 0, -42.0072)
+
+[node name="Building 3" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -12.5737, 0, -47.634)
+
+[node name="Building 4" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 15.5053, 0, -47.634)
+
+[node name="Building 5" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 22.6961, 0, -47.634)
+
+[node name="Building 6" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 36.921, 0, -47.634)
+
+[node name="Building 7" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, 45.3131, 0, -42.0072)
+
+[node name="Building 8" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 29.5532, 0, -47.634)
+
+[node name="Building 9" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 57.6323, 0, -47.634)
+
+[node name="Building 10" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 64.8231, 0, -47.634)
+
+[node name="Building 11" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -46.945, 0, -47.634)
+
+[node name="Building 12" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, -38.5528, 0, -42.0072)
+
+[node name="Building 13" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -54.3127, 0, -47.634)
+
+[node name="Building 14" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -26.2337, 0, -47.634)
+
+[node name="Building 15" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -19.0428, 0, -47.634)
+
+[node name="Building 16" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -88.6121, 0, -47.634)
+
+[node name="Building 17" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(-1.31134e-06, 0, -30, 0, 30, 0, 30, 0, -1.31134e-06, -80.2199, 0, -42.0072)
+
+[node name="Building 18" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -95.9798, 0, -47.634)
+
+[node name="Building 19" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -67.9008, 0, -47.634)
+
+[node name="Building 20" parent="Environment/Structures/Buildings" instance=ExtResource("2_le1v4")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -60.7099, 0, -47.634)
+
+[node name="Railroads" type="Node3D" parent="Environment/Structures"]
+
+[node name="Rails" type="Node3D" parent="Environment/Structures/Railroads"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.207, 0, 0)
+
+[node name="RailTrack" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 32.1687, 0.292279, -17.9712)
+
+[node name="RailTrack2" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -27.3672, 0.292279, -17.9712)
+
+[node name="RailTrack3" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -86.8777, 0.292279, -17.9712)
+
+[node name="RailTrack4" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -146.294, 0.292279, -17.9712)
+
+[node name="RailTrack5" parent="Environment/Structures/Railroads/Rails" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -205.824, 0.292279, -17.9712)
+
+[node name="Rails2" type="Node3D" parent="Environment/Structures/Railroads"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.207, 0, 10.9697)
+
+[node name="RailTrack" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 32.1687, 0.292279, -17.9712)
+
+[node name="RailTrack2" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -27.3672, 0.292279, -17.9712)
+
+[node name="RailTrack3" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -86.8777, 0.292279, -17.9712)
+
+[node name="RailTrack4" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -146.294, 0.292279, -17.9712)
+
+[node name="RailTrack5" parent="Environment/Structures/Railroads/Rails2" instance=ExtResource("4_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -205.824, 0.292279, -17.9712)
+
+[node name="Walls" type="Node3D" parent="Environment/Structures"]
+
+[node name="Station" parent="Environment/Structures/Walls" instance=ExtResource("5_bjme1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.54947, 0.254856, -28.1344)
+
+[node name="Walls" parent="Environment/Structures/Walls" instance=ExtResource("14_f4tgv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.5867, 0.258544, -38.6013)
+
+[node name="Walls2" parent="Environment/Structures/Walls" instance=ExtResource("14_f4tgv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 63.3891, 0.25, -38.6314)
+
+[node name="Wall" parent="Environment/Structures/Walls" instance=ExtResource("15_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 68.3832, 0.25, -43.5588)
+
+[node name="Walls3" parent="Environment/Structures/Walls" instance=ExtResource("14_f4tgv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -48.117, 0.25, -38.5979)
+
+[node name="Walls4" parent="Environment/Structures/Walls" instance=ExtResource("14_f4tgv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -103.811, 0.25, -38.5979)
+
+[node name="Wall2" parent="Environment/Structures/Walls" instance=ExtResource("15_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 68.3832, 0.25, -52.8615)
+
+[node name="Wall3" parent="Environment/Structures/Walls" instance=ExtResource("15_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 68.3832, 0.25, -62.1734)
+
+[node name="Walls5" parent="Environment/Structures/Walls" instance=ExtResource("14_f4tgv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 63.3891, 0.25, -76.5648)
+
+[node name="Walls6" parent="Environment/Structures/Walls" instance=ExtResource("14_f4tgv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.59861, 0.25, -76.5648)
+
+[node name="Walls7" parent="Environment/Structures/Walls" instance=ExtResource("14_f4tgv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -48.1583, 0.25, -76.5648)
+
+[node name="Walls8" parent="Environment/Structures/Walls" instance=ExtResource("14_f4tgv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -103.863, 0.25, -76.5648)
+
+[node name="Walls9" parent="Environment/Structures/Walls" instance=ExtResource("14_f4tgv")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -154.441, 0.25, -89.0425)
+
+[node name="Trees" parent="Environment/Structures" instance=ExtResource("8_t2ff0")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -56.3807, 0.249998, -34.6401)
+
+[node name="Trees2" parent="Environment/Structures" instance=ExtResource("8_t2ff0")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 55.7909, 0.249998, -37.4331)
+
+[node name="Characters" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.5305, 0, -13.1262)
+
+[node name="Player" type="CharacterBody3D" parent="Characters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.03933, 0)
+script = ExtResource("5_f4tgv")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Characters/Player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.04237032, 0)
+shaded = true
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_2oxmw")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Characters/Player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0952148, 0)
+shape = SubResource("BoxShape3D_n1iqc")
+
+[node name="Camera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.5305, 0, -13.1262)
+script = ExtResource("6_bjme1")
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+
+[node name="CameraController" type="Node3D" parent="Camera"]
+script = ExtResource("7_pp1vh")
+
+[node name="CameraAnimator" type="AnimationPlayer" parent="Camera"]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="FadeOverlay" type="ColorRect" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="ChoiceBox" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UILayer/ChoiceBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_876vf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/ChoiceBox/Panel"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.782118
+anchor_top = 0.398148
+anchor_right = 0.782118
+anchor_bottom = 0.398148
+offset_left = -196.0
+offset_right = -106.0
+offset_bottom = 120.0
+grow_vertical = 2
+theme = ExtResource("13_2oxmw")
+theme_override_constants/separation = 30
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogueBox" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_4igs4")
+
+[node name="Panel" type="Panel" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -325.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pp1vh")
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/DialogueBox/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 106.0
+offset_right = 6.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_722yh")
+expand_mode = 3
+
+[node name="NameLabel" type="Label" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -165.0
+offset_right = 1024.0
+offset_bottom = -135.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("14_pp1vh")
+theme_override_font_sizes/font_size = 24
+text = "NPC Name"
+horizontal_alignment = 1
+
+[node name="DialogueText" type="RichTextLabel" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = -133.0
+offset_right = -192.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("14_pp1vh")
+theme_override_font_sizes/normal_font_size = 20
+text = "This is the Dialogue"
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="UILayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -88.0
+offset_right = -67.0
+offset_bottom = -49.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("14_pp1vh")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_n1iqc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2oxmw")
+text = "Next"
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("9_t2ff0")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="SFXPlayer" type="AudioStreamPlayer3D" parent="AudioManager"]
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="AmbientPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="NarrativeController" type="Node" parent="."]
+script = ExtResource("10_722yh")
+
+[node name="Trash" parent="." instance=ExtResource("17_4igs4")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -16.9504, 0.250001, -23.3029)
+
+[node name="Trash2" parent="." instance=ExtResource("17_4igs4")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.378, 0.391861, -22.8189)
+
+[node name="Wall" parent="." instance=ExtResource("15_bjme1")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 68.3832, 0.25, -71.562)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cymfv3ogkbt5b"]
 
-[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player3d.tscn" id="1_l8aje"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_l8aje"]
 [ext_resource type="PackedScene" uid="uid://b61m07iovty1j" path="res://scenes/TestingScenes/old_man.tscn" id="2_l8aje"]
-[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/DialogueManager.tscn" id="3_w8og3"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="3_w8og3"]
 [ext_resource type="PackedScene" uid="uid://836q2bo23xfn" path="res://scenes/TestingScenes/farmer.tscn" id="4_nhd36"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l8aje"]

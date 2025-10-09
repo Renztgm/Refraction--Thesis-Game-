@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://tkpvecb6nn1"]
+
+[ext_resource type="PackedScene" uid="uid://c1crep4q853we" path="res://assets/Bookshelf/BS1.tscn" id="1_m0son"]
+[ext_resource type="PackedScene" uid="uid://bui3sxjervjrh" path="res://assets/Bookshelf/BS2.tscn" id="2_cvcml"]
+[ext_resource type="PackedScene" uid="uid://cctgl8qi55o8o" path="res://assets/Bookshelf/BS3.tscn" id="3_5x52t"]
+[ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="4_qnbns"]
+[ext_resource type="PackedScene" uid="uid://ojhvhrl2nhjm" path="res://assets/Bookshelf/BS5.tscn" id="5_5vj8v"]
+
+[node name="StackBs" type="Node3D"]
+
+[node name="Bs1" parent="." instance=ExtResource("1_m0son")]
+
+[node name="Bs2" parent="." instance=ExtResource("2_cvcml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9457397, 0, 0)
+
+[node name="Bs3" parent="." instance=ExtResource("3_5x52t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3340454, 0)
+
+[node name="Bs4" parent="." instance=ExtResource("4_qnbns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9387593, 1.3282108, 0)
+
+[node name="Bs5" parent="." instance=ExtResource("5_5vj8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6457098, 0)
+
+[node name="Bs6" parent="." instance=ExtResource("1_m0son")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9343247, 2.6410298, 0)

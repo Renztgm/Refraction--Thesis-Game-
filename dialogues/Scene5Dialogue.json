@@ -1,0 +1,42 @@
+{
+  "Scene5Dialogue": {
+	"start": {
+	  "name": "Companion",
+	  "sentences": [
+		"This'll do for tonight. The city doesn't move as much when you're off your feet."
+	  ],
+	  "next": "mc_internal"
+	},
+	"mc_internal": {
+	  "name": "You",
+	  "sentences": [
+		"This place is… wrong. Quiet in the way forgotten things are. And yet, somehow… safe."
+	  ],
+	  "options": [
+		{
+		  "text": "…Do you ever sleep?",
+		  "full_text": "…Do you ever sleep?",
+		  "next": "companion_response"
+		},
+		{
+		  "text": "(Rest.)",
+		  "full_text": "I think I'll rest now.",
+		  "next": "end"
+		}
+	  ]
+	},
+	"companion_response": {
+	  "name": "Companion",
+	  "sentences": [
+		"Sometimes. When the dreams are kind."
+	  ],
+	  "options": [
+		{
+		  "text": "(Rest.)",
+		  "full_text": "I think I'll rest now.",
+		  "next": "end"
+		}
+	  ]
+	}
+  }
+}

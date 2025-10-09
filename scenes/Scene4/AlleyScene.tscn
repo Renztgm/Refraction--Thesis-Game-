@@ -1,0 +1,390 @@
+[gd_scene load_steps=40 format=3 uid="uid://g3gndto2e636"]
+
+[ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_6er7q"]
+[ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="2_hjv4e"]
+[ext_resource type="PackedScene" uid="uid://cfktk12g8ivvp" path="res://assets/roads/alleyroad.tscn" id="2_nn26f"]
+[ext_resource type="PackedScene" uid="uid://bf66clec7ik28" path="res://assets/Building/Building2.tscn" id="3_jjybt"]
+[ext_resource type="PackedScene" uid="uid://cyby2eli2s01s" path="res://assets/Building/Building3.tscn" id="4_lkvvi"]
+[ext_resource type="PackedScene" uid="uid://cwa4jhihkwg0h" path="res://assets/Building/Building5.tscn" id="5_kqxkw"]
+[ext_resource type="PackedScene" uid="uid://ce3d7ovhkpl5l" path="res://assets/Building/Building6.tscn" id="6_fd1bb"]
+[ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_21pj3"]
+[ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_puurg"]
+[ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="10_b228b"]
+[ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/Scene4/AlleyScene.gdshader" id="11_lkvvi"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="11_oly33"]
+[ext_resource type="Script" uid="uid://cuby3fgy78mac" path="res://script/Trigger_Flicker.gd" id="12_hjv4e"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="15_kqxkw"]
+[ext_resource type="Texture2D" uid="uid://c1boiuwcd58i6" path="res://assets/hollow echo/Idle silo.png" id="15_nn26f"]
+[ext_resource type="AudioStream" uid="uid://b7xyc2jckr8uq" path="res://assets/audio/ambient/Static_Sound.mp3" id="16_21pj3"]
+[ext_resource type="Shader" uid="uid://p2trvwfmiiq6" path="res://scenes/Scene4/AlleySceneScreenWarp.gdshader" id="16_fd1bb"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="18_nn26f"]
+[ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/NPCs/Npc2_follow.tscn" id="19_e7sh1"]
+[ext_resource type="Script" uid="uid://4gntmajsnftj" path="res://scenes/Scene4/jump_scare.gd" id="20_0tfac"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7igll"]
+size = Vector3(14.4083, 9.09265, 11.1161)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l4n2c"]
+size = Vector3(87.3325, 4.60684, 2.30859)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kqxkw"]
+shader = ExtResource("11_lkvvi")
+shader_parameter/emerald = Color(0.31, 0.78, 0.47, 1)
+shader_parameter/dull_gray = Color(0.66, 0.66, 0.66, 1)
+shader_parameter/flicker = 0.0
+
+[sub_resource type="Sky" id="Sky_vxn0d"]
+sky_material = SubResource("ShaderMaterial_kqxkw")
+
+[sub_resource type="Environment" id="Environment_61g1e"]
+background_mode = 2
+sky = SubResource("Sky_vxn0d")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjybt"]
+size = Vector3(9.72504, 4.36279, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7sh1"]
+atlas = ExtResource("15_nn26f")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tfac"]
+atlas = ExtResource("15_nn26f")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_affr1"]
+atlas = ExtResource("15_nn26f")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s15yi"]
+atlas = ExtResource("15_nn26f")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmb07"]
+atlas = ExtResource("15_nn26f")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or3v1"]
+atlas = ExtResource("15_nn26f")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miysg"]
+atlas = ExtResource("15_nn26f")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj7vc"]
+atlas = ExtResource("15_nn26f")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsh0y"]
+atlas = ExtResource("15_nn26f")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fd1bb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7sh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tfac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_affr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s15yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmb07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or3v1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miysg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj7vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsh0y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_21pj3"]
+size = Vector3(2.19507, 5.62384, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21pj3"]
+shader = ExtResource("16_fd1bb")
+shader_parameter/strength = 0.25
+shader_parameter/time_scale = 1.0
+shader_parameter/noise_amount = 0.15
+shader_parameter/scanlines = 120.0
+shader_parameter/fade_amount = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7sh1"]
+size = Vector3(6.7371674, 1.645752, 4.7926025)
+
+[node name="AlleyScene" type="Node3D"]
+
+[node name="Structures" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="RoadLayout" type="Node3D" parent="Structures"]
+
+[node name="Road" parent="Structures/RoadLayout" instance=ExtResource("1_6er7q")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.40693, 0.5, -47.0844)
+
+[node name="Road2" parent="Structures/RoadLayout" instance=ExtResource("1_6er7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, -47.0844)
+
+[node name="Road3" parent="Structures/RoadLayout" instance=ExtResource("1_6er7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, -47.0844)
+
+[node name="Road4" parent="Structures/RoadLayout" instance=ExtResource("1_6er7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, -2.17044)
+
+[node name="Road5" parent="Structures/RoadLayout" instance=ExtResource("1_6er7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, -2.17044)
+
+[node name="Road6" parent="Structures/RoadLayout" instance=ExtResource("1_6er7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, 37.6545)
+
+[node name="Alleyroad" parent="Structures/RoadLayout" instance=ExtResource("2_nn26f")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -97.006, 0.5, 21.1603)
+
+[node name="Alleyroad2" parent="Structures/RoadLayout" instance=ExtResource("2_nn26f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -97.006, 0.5, 67.9127)
+
+[node name="Building" type="Node3D" parent="Structures"]
+
+[node name="Building1" parent="Structures/Building" instance=ExtResource("2_hjv4e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3309, 0, -69.6199)
+
+[node name="Building2" parent="Structures/Building" instance=ExtResource("2_hjv4e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5083, 0, -32.8142)
+
+[node name="Building3" parent="Structures/Building" instance=ExtResource("2_hjv4e")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -13.326, 0, -56.5641)
+
+[node name="Building4" parent="Structures/Building" instance=ExtResource("2_hjv4e")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.1631, 0, -56.2714)
+
+[node name="Building5" parent="Structures/Building" instance=ExtResource("3_jjybt")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 15.8581, 1.18595, -32.2761)
+
+[node name="Building6" parent="Structures/Building" instance=ExtResource("3_jjybt")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13.1931, 1.36123, -69.4413)
+
+[node name="Building8" parent="Structures/Building" instance=ExtResource("3_jjybt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3843, 0.361232, -17.4735)
+
+[node name="Building9" parent="Structures/Building" instance=ExtResource("4_lkvvi")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.3344, 0.546875, 10.958)
+
+[node name="Building10" parent="Structures/Building" instance=ExtResource("4_lkvvi")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -21.8314, 0.546875, 10.958)
+
+[node name="Building12" parent="Structures/Building" instance=ExtResource("3_jjybt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -62.2885, 0.722464, 16.4389)
+
+[node name="Building13" parent="Structures/Building" instance=ExtResource("3_jjybt")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16.6665, 0.361232, 14.0848)
+
+[node name="Building7" parent="Structures/Building" instance=ExtResource("5_kqxkw")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.8751, 1.87588, -15.3873)
+
+[node name="Building11" parent="Structures/Building" instance=ExtResource("6_fd1bb")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -43.446, 0.58023, 11.4574)
+
+[node name="Bookstore" type="Node3D" parent="Structures/Building"]
+
+[node name="Building14" parent="Structures/Building/Bookstore" instance=ExtResource("7_21pj3")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -82.6216, 0.5, 13.2583)
+
+[node name="Area3D" type="Area3D" parent="Structures/Building/Bookstore/Building14"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Building/Bookstore/Building14/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.568665, 4.04633, -1.39862)
+shape = SubResource("BoxShape3D_7igll")
+
+[node name="BookstoreMarker" type="Node3D" parent="Structures/Building/Bookstore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.7817, 2.41998, 0.835972)
+script = ExtResource("9_puurg")
+
+[node name="Building14" parent="Structures/Building" instance=ExtResource("3_jjybt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -111.905, 0.722464, 17.6356)
+
+[node name="Building15" parent="Structures/Building" instance=ExtResource("6_fd1bb")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -118.847, 0.58023, 36.3708)
+
+[node name="Building16" parent="Structures/Building" instance=ExtResource("2_hjv4e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.439, 0, 61.2248)
+
+[node name="Building17" parent="Structures/Building" instance=ExtResource("3_jjybt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.185, 0.722464, 81.4812)
+
+[node name="Building18" parent="Structures/Building" instance=ExtResource("3_jjybt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -80.2871, 0.722464, 79.0962)
+
+[node name="Barrier" type="Node3D" parent="Structures"]
+
+[node name="Barrier" type="StaticBody3D" parent="Structures/Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53165, 0, -72.871)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662018, 1.22429, -0.654297)
+shape = SubResource("BoxShape3D_l4n2c")
+
+[node name="Barrier2" type="StaticBody3D" parent="Structures/Barrier"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.21536, 0.760214, -47.1706)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1383, 1.22429, -0.651217)
+shape = SubResource("BoxShape3D_l4n2c")
+
+[node name="Barrier3" type="StaticBody3D" parent="Structures/Barrier"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.65681, -1.15006, -47.1706)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35107, 3.90953, -0.214016)
+shape = SubResource("BoxShape3D_l4n2c")
+
+[node name="Barrier4" type="StaticBody3D" parent="Structures/Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.7063, 0, -8.54543)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4822, -0.627639, 1.90735e-06)
+shape = SubResource("BoxShape3D_l4n2c")
+
+[node name="Barrier5" type="StaticBody3D" parent="Structures/Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.585, 0, 0.84929)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier5"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.377106, 0.25788, -0.748911)
+shape = SubResource("BoxShape3D_l4n2c")
+
+[node name="Barrier6" type="StaticBody3D" parent="Structures/Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.4372, 0, 20.5207)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier6"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.377106, 0.25788, -0.748911)
+shape = SubResource("BoxShape3D_l4n2c")
+
+[node name="Walls" type="Node3D" parent="Structures"]
+
+[node name="Walls1" parent="Structures/Walls" instance=ExtResource("10_b228b")]
+transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -7.73818, 0.5, 43.342)
+
+[node name="Walls2" parent="Structures/Walls" instance=ExtResource("10_b228b")]
+transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -63.3415, 0.5, 43.342)
+
+[node name="Walls4" parent="Structures/Walls" instance=ExtResource("10_b228b")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -95.1075, 0.5, 12.686)
+
+[node name="Walls3" parent="Structures/Walls" instance=ExtResource("10_b228b")]
+transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -53.8208, 0.5, 27.8286)
+
+[node name="Walls5" parent="Structures/Walls" instance=ExtResource("10_b228b")]
+transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -89.9776, 0.5, 28.6321)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_61g1e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+sky_mode = 1
+
+[node name="Plane" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128864, 0, -0.251266)
+use_collision = true
+size = Vector3(500, 1, 250)
+
+[node name="Player3d" parent="." instance=ExtResource("11_oly33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.284, 0, -4.2509)
+
+[node name="AudioManager" type="Node" parent="." groups=["player"]]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
+bus = &"Music"
+
+[node name="UISounds" type="AudioStreamPlayer" parent="AudioManager"]
+bus = &"Music"
+
+[node name="WaterPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+bus = &"Music"
+
+[node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+bus = &"Music"
+
+[node name="Spawnpoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.2066, 0, -3.55206)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.185, 0, -18.642)
+script = ExtResource("12_hjv4e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32486, 1.6814, 0)
+shape = SubResource("BoxShape3D_jjybt")
+
+[node name="shadow" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.806, 0, -64.177)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="shadow"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 4, 0)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_fd1bb")
+autoplay = "default"
+frame_progress = 0.820401
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shadow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00817871, 4.0217, 0)
+shape = SubResource("BoxShape3D_21pj3")
+
+[node name="DialogueManager" parent="." instance=ExtResource("15_kqxkw")]
+z_index = 4096
+
+[node name="StaticAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_21pj3")
+
+[node name="ScreenWarp" type="ColorRect" parent="."]
+visible = false
+z_index = -4090
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_21pj3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.00392157, 0.00392157, 0.00392157, 0)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("18_nn26f")]
+
+[node name="Npc2" parent="." instance=ExtResource("19_e7sh1")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 81.326706, 0.6049371, -4.971503)
+
+[node name="JumpScare" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.89272, 0, -9.910536)
+script = ExtResource("20_0tfac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpScare"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9226913, 0.32287598, 2.8851776)
+shape = SubResource("BoxShape3D_e7sh1")
+
+[node name="JumpscareCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.28511, 4.194548, -53.825573)

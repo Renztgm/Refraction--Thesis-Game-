@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1crep4q853we"]
+
+[ext_resource type="PackedScene" uid="uid://hal186n58e78" path="res://assets/Bookshelf/Bookshelf1/Bookshelf1.gltf" id="1_hl67a"]
+
+[node name="Bs1" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_hl67a")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)

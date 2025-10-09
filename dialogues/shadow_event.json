@@ -1,0 +1,17 @@
+{
+  "shadow_event": {
+	"start": {
+	  "name": "MC (internal)",
+	  "sentences": ["…What is that?"],
+	  "options": [],
+	  "next": "companion"
+	},
+	"companion": {
+	  "name": "Companion (sharply)",
+	  "sentences": ["Don’t stare too long. It sees back."],
+	  "options": [],
+	  "next": "end"
+	},
+	"end": {}
+  }
+}

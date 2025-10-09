@@ -1,0 +1,144 @@
+[gd_scene load_steps=7 format=3 uid="uid://damdcitec257m"]
+
+[ext_resource type="Script" uid="uid://dwvj44qtr8i7u" path="res://script/Scene6_MemoryRoom.gd" id="1_aa3rn"]
+[ext_resource type="Texture2D" uid="uid://1cw2yncmfo1k" path="res://assets/images/hospitalBed.jpg" id="2_7cl5a"]
+[ext_resource type="Texture2D" uid="uid://cfr7b7ehabm5t" path="res://assets/images/hallway.webp" id="3_7pom5"]
+[ext_resource type="Texture2D" uid="uid://b15e73m5tlp8i" path="res://assets/images/6679f2ad0822a53645beefa1be1774fe.jpg" id="4_xndlj"]
+[ext_resource type="Texture2D" uid="uid://0bqn6rqmg6yq" path="res://addons/pngs/shard.png" id="5_7pom5"]
+[ext_resource type="Texture2D" uid="uid://bk786tha43l53" path="res://assets/images/Mirrored MC reflection.png" id="5_xndlj"]
+
+[node name="Scene6" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aa3rn")
+
+[node name="FadeOverlay" type="ColorRect" parent="Control"]
+z_index = 4096
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="UILayer" type="CanvasLayer" parent="Control"]
+
+[node name="WakeupText" type="RichTextLabel" parent="Control/UILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "sesdfsd12"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="VoiceText" type="RichTextLabel" parent="Control/UILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "asdadasd"
+fit_content = true
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MCThoughtText" type="RichTextLabel" parent="Control/UILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "asdasda"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="FlashContainer" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HospitalBed" type="TextureRect" parent="Control/FlashContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7cl5a")
+metadata/_edit_use_anchors_ = true
+
+[node name="Hallway" type="TextureRect" parent="Control/FlashContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_7pom5")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Calendar" type="TextureRect" parent="Control/FlashContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xndlj")
+metadata/_edit_use_anchors_ = true
+
+[node name="MCReflection" type="TextureRect" parent="Control/FlashContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -342.0
+offset_right = 342.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_xndlj")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ShardMemory" type="TextureRect" parent="Control/FlashContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7pom5")
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="StaticPlayer" type="AudioStreamPlayer" parent="Control"]
+
+[node name="WhisperPlayer" type="AudioStreamPlayer" parent="Control"]
+
+[node name="HeartbeatPlayer" type="AudioStreamPlayer" parent="Control"]
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="Control"]
+
+[node name="tinnitusPlayer" type="AudioStreamPlayer" parent="Control"]
+
+[node name="footstepPlayer" type="AudioStreamPlayer" parent="Control"]

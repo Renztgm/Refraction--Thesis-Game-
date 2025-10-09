@@ -1,0 +1,172 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhtiik766w01r"]
+
+[ext_resource type="Script" uid="uid://dalqm6nay3tlx" path="res://script/SettingsUI.gd" id="1_dq6ke"]
+[ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_q0hoj"]
+
+[sub_resource type="FontVariation" id="FontVariation_vhr25"]
+base_font = ExtResource("2_q0hoj")
+
+[node name="SettingsUI" type="Control"]
+z_index = 4096
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dq6ke")
+
+[node name="SettingsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -111.5
+offset_right = 151.0
+offset_bottom = 111.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="SettingsPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS"
+
+[node name="AudioSection" type="VBoxContainer" parent="SettingsPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AudioTitle" type="Label" parent="SettingsPanel/VBox/AudioSection"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "AUDIO"
+
+[node name="MusicVolume" type="HBoxContainer" parent="SettingsPanel/VBox/AudioSection"]
+layout_mode = 2
+
+[node name="Music Volume" type="Label" parent="SettingsPanel/VBox/AudioSection/MusicVolume"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsPanel/VBox/AudioSection/MusicVolume"]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 80.0
+
+[node name="VolumeLabel" type="Label" parent="SettingsPanel/VBox/AudioSection/MusicVolume"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "0%"
+
+[node name="MusicEnabled" type="HBoxContainer" parent="SettingsPanel/VBox/AudioSection/MusicVolume"]
+layout_mode = 2
+
+[node name="Music Enabled" type="Label" parent="SettingsPanel/VBox/AudioSection/MusicVolume/MusicEnabled"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "Music Enabled"
+
+[node name="MusicCheckBox" type="CheckBox" parent="SettingsPanel/VBox/AudioSection/MusicVolume/MusicEnabled"]
+layout_mode = 2
+button_pressed = true
+
+[node name="VideoSection" type="VBoxContainer" parent="SettingsPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VIDEO" type="Label" parent="SettingsPanel/VBox/VideoSection"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "VIDEO"
+
+[node name="Brightness" type="HBoxContainer" parent="SettingsPanel/VBox/VideoSection"]
+layout_mode = 2
+
+[node name="Brightness" type="Label" parent="SettingsPanel/VBox/VideoSection/Brightness"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "Brightness"
+
+[node name="BrightnessSlider" type="HSlider" parent="SettingsPanel/VBox/VideoSection/Brightness"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = 0.5
+value = 0.5
+
+[node name="BrightnessLabel" type="Label" parent="SettingsPanel/VBox/VideoSection/Brightness"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "0%"
+
+[node name="Fullscreen" type="HBoxContainer" parent="SettingsPanel/VBox/VideoSection"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/VBox/VideoSection/Fullscreen"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "Fullscreen"
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="SettingsPanel/VBox/VideoSection/Fullscreen"]
+layout_mode = 2
+
+[node name="VSync" type="HBoxContainer" parent="SettingsPanel/VBox/VideoSection"]
+layout_mode = 2
+
+[node name="V-Sync" type="Label" parent="SettingsPanel/VBox/VideoSection/VSync"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "V-Sync"
+
+[node name="VSyncCheckBox" type="CheckBox" parent="SettingsPanel/VBox/VideoSection/VSync"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="ApplyButton" type="Button" parent="SettingsPanel/VBox/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "Apply"
+
+[node name="CancelButton" type="Button" parent="SettingsPanel/VBox/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "Cancel"
+
+[node name="ResetButton" type="Button" parent="SettingsPanel/VBox/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_font_sizes/font_size = 24
+text = "Reset to Defaults"

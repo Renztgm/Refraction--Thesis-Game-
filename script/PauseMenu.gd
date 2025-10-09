@@ -36,6 +36,11 @@ func toggle_pause():
 	else:
 		_on_resume_pressed()
 
+	# ✅ Always enforce fullscreen no matter what
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
+
 func _on_resume_pressed():
 	AudioMgr.play_ui_sound()
 	is_paused = false
@@ -44,7 +49,7 @@ func _on_resume_pressed():
 
 func _on_settings_pressed():
 	AudioMgr.play_ui_sound()
-	var settings = load("res://scenes/SettingsUI.tscn").instantiate()
+	var settings = load("res://scenes/UI/SettingsUI.tscn").instantiate()
 	
 	# Connect to signal for when Settings closes
 	settings.closed.connect(func():
