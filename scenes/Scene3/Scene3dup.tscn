@@ -1,22 +1,21 @@
-[gd_scene load_steps=25 format=3 uid="uid://b2bjlsidj107l"]
+[gd_scene load_steps=26 format=3 uid="uid://crieuya1rk71"]
 
-[ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_fnou3"]
-[ext_resource type="Script" uid="uid://05eg81tfg5nx" path="res://scenes/Scene3/pathfindingsystem.gd" id="1_otrxq"]
-[ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="2_otrxq"]
-[ext_resource type="PackedScene" uid="uid://bf66clec7ik28" path="res://assets/Building/Building2.tscn" id="3_8hrhf"]
-[ext_resource type="PackedScene" uid="uid://cyby2eli2s01s" path="res://assets/Building/Building3.tscn" id="4_7j4dl"]
-[ext_resource type="PackedScene" uid="uid://cwa4jhihkwg0h" path="res://assets/Building/Building5.tscn" id="5_qt3ua"]
-[ext_resource type="PackedScene" uid="uid://ce3d7ovhkpl5l" path="res://assets/Building/Building6.tscn" id="6_yq0lp"]
-[ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_tf8eh"]
-[ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/Scene3/bookstore.gd" id="8_ljopq"]
-[ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_ynfyr"]
-[ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="10_iaw0c"]
-[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="11_aq08c"]
-[ext_resource type="AudioStream" uid="uid://kc6yxx08keph" path="res://assets/audio/music/background_music.wav" id="12_ogqrk"]
-[ext_resource type="AudioStream" uid="uid://d3eleqvy3v1op" path="res://assets/audio/ui/Click_sound.wav" id="13_foqjr"]
-[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_kv2g0"]
-[ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/NPCs/Npc2_No_sound.tscn" id="15_u4lah"]
-[ext_resource type="Script" uid="uid://bd0jlfvbuskwa" path="res://scenes/Scene3/grid.gd" id="16_3ahl2"]
+[ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_qqu30"]
+[ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="2_w8xhl"]
+[ext_resource type="PackedScene" uid="uid://bf66clec7ik28" path="res://assets/Building/Building2.tscn" id="3_a3gs2"]
+[ext_resource type="PackedScene" uid="uid://cyby2eli2s01s" path="res://assets/Building/Building3.tscn" id="4_lty0u"]
+[ext_resource type="PackedScene" uid="uid://cwa4jhihkwg0h" path="res://assets/Building/Building5.tscn" id="5_lwemc"]
+[ext_resource type="PackedScene" uid="uid://ce3d7ovhkpl5l" path="res://assets/Building/Building6.tscn" id="6_8khky"]
+[ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_j3yob"]
+[ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/Scene3/bookstore.gd" id="8_f0oa7"]
+[ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_dwooa"]
+[ext_resource type="PackedScene" uid="uid://dtfgqr0mqat3g" path="res://addons/walls/Walls.tscn" id="10_55xl8"]
+[ext_resource type="AudioStream" uid="uid://kc6yxx08keph" path="res://assets/audio/music/background_music.wav" id="11_6n0jv"]
+[ext_resource type="AudioStream" uid="uid://d3eleqvy3v1op" path="res://assets/audio/ui/Click_sound.wav" id="12_ri6ds"]
+[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="13_msrnp"]
+[ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="15_ui3j6"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="16_21jln"]
+[ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/NPCs/Npc2_follow.tscn" id="16_ds713"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q0b6v"]
 size = Vector3(14.4083, 9.09265, 11.1161)
@@ -41,15 +40,17 @@ sky = SubResource("Sky_fnou3")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_q0b6v"]
-vertices = PackedVector3Array(-99.5, 1, -99.5, -99.5, 1, 99.5, 99.5, 1, 99.5, 99.5, 1, -99.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-agent_height = 2.0
-agent_max_climb = 0.9
-region_min_size = 9.0
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ds713"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_prnq5"]
-size = Vector3(200, 1, 200)
+[sub_resource type="BoxShape3D" id="BoxShape3D_qqu30"]
+size = Vector3(250, 1, 250)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ds713"]
+vertices = PackedVector3Array(-124.5, 1, -124.5, -124.5, 1, 124.5, 124.5, 1, 124.5, 124.5, 1, -124.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qqu30"]
+size = Vector3(250, 1, 250)
 
 [node name="Scene3" type="Node3D"]
 
@@ -59,72 +60,72 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [node name="RoadLayout" type="Node3D" parent="Structures"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 
-[node name="Road" parent="Structures/RoadLayout" instance=ExtResource("1_fnou3")]
+[node name="Road" parent="Structures/RoadLayout" instance=ExtResource("1_qqu30")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.40693, 0.5, -47.0844)
 
-[node name="Road2" parent="Structures/RoadLayout" instance=ExtResource("1_fnou3")]
+[node name="Road2" parent="Structures/RoadLayout" instance=ExtResource("1_qqu30")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, -47.0844)
 
-[node name="Road3" parent="Structures/RoadLayout" instance=ExtResource("1_fnou3")]
+[node name="Road3" parent="Structures/RoadLayout" instance=ExtResource("1_qqu30")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, -47.0844)
 
-[node name="Road4" parent="Structures/RoadLayout" instance=ExtResource("1_fnou3")]
+[node name="Road4" parent="Structures/RoadLayout" instance=ExtResource("1_qqu30")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, -2.17044)
 
-[node name="Road5" parent="Structures/RoadLayout" instance=ExtResource("1_fnou3")]
+[node name="Road5" parent="Structures/RoadLayout" instance=ExtResource("1_qqu30")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, -2.17044)
 
-[node name="Road6" parent="Structures/RoadLayout" instance=ExtResource("1_fnou3")]
+[node name="Road6" parent="Structures/RoadLayout" instance=ExtResource("1_qqu30")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, 37.6545)
 
 [node name="Building" type="Node3D" parent="Structures"]
 
-[node name="Building1" parent="Structures/Building" instance=ExtResource("2_otrxq")]
+[node name="Building1" parent="Structures/Building" instance=ExtResource("2_w8xhl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3309, 0, -69.6199)
 
-[node name="Building2" parent="Structures/Building" instance=ExtResource("2_otrxq")]
+[node name="Building2" parent="Structures/Building" instance=ExtResource("2_w8xhl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5083, 0, -32.8142)
 
-[node name="Building3" parent="Structures/Building" instance=ExtResource("2_otrxq")]
+[node name="Building3" parent="Structures/Building" instance=ExtResource("2_w8xhl")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -13.326, 0, -56.5641)
 
-[node name="Building4" parent="Structures/Building" instance=ExtResource("2_otrxq")]
+[node name="Building4" parent="Structures/Building" instance=ExtResource("2_w8xhl")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.1631, 0, -56.2714)
 
-[node name="Building5" parent="Structures/Building" instance=ExtResource("3_8hrhf")]
+[node name="Building5" parent="Structures/Building" instance=ExtResource("3_a3gs2")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 15.8581, 1.18595, -32.2761)
 
-[node name="Building6" parent="Structures/Building" instance=ExtResource("3_8hrhf")]
+[node name="Building6" parent="Structures/Building" instance=ExtResource("3_a3gs2")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13.1931, 1.36123, -69.4413)
 
-[node name="Building8" parent="Structures/Building" instance=ExtResource("3_8hrhf")]
+[node name="Building8" parent="Structures/Building" instance=ExtResource("3_a3gs2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3843, 0.361232, -17.4735)
 
-[node name="Building9" parent="Structures/Building" instance=ExtResource("4_7j4dl")]
+[node name="Building9" parent="Structures/Building" instance=ExtResource("4_lty0u")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.3344, 0.546875, 10.958)
 
-[node name="Building10" parent="Structures/Building" instance=ExtResource("4_7j4dl")]
+[node name="Building10" parent="Structures/Building" instance=ExtResource("4_lty0u")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -21.8314, 0.546875, 10.958)
 
-[node name="Building12" parent="Structures/Building" instance=ExtResource("3_8hrhf")]
+[node name="Building12" parent="Structures/Building" instance=ExtResource("3_a3gs2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -62.2885, 0.722464, 16.4389)
 
-[node name="Building13" parent="Structures/Building" instance=ExtResource("3_8hrhf")]
+[node name="Building13" parent="Structures/Building" instance=ExtResource("3_a3gs2")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16.6665, 0.361232, 14.0848)
 
-[node name="Building7" parent="Structures/Building" instance=ExtResource("5_qt3ua")]
+[node name="Building7" parent="Structures/Building" instance=ExtResource("5_lwemc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.8751, 1.87588, -15.3873)
 
-[node name="Building11" parent="Structures/Building" instance=ExtResource("6_yq0lp")]
+[node name="Building11" parent="Structures/Building" instance=ExtResource("6_8khky")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -43.446, 0.58023, 11.4574)
 
 [node name="Bookstore" type="Node3D" parent="Structures/Building"]
 
-[node name="Building14" parent="Structures/Building/Bookstore" instance=ExtResource("7_tf8eh")]
+[node name="Building14" parent="Structures/Building/Bookstore" instance=ExtResource("7_j3yob")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -82.6216, 0.5, 13.2583)
 
 [node name="Area3D" type="Area3D" parent="Structures/Building/Bookstore/Building14"]
-script = ExtResource("8_ljopq")
+script = ExtResource("8_f0oa7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Building/Bookstore/Building14/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.568665, 4.04633, -1.39862)
@@ -132,9 +133,9 @@ shape = SubResource("BoxShape3D_q0b6v")
 
 [node name="BookstoreMarker" type="Node3D" parent="Structures/Building/Bookstore"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.72459, 1.6978092, 1.7687347)
-script = ExtResource("9_ynfyr")
+script = ExtResource("9_dwooa")
 
-[node name="Building14" parent="Structures/Building" instance=ExtResource("3_8hrhf")]
+[node name="Building14" parent="Structures/Building" instance=ExtResource("3_a3gs2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -111.905, 0.722464, 17.6356)
 
 [node name="Barrier" type="Node3D" parent="Structures"]
@@ -166,19 +167,19 @@ shape = SubResource("BoxShape3D_xcpug")
 [node name="Walls" type="Node3D" parent="Structures"]
 transform = Transform3D(0.999996, 0, 0, 0, 0.999996, 0, 0, 0, 0.999996, 0, 0, 0)
 
-[node name="Walls1" parent="Structures/Walls" instance=ExtResource("10_iaw0c")]
+[node name="Walls1" parent="Structures/Walls" instance=ExtResource("10_55xl8")]
 transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -7.73818, 0.5, 43.342)
 
-[node name="Walls2" parent="Structures/Walls" instance=ExtResource("10_iaw0c")]
+[node name="Walls2" parent="Structures/Walls" instance=ExtResource("10_55xl8")]
 transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -63.3415, 0.5, 43.342)
 
-[node name="Walls4" parent="Structures/Walls" instance=ExtResource("10_iaw0c")]
+[node name="Walls4" parent="Structures/Walls" instance=ExtResource("10_55xl8")]
 transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -95.1075, 0.5, 12.686)
 
-[node name="Walls3" parent="Structures/Walls" instance=ExtResource("10_iaw0c")]
+[node name="Walls3" parent="Structures/Walls" instance=ExtResource("10_55xl8")]
 transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -53.8208, 0.5, 27.8286)
 
-[node name="Walls5" parent="Structures/Walls" instance=ExtResource("10_iaw0c")]
+[node name="Walls5" parent="Structures/Walls" instance=ExtResource("10_55xl8")]
 transform = Transform3D(-10, 0, 1.50996e-06, 0, 10, 0, -1.50996e-06, 0, -10, -89.9776, 0.5, 28.6321)
 
 [node name="Environment" type="Node3D" parent="."]
@@ -191,28 +192,32 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 light_color = Color(0.647059, 1, 0.478431, 1)
 sky_mode = 1
 
-[node name="Plane" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128864, 0, -0.251266)
-use_collision = true
-size = Vector3(500, 1, 250)
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+physics_material_override = SubResource("PhysicsMaterial_ds713")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+shape = SubResource("BoxShape3D_qqu30")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
+size = Vector3(250, 1, 250)
 
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
-stream = ExtResource("12_ogqrk")
+stream = ExtResource("11_6n0jv")
 autoplay = true
 bus = &"Music"
 playback_type = 1
 
 [node name="UISounds" type="AudioStreamPlayer" parent="AudioManager"]
-stream = ExtResource("13_foqjr")
+stream = ExtResource("12_ri6ds")
 bus = &"Music"
 
 [node name="WaterPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
-stream = ExtResource("14_kv2g0")
+stream = ExtResource("13_msrnp")
 autoplay = true
 bus = &"Music"
 playback_type = 1
@@ -221,25 +226,20 @@ parameters/looping = true
 [node name="Spawnpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7604, 0, 72.0895)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_q0b6v")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-mesh = SubResource("BoxMesh_prnq5")
-
-[node name="Npc2" parent="." instance=ExtResource("15_u4lah")]
-transform = Transform3D(0.51, 0, 0, 0, 0.51, 0, 0, 0, 0.51, 0.5029535, 0.5881989, 63.12042)
-
-[node name="Grid" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
-script = ExtResource("16_3ahl2")
-
-[node name="Grid_MeshInstance" type="MeshInstance3D" parent="Grid"]
-
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Player3d" parent="." instance=ExtResource("11_aq08c")]
+[node name="Player3d" parent="." instance=ExtResource("16_21jln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59115887, 0.8313031, 67.50688)
 
-[node name="PathfindingSystem" type="Node3D" parent="."]
-script = ExtResource("1_otrxq")
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ds713")
+script = ExtResource("15_ui3j6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+visible = false
+mesh = SubResource("BoxMesh_qqu30")
+
+[node name="Npc2" parent="." instance=ExtResource("16_ds713")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.4775534, 0.8617027, 68.73375)
+collision_layer = 4
+collision_mask = 7

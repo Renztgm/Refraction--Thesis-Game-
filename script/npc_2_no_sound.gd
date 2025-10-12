@@ -1,7 +1,10 @@
 extends CharacterBody3D
 
+# --- Animated Sprites ---
+@onready var animated_sprite: AnimatedSprite3D = $CompanionSprite
+
 # --- Settings ---
-@export var speed: float = 5.0
+@export var speed: float = 3.0
 @export var idle_threshold: float = 0.1
 @export var gravity: float = 9.8
 
@@ -91,6 +94,8 @@ func _ready():
 	# Try to go to bookstore
 	last_position = global_position
 	go_to_bookstore()
+	if animated_sprite:
+		animated_sprite.play("idle")
 	
 	print("🏁 NPC initialization complete!")
 
@@ -120,6 +125,16 @@ func _physics_process(delta: float):
 				# Follow the path instead of just moving forward
 				follow_path()
 				return  # follow_path handles movement, so return here
+			
+			if is_wall_ahead():
+				move_dir = choose_alternate_direction()
+				# NEW: Update animation for wall avoidance (side/back movement)
+				if move_dir != Vector3.ZERO and animated_sprite:
+					update_walk_animation(move_dir)
+			else:
+				# Follow the path instead of just moving forward
+				follow_path()
+				return  # follow_path handles movement and animation, so return here
 			
 			# Only apply wall avoidance movement if there's a direction
 			if move_dir != Vector3.ZERO:
@@ -168,6 +183,8 @@ func update_state():
 				print("✅ Reached bookstore! Switching to idle state")
 				# Clear the route visualization when reached
 				grid_system.clear_route()
+				if animated_sprite:
+					animated_sprite.play("idle")
 			# Also check if we're very close to the final destination
 			elif path_index == current_path.size() - 1:
 				var final_target = current_path[path_index]
@@ -184,11 +201,14 @@ func follow_path():
 	if current_path.is_empty() or path_index >= current_path.size():
 		velocity.x = 0.0
 		velocity.z = 0.0
+		# NEW: Ensure idle animation when stopped
+		if animated_sprite:
+			animated_sprite.play("idle")
 		move_and_slide()
 		return
 
 	var target = current_path[path_index]
-	var dir = (target - global_position)
+	var dir = (target - global_position)  # This declares 'dir' – ensure this line is here!
 	var distance = dir.length()
 	
 	# Use a more generous threshold based on grid size
@@ -204,7 +224,19 @@ func follow_path():
 		if path_index >= current_path.size():
 			velocity.x = 0.0
 			velocity.z = 0.0
+			# NEW: Switch to idle
+			if animated_sprite:
+				animated_sprite.play("idle")
 			move_and_slide()
+		return
+
+	# Safeguard: Skip if direction is zero-length (shouldn't happen, but prevents errors)
+	if dir.length() == 0:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		if animated_sprite:
+			animated_sprite.play("idle")
+		move_and_slide()
 		return
 
 	# Normalize direction and apply speed (only horizontal movement)
@@ -217,19 +249,24 @@ func follow_path():
 	if dir.length() > 0:
 		look_at(global_position + dir, Vector3.UP)
 	
+	# NEW: Update walk animation based on movement direction
+	if animated_sprite and dir.length() > 0:
+		update_walk_animation(dir)
+	
 	# Debug current movement (less frequent to avoid spam)
 	if path_index < current_path.size():
 		var current_grid_pos = grid_system.world_to_grid(global_position)
 		var target_grid_pos = grid_system.world_to_grid(target)
 		if randf() < 0.01:  # Print occasionally to avoid spam
 			print("🚶 Moving to waypoint ", path_index, ": grid ", target_grid_pos, " | current: ", current_grid_pos, " | dist: ", distance, " | speed: ", speed)
-
 func idle_behavior():
 	# Ensure NPC is completely stopped (only horizontal movement)
 	velocity.x = 0.0
 	velocity.z = 0.0
 	move_and_slide()
-
+	# NEW: Ensure idle animation
+	if animated_sprite:
+		animated_sprite.play("idle")
 # --- Path Updates (Improved with better validation) ---
 func go_to_bookstore():
 	if not grid_system or not bookstore_marker:
@@ -643,3 +680,63 @@ func choose_alternate_direction() -> Vector3:
 		return -transform.basis.z  # move back
 	else:
 		return Vector3.ZERO  # all blocked
+
+# --- NEW METHOD: Update Walk Animation Based on Direction ---
+func update_walk_animation(direction: Vector3):
+	"""
+	Adaptive animation controller.
+	- If the NPC rotates (look_at used), uses WORLD direction.
+	- If the NPC is fixed-facing, uses LOCAL direction.
+	- Plays the correct walking animation or idle.
+	"""
+	
+	if not animated_sprite or direction.length() < 0.1:
+		if animated_sprite and animated_sprite.animation != "idle":
+			animated_sprite.play("idle")
+		return
+	
+	var dir = direction.normalized()
+	
+	# --- Detect whether NPC rotates ---
+	# We compare the forward vector (-Z) with the direction of movement.
+	var forward = -transform.basis.z.normalized()
+	var facing_similarity = forward.dot(dir)
+	
+	var use_world_space = facing_similarity > 0.9
+	# If facing and direction are almost identical, NPC is rotating to face direction
+	# → use world-space check. Otherwise → use local-space check.
+	
+	var animation_name = "idle"
+	
+	if use_world_space:
+		# 🧭 NPC rotates → use world direction
+		var abs_x = abs(dir.x)
+		var abs_z = abs(dir.z)
+		
+		if abs_x > abs_z:
+			animation_name = "walk_right" if dir.x > 0 else "walk_left"
+		else:
+			animation_name = "walk_forward" if dir.z < 0 else "walk_backward"
+	else:
+		# 🎮 NPC fixed-facing → use local direction (relative to facing)
+		var local_dir = transform.basis.inverse() * dir
+		local_dir.y = 0
+		local_dir = local_dir.normalized()
+		
+		var abs_x = abs(local_dir.x)
+		var abs_z = abs(local_dir.z)
+		
+		if abs_z > abs_x:
+			animation_name = "walk_backward" if local_dir.z > 0 else "walk_forward"
+		else:
+			animation_name = "walk_right" if local_dir.x > 0 else "walk_left"
+	
+	# --- Play the animation if it exists ---
+	if animated_sprite.sprite_frames.has_animation(animation_name):
+		animated_sprite.play(animation_name)
+	else:
+		# Graceful fallback
+		if animated_sprite.sprite_frames.has_animation("walk"):
+			animated_sprite.play("walk")
+		else:
+			animated_sprite.play("idle")

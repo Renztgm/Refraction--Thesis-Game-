@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cowfut2pi6gjg"]
 
 [ext_resource type="Script" uid="uid://twc3ucts3ymp" path="res://script/PauseMenu.gd" id="1_jvnd5"]
-[ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_g4jo0"]
+[ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_6q0ex"]
 
 [node name="PauseMenu" type="Control"]
 z_index = 4090
@@ -38,30 +38,30 @@ grow_vertical = 2
 
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_fonts/font = ExtResource("2_6q0ex")
 theme_override_font_sizes/font_size = 24
 text = "Save"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_fonts/font = ExtResource("2_6q0ex")
 theme_override_font_sizes/font_size = 24
 text = "Main Menu"
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_fonts/font = ExtResource("2_6q0ex")
 theme_override_font_sizes/font_size = 24
 text = "Resume
 "
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_fonts/font = ExtResource("2_6q0ex")
 theme_override_font_sizes/font_size = 24
 text = "Settings"
 
 [node name="SavedLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_g4jo0")
+theme_override_fonts/font = ExtResource("2_6q0ex")
 theme_override_font_sizes/font_size = 24

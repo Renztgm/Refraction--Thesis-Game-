@@ -179,7 +179,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.1
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, -4.0141487)
 
 [node name="Bs1" parent="Bookshelves" instance=ExtResource("13_qkotb")]
-transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -7.0324583, 0.0062499996, 6.447307)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -9.984751, 0.0062499996, 6.447307)
 
 [node name="Bs2" parent="Bookshelves" instance=ExtResource("14_2412b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9886527, 0.0062499996, -13.994272)
@@ -191,16 +191,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.461703, 0.0062499996, -13.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.29, 0, -13.994)
 
 [node name="Bs12" parent="Bookshelves" instance=ExtResource("15_d83rn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6764402, 0.0062499996, -1.8072517)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.838861, 0.0062499996, -0.930105)
 
 [node name="Bs3" parent="Bookshelves" instance=ExtResource("17_nemvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.686, 0, -13.917)
 
 [node name="Bs13" parent="Bookshelves" instance=ExtResource("14_2412b")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 5.5810146, 0.0062499996, 1.6589885)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 4.7700715, 0.0062499996, 2.9122982)
 
 [node name="Bs14" parent="Bookshelves" instance=ExtResource("16_yli1t")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.00823, 0.0062499996, 9.060141)
+transform = Transform3D(0.35836798, 0, -0.9335804, 0, 1, 0, 0.9335804, 0, 0.35836798, 6.8449693, 0.0062499996, 9.060141)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.919359)

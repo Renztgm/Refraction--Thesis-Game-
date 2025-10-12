@@ -1,258 +1,293 @@
 extends CharacterBody3D
+# Attach this to your NPC (Npc2)
 
-# --- Settings ---
-@export var speed: float = 5.0
-@export var follow_distance: float = 20.0 #Ito ung variable para malaman ng NPC gaano kalayo makikita ung Player.
-@export var obstacle_check_radius: float = 3.0
-@export var grid_size: float = 1.0
-@export var world_size: Vector2 = Vector2(400, 400)
+# =========================
+# CONFIG
+# =========================
+@export var move_speed: float = 3.0
+@export var acceleration: float = 10.0  # Smooth acceleration
+@export var rotation_speed: float = 8.0  # Smooth rotation
+@export var path_update_rate: float = 0.5  # Update path every 0.5 seconds
+@export var stop_distance: float = 2.0  # Stop when this close to player
+@export var waypoint_reach_distance: float = 1.0  # Distance to consider waypoint reached
+@export var show_path_debug: bool = true  # Show path visualization
 
-# --- References ---
-var player: CharacterBody3D
-var current_path: Array[Vector3] = []
-var path_index: int = 0
+# =========================
+# REFERENCES
+# =========================
+@onready var grid_system = $"../NavigationRegion3D"  # Adjust path to your grid system
+@onready var player = $"../Player3d"
 
-# --- Path update timer ---
+# =========================
+# PATHFINDING
+# =========================
+var current_path: Array = []  # Array of Vector2 grid cells
+var current_waypoint_index: int = 0
 var path_update_timer: float = 0.0
-var update_frequency: float = 0.5
-
-# --- Stuck detection ---
-var last_position: Vector3
 var stuck_timer: float = 0.0
-var stuck_timeout: float = 1.0
+var last_position: Vector3 = Vector3.ZERO
 
-# --- Grid ---
-var grid: Dictionary = {}
-
-# --- Pathfinding Node Class ---
-class PathNode:
-	var pos: Vector2
-	var world_pos: Vector3
-	var g_cost: float
-	var h_cost: float
-	var f_cost: float
-	var parent: PathNode = null
+# =========================
+# A* ALGORITHM
+# =========================
+class AStarNode:
+	var cell: Vector2
+	var g_cost: float = 0.0  # Distance from start
+	var h_cost: float = 0.0  # Heuristic distance to end
+	var f_cost: float = 0.0  # Total cost (g + h)
+	var parent: AStarNode = null
 	
-	func _init(pos: Vector2, world_pos: Vector3):
-		self.pos = pos
-		self.world_pos = world_pos
-		self.g_cost = 0
-		self.h_cost = 0
-		self.f_cost = 0
+	func _init(p_cell: Vector2):
+		cell = p_cell
 	
-	func calculate_f():
+	func calculate_f_cost():
 		f_cost = g_cost + h_cost
 
+func heuristic(from: Vector2, to: Vector2) -> float:
+	# Euclidean distance for better diagonal movement
+	var dx = to.x - from.x
+	var dy = to.y - from.y
+	return sqrt(dx * dx + dy * dy)
+
+func get_neighbors(cell: Vector2) -> Array:
+	var neighbors = []
+	var directions = [
+		Vector2(1, 0),   # Right
+		Vector2(-1, 0),  # Left
+		Vector2(0, 1),   # Down
+		Vector2(0, -1),  # Up
+		Vector2(1, 1),   # Diagonal: Down-Right
+		Vector2(-1, 1),  # Diagonal: Down-Left
+		Vector2(1, -1),  # Diagonal: Up-Right
+		Vector2(-1, -1)  # Diagonal: Up-Left
+	]
+	
+	for dir in directions:
+		var neighbor = cell + dir
+		if grid_system.is_walkable(neighbor):
+			# For diagonal movement, check if both adjacent cells are walkable
+			var is_diagonal = abs(dir.x) + abs(dir.y) > 1
+			if is_diagonal:
+				var check1 = cell + Vector2(dir.x, 0)
+				var check2 = cell + Vector2(0, dir.y)
+				if grid_system.is_walkable(check1) and grid_system.is_walkable(check2):
+					neighbors.append(neighbor)
+			else:
+				neighbors.append(neighbor)
+	
+	return neighbors
+
+func find_path(start_cell: Vector2, end_cell: Vector2) -> Array:
+	if not grid_system.is_walkable(start_cell) or not grid_system.is_walkable(end_cell):
+		return []
+	
+	var open_list: Array = []
+	var closed_list: Dictionary = {}  # Vector2 -> bool
+	var all_nodes: Dictionary = {}  # Vector2 -> AStarNode
+	
+	# Create start node
+	var start_node = AStarNode.new(start_cell)
+	start_node.g_cost = 0
+	start_node.h_cost = heuristic(start_cell, end_cell)
+	start_node.calculate_f_cost()
+	open_list.append(start_node)
+	all_nodes[start_cell] = start_node
+	
+	var iterations = 0
+	var max_iterations = 1000  # Prevent infinite loops
+	
+	while open_list.size() > 0 and iterations < max_iterations:
+		iterations += 1
+		
+		# Find node with lowest f_cost
+		var current_node: AStarNode = open_list[0]
+		var current_index = 0
+		
+		for i in range(1, open_list.size()):
+			if open_list[i].f_cost < current_node.f_cost:
+				current_node = open_list[i]
+				current_index = i
+		
+		# Remove current from open list
+		open_list.remove_at(current_index)
+		closed_list[current_node.cell] = true
+		
+		# Check if we reached the goal
+		if current_node.cell == end_cell:
+			return reconstruct_path(current_node)
+		
+		# Check neighbors
+		for neighbor_cell in get_neighbors(current_node.cell):
+			if closed_list.has(neighbor_cell):
+				continue
+			
+			# Calculate movement cost (diagonal = 1.414, straight = 1)
+			var is_diagonal = abs(neighbor_cell.x - current_node.cell.x) + abs(neighbor_cell.y - current_node.cell.y) > 1
+			var movement_cost = 1.414 if is_diagonal else 1.0
+			var tentative_g_cost = current_node.g_cost + movement_cost
+			
+			# Get or create neighbor node
+			var neighbor_node: AStarNode
+			if all_nodes.has(neighbor_cell):
+				neighbor_node = all_nodes[neighbor_cell]
+			else:
+				neighbor_node = AStarNode.new(neighbor_cell)
+				neighbor_node.h_cost = heuristic(neighbor_cell, end_cell)
+				all_nodes[neighbor_cell] = neighbor_node
+			
+			# Check if this path is better
+			var is_in_open = open_list.has(neighbor_node)
+			if tentative_g_cost < neighbor_node.g_cost or not is_in_open:
+				neighbor_node.g_cost = tentative_g_cost
+				neighbor_node.parent = current_node
+				neighbor_node.calculate_f_cost()
+				
+				if not is_in_open:
+					open_list.append(neighbor_node)
+	
+	# No path found
+	return []
+
+func reconstruct_path(end_node: AStarNode) -> Array:
+	var path = []
+	var current = end_node
+	
+	while current != null:
+		path.insert(0, current.cell)
+		current = current.parent
+	
+	return path
+
+# =========================
+# MOVEMENT
+# =========================
 func _ready():
-	player = get_tree().get_first_node_in_group("player")
+	if not is_instance_valid(grid_system):
+		push_error("Grid system not found! Check the path.")
+	if not is_instance_valid(player):
+		push_error("Player not found! Check the path.")
 	last_position = global_position
-	initialize_grid()
-	set_notify_transform(true)
 
-func initialize_grid():
-	for x in range(int(-world_size.x/2), int(world_size.x/2)):
-		for z in range(int(-world_size.y/2), int(world_size.y/2)):
-			var cell = Vector2(x, z)
-			var world_pos = grid_to_world(cell)
-			grid[cell] = not check_obstacle(world_pos)
-
-func check_obstacle(world_pos: Vector3) -> bool:
-	var sphere = SphereShape3D.new()
-	sphere.radius = obstacle_check_radius
-	var query = PhysicsShapeQueryParameters3D.new()
-	query.shape = sphere
-	query.transform.origin = world_pos
-	query.collision_mask = 2
-	return get_world_3d().direct_space_state.intersect_shape(query, 1).size() > 0
-
-func grid_to_world(grid_pos: Vector2) -> Vector3:
-	return Vector3(
-		grid_pos.x * grid_size + grid_size * 0.5,
-		global_position.y,
-		grid_pos.y * grid_size + grid_size * 0.5
-	)
-
-func world_to_grid(world_pos: Vector3) -> Vector2:
-	return Vector2(
-		floor(world_pos.x / grid_size),
-		floor(world_pos.z / grid_size)
-	)
-
-func is_walkable(grid_pos: Vector2) -> bool:
-	return grid.get(grid_pos, false)
-
-func _physics_process(delta: float):
-	if not player:
+func _physics_process(delta):
+	if not is_instance_valid(grid_system) or not is_instance_valid(player):
 		return
+	
+	# Check if stuck
+	check_if_stuck(delta)
+	
+	# Update path periodically
+	path_update_timer -= delta
+	if path_update_timer <= 0:
+		path_update_timer = path_update_rate
+		update_path()
+	
+	# Follow path
+	if current_path.size() > 0:
+		follow_path(delta)
+	else:
+		# No path, slow down smoothly
+		velocity.x = lerp(velocity.x, 0.0, acceleration * delta)
+		velocity.z = lerp(velocity.z, 0.0, acceleration * delta)
+	
+	# Apply gravity
+	if not is_on_floor():
+		velocity.y -= 9.8 * delta
+	else:
+		velocity.y = -0.1  # Small downward force to stay grounded
+	
+	move_and_slide()
 
-	path_update_timer += delta
+func check_if_stuck(delta):
+	var moved_distance = global_position.distance_to(last_position)
 	
-	# Update path regularly to keep following the player
-	if path_update_timer >= update_frequency:
-		update_path_to_player()
-		path_update_timer = 0.0
-	
-	# Move along the path
-	move_along_path(delta)
-	
-	# Stuck detection
-	if global_position.distance_to(last_position) < 0.1:
+	if moved_distance < 0.1 and current_path.size() > 0:
 		stuck_timer += delta
-		if stuck_timer > stuck_timeout:
-			update_path_to_player()
+		if stuck_timer > 2.0:  # Stuck for 2 seconds
+			print("🚫 NPC appears stuck, forcing path recalculation")
+			current_path.clear()
+			path_update_timer = 0.0  # Force immediate path update
 			stuck_timer = 0.0
 	else:
 		stuck_timer = 0.0
 	
 	last_position = global_position
 
-func update_path_to_player():
-	if not player:
-		return
-	
-	# Find path directly to the player's position
-	current_path = find_path(global_position, player.global_position)
-	path_index = 0
-
-func move_along_path(delta: float):
-	if not player:
-		return
-	
+func update_path():
 	var distance_to_player = global_position.distance_to(player.global_position)
 	
-	if distance_to_player < follow_distance * 0.2:  # Stop at 80% of follow distance
-		velocity = Vector3.ZERO
-		move_and_slide()
-		return
-	# If we have no path or finished the path, move directly toward player
-	if current_path.is_empty() or path_index >= current_path.size():
-		move_toward_player(distance_to_player)
+	# Don't pathfind if already close enough
+	if distance_to_player <= stop_distance:
+		current_path.clear()
+		if is_instance_valid(grid_system):
+			grid_system.clear_path_visualization()
 		return
 	
-	# Get the current target waypoint
-	var target = current_path[path_index]
-	var direction = (target - global_position)
-	var distance_to_waypoint = direction.length()
+	# Get grid cells
+	var start_cell = grid_system.world_to_grid(global_position)
+	var end_cell = grid_system.world_to_grid(player.global_position)
 	
-	# If close to waypoint, move to next one
-	if distance_to_waypoint < 0.5:
-		path_index += 1
+	# Skip if we're on the same cell as player
+	if start_cell == end_cell:
+		current_path.clear()
+		if is_instance_valid(grid_system):
+			grid_system.clear_path_visualization()
 		return
 	
-	# Move toward the waypoint
-	direction = direction.normalized()
-	var move_speed = calculate_movement_speed(distance_to_player)
+	# Find path
+	var new_path = find_path(start_cell, end_cell)
 	
-	velocity = direction * move_speed
-	move_and_slide()
-	
-	# Look in the direction of movement
-	if direction.length() > 0:
-		look_at(global_position + direction, Vector3.UP)
-
-func move_toward_player(distance_to_player: float):
-	# Move directly toward player when no path available
-	var direction = (player.global_position - global_position).normalized()
-	var move_speed = calculate_movement_speed(distance_to_player)
-	
-	velocity = direction * move_speed
-	move_and_slide()
-	
-	if direction.length() > 0:
-		look_at(global_position + direction, Vector3.UP)
-
-func calculate_movement_speed(distance_to_player: float) -> float:
-	# Adjust speed based on distance to player
-	if distance_to_player < 2.0:
-		return speed * 0.2  # Very slow when very close
-	elif distance_to_player < follow_distance:
-		return speed * 0.5  # Half speed when close
+	if new_path.size() > 0:
+		current_path = new_path
+		current_waypoint_index = 0
+		
+		# Skip first waypoint if we're already close to it
+		if current_path.size() > 1:
+			var first_waypoint = grid_system.grid_to_world(current_path[0])
+			if global_position.distance_to(first_waypoint) < waypoint_reach_distance:
+				current_waypoint_index = 1
+		
+		# Update path visualization
+		if show_path_debug and is_instance_valid(grid_system):
+			grid_system.draw_path_visualization(current_path, current_waypoint_index)
 	else:
-		return speed  # Full speed when far
+		print("⚠️ No path found from NPC to Player")
+		current_path.clear()
+		if is_instance_valid(grid_system):
+			grid_system.clear_path_visualization()
 
-# --- A* Pathfinding ---
-func find_path(start: Vector3, target: Vector3) -> Array[Vector3]:
-	var start_grid = world_to_grid(start)
-	var target_grid = world_to_grid(target)
+func follow_path(delta):
+	if current_waypoint_index >= current_path.size():
+		current_path.clear()
+		if is_instance_valid(grid_system):
+			grid_system.clear_path_visualization()
+		return
 	
-	if not is_walkable(start_grid) or not is_walkable(target_grid):
-		return []
-
-	var open_set: Array[PathNode] = []
-	var closed_set: Dictionary = {}
-
-	var start_node = PathNode.new(start_grid, grid_to_world(start_grid))
-	start_node.g_cost = 0
-	start_node.h_cost = heuristic(start_grid, target_grid)
-	start_node.calculate_f()
-	open_set.append(start_node)
-
-	while open_set.size() > 0:
-		var current = open_set[0]
-		for n in open_set:
-			if n.f_cost < current.f_cost:
-				current = n
-		open_set.erase(current)
-		closed_set[current.pos] = current
-
-		if current.pos == target_grid:
-			return reconstruct_path(current)
-
-		for neighbor in get_neighbors(current.pos):
-			if closed_set.has(neighbor) or not is_walkable(neighbor):
-				continue
-
-			var neighbor_node = null
-			for n in open_set:
-				if n.pos == neighbor:
-					neighbor_node = n
-					break
-
-			var tentative_g = current.g_cost + (neighbor - current.pos).length()
-			var neighbor_world = grid_to_world(neighbor)
-
-			if neighbor_node == null:
-				neighbor_node = PathNode.new(neighbor, neighbor_world)
-				neighbor_node.g_cost = tentative_g
-				neighbor_node.h_cost = heuristic(neighbor, target_grid)
-				neighbor_node.parent = current
-				neighbor_node.calculate_f()
-				open_set.append(neighbor_node)
-			elif tentative_g < neighbor_node.g_cost:
-				neighbor_node.g_cost = tentative_g
-				neighbor_node.parent = current
-				neighbor_node.calculate_f()
-
-	return []
-
-func heuristic(a: Vector2, b: Vector2) -> float:
-	var dx = abs(a.x - b.x)
-	var dz = abs(a.y - b.y)
-	return dx + dz - min(dx, dz)
-
-func get_neighbors(pos: Vector2) -> Array[Vector2]:
-	var dirs = [
-		Vector2(0, 1), Vector2(1, 0), Vector2(0, -1), Vector2(-1, 0),
-		Vector2(1, 1), Vector2(1, -1), Vector2(-1, 1), Vector2(-1, -1)
-	]
-	var result: Array[Vector2] = []
-	for d in dirs:
-		var n = pos + d
-		if n.x >= -world_size.x/2 and n.x < world_size.x/2 and n.y >= -world_size.y/2 and n.y < world_size.y/2:
-			result.append(n)
-	return result
-
-func reconstruct_path(node: PathNode) -> Array[Vector3]:
-	var path: Array[Vector3] = []
-	var current = node
-	while current != null:
-		path.append(current.world_pos)
-		current = current.parent
-	path.reverse()
-	return path
-
-func _draw_debug_path():
-	for i in range(current_path.size()):
-		var waypoint = current_path[i]
-		# Draw a small sphere or use DebugDraw to show waypoint positions
-		print("Waypoint ", i, ": ", waypoint)
+	# Get target waypoint
+	var target_cell = current_path[current_waypoint_index]
+	var target_pos = grid_system.grid_to_world(target_cell)
+	
+	# Move towards waypoint (only XZ plane)
+	var to_target = target_pos - global_position
+	to_target.y = 0  # Ignore vertical difference
+	var distance_to_waypoint = to_target.length()
+	
+	# Check if reached waypoint
+	if distance_to_waypoint <= waypoint_reach_distance:
+		current_waypoint_index += 1
+		if show_path_debug and is_instance_valid(grid_system):
+			grid_system.draw_path_visualization(current_path, current_waypoint_index)
+		return
+	
+	var direction = to_target.normalized()
+	
+	# Smooth acceleration
+	var target_velocity_x = direction.x * move_speed
+	var target_velocity_z = direction.z * move_speed
+	velocity.x = lerp(velocity.x, target_velocity_x, acceleration * delta)
+	velocity.z = lerp(velocity.z, target_velocity_z, acceleration * delta)
+	
+	# Smooth rotation towards movement direction
+	if direction.length() > 0.1:
+		var target_rotation = atan2(direction.x, direction.z)
+		var current_rotation = rotation.y
+		rotation.y = lerp_angle(current_rotation, target_rotation, rotation_speed * delta)
