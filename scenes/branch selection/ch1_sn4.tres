@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BranchNode" load_steps=3 format=3 uid="uid://baoc7q4fp5nx5"]
+
+[ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_uf0gx"]
+[ext_resource type="Resource" uid="uid://cimvbse67kgls" path="res://scenes/branch selection/ch1_sn5.tres" id="2_4y4sb"]
+
+[resource]
+script = ExtResource("1_uf0gx")
+title = "\"What is that?\""
+description = "\"A monstrous body of shredded memories emerges. Voices whisper from it — fragments of your past.\""
+scene_path = "res://scenes/Scene4/AlleyScene.tscn"
+children = Array[ExtResource("1_uf0gx")]([ExtResource("2_4y4sb")])
+metadata/_custom_type_script = "uid://bdblq5joux0oh"

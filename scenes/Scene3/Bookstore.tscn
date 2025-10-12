@@ -149,6 +149,7 @@ collision_mask = 7
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.7165)
+collision_mask = 4
 script = ExtResource("2_cedyu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

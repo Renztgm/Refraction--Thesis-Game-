@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BranchNode" load_steps=3 format=3 uid="uid://cimvbse67kgls"]
+
+[ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_ld6pb"]
+[ext_resource type="Resource" uid="uid://dpdpnkoscqgch" path="res://scenes/branch selection/ch1_sn6.tres" id="2_34qn0"]
+
+[resource]
+script = ExtResource("1_ld6pb")
+title = "\"The Safehouse\""
+description = "Nice House!"
+scene_path = "res://scenes/Scene5/Scene5.tscn"
+children = Array[ExtResource("1_ld6pb")]([ExtResource("2_34qn0")])
+metadata/_custom_type_script = "uid://bdblq5joux0oh"

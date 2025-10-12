@@ -9,7 +9,7 @@ extends Node3D
 @export var auto_size_from_navmesh: bool = true  # Auto-calculate from NavigationRegion3D
 @export var padding: float = 1.0  # Extra cells around navmesh bounds
 @export var debug_output: bool = true  # Print detailed raycast info
-var debug_visible: bool = false  # Toggle with CTRL+F4
+var debug_visible: bool = false  # Toggle with CTRL+F4 (starts hidden)
 
 # =========================
 # GRID DATA
@@ -27,8 +27,6 @@ var path_mesh_instance: MeshInstance3D  # For NPC path visualization
 # READY
 # =========================
 func _ready():
-	debug_visible = true  # force show grid
-	
 	# Auto-calculate grid from NavigationRegion3D if enabled
 	if auto_size_from_navmesh:
 		calculate_grid_from_navmesh()
@@ -37,6 +35,7 @@ func _ready():
 	build_grid()
 	draw_grid_visualization()
 	print_walkable_cells()
+	print("\n💡 Press CTRL+F4 to toggle grid/path visualization")
 
 # =========================
 # INPUT HANDLING
@@ -50,7 +49,9 @@ func toggle_debug_visibility():
 	debug_visible = !debug_visible
 	if is_instance_valid(grid_mesh_instance):
 		grid_mesh_instance.visible = debug_visible
-	print("🔧 Grid debug visibility:", "ON" if debug_visible else "OFF")
+	if is_instance_valid(path_mesh_instance):
+		path_mesh_instance.visible = debug_visible
+	print("🔧 Grid/Path debug visibility:", "ON" if debug_visible else "OFF")
 
 # =========================
 # GRID GENERATION
@@ -434,7 +435,7 @@ func draw_path_visualization(path: Array, current_index: int = 0):
 		mat.vertex_color_use_as_albedo = true
 		mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 		path_mesh_instance.material_override = mat
-		
+		path_mesh_instance.visible = debug_visible  # Respect debug visibility
 		add_child(path_mesh_instance)
 
 func clear_path_visualization():

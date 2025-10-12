@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BranchNode" load_steps=3 format=3 uid="uid://b1bhlbt2bs7o"]
+
+[ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_t5e2g"]
+[ext_resource type="Resource" uid="uid://baoc7q4fp5nx5" path="res://scenes/branch selection/ch1_sn4.tres" id="2_pxoag"]
+
+[resource]
+script = ExtResource("1_t5e2g")
+title = "\"First Exploration\""
+description = "Exploration!!"
+scene_path = "res://scenes/Scene3/Scene3.tscn"
+children = Array[ExtResource("1_t5e2g")]([ExtResource("2_pxoag")])
+metadata/_custom_type_script = "uid://bdblq5joux0oh"

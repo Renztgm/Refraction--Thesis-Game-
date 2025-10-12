@@ -4,12 +4,27 @@ extends Control
 @onready var item_icon = $HBoxContainer/ItemInfoPanel/ItemIcon
 @onready var item_name = $HBoxContainer/ItemInfoPanel/ItemName
 @onready var item_desc = $HBoxContainer/ItemInfoPanel/ItemDesc
+@onready var close_button: Button = $CloseButton  # Adjust path if needed
+
 
 var SlotScene = preload("res://scenes/Inventory/Slot.tscn")
 
 func _ready():
 	setup_inventory(InventoryManager.slot_count)
 	load_inventory()
+
+	if close_button:
+		close_button.pressed.connect(_on_close_button_pressed)
+	else:
+		push_error("CloseButton not found!")
+		
+	setup_inventory(InventoryManager.slot_count)
+	load_inventory()
+
+func _on_close_button_pressed():
+	print("Closing inventory...")
+	visible = false  # Hides the inventory UI
+
 
 func setup_inventory(size: int):
 	# Remove old slots

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BranchNode" load_steps=3 format=3 uid="uid://c4wwueudirjcn"]
+
+[ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_clli4"]
+[ext_resource type="Resource" uid="uid://bra1x8pdnnowr" path="res://scenes/branch selection/ch1_sn2.tres" id="2_ykx72"]
+
+[resource]
+script = ExtResource("1_clli4")
+title = "\"Awakening\""
+description = "\"You open your eyes to an emerald sky. Ivy coils around what used to be streetlamps. You don’t remember your name. You don’t remember anything.\""
+scene_path = "res://scenes/Scene1/Scene1.tscn"
+children = Array[ExtResource("1_clli4")]([ExtResource("2_ykx72")])
+metadata/_custom_type_script = "uid://bdblq5joux0oh"

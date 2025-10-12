@@ -1,742 +1,293 @@
 extends CharacterBody3D
+# Attach this to your NPC (Npc2)
 
-# --- Animated Sprites ---
-@onready var animated_sprite: AnimatedSprite3D = $CompanionSprite
+# =========================
+# CONFIG
+# =========================
+@export var move_speed: float = 3.0
+@export var acceleration: float = 10.0  # Smooth acceleration
+@export var rotation_speed: float = 8.0  # Smooth rotation
+@export var path_update_rate: float = 0.5  # Update path every 0.5 seconds
+@export var stop_distance: float = 2.0  # Stop when this close to player
+@export var waypoint_reach_distance: float = 1.0  # Distance to consider waypoint reached
+@export var show_path_debug: bool = true  # Show path visualization
 
-# --- Settings ---
-@export var speed: float = 3.0
-@export var idle_threshold: float = 0.1
-@export var gravity: float = 9.8
+# =========================
+# REFERENCES
+# =========================
+@onready var grid_system = $"../NavigationRegion3D"  # Adjust path to your grid system
+@onready var player = $"../Structures/Building/Bookstore/BookstoreMarker"
 
-# --- Grid Reference ---
-@onready var grid_system: Node3D = $"../Grid"
-@onready var bookstore_marker: Node3D = $"../Structures/Building/Bookstore/BookstoreMarker"
-
-
-var bookstore_position: Vector3
-var current_path: Array[Vector3] = []
-var current_grid_path: Array[Vector2] = []  # Path in grid coordinates
-var path_index: int = 0
-
-# --- Stuck detection ---
-var last_position: Vector3
+# =========================
+# PATHFINDING
+# =========================
+var current_path: Array = []  # Array of Vector2 grid cells
+var current_waypoint_index: int = 0
+var path_update_timer: float = 0.0
 var stuck_timer: float = 0.0
-var stuck_timeout: float = 2.0
+var last_position: Vector3 = Vector3.ZERO
 
-# --- States ---
-enum NPCState { GOING_TO_BOOKSTORE, IDLE_WAITING }
-var current_state = NPCState.GOING_TO_BOOKSTORE
-
-@onready var ray_forward: RayCast3D = $RayForward
-@onready var ray_left: RayCast3D = $RayLeft
-@onready var ray_right: RayCast3D = $RayRight
-@onready var ray_back: RayCast3D = $RayBack
-
-# --- Pathfinding Node Class ---
-class PathNode:
-	var pos: Vector2
-	var world_pos: Vector3
-	var g_cost: float
-	var h_cost: float
-	var f_cost: float
-	var parent: PathNode = null
+# =========================
+# A* ALGORITHM
+# =========================
+class AStarNode:
+	var cell: Vector2
+	var g_cost: float = 0.0  # Distance from start
+	var h_cost: float = 0.0  # Heuristic distance to end
+	var f_cost: float = 0.0  # Total cost (g + h)
+	var parent: AStarNode = null
 	
-	func _init(pos: Vector2, world_pos: Vector3):
-		self.pos = pos
-		self.world_pos = world_pos
-		self.g_cost = 0
-		self.h_cost = 0
-		self.f_cost = 0
+	func _init(p_cell: Vector2):
+		cell = p_cell
 	
-	func calculate_f():
+	func calculate_f_cost():
 		f_cost = g_cost + h_cost
 
-# --- Ready (Improved with better debugging and plane support) ---
-func _ready():
-	print("🚀 NPC INITIALIZING...")
-	
-	if not grid_system:
-		print("❌ ERROR: No grid_system assigned! Drag enhanced Grid node to NPC's grid_system property")
-		return
-	
-	if not bookstore_marker:
-		print("❌ ERROR: No bookstore_marker assigned!")
-		return
-	
-	# Wait for everything to be ready
-	await get_tree().process_frame
-	await get_tree().process_frame  # Extra frame for safety
-	
-	# Get bookstore position
-	bookstore_position = bookstore_marker.global_position
-	print("📍 Bookstore at world: ", bookstore_position)
-	
-	# IMPORTANT: Adjust grid for 200x200 plane
-	var plane_size = 200.0
-	var needed_grid_size = int(plane_size / grid_system.grid_size) + 10  # +10 for margin
-	
-	print("🔧 Adjusting grid for 200x200 plane...")
-	print("   Current grid dimensions: ", grid_system.grid_dimensions)
-	print("   Recommended dimensions: ", Vector2i(needed_grid_size, needed_grid_size))
-	
-	# Set larger grid dimensions to cover the plane
-	if grid_system.grid_dimensions.x < needed_grid_size:
-		grid_system.grid_dimensions = Vector2i(needed_grid_size, needed_grid_size)
-		grid_system.force_rebuild()
-		print("✅ Grid rebuilt to cover plane")
-	
-	# Auto-adjust grid to include bookstore
-	grid_system.auto_adjust_for_target(bookstore_position)
-	
-	# Debug current state
-	debug_movement_issues()
-	
-	# Try to go to bookstore
-	last_position = global_position
-	go_to_bookstore()
-	if animated_sprite:
-		animated_sprite.play("idle")
-	
-	print("🏁 NPC initialization complete!")
+func heuristic(from: Vector2, to: Vector2) -> float:
+	# Euclidean distance for better diagonal movement
+	var dx = to.x - from.x
+	var dy = to.y - from.y
+	return sqrt(dx * dx + dy * dy)
 
-# --- Physics Process (FIXED) ---
-func _physics_process(delta: float):
-	if not grid_system:
-		return
-	
-	# Apply gravity
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-	else:
-		velocity.y = 0.0
-	
-	# Update state first
-	update_state()
-	
-	# Handle movement based on state
-	match current_state:
-		NPCState.GOING_TO_BOOKSTORE:
-			# Only perform wall detection and movement when actively going to destination
-			var move_dir: Vector3 = Vector3.ZERO
-
-			if is_wall_ahead():
-				move_dir = choose_alternate_direction()
-			else:
-				# Follow the path instead of just moving forward
-				follow_path()
-				return  # follow_path handles movement, so return here
-			
-			if is_wall_ahead():
-				move_dir = choose_alternate_direction()
-				# NEW: Update animation for wall avoidance (side/back movement)
-				if move_dir != Vector3.ZERO and animated_sprite:
-					update_walk_animation(move_dir)
-			else:
-				# Follow the path instead of just moving forward
-				follow_path()
-				return  # follow_path handles movement and animation, so return here
-			
-			# Only apply wall avoidance movement if there's a direction
-			if move_dir != Vector3.ZERO:
-				velocity.x = move_dir.normalized().x * speed
-				velocity.z = move_dir.normalized().z * speed
-			else:
-				velocity.x = 0.0
-				velocity.z = 0.0
-			
-			move_and_slide()
-			
-		NPCState.IDLE_WAITING:
-			# Stop all movement when idle
-			idle_behavior()
-			return  # Skip stuck detection when idle
-
-	# Stuck detection with better logic (only when trying to move)
-	if current_state == NPCState.GOING_TO_BOOKSTORE:
-		var moved_distance = global_position.distance_to(last_position)
-		var is_trying_to_move = velocity.length() > 0.1
-		
-		if moved_distance < 0.1 and is_trying_to_move:
-			stuck_timer += delta
-			if stuck_timer > stuck_timeout:
-				print("⚠️ NPC STUCK at world: ", global_position)
-				print("⚠️ Current grid cell: ", grid_system.world_to_grid(global_position))
-				print("⚠️ Is current cell walkable: ", grid_system.is_walkable(grid_system.world_to_grid(global_position)))
-				
-				print("🔄 Recalculating path from stuck position...")
-				go_to_bookstore()
-				stuck_timer = 0.0
-		else:
-			stuck_timer = 0.0
-			
-		last_position = global_position
-
-# --- State Update (IMPROVED) ---
-func update_state():
-	match current_state:
-		NPCState.GOING_TO_BOOKSTORE:
-			# Check if we've completed the path
-			if current_path.is_empty() or path_index >= current_path.size():
-				current_state = NPCState.IDLE_WAITING
-				velocity.x = 0.0  # Only stop horizontal movement
-				velocity.z = 0.0
-				print("✅ Reached bookstore! Switching to idle state")
-				# Clear the route visualization when reached
-				grid_system.clear_route()
-				if animated_sprite:
-					animated_sprite.play("idle")
-			# Also check if we're very close to the final destination
-			elif path_index == current_path.size() - 1:
-				var final_target = current_path[path_index]
-				var distance_to_final = global_position.distance_to(final_target)
-				if distance_to_final < idle_threshold:
-					current_state = NPCState.IDLE_WAITING
-					velocity.x = 0.0
-					velocity.z = 0.0
-					print("✅ Close enough to destination! Switching to idle state")
-					grid_system.clear_route()
-
-# --- Movement (Improved with better debugging) ---
-func follow_path():
-	if current_path.is_empty() or path_index >= current_path.size():
-		velocity.x = 0.0
-		velocity.z = 0.0
-		# NEW: Ensure idle animation when stopped
-		if animated_sprite:
-			animated_sprite.play("idle")
-		move_and_slide()
-		return
-
-	var target = current_path[path_index]
-	var dir = (target - global_position)  # This declares 'dir' – ensure this line is here!
-	var distance = dir.length()
-	
-	# Use a more generous threshold based on grid size
-	var reach_threshold = grid_system.grid_size * 0.8
-	if distance < reach_threshold:
-		path_index += 1
-		print("📍 Reached waypoint ", path_index - 1, "/", current_path.size() - 1, " (distance: ", distance, ")")
-		
-		# Update route visualization to show remaining path
-		update_route_visualization()
-		
-		# Check if we just reached the final waypoint
-		if path_index >= current_path.size():
-			velocity.x = 0.0
-			velocity.z = 0.0
-			# NEW: Switch to idle
-			if animated_sprite:
-				animated_sprite.play("idle")
-			move_and_slide()
-		return
-
-	# Safeguard: Skip if direction is zero-length (shouldn't happen, but prevents errors)
-	if dir.length() == 0:
-		velocity.x = 0.0
-		velocity.z = 0.0
-		if animated_sprite:
-			animated_sprite.play("idle")
-		move_and_slide()
-		return
-
-	# Normalize direction and apply speed (only horizontal movement)
-	dir = dir.normalized()
-	velocity.x = dir.x * speed
-	velocity.z = dir.z * speed
-	move_and_slide()
-	
-	# Face movement direction
-	if dir.length() > 0:
-		look_at(global_position + dir, Vector3.UP)
-	
-	# NEW: Update walk animation based on movement direction
-	if animated_sprite and dir.length() > 0:
-		update_walk_animation(dir)
-	
-	# Debug current movement (less frequent to avoid spam)
-	if path_index < current_path.size():
-		var current_grid_pos = grid_system.world_to_grid(global_position)
-		var target_grid_pos = grid_system.world_to_grid(target)
-		if randf() < 0.01:  # Print occasionally to avoid spam
-			print("🚶 Moving to waypoint ", path_index, ": grid ", target_grid_pos, " | current: ", current_grid_pos, " | dist: ", distance, " | speed: ", speed)
-func idle_behavior():
-	# Ensure NPC is completely stopped (only horizontal movement)
-	velocity.x = 0.0
-	velocity.z = 0.0
-	move_and_slide()
-	# NEW: Ensure idle animation
-	if animated_sprite:
-		animated_sprite.play("idle")
-# --- Path Updates (Improved with better validation) ---
-func go_to_bookstore():
-	if not grid_system or not bookstore_marker:
-		print("❌ Missing grid_system or bookstore_marker!")
-		return
-		
-	print("🎯 Calculating path to bookstore...")
-	print("   From: ", global_position, " -> ", grid_system.world_to_grid(global_position))
-	print("   To: ", bookstore_position, " -> ", grid_system.world_to_grid(bookstore_position))
-	
-	# Ensure both positions are valid
-	var start_grid = grid_system.world_to_grid(global_position)
-	var target_grid = grid_system.world_to_grid(bookstore_position)
-	
-	if not grid_system.is_valid_cell(start_grid):
-		print("⚠️ Start position outside grid bounds!")
-		print("   Grid bounds: ", grid_system.get_grid_info().world_bounds)
-		print("   NPC position: ", global_position)
-		return
-		
-	if not grid_system.is_valid_cell(target_grid):
-		print("⚠️ Target position outside grid bounds!")
-		print("   Grid bounds: ", grid_system.get_grid_info().world_bounds)
-		print("   Bookstore position: ", bookstore_position)
-		return
-	
-	var path_result = find_path(global_position, bookstore_position)
-	current_path = path_result.world_path
-	current_grid_path = path_result.grid_path
-	path_index = 0
-	current_state = NPCState.GOING_TO_BOOKSTORE
-	
-	if current_path.size() > 0:
-		print("✅ Path found with ", current_path.size(), " waypoints")
-		print("   First waypoint: ", current_path[0])
-		print("   Last waypoint: ", current_path[-1])
-		# Show the complete route on the grid
-		grid_system.set_route(current_grid_path)
-	else:
-		print("❌ No path found to bookstore!")
-		print("   This usually means:")
-		print("   - Start or end position is blocked")
-		print("   - No walkable connection exists")
-		print("   - Grid is too small to contain both positions")
-		grid_system.clear_route()
-
-func update_route_visualization():
-	"""Update the route visualization to show remaining path"""
-	if path_index < current_grid_path.size():
-		var remaining_route = current_grid_path.slice(path_index)
-		grid_system.set_route(remaining_route)
-
-# --- Enhanced A* Pathfinding ---
-func find_path(start: Vector3, target: Vector3) -> Dictionary:
-	var start_grid = grid_system.world_to_grid(start)
-	var target_grid = grid_system.world_to_grid(target)
-	
-	print("🔍 Pathfinding from grid ", start_grid, " to ", target_grid)
-	
-	# Find nearest walkable cells if start/target are blocked
-	if not grid_system.is_walkable(start_grid):
-		var original_start = start_grid
-		start_grid = grid_system.find_nearest_walkable(start_grid)
-		print("⚠️ Start ", original_start, " not walkable, using nearest: ", start_grid)
-	
-	if not grid_system.is_walkable(target_grid):
-		var original_target = target_grid
-		target_grid = grid_system.find_nearest_walkable(target_grid)
-		print("⚠️ Target ", original_target, " not walkable, using nearest: ", target_grid)
-	
-	# Check if start and target are the same
-	if start_grid == target_grid:
-		print("✅ Start and target are the same cell!")
-		return {
-			"world_path": [grid_system.grid_to_world(target_grid)],
-			"grid_path": [target_grid]
-		}
-	
-	var open_set: Array[PathNode] = []
-	var closed_set: Dictionary = {}
-
-	var start_node = PathNode.new(start_grid, grid_system.grid_to_world(start_grid))
-	start_node.g_cost = 0
-	start_node.h_cost = heuristic(start_grid, target_grid)
-	start_node.calculate_f()
-	open_set.append(start_node)
-
-	var iterations = 0
-	var max_iterations = 500  # Increased for larger grid
-	
-	while open_set.size() > 0 and iterations < max_iterations:
-		iterations += 1
-		
-		# Pick lowest f_cost
-		open_set.sort_custom(func(a, b): return a.f_cost < b.f_cost)
-		var current: PathNode = open_set[0]
-		open_set.remove_at(0)
-		closed_set[current.pos] = current
-
-		# Found target!
-		if current.pos == target_grid:
-			print("🎯 Path found in ", iterations, " iterations")
-			var path_result = reconstruct_path(current)
-			print("📊 Path stats: ", path_result.grid_path.size(), " cells, ", path_result.world_path.size(), " waypoints")
-			return path_result
-
-		# Check all neighbors (4-directional movement only for simplicity)
-		var neighbors = get_valid_neighbors(current.pos)
-		for neighbor_pos in neighbors:
-			if closed_set.has(neighbor_pos):
-				continue
-
-			var move_cost = 10
-			var tentative_g = current.g_cost + move_cost
-			var neighbor_world = grid_system.grid_to_world(neighbor_pos)
-
-			# Find if neighbor is already in open set
-			var neighbor_node: PathNode = null
-			for n in open_set:
-				if n.pos == neighbor_pos:
-					neighbor_node = n
-					break
-
-			# Add new node or update existing one
-			if neighbor_node == null:
-				neighbor_node = PathNode.new(neighbor_pos, neighbor_world)
-				neighbor_node.g_cost = tentative_g
-				neighbor_node.h_cost = heuristic(neighbor_pos, target_grid)
-				neighbor_node.parent = current
-				neighbor_node.calculate_f()
-				open_set.append(neighbor_node)
-			elif tentative_g < neighbor_node.g_cost:
-				neighbor_node.g_cost = tentative_g
-				neighbor_node.parent = current
-				neighbor_node.calculate_f()
-
-	print("❌ No path found after ", iterations, " iterations")
-	return {"world_path": [], "grid_path": []}
-
-# Get valid neighbors (4-directional only)
-func get_valid_neighbors(pos: Vector2) -> Array[Vector2]:
-	var neighbors: Array[Vector2] = []
-	var directions = [Vector2(0, 1), Vector2(1, 0), Vector2(0, -1), Vector2(-1, 0)]  # N, E, S, W
+func get_neighbors(cell: Vector2) -> Array:
+	var neighbors = []
+	var directions = [
+		Vector2(1, 0),   # Right
+		Vector2(-1, 0),  # Left
+		Vector2(0, 1),   # Down
+		Vector2(0, -1),  # Up
+		Vector2(1, 1),   # Diagonal: Down-Right
+		Vector2(-1, 1),  # Diagonal: Down-Left
+		Vector2(1, -1),  # Diagonal: Up-Right
+		Vector2(-1, -1)  # Diagonal: Up-Left
+	]
 	
 	for dir in directions:
-		var neighbor = pos + dir
-		if grid_system.is_valid_cell(neighbor) and grid_system.is_walkable(neighbor):
-			neighbors.append(neighbor)
+		var neighbor = cell + dir
+		if grid_system.is_walkable(neighbor):
+			# For diagonal movement, check if both adjacent cells are walkable
+			var is_diagonal = abs(dir.x) + abs(dir.y) > 1
+			if is_diagonal:
+				var check1 = cell + Vector2(dir.x, 0)
+				var check2 = cell + Vector2(0, dir.y)
+				if grid_system.is_walkable(check1) and grid_system.is_walkable(check2):
+					neighbors.append(neighbor)
+			else:
+				neighbors.append(neighbor)
 	
 	return neighbors
 
-# Manhattan distance heuristic
-func heuristic(a: Vector2, b: Vector2) -> float:
-	var dx = abs(a.x - b.x)
-	var dz = abs(a.y - b.y)
-	return (dx + dz) * 10
+func find_path(start_cell: Vector2, end_cell: Vector2) -> Array:
+	if not grid_system.is_walkable(start_cell) or not grid_system.is_walkable(end_cell):
+		return []
+	
+	var open_list: Array = []
+	var closed_list: Dictionary = {}  # Vector2 -> bool
+	var all_nodes: Dictionary = {}  # Vector2 -> AStarNode
+	
+	# Create start node
+	var start_node = AStarNode.new(start_cell)
+	start_node.g_cost = 0
+	start_node.h_cost = heuristic(start_cell, end_cell)
+	start_node.calculate_f_cost()
+	open_list.append(start_node)
+	all_nodes[start_cell] = start_node
+	
+	var iterations = 0
+	var max_iterations = 1000  # Prevent infinite loops
+	
+	while open_list.size() > 0 and iterations < max_iterations:
+		iterations += 1
+		
+		# Find node with lowest f_cost
+		var current_node: AStarNode = open_list[0]
+		var current_index = 0
+		
+		for i in range(1, open_list.size()):
+			if open_list[i].f_cost < current_node.f_cost:
+				current_node = open_list[i]
+				current_index = i
+		
+		# Remove current from open list
+		open_list.remove_at(current_index)
+		closed_list[current_node.cell] = true
+		
+		# Check if we reached the goal
+		if current_node.cell == end_cell:
+			return reconstruct_path(current_node)
+		
+		# Check neighbors
+		for neighbor_cell in get_neighbors(current_node.cell):
+			if closed_list.has(neighbor_cell):
+				continue
+			
+			# Calculate movement cost (diagonal = 1.414, straight = 1)
+			var is_diagonal = abs(neighbor_cell.x - current_node.cell.x) + abs(neighbor_cell.y - current_node.cell.y) > 1
+			var movement_cost = 1.414 if is_diagonal else 1.0
+			var tentative_g_cost = current_node.g_cost + movement_cost
+			
+			# Get or create neighbor node
+			var neighbor_node: AStarNode
+			if all_nodes.has(neighbor_cell):
+				neighbor_node = all_nodes[neighbor_cell]
+			else:
+				neighbor_node = AStarNode.new(neighbor_cell)
+				neighbor_node.h_cost = heuristic(neighbor_cell, end_cell)
+				all_nodes[neighbor_cell] = neighbor_node
+			
+			# Check if this path is better
+			var is_in_open = open_list.has(neighbor_node)
+			if tentative_g_cost < neighbor_node.g_cost or not is_in_open:
+				neighbor_node.g_cost = tentative_g_cost
+				neighbor_node.parent = current_node
+				neighbor_node.calculate_f_cost()
+				
+				if not is_in_open:
+					open_list.append(neighbor_node)
+	
+	# No path found
+	return []
 
-func reconstruct_path(node: PathNode) -> Dictionary:
-	var world_path: Array[Vector3] = []
-	var grid_path: Array[Vector2] = []
-	var current = node
+func reconstruct_path(end_node: AStarNode) -> Array:
+	var path = []
+	var current = end_node
 	
 	while current != null:
-		world_path.append(current.world_pos)
-		grid_path.append(current.pos)
+		path.insert(0, current.cell)
 		current = current.parent
 	
-	world_path.reverse()
-	grid_path.reverse()
-	
-	# Validate path for duplicates (debug check)
-	var unique_cells = {}
-	var duplicates = 0
-	for cell in grid_path:
-		if unique_cells.has(cell):
-			duplicates += 1
-		unique_cells[cell] = true
-	
-	if duplicates > 0:
-		print("⚠️ Path contains ", duplicates, " duplicate cells - pathfinding may have issues")
-	
-	return {
-		"world_path": world_path,
-		"grid_path": grid_path
-	}
+	return path
 
-# --- COMPREHENSIVE DEBUG METHOD ---
-func debug_movement_issues():
-	"""Comprehensive debug method to identify why NPC isn't moving"""
-	print("=== NPC MOVEMENT DEBUG ===")
-	
-	# 1. Check basic setup
-	print("🔧 BASIC SETUP:")
-	print("  - NPC position: ", global_position)
-	print("  - Speed: ", speed)
-	print("  - Grid system exists: ", grid_system != null)
-	print("  - Bookstore marker exists: ", bookstore_marker != null)
-	
-	if not grid_system:
-		print("❌ CRITICAL: Grid system is null!")
-		return
-		
-	if not bookstore_marker:
-		print("❌ CRITICAL: Bookstore marker is null!")
+# =========================
+# MOVEMENT
+# =========================
+func _ready():
+	if not is_instance_valid(grid_system):
+		push_error("Grid system not found! Check the path.")
+	if not is_instance_valid(player):
+		push_error("Player not found! Check the path.")
+	last_position = global_position
+
+func _physics_process(delta):
+	if not is_instance_valid(grid_system) or not is_instance_valid(player):
 		return
 	
-	# 2. Check grid dimensions and scale
-	print("\n📐 GRID ANALYSIS:")
-	var grid_info = grid_system.get_grid_info()
-	print("  - Grid dimensions: ", grid_info.dimensions)
-	print("  - Grid size (cell size): ", grid_info.grid_size)
-	print("  - Total cells: ", grid_info.total_cells)
-	print("  - Walkable cells: ", grid_info.walkable_cells)
-	print("  - World bounds: ", grid_info.world_bounds)
+	# Check if stuck
+	check_if_stuck(delta)
 	
-	# 3. Check if plane size matches grid coverage
-	var plane_size = 200.0  # Your plane is 200x200
-	var grid_coverage_x = grid_info.dimensions.x * grid_info.grid_size
-	var grid_coverage_z = grid_info.dimensions.y * grid_info.grid_size
+	# Update path periodically
+	path_update_timer -= delta
+	if path_update_timer <= 0:
+		path_update_timer = path_update_rate
+		update_path()
 	
-	print("\n🌍 SCALE COMPARISON:")
-	print("  - Plane size: 200x200")
-	print("  - Grid coverage: ", grid_coverage_x, "x", grid_coverage_z)
-	
-	if grid_coverage_x < plane_size or grid_coverage_z < plane_size:
-		print("⚠️ WARNING: Grid doesn't cover entire plane!")
-		print("   Recommended grid dimensions: ", int(plane_size / grid_info.grid_size), "x", int(plane_size / grid_info.grid_size))
-	
-	# 4. Check positions in grid coordinates
-	print("\n📍 POSITION ANALYSIS:")
-	var npc_grid = grid_system.world_to_grid(global_position)
-	var bookstore_grid = grid_system.world_to_grid(bookstore_position)
-	
-	print("  - NPC world pos: ", global_position)
-	print("  - NPC grid pos: ", npc_grid)
-	print("  - NPC cell walkable: ", grid_system.is_walkable(npc_grid))
-	print("  - NPC cell valid: ", grid_system.is_valid_cell(npc_grid))
-	
-	print("  - Bookstore world pos: ", bookstore_position)
-	print("  - Bookstore grid pos: ", bookstore_grid)
-	print("  - Bookstore cell walkable: ", grid_system.is_walkable(bookstore_grid))
-	print("  - Bookstore cell valid: ", grid_system.is_valid_cell(bookstore_grid))
-	
-	# 5. Check path status
-	print("\n🛤️ PATH ANALYSIS:")
-	print("  - Current state: ", NPCState.keys()[current_state])
-	print("  - Path waypoints: ", current_path.size())
-	print("  - Current waypoint index: ", path_index)
-	print("  - Grid path length: ", current_grid_path.size())
-	
+	# Follow path
 	if current_path.size() > 0:
-		print("  - Next waypoint: ", current_path[min(path_index, current_path.size()-1)] if path_index < current_path.size() else "NONE")
-		print("  - Distance to next: ", global_position.distance_to(current_path[min(path_index, current_path.size()-1)]) if path_index < current_path.size() else "N/A")
-	
-	# 6. Test pathfinding right now
-	print("\n🔍 PATHFINDING TEST:")
-	if grid_system.is_valid_cell(npc_grid) and grid_system.is_valid_cell(bookstore_grid):
-		var test_path = find_path(global_position, bookstore_position)
-		print("  - Test path found: ", test_path.world_path.size() > 0)
-		print("  - Test path waypoints: ", test_path.world_path.size())
-		print("  - Test grid path: ", test_path.grid_path.size())
-		
-		if test_path.world_path.size() == 0:
-			print("❌ PATHFINDING FAILED - No path found!")
-			
-			# Check if start and end are too far apart
-			var distance = npc_grid.distance_to(bookstore_grid)
-			print("  - Grid distance: ", distance)
-			
-			# Try finding nearest walkable cells
-			var nearest_start = grid_system.find_nearest_walkable(npc_grid)
-			var nearest_end = grid_system.find_nearest_walkable(bookstore_grid)
-			print("  - Nearest walkable to NPC: ", nearest_start)
-			print("  - Nearest walkable to bookstore: ", nearest_end)
-		else:
-			print("✅ Pathfinding works - path found!")
+		follow_path(delta)
 	else:
-		print("❌ Cannot test pathfinding - invalid grid positions!")
+		# No path, slow down smoothly
+		velocity.x = lerp(velocity.x, 0.0, acceleration * delta)
+		velocity.z = lerp(velocity.z, 0.0, acceleration * delta)
 	
-	# 7. Physics and velocity check
-	print("\n🏃 MOVEMENT STATUS:")
-	print("  - Current velocity: ", velocity)
-	print("  - Velocity length: ", velocity.length())
-	print("  - Is on floor: ", is_on_floor())
-	print("  - Collision layers: ", collision_layer)
-	print("  - Collision mask: ", collision_mask)
+	# Apply gravity
+	if not is_on_floor():
+		velocity.y -= 9.8 * delta
+	else:
+		velocity.y = -0.1  # Small downward force to stay grounded
 	
-	print("========================")
+	move_and_slide()
 
-# --- Public Methods for External Control ---
-func set_target(world_pos: Vector3):
-	"""Set a new target position for the NPC to navigate to"""
-	bookstore_position = world_pos
-	var path_result = find_path(global_position, world_pos)
-	current_path = path_result.world_path
-	current_grid_path = path_result.grid_path
-	path_index = 0
-	current_state = NPCState.GOING_TO_BOOKSTORE
+func check_if_stuck(delta):
+	var moved_distance = global_position.distance_to(last_position)
 	
-	if current_grid_path.size() > 0:
-		grid_system.set_route(current_grid_path)
-
-func get_current_grid_position() -> Vector2:
-	"""Get the NPC's current position in grid coordinates"""
-	if grid_system:
-		return grid_system.world_to_grid(global_position)
-	return Vector2.ZERO
-
-func is_at_destination() -> bool:
-	"""Check if the NPC has reached its destination"""
-	return current_state == NPCState.IDLE_WAITING
-
-func get_path_info() -> Dictionary:
-	"""Get information about the current path"""
-	var current_grid = grid_system.world_to_grid(global_position) if grid_system else Vector2.ZERO
-	var target_grid = grid_system.world_to_grid(bookstore_position) if grid_system else Vector2.ZERO
+	if moved_distance < 0.1 and current_path.size() > 0:
+		stuck_timer += delta
+		if stuck_timer > 2.0:  # Stuck for 2 seconds
+			print("🚫 NPC appears stuck, forcing path recalculation")
+			current_path.clear()
+			path_update_timer = 0.0  # Force immediate path update
+			stuck_timer = 0.0
+	else:
+		stuck_timer = 0.0
 	
-	return {
-		"total_waypoints": current_path.size(),
-		"current_waypoint": path_index,
-		"remaining_waypoints": max(0, current_path.size() - path_index),
-		"grid_path_length": current_grid_path.size(),
-		"is_moving": current_state == NPCState.GOING_TO_BOOKSTORE,
-		"current_grid_pos": current_grid,
-		"target_grid_pos": target_grid,
-		"current_cell_walkable": grid_system.is_walkable(current_grid) if grid_system else false,
-		"target_cell_walkable": grid_system.is_walkable(target_grid) if grid_system else false
-	}
+	last_position = global_position
 
-# --- Debug Method ---
-func print_debug_info():
-	"""Print comprehensive debug information"""
-	if not grid_system:
-		print("❌ No grid system!")
-		return
-		
-	var info = get_path_info()
-	var grid_info = grid_system.get_grid_info()
+func update_path():
+	var distance_to_player = global_position.distance_to(player.global_position)
 	
-	print("=== NPC DEBUG INFO ===")
-	print("🌍 World position: ", global_position)
-	print("📊 Grid position: ", info.current_grid_pos)
-	print("🎯 Target grid: ", info.target_grid_pos)
-	print("✅ Current walkable: ", info.current_cell_walkable)
-	print("✅ Target walkable: ", info.target_cell_walkable)
-	print("🛤️ Path waypoints: ", info.total_waypoints)
-	print("📍 Current waypoint: ", info.current_waypoint)
-	print("🏃 Is moving: ", info.is_moving)
-	print("🔢 Grid total cells: ", grid_info.total_cells)
-	print("🚶 Grid walkable: ", grid_info.walkable_cells)
-	print("🚫 Grid blocked: ", grid_info.blocked_cells)
-	print("====================")
-
-# --- TEST METHOD FOR DEBUGGING ---
-func test_npc_debug():
-	"""Call this method from anywhere to debug the NPC"""
-	debug_movement_issues()
-
-# --- EMERGENCY FIX METHODS ---
-func force_recalculate_path():
-	"""Force recalculate path - useful for debugging"""
-	print("🔄 FORCE RECALCULATING PATH...")
-	current_path.clear()
-	current_grid_path.clear()
-	path_index = 0
-	go_to_bookstore()
-
-func teleport_to_walkable_cell():
-	"""Emergency teleport to nearest walkable cell"""
-	if not grid_system:
+	# Don't pathfind if already close enough
+	if distance_to_player <= stop_distance:
+		current_path.clear()
+		if is_instance_valid(grid_system):
+			grid_system.clear_path_visualization()
 		return
 	
-	var current_grid = grid_system.world_to_grid(global_position)
-	var nearest_walkable = grid_system.find_nearest_walkable(current_grid)
-	var new_world_pos = grid_system.grid_to_world(nearest_walkable)
+	# Get grid cells
+	var start_cell = grid_system.world_to_grid(global_position)
+	var end_cell = grid_system.world_to_grid(player.global_position)
 	
-	print("🚀 TELEPORTING from ", global_position, " to ", new_world_pos)
-	global_position = new_world_pos
-	
-	# Recalculate path after teleporting
-	force_recalculate_path()
-
-# --- INPUT HANDLING FOR DEBUGGING ---
-func _input(event):
-	"""Debug input handling"""
-	if event.is_action_pressed("ui_accept"):  # Space key
-		print("🔍 MANUAL DEBUG TRIGGER")
-		debug_movement_issues()
-	elif event.is_action_pressed("ui_select"):  # Enter key
-		print("🔄 MANUAL PATH RECALCULATION")
-		force_recalculate_path()
-	elif event.is_action_pressed("ui_cancel"):  # Escape key
-		print("🚀 TELEPORT TO WALKABLE")
-		teleport_to_walkable_cell()
-
-func is_wall_ahead() -> bool:
-	if ray_forward.is_colliding():
-		var collider: Object = ray_forward.get_collider()
-		if collider and collider is CollisionObject3D:
-			# Check if collider is on Layer 2 (bit index 1)
-			if collider.collision_layer & (1 << 1) != 0:
-				return true
-	return false
-	
-func choose_alternate_direction() -> Vector3:
-	if not ray_left.is_colliding():
-		return -transform.basis.x  # move left
-	elif not ray_right.is_colliding():
-		return transform.basis.x   # move right
-	elif not ray_back.is_colliding():
-		return -transform.basis.z  # move back
-	else:
-		return Vector3.ZERO  # all blocked
-
-# --- NEW METHOD: Update Walk Animation Based on Direction ---
-func update_walk_animation(direction: Vector3):
-	"""
-	Adaptive animation controller.
-	- If the NPC rotates (look_at used), uses WORLD direction.
-	- If the NPC is fixed-facing, uses LOCAL direction.
-	- Plays the correct walking animation or idle.
-	"""
-	
-	if not animated_sprite or direction.length() < 0.1:
-		if animated_sprite and animated_sprite.animation != "idle":
-			animated_sprite.play("idle")
+	# Skip if we're on the same cell as player
+	if start_cell == end_cell:
+		current_path.clear()
+		if is_instance_valid(grid_system):
+			grid_system.clear_path_visualization()
 		return
 	
-	var dir = direction.normalized()
+	# Find path
+	var new_path = find_path(start_cell, end_cell)
 	
-	# --- Detect whether NPC rotates ---
-	# We compare the forward vector (-Z) with the direction of movement.
-	var forward = -transform.basis.z.normalized()
-	var facing_similarity = forward.dot(dir)
-	
-	var use_world_space = facing_similarity > 0.9
-	# If facing and direction are almost identical, NPC is rotating to face direction
-	# → use world-space check. Otherwise → use local-space check.
-	
-	var animation_name = "idle"
-	
-	if use_world_space:
-		# 🧭 NPC rotates → use world direction
-		var abs_x = abs(dir.x)
-		var abs_z = abs(dir.z)
+	if new_path.size() > 0:
+		current_path = new_path
+		current_waypoint_index = 0
 		
-		if abs_x > abs_z:
-			animation_name = "walk_right" if dir.x > 0 else "walk_left"
-		else:
-			animation_name = "walk_forward" if dir.z < 0 else "walk_backward"
+		# Skip first waypoint if we're already close to it
+		if current_path.size() > 1:
+			var first_waypoint = grid_system.grid_to_world(current_path[0])
+			if global_position.distance_to(first_waypoint) < waypoint_reach_distance:
+				current_waypoint_index = 1
+		
+		# Update path visualization
+		if show_path_debug and is_instance_valid(grid_system):
+			grid_system.draw_path_visualization(current_path, current_waypoint_index)
 	else:
-		# 🎮 NPC fixed-facing → use local direction (relative to facing)
-		var local_dir = transform.basis.inverse() * dir
-		local_dir.y = 0
-		local_dir = local_dir.normalized()
-		
-		var abs_x = abs(local_dir.x)
-		var abs_z = abs(local_dir.z)
-		
-		if abs_z > abs_x:
-			animation_name = "walk_backward" if local_dir.z > 0 else "walk_forward"
-		else:
-			animation_name = "walk_right" if local_dir.x > 0 else "walk_left"
+		print("⚠️ No path found from NPC to Player")
+		current_path.clear()
+		if is_instance_valid(grid_system):
+			grid_system.clear_path_visualization()
+
+func follow_path(delta):
+	if current_waypoint_index >= current_path.size():
+		current_path.clear()
+		if is_instance_valid(grid_system):
+			grid_system.clear_path_visualization()
+		return
 	
-	# --- Play the animation if it exists ---
-	if animated_sprite.sprite_frames.has_animation(animation_name):
-		animated_sprite.play(animation_name)
-	else:
-		# Graceful fallback
-		if animated_sprite.sprite_frames.has_animation("walk"):
-			animated_sprite.play("walk")
-		else:
-			animated_sprite.play("idle")
+	# Get target waypoint
+	var target_cell = current_path[current_waypoint_index]
+	var target_pos = grid_system.grid_to_world(target_cell)
+	
+	# Move towards waypoint (only XZ plane)
+	var to_target = target_pos - global_position
+	to_target.y = 0  # Ignore vertical difference
+	var distance_to_waypoint = to_target.length()
+	
+	# Check if reached waypoint
+	if distance_to_waypoint <= waypoint_reach_distance:
+		current_waypoint_index += 1
+		if show_path_debug and is_instance_valid(grid_system):
+			grid_system.draw_path_visualization(current_path, current_waypoint_index)
+		return
+	
+	var direction = to_target.normalized()
+	
+	# Smooth acceleration
+	var target_velocity_x = direction.x * move_speed
+	var target_velocity_z = direction.z * move_speed
+	velocity.x = lerp(velocity.x, target_velocity_x, acceleration * delta)
+	velocity.z = lerp(velocity.z, target_velocity_z, acceleration * delta)
+	
+	# Smooth rotation towards movement direction
+	if direction.length() > 0.1:
+		var target_rotation = atan2(direction.x, direction.z)
+		var current_rotation = rotation.y
+		rotation.y = lerp_angle(current_rotation, target_rotation, rotation_speed * delta)

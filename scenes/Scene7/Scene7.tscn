@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxtxjayw7pphx"]
+[gd_scene load_steps=15 format=3 uid="uid://bxtxjayw7pphx"]
 
 [ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/Scene4/AlleyScene.gdshader" id="1_tgw5q"]
 [ext_resource type="Script" uid="uid://dqpaxoogojg4n" path="res://script/Scene7.gd" id="1_tq8mp"]
@@ -25,6 +25,9 @@ background_mode = 2
 sky = SubResource("Sky_sknra")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2c81m"]
+size = Vector3(1.4942627, 4.2456055, 11.997208)
 
 [node name="Scene7" type="Node3D"]
 script = ExtResource("1_tq8mp")
@@ -103,4 +106,10 @@ metadata/_edit_use_anchors_ = true
 z_index = 4096
 
 [node name="Npc2" parent="." instance=ExtResource("2_ddao0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.045335, 0.8580744, -15.7188015)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.045335, 0.4805529, -15.7188015)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.323452, 1.6228027, -13.233332)
+shape = SubResource("BoxShape3D_2c81m")

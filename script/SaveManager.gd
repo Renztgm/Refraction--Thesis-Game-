@@ -210,3 +210,16 @@ func get_saved_player_direction() -> String:
 
 func has_save_data() -> bool:
 	return game_data.get("has_save", false)
+
+
+func get_memory_shard_count() -> int:
+	if db == null:
+		if not init_db():
+			return 0
+
+	var success := db.query("SELECT COUNT(*) AS count FROM memory_shards;")
+	if success and db.query_result.size() > 0:
+		return int(db.query_result[0]["count"])
+	else:
+		push_error("❌ Failed to query memory_shards count or table is empty.")
+		return 0
