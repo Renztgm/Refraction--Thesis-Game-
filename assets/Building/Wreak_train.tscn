@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpvgpspfx5qx8"]
+
+[ext_resource type="PackedScene" uid="uid://dyc41wna021u2" path="res://assets/Building/wreak train/Train.gltf" id="1_fa5jd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fa5jd"]
+size = Vector3(17.246765, 6.531189, 5.1255054)
+
+[node name="WreakTrain" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_fa5jd")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.27633667, 3.2768242, -0.046977043)
+shape = SubResource("BoxShape3D_fa5jd")

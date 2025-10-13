@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci7k4s7fyre1b"]
+
+[ext_resource type="PackedScene" uid="uid://cge1x6w6dyeim" path="res://assets/Building/Wall - Old/Old wall.gltf" id="1_n0wr8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n0wr8"]
+size = Vector3(12.168091, 6.2910156, 1)
+
+[node name="WallOkd" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_n0wr8")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.302063, 3.2021484, 0)
+shape = SubResource("BoxShape3D_n0wr8")
