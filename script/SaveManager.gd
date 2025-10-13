@@ -3,6 +3,10 @@ extends Node
 var db_path: String = "user://game_data.db"
 var db: SQLite
 
+var current_chapter: int = 1
+var next_chapter_scene_path: String = ""
+
+
 var game_data: Dictionary = {
 	"player_name": "Player",
 	"current_scene": "",
@@ -28,20 +32,31 @@ func init_db() -> bool:
 
 	print("✅ Database opened successfully")
 
-	var create_result: bool = db.query("""
-		CREATE TABLE IF NOT EXISTS save_data (
-			id INTEGER PRIMARY KEY AUTOINCREMENT,
-			player_name TEXT,
-			current_scene TEXT,
-			pos_x REAL,
-			pos_y REAL,
-			pos_z REAL,
-			direction TEXT,
-			has_save INTEGER
-		);
+	var create_save_table := db.query("""
+        CREATE TABLE IF NOT EXISTS save_data (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            player_name TEXT,
+            current_scene TEXT,
+            pos_x REAL,
+            pos_y REAL,
+            pos_z REAL,
+            direction TEXT,
+            has_save INTEGER
+        );
 	""")
-	print("🔧 Table creation result: ", create_result)
-	return create_result
+
+	var create_branch_table := db.query("""
+        CREATE TABLE IF NOT EXISTS game_path (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            scene_path TEXT,
+            branch_id TEXT,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+	""")
+
+	print("🔧 Save table creation result: ", create_save_table)
+	print("🔧 Branch table creation result: ", create_branch_table)
+	return create_save_table and create_branch_table
 
 # -----------------------
 # Save helpers
@@ -64,7 +79,6 @@ func save_game() -> bool:
 		if not init_db():
 			return false
 
-	# Gather player & scene
 	var player := get_tree().get_first_node_in_group("player")
 	if player:
 		if player is Node3D:
@@ -80,15 +94,13 @@ func save_game() -> bool:
 
 	print("🔧 Data to save: ", game_data)
 
-	# Clear old saves
 	db.query("DELETE FROM save_data;")
 
-	# Insert new save
 	var insert_sql := """
-		INSERT INTO save_data (
-			player_name, current_scene, pos_x, pos_y, pos_z, direction, has_save
-		) VALUES (?, ?, ?, ?, ?, ?, ?);
-	"""
+        INSERT INTO save_data (
+            player_name, current_scene, pos_x, pos_y, pos_z, direction, has_save
+        ) VALUES (?, ?, ?, ?, ?, ?, ?);
+    """
 	var params: Array = [
 		game_data["player_name"],
 		game_data["current_scene"],
@@ -99,20 +111,18 @@ func save_game() -> bool:
 		1
 	]
 
-	print("📦 Executing SQL:\n", insert_sql)
-	print("📦 With params: ", params)
-
 	var insert_ok: bool = db.query_with_bindings(insert_sql, params)
 	print("🔧 Insert result: ", insert_ok)
 
-	# Verify immediately
 	db.query("SELECT * FROM save_data;")
-	print("🔍 Verification query executed")
 	print("🔧 Verification rows: ", db.query_result)
 
 	if db.query_result.size() == 0:
 		print("⚠️ Save failed - no rows after insert")
 		return false
+
+	# ✅ Log scene completion for branching
+	log_scene_completion(game_data["current_scene"], "auto")
 
 	print("✅ Save successful")
 	return true
@@ -125,10 +135,7 @@ func load_game() -> bool:
 		if not init_db():
 			return false
 
-	print("🔧 Running load_game()...")
 	db.query("SELECT * FROM save_data;")
-	print("📊 Rows returned: ", db.query_result)
-
 	if db.query_result.size() == 0:
 		print("⚠️ No save data found")
 		return false
@@ -154,9 +161,7 @@ func continue_game() -> bool:
 		return false
 
 	get_tree().change_scene_to_file(game_data["current_scene"])
-
-	# Delay until scene is ready
-	await get_tree().process_frame  
+	await get_tree().process_frame
 
 	var player := get_tree().get_first_node_in_group("player")
 	if player:
@@ -193,9 +198,52 @@ func start_new_game() -> void:
 		print("🗑️ Cleared all saves from DB")
 
 # -----------------------
+# Branching Progress
+# -----------------------
+func log_scene_completion(scene_path: String, branch_id: String = "") -> bool:
+	if db == null:
+		if not init_db():
+			return false
+
+	var success := db.query_with_bindings("SELECT COUNT(*) AS count FROM game_path WHERE scene_path = ?", [scene_path])
+	if success and db.query_result.size() > 0 and int(db.query_result[0]["count"]) > 0:
+		print("ℹ️ Scene already logged:", scene_path)
+		return false
+
+	var insert := db.query_with_bindings(
+		"INSERT INTO game_path (scene_path, branch_id) VALUES (?, ?)",
+		[scene_path, branch_id]
+	)
+	print("📌 Scene logged:", scene_path, "Branch:", branch_id)
+	return insert
+
+func get_visited_scene_paths() -> Array:
+	if db == null:
+		if not init_db():
+			return []
+	
+	var success := db.query("SELECT scene_path FROM game_path")
+	if success and db.query_result.size() > 0:
+		var paths: Array = []
+		for row in db.query_result:
+			paths.append(row["scene_path"])
+		return paths
+	return []
+
+func get_last_scene_path() -> String:
+	if db == null:
+		if not init_db():
+			return ""
+	
+	var success := db.query("SELECT scene_path FROM game_path ORDER BY timestamp DESC LIMIT 1")
+	if success and db.query_result.size() > 0:
+		return db.query_result[0]["scene_path"]
+	return ""
+
+
+# -----------------------
 # Getters
 # -----------------------
-
 func get_saved_player_position() -> Vector3:
 	if not game_data.has("player_position"):
 		return Vector3.ZERO
@@ -210,3 +258,26 @@ func get_saved_player_direction() -> String:
 
 func has_save_data() -> bool:
 	return game_data.get("has_save", false)
+
+func get_memory_shard_count() -> int:
+	if db == null:
+		if not init_db():
+			return 0
+	var success := db.query("SELECT COUNT(*) AS count FROM memory_shards;")
+	if success and db.query_result.size() > 0:
+		return int(db.query_result[0]["count"])
+	else:
+		push_error("❌ Failed to query memory_shards count or table is empty.")
+		return 0
+
+func set_current_chapter(chapter: int) -> void:
+	current_chapter = chapter
+
+func get_current_chapter() -> int:
+	return current_chapter
+
+func set_next_scene_path(path: String) -> void:
+	next_chapter_scene_path = path
+
+func get_next_scene_path() -> String:
+	return next_chapter_scene_path

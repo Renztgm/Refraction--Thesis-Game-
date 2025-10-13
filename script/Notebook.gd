@@ -230,6 +230,16 @@ func hide_text() -> void:
 func _on_shard_close_pressed():
 	memory_shard_layer.visible = false
 
+	# ✅ Log scene completion for branching system
+	if SaveManager:
+		var scene_path = get_tree().current_scene.scene_file_path
+		var branch_id = "scene_3"  # Use a meaningful ID for this scene
+		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
+		if logged:
+			print("📌 Scene 3 logged:", scene_path)
+		else:
+			print("ℹ️ Scene 3 already logged or failed to log.")
+
 	# Resume gameplay
 	if player_ref and player_ref.has_method("unfreeze_player"):
 		player_ref.unfreeze_player()

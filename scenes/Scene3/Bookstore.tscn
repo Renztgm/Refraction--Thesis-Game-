@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=39 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ojhvhrl2nhjm" path="res://assets/Bookshelf/BS5.tscn" id="15_d83rn"]
 [ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="16_yli1t"]
 [ext_resource type="PackedScene" uid="uid://cctgl8qi55o8o" path="res://assets/Bookshelf/BS3.tscn" id="17_nemvj"]
+[ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="18_qkotb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -26,17 +27,25 @@ sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
 ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
 ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
 
-[sub_resource type="Sky" id="Sky_bx50q"]
+[sub_resource type="Sky" id="Sky_qkotb"]
 sky_material = SubResource("ProceduralSkyMaterial_ecfh2")
 
 [sub_resource type="Environment" id="Environment_u6ydm"]
 background_mode = 2
-sky = SubResource("Sky_bx50q")
+sky = SubResource("Sky_qkotb")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2412b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d83rn"]
+size = Vector3(50, 1, 50)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_abmj1"]
 size = Vector3(7.11823, 4.82605, 6.53577)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l061f"]
+size = Vector3(28.71936, 2.8309937, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bo7vp"]
 
@@ -70,6 +79,13 @@ texture = ExtResource("10_cudmw")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d83rn"]
 texture = ExtResource("10_cudmw")
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_2412b"]
+vertices = PackedVector3Array(-24.5, 1, -24.5, -24.5, 1, 24.5, 24.5, 1, 24.5, 24.5, 1, -24.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_d83rn"]
+size = Vector3(50, 1, 50)
+
 [node name="Bookstore" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
@@ -82,11 +98,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 light_color = Color(0.647059, 1, 0.478431, 1)
 light_energy = 0.5
 sky_mode = 1
-
-[node name="Plane" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.129, -0.5, -0.251)
-use_collision = true
-size = Vector3(30, 1, 30)
 
 [node name="Walls" type="Node3D" parent="Environment"]
 
@@ -117,14 +128,28 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.275
 [node name="Wall3Bs5" parent="Environment/Walls" instance=ExtResource("5_moha3")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.1828, -1.90735e-06, -14.5864)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+physics_material_override = SubResource("PhysicsMaterial_2412b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+shape = SubResource("BoxShape3D_d83rn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
+size = Vector3(50, 1, 50)
+
 [node name="Npc2" parent="." instance=ExtResource("8_iarg8")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.34813, 0.02369, 13.3065)
+collision_layer = 4
+collision_mask = 7
 
 [node name="Player3d" parent="." instance=ExtResource("1_u6ydm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891695, -0.511548, 12.6993)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891695, 0.06136185, 12.458539)
+collision_layer = 4
+collision_mask = 7
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.7165)
+collision_mask = 4
 script = ExtResource("2_cedyu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
@@ -133,6 +158,57 @@ shape = SubResource("BoxShape3D_abmj1")
 
 [node name="blockbench_export" parent="Area3D" instance=ExtResource("6_vasej")]
 transform = Transform3D(-4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 0, 0.879109, 0)
+
+[node name="Bookshelves" type="Node3D" parent="."]
+
+[node name="Bs6" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.380127, 0.30756998, 9.406025)
+
+[node name="Bs7" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.380127, 0.30756998, 1.5051193)
+
+[node name="Bs8" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.380127, 0.30756998, -5.574091)
+
+[node name="Bs9" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, 12.123938)
+
+[node name="Bs10" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, 4.0567408)
+
+[node name="Bs11" parent="Bookshelves" instance=ExtResource("12_l061f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, -4.0141487)
+
+[node name="Bs1" parent="Bookshelves" instance=ExtResource("13_qkotb")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -7.0324583, 0.0062499996, 6.447307)
+
+[node name="Bs2" parent="Bookshelves" instance=ExtResource("14_2412b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9886527, 0.0062499996, -13.994272)
+
+[node name="Bs5" parent="Bookshelves" instance=ExtResource("15_d83rn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.461703, 0.0062499996, -13.840574)
+
+[node name="Bs4" parent="Bookshelves" instance=ExtResource("16_yli1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.29, 0, -13.994)
+
+[node name="Bs12" parent="Bookshelves" instance=ExtResource("15_d83rn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6764402, 0.0062499996, -1.8072517)
+
+[node name="Bs3" parent="Bookshelves" instance=ExtResource("17_nemvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.686, 0, -13.917)
+
+[node name="Bs13" parent="Bookshelves" instance=ExtResource("14_2412b")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 5.5810146, 0.0062499996, 1.6589885)
+
+[node name="Bs14" parent="Bookshelves" instance=ExtResource("16_yli1t")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.00823, 0.0062499996, 9.060141)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.919359)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.56365967, 0.9154968, 0)
+shape = SubResource("BoxShape3D_l061f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -281,46 +357,10 @@ text = "Close"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Bookshelves" type="Node3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_2412b")
+script = ExtResource("18_qkotb")
 
-[node name="Bs6" parent="Bookshelves" instance=ExtResource("12_l061f")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.380127, 0.30756998, 9.406025)
-
-[node name="Bs7" parent="Bookshelves" instance=ExtResource("12_l061f")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.380127, 0.30756998, 1.5051193)
-
-[node name="Bs8" parent="Bookshelves" instance=ExtResource("12_l061f")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.380127, 0.30756998, -5.574091)
-
-[node name="Bs9" parent="Bookshelves" instance=ExtResource("12_l061f")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, 12.123938)
-
-[node name="Bs10" parent="Bookshelves" instance=ExtResource("12_l061f")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, 4.0567408)
-
-[node name="Bs11" parent="Bookshelves" instance=ExtResource("12_l061f")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.166916, 0.30756998, -4.0141487)
-
-[node name="Bs1" parent="." instance=ExtResource("13_qkotb")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -9.984751, 0.0062499996, 6.447307)
-
-[node name="Bs2" parent="." instance=ExtResource("14_2412b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9886527, 0.0062499996, -13.994272)
-
-[node name="Bs5" parent="." instance=ExtResource("15_d83rn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.461703, 0.0062499996, -13.840574)
-
-[node name="Bs4" parent="." instance=ExtResource("16_yli1t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.29, 0, -13.994)
-
-[node name="Bs6" parent="." instance=ExtResource("15_d83rn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.838861, 0.0062499996, -0.930105)
-
-[node name="Bs3" parent="." instance=ExtResource("17_nemvj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.686, 0, -13.917)
-
-[node name="Bs7" parent="." instance=ExtResource("14_2412b")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 4.7700715, 0.0062499996, 2.9122982)
-
-[node name="Bs8" parent="." instance=ExtResource("16_yli1t")]
-transform = Transform3D(0.35836798, 0, -0.9335804, 0, 1, 0, 0.9335804, 0, 0.35836798, 6.8449693, 0.0062499996, 9.060141)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+visible = false
+mesh = SubResource("BoxMesh_d83rn")

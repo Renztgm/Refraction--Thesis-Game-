@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8u37kw8vyryl"]
+
+[ext_resource type="Script" uid="uid://dquwasvbvcipd" path="res://scenes/branch selection/branch_selection.gd" id="1_tg8fn"]
+
+[node name="BranchSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tg8fn")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

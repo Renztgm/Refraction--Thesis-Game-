@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf2m3lfijg51"]
+
+[ext_resource type="PackedScene" uid="uid://hhjgrsg20eq5" path="res://assets/Building/Wall - baricade/Baricade.gltf" id="1_qxa4l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qxa4l"]
+size = Vector3(24.608818, 4.845215, 1)
+
+[node name="WallBaricade" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_qxa4l")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0673027, 1.9226074, 1.2983823)
+shape = SubResource("BoxShape3D_qxa4l")

@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhtiik766w01r"]
+[gd_scene load_steps=3 format=3 uid="uid://dhtiik766w01r"]
 
 [ext_resource type="Script" uid="uid://dalqm6nay3tlx" path="res://script/SettingsUI.gd" id="1_dq6ke"]
-[ext_resource type="FontFile" uid="uid://dvth77lm03vyw" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_q0hoj"]
-
-[sub_resource type="FontVariation" id="FontVariation_vhr25"]
-base_font = ExtResource("2_q0hoj")
+[ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_460fb"]
 
 [node name="SettingsUI" type="Control"]
 z_index = 4096
@@ -42,7 +39,7 @@ grow_vertical = 2
 [node name="Title" type="Label" parent="SettingsPanel/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "SETTINGS"
 
@@ -52,7 +49,7 @@ size_flags_horizontal = 4
 
 [node name="AudioTitle" type="Label" parent="SettingsPanel/VBox/AudioSection"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "AUDIO"
 
@@ -61,7 +58,7 @@ layout_mode = 2
 
 [node name="Music Volume" type="Label" parent="SettingsPanel/VBox/AudioSection/MusicVolume"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "Music Volume"
 
@@ -74,7 +71,7 @@ value = 80.0
 
 [node name="VolumeLabel" type="Label" parent="SettingsPanel/VBox/AudioSection/MusicVolume"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "0%"
 
@@ -83,7 +80,7 @@ layout_mode = 2
 
 [node name="Music Enabled" type="Label" parent="SettingsPanel/VBox/AudioSection/MusicVolume/MusicEnabled"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "Music Enabled"
 
@@ -97,7 +94,7 @@ size_flags_horizontal = 4
 
 [node name="VIDEO" type="Label" parent="SettingsPanel/VBox/VideoSection"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "VIDEO"
 
@@ -106,7 +103,7 @@ layout_mode = 2
 
 [node name="Brightness" type="Label" parent="SettingsPanel/VBox/VideoSection/Brightness"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "Brightness"
 
@@ -120,16 +117,17 @@ value = 0.5
 
 [node name="BrightnessLabel" type="Label" parent="SettingsPanel/VBox/VideoSection/Brightness"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "0%"
 
 [node name="Fullscreen" type="HBoxContainer" parent="SettingsPanel/VBox/VideoSection"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingsPanel/VBox/VideoSection/Fullscreen"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "Fullscreen"
 
@@ -141,7 +139,7 @@ layout_mode = 2
 
 [node name="V-Sync" type="Label" parent="SettingsPanel/VBox/VideoSection/VSync"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "V-Sync"
 
@@ -155,18 +153,18 @@ size_flags_vertical = 8
 
 [node name="ApplyButton" type="Button" parent="SettingsPanel/VBox/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "Apply"
 
 [node name="CancelButton" type="Button" parent="SettingsPanel/VBox/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "Cancel"
 
 [node name="ResetButton" type="Button" parent="SettingsPanel/VBox/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vhr25")
+theme_override_fonts/font = ExtResource("2_460fb")
 theme_override_font_sizes/font_size = 24
 text = "Reset to Defaults"

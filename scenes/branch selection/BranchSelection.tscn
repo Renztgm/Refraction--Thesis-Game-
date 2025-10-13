@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8u37kw8vyryl"]
+
+[ext_resource type="Script" uid="uid://o7himqi1mxtj" path="res://scenes/branch selection/BranchTimelineViewer.gd" id="2_jmb44"]
+
+[node name="BranchSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BranchMapViewer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_jmb44")
+
+[node name="TitleLabel" type="Label" parent="BranchMapViewer"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 39.0
+
+[node name="DescriptionLabel" type="Label" parent="BranchMapViewer"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 56.0
+offset_bottom = 63.0
+
+[node name="ScrollContainer" type="HScrollBar" parent="BranchMapViewer"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="MapRoot" type="Control" parent="BranchMapViewer/ScrollContainer"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

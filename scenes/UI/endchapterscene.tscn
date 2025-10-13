@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv1g7eu2exr7f"]
+
+[ext_resource type="Script" uid="uid://mbu6xc0o3ygl" path="res://script/endchapterscene.gd" id="1_2t5ef"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="2_gc076"]
+
+[node name="Endchapterscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2t5ef")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Chapter Completed!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShardsPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ShardsPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ShardsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Shards Obtained"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShardsCount" type="Label" parent="MarginContainer/VBoxContainer/ShardsPanel/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="InventoryButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Inventory"
+
+[node name="NextChapterButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Next Chapter"
+
+[node name="BranchButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Branches"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("2_gc076")]

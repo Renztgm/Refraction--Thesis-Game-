@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqajbu24xh8af"]
+
+[ext_resource type="Script" uid="uid://bie5g1buqxsh8" path="res://scenes/TestingScenes/node_3d.gd" id="1_to5kf"]
+[ext_resource type="PackedScene" uid="uid://cej8x77gsyixw" path="res://assets/bookstore_walls/Wall1/Wall1_bs.tscn" id="2_ptomh"]
+[ext_resource type="PackedScene" uid="uid://b8j2bt3ea0fny" path="res://assets/bookstore_walls/Wall2/Wall2_bs.tscn" id="3_fergp"]
+[ext_resource type="PackedScene" uid="uid://dry51jm8t8e83" path="res://assets/bookstore_walls/Wall3/Wall3_bs.tscn" id="4_3yu1h"]
+[ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/NPCs/Npc2_follow.tscn" id="6_apdmm"]
+[ext_resource type="Script" uid="uid://bd0jlfvbuskwa" path="res://scenes/Scene3/grid.gd" id="6_apgs4"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="7_usij0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vgeqt"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_curve = 0.243676
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_bx50q"]
+sky_material = SubResource("ProceduralSkyMaterial_vgeqt")
+
+[sub_resource type="Environment" id="Environment_dgj8m"]
+background_mode = 2
+sky = SubResource("Sky_bx50q")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_to5kf")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_dgj8m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+light_energy = 0.5
+sky_mode = 1
+
+[node name="Walls" type="Node3D" parent="Environment"]
+
+[node name="Wall1Bs" parent="Environment/Walls" instance=ExtResource("2_ptomh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.0687, 0, -7.01294)
+
+[node name="Wall2Bs" parent="Environment/Walls" instance=ExtResource("3_fergp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9998, -0.0179877, 2.30865)
+
+[node name="Wall3Bs" parent="Environment/Walls" instance=ExtResource("4_3yu1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1608, 0, 8.04971)
+
+[node name="Wall2Bs2" parent="Environment/Walls" instance=ExtResource("3_fergp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.737, -0.0179877, -9.63849)
+
+[node name="Wall3Bs2" parent="Environment/Walls" instance=ExtResource("4_3yu1h")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.8037, 0, 18.3131)
+
+[node name="Wall3Bs3" parent="Environment/Walls" instance=ExtResource("4_3yu1h")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.8551, 0, 7.12647)
+
+[node name="Wall2Bs3" parent="Environment/Walls" instance=ExtResource("3_fergp")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.41809, -0.0179877, -17.4183)
+
+[node name="Wall3Bs4" parent="Environment/Walls" instance=ExtResource("4_3yu1h")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.27521, -1.90735e-06, -14.5864)
+
+[node name="Wall3Bs5" parent="Environment/Walls" instance=ExtResource("4_3yu1h")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.1828, -1.90735e-06, -14.5864)
+
+[node name="Plane" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128864, 0, -0.251266)
+use_collision = true
+collision_layer = 3
+size = Vector3(500, 1, 250)
+
+[node name="Grid" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("6_apgs4")
+
+[node name="Grid_MeshInstance" type="MeshInstance3D" parent="Grid"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Npc2" parent="." instance=ExtResource("6_apdmm")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.34813, 0.80126834, 13.3065)
+
+[node name="Player3d" parent="." instance=ExtResource("7_usij0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891695, 0.6898208, 12.458539)

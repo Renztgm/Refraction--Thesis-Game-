@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://wbyekqgiahjr"]
+
+[ext_resource type="Script" uid="uid://dquwasvbvcipd" path="res://scenes/branch selection/branch_selection.gd" id="1_5d0dc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5d0dc"]
+
+[node name="BranchMapViewer" type="Control"]
+z_index = 999
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+script = ExtResource("1_5d0dc")
+
+[node name="Control" type="CanvasLayer" parent="."]
+
+[node name="CloseButton" type="Button" parent="Control"]
+anchors_preset = -1
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 128.0
+offset_bottom = 95.0
+text = "Close"
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 10
+anchor_mode = 0
+
+[node name="MapRoot" type="Node2D" parent="."]
+z_index = 4096
+position = Vector2(128, 512)
+
+[node name="LineLayer" type="Node2D" parent="."]
+position = Vector2(128, 512)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
+self_modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(3044, 1880)
+scale = Vector2(6088, 3776.0002)
+texture = SubResource("CanvasTexture_5d0dc")

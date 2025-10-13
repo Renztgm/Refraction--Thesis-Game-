@@ -141,14 +141,17 @@ func save_game_here():
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("inventory"):
-		if inventory_ui:
-			inventory_ui.visible = not inventory_ui.visible
-			print("Inventory toggled:", inventory_ui.visible)
+		toggle_inventory()
 
-			if inventory_ui.visible:
-				freeze_player()
-			else:
-				unfreeze_player()
+func toggle_inventory():
+	if inventory_ui:
+		inventory_ui.visible = not inventory_ui.visible
+		print("Inventory toggled:", inventory_ui.visible)
+
+		if inventory_ui.visible:
+			freeze_player()
+		else:
+			unfreeze_player()
 
 
 # -----------------------------

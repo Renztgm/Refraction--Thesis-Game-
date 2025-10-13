@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BranchNode" load_steps=3 format=3 uid="uid://dpdpnkoscqgch"]
+
+[ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_fb812"]
+[ext_resource type="Resource" uid="uid://br0sfy2wv7ys5" path="res://scenes/branch selection/ch1_sn7.tres" id="2_8x4rc"]
+
+[resource]
+script = ExtResource("1_fb812")
+title = "\"Dreamspace \""
+description = "- - - "
+scene_path = "res://scenes/Scene6/Scene6.tscn"
+children = Array[ExtResource("1_fb812")]([ExtResource("2_8x4rc")])
+metadata/_custom_type_script = "uid://bdblq5joux0oh"
