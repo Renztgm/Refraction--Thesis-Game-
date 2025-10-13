@@ -34,6 +34,11 @@ jobs:
     - name: Check test results
       run: |
         cat logs/tests_full.log
+        # Extract test summary
+        mkdir -p test_results
+        grep -A 20 "= Run Summary" logs/tests_full.log > test_results/summary.txt || true
+        cat test_results/summary.txt
+        
         # Check for actual test failures (not just script errors from loading)
         if grep -q "Failing.*tests" logs/tests_full.log; then
           echo "❌ Tests failed"
@@ -41,6 +46,13 @@ jobs:
         else
           echo "✅ Tests passed"
         fi
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: gut-test-results
+        path: test_results/
 
     - name: Upload debug logs
       if: always()
