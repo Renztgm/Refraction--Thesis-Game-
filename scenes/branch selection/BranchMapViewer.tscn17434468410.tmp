@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://wbyekqgiahjr"]
+
+[ext_resource type="Script" uid="uid://dquwasvbvcipd" path="res://scenes/branch selection/branch_selection.gd" id="1_5d0dc"]
+
+[node name="BranchMapViewer" type="Node2D"]
+script = ExtResource("1_5d0dc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+anchor_mode = 0
+
+[node name="MapRoot" type="Node2D" parent="CanvasLayer"]
+z_index = 4096
+position = Vector2(128, 512)
+
+[node name="LineLayer" type="Node2D" parent="CanvasLayer"]
+position = Vector2(128, 512)
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DescriptionLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CloseButton" type="Button" parent="CanvasLayer"]
+offset_right = 64.0
+offset_bottom = 23.0
+text = "Close"

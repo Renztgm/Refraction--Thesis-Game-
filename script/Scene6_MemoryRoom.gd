@@ -265,6 +265,16 @@ func complete_sequence():
 	print("✅ Memory Room sequence complete! → Loading Scene7")
 	sequence_completed.emit()
 
+	# ✅ Log scene completion for branching system
+	if SaveManager:
+		var scene_path = get_tree().current_scene.scene_file_path
+		var branch_id = "scene_6"  # Use a meaningful ID for this scene
+		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
+		if logged:
+			print("📌 Scene 6 logged:", scene_path)
+		else:
+			print("ℹ️ Scene 6 already logged or failed to log.")
+
 	var next_scene_path = "res://scenes/Scene7/Scene7.tscn"
 	if ResourceLoader.exists(next_scene_path):
 		get_tree().change_scene_to_file(next_scene_path)

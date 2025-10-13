@@ -12,8 +12,14 @@ var next_chapter_scene_path: String = ""
 @onready var branch_button: Button = $MarginContainer/VBoxContainer/ButtonContainer/BranchButton
 @onready var inventory_button: Button = $MarginContainer/VBoxContainer/ButtonContainer/InventoryButton
 @onready var inventory_ui: Control = $UI/InventoryUI # Make sure this path matches your scene
+@onready var branch_map_viewer: Control = $BranchMapViewer
 
 func _ready() -> void:
+	
+	var chapter = SaveManager.get_current_chapter()
+	var next_scene = SaveManager.get_next_scene_path()
+	print("Initializing ChapterCompleteUI with chapter:", chapter, "next scene:", next_scene)
+	setup_end_chapter_from_db(chapter, next_scene)
 	# Connect button signals with null checks
 	if inventory_button:
 		inventory_button.pressed.connect(_on_inventory_button_pressed)
@@ -27,7 +33,7 @@ func _ready() -> void:
 		
 	if branch_button:
 		branch_button.pressed.connect(_on_branch_button_pressed)
-		branch_button.visible = false
+		#branch_button.visible = false
 	else:
 		push_error("BranchButton not found!")
 	
@@ -101,15 +107,21 @@ func _on_inventory_button_pressed() -> void:
 
 
 func _on_next_chapter_button_pressed() -> void:
-	print("Loading next chapter...")
+	print("Next scene path:", next_chapter_scene_path)
 	if next_chapter_scene_path != "":
 		get_tree().change_scene_to_file(next_chapter_scene_path)
 	else:
 		print("No next chapter scene path set")
 
-func _on_branch_button_pressed() -> void:
-	print("Opening branch scene...")
-	# Example: get_tree().change_scene_to_file("res://scenes/branch_selection.tscn")
+
+func _on_branch_button_pressed():
+	var branch_map = load("res://scenes/branch selection/BranchMapViewer.tscn").instantiate()
+	branch_map.set_meta("previous_scene", self)
+	self.visible = false
+	get_tree().root.add_child(branch_map)
+
+
+
 
 # Enable/disable the branch button (for optional feature)
 func enable_branch_button(enable: bool) -> void:

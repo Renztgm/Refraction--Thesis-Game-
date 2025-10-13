@@ -169,11 +169,21 @@ func show_realization():
 
 func end_scene():
 	print("Scene 1: Awakening completed")
+
+	# ✅ Log scene completion for branching system
+	if SaveManager:
+		var scene_path = get_tree().current_scene.scene_file_path
+		var branch_id = "awakening"  # You can use a meaningful ID like the BranchNode title or event name
+		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
+		if logged:
+			print("📌 Scene logged to game_path:", scene_path)
+		else:
+			print("ℹ️ Scene already logged or failed to log.")
+
 	# Fade to black or transition to next scene
 	var tween = create_tween()
 	tween.tween_property(fade_overlay, "modulate:a", 1.0, 2.0)
 	
 	await tween.finished
 	
-	# Load next scene or return to main menu
 	get_tree().change_scene_to_file("res://scenes/Scene2/Scene2.tscn")

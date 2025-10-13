@@ -67,7 +67,18 @@ func _trigger_event() -> void:
 
 	# 8. Transition to next scene
 	if next_scene_path != "":
+		# ✅ Log scene completion for branching system
+		if SaveManager:
+			var scene_path = get_tree().current_scene.scene_file_path
+			var branch_id = "scene_4"  # Use a meaningful ID for this scene
+			var logged := SaveManager.log_scene_completion(scene_path, branch_id)
+			if logged:
+				print("📌 Scene 4 logged:", scene_path)
+			else:
+				print("ℹ️ Scene 4 already logged or failed to log.")
+
 		get_tree().change_scene_to_file(next_scene_path)
+
 
 	print("Shadow vanished, screen faded to black, transitioning to next scene.")
 

@@ -12,6 +12,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2t5ef")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -19,7 +27,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -46,7 +53,7 @@ vertical_alignment = 1
 
 [node name="ShardsCount" type="Label" parent="MarginContainer/VBoxContainer/ShardsPanel/VBoxContainer"]
 layout_mode = 2
-text = "99"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 

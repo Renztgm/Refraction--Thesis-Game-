@@ -26,18 +26,16 @@ func set_item(item_name: String, new_quantity: int, icon_path: String):
 func set_memory_shard(shard_data: Dictionary):
 	is_memory_shard = true
 	shard_name = shard_data.get("shard_name", "Unknown Shard")
-	item_id = shard_data.get("id", -1)
-	quantity = 1  # Shards don't stack
+	item_id = -1
+	quantity = 1
 	
 	var icon_path = shard_data.get("icon_path", "")
-	if icon_path != "":
-		icon.texture = load(icon_path)
-	else:
-		icon.texture = null
+	icon.texture = load(icon_path) if icon_path != "" else null
 	
-	# Display shard name (formatted nicely)
 	var display_name = shard_name.replace("_", " ").capitalize()
-	label.text = "🔷 " + display_name  # Optional: add icon/symbol
+	label.text = "🔷 " + display_name
+	print("✅ Shard set in slot_id %d: %s" % [slot_id, shard_name])
+
 
 # Clear the slot
 func clear_item():

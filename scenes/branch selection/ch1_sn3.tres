@@ -7,6 +7,6 @@
 script = ExtResource("1_t5e2g")
 title = "\"First Exploration\""
 description = "Exploration!!"
-scene_path = "res://scenes/Scene3/Scene3.tscn"
+scene_path = "res://scenes/Scene3/Bookstore.tscn"
 children = Array[ExtResource("1_t5e2g")]([ExtResource("2_pxoag")])
 metadata/_custom_type_script = "uid://bdblq5joux0oh"

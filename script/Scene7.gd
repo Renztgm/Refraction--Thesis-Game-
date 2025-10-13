@@ -23,26 +23,26 @@ func _on_door_entered(body):
 		go_to_end_chapter()
 
 func go_to_end_chapter():
-	"""Transition to end chapter scene with fade"""
-	
-	# Fade to black (or white)
+	# Fade to black
 	if fade_overlay:
-		fade_overlay.color = Color(0, 0, 0, 0)  # Start transparent
+		fade_overlay.color = Color(0, 0, 0, 0)
 		var tween = create_tween()
-		
-		# Choose one:
-		# Black fade:
 		tween.tween_property(fade_overlay, "color", Color(0, 0, 0, 1), 1.5)
-		
-		# White fade (uncomment if you prefer white):
-		# tween.tween_property(fade_overlay, "color", Color(1, 1, 1, 1), 1.5)
-		
 		await tween.finished
-	
+
+	# ✅ Log scene completion
+	if SaveManager:
+		var scene_path = get_tree().current_scene.scene_file_path
+		var branch_id = "scene_7"
+		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
+		if logged:
+			print("📌 Scene 7 logged:", scene_path)
+		else:
+			print("ℹ️ Scene 7 already logged or failed to log.")
+
+		# ✅ Set chapter info for next scene
+		SaveManager.set_current_chapter(1)
+		SaveManager.set_next_scene_path("res://scenes/chapter2/Scene1.tscn")
+
 	# Load end chapter scene
-	var end_scene = preload("res://scenes/UI/endchapterscene.tscn").instantiate()
-	end_scene.setup_end_chapter_from_db(1, "res://scenes/chapter_2.tscn")
-	get_tree().root.add_child(end_scene)
-	
-	# Remove Scene 7
-	queue_free()
+	get_tree().change_scene_to_file("res://scenes/UI/endchapterscene.tscn")
