@@ -39,6 +39,11 @@ jobs:
         grep -A 20 "= Run Summary" logs/tests_full.log > test_results/summary.txt || true
         cat test_results/summary.txt
         
+        # Add summary to GitHub Actions job summary
+        echo "## 🧪 GUT Test Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        cat test_results/summary.txt >> $GITHUB_STEP_SUMMARY
+        
         # Check for actual test failures (not just script errors from loading)
         if grep -q "Failing.*tests" logs/tests_full.log; then
           echo "❌ Tests failed"
