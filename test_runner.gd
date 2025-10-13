@@ -13,5 +13,5 @@ func _run_gut() -> void:
 	
 	await self.create_timer(2.0).timeout
 	
-	# GUT prints its own summary, so just quit with success code
-	quit(0)
+	# Exit - CI will check logs for pass/fail
+	quit()
