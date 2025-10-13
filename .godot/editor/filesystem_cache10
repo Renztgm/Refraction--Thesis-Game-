@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1760387754
+::res://::1760388366
 concre.png::CompressedTexture2D/CompressedTexture2D::4619939674361576101::1756212534::1756212559::1::::<><><>0<>0<>006021d459f2f4d0e7545cfc88a11d2d<>res://.godot/imported/concre.png-178989d46e63488dc300b46c1114b3a5.s3tc.ctex::
 export_presets.cfg::TextFile::-1::1759282114::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::7329119823398826953::1756210733::1756212559::1::::<><><>0<>0<>78fd6719c62e5b3f8a1bc5ef9cdb2c7f<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex::
@@ -16,7 +16,7 @@ godot-sqlite.gd::GDScript/GDScript::6354497535622739150::1757342566::0::1::::<>E
 LICENSE.md::TextFile/TextFile::-1::1757342016::0::1::::<><><>0<>0<><>::
 plugin.cfg::TextFile/TextFile::-1::1757342566::0::1::::<><><>0<>0<><>::
 README.md::TextFile/TextFile::-1::1757342016::0::1::::<><><>0<>0<><>::
-::res://addons/godot-sqlite/bin/::1760387876
+::res://addons/godot-sqlite/bin/::1760388357
 ::res://addons/godot-sqlite/bin/libgdsqlite.ios.template_debug.xcframework/::1757342564
 ::res://addons/godot-sqlite/bin/libgdsqlite.ios.template_debug.xcframework/ios-arm64/::1757342564
 ::res://addons/godot-sqlite/bin/libgdsqlite.ios.template_debug.xcframework/ios-arm64_x86_64-simulator/::1757342564

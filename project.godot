@@ -44,7 +44,7 @@ project/assembly_name="Test"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-sqlite/demo/addons/godot-sqlite/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [input]
 
