@@ -1,15 +1,26 @@
 extends SceneTree
 
 func _init():
-	var gut = load("res://addons/gut/gut.gd").new()
-	root.add_child(gut)
+    var gut = load("res://addons/gut/gut.gd").new()
+    root.add_child(gut)
 
-	# Tell GUT which folder(s) to look in
-	gut.set_directories(["res://tests"])
+    # Set test directories
+    gut.set_directories(["res://tests"])
 
-	# Configure output (use constants from gut instance instead of Gut.PRINT_DETAIL)
-	gut.set_print_format(gut.PRINT_DETAIL)
-	# gut.set_verbose(true) # if you also want asserts printed
+    # Output format for CI logs
+    gut.set_print_format(gut.PRINT_VERBOSE)  # More detailed than PRINT_DETAIL
 
-	# Run tests
-	gut.run_tests()
+    # Optional: Save JUnit-style XML for CI parsing
+    gut.set_junit_file("user://test_results/results.xml")
+
+    # Optional: Save plain text summary
+    gut.set_summary_file("user://test_results/summary.txt")
+
+    # Optional: Include subdirectories
+    gut.include_subdirectories(true)
+
+    # Optional: Exit Godot after tests
+    gut.set_exit_on_finish(true)
+
+    # Run tests
+    gut.run_tests()
