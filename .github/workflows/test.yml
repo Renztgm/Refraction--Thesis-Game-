@@ -7,7 +7,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      CI: true
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -18,6 +19,11 @@ jobs:
         unzip godot.zip -d $HOME/godot
         mv $HOME/godot/Godot_v4.5-stable_linux.x86_64 $HOME/godot/godot
         chmod +x $HOME/godot/godot
+    
+    - name: Import Godot project
+      run: |
+        $HOME/godot/godot --headless --path . --editor --quit --verbose
+
 
     - name: Run GUT Tests
       run: |

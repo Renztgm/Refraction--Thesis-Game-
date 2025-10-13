@@ -100,7 +100,7 @@ func save_game() -> bool:
         INSERT INTO save_data (
             player_name, current_scene, pos_x, pos_y, pos_z, direction, has_save
         ) VALUES (?, ?, ?, ?, ?, ?, ?);
-    """
+	"""
 	var params: Array = [
 		game_data["player_name"],
 		game_data["current_scene"],
