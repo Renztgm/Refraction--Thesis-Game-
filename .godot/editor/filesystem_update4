@@ -1,1 +1,4 @@
 res://scenes/Main Menu/main_menu.tscn
+res://test_runner.gd
+res://scenes/Scene3/Scene3.tscn
+res://tests/test_npc_scene3.gd

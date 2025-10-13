@@ -14,7 +14,7 @@ func test_npc_in_scene3_moves():
 	add_child_autofree(scene)
 	await get_tree().process_frame  # allow _ready() to run
 
-	var npc = scene.get_node_or_null("Npc2")
+	var npc = scene.get_node_or_null("Npc3")
 	assert_not_null(npc, "Npc2 should exist in Scene3")
 
 	var start_pos = npc.global_position
