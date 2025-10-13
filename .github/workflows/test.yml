@@ -29,7 +29,7 @@ jobs:
         mkdir -p test_results logs
         timeout 120 $HOME/godot/godot --headless --path . \
           -s test_runner.gd \
-          2>&1 | tee logs/tests_full.log || true
+          2>&1 | tee logs/tests_full.log
 
     - name: Check test results
       run: |
