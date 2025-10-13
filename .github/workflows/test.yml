@@ -24,26 +24,23 @@ jobs:
       run: |
         $HOME/godot/godot --headless --path . --editor --quit --verbose
 
-
     - name: Run GUT Tests
       run: |
         mkdir -p test_results logs
-        $HOME/godot/godot --headless --path . -s addons/gut/gut_cmdln.gd \
-          -gdir=res://tests \
-          -ginclude_subdirs \
-          -gexit \
-          -gjunit test_results/results.xml \
-          2>&1 | tee logs/tests_full.log
+        timeout 120 $HOME/godot/godot --headless --path . \
+          -s test_runner.gd \
+          2>&1 | tee logs/tests_full.log || true
 
-        grep -E "PASS|FAIL|ERROR|Ran" logs/tests_full.log > test_results/summary.txt || true
-        cat test_results/summary.txt || true
-
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: gut-test-results
-        path: test_results/
+    - name: Check test results
+      run: |
+        if grep -q "Failing\|ERROR\|SCRIPT ERROR" logs/tests_full.log; then
+          echo "❌ Tests failed or had errors"
+          cat logs/tests_full.log
+          exit 1
+        else
+          echo "✅ Tests passed"
+          cat logs/tests_full.log
+        fi
 
     - name: Upload debug logs
       if: always()
