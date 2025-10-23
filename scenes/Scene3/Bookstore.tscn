@@ -48,7 +48,7 @@ size = Vector3(7.11823, 4.82605, 6.53577)
 [sub_resource type="BoxShape3D" id="BoxShape3D_l061f"]
 size = Vector3(28.71936, 2.8309937, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bo7vp"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2412b"]
 
 [sub_resource type="FontVariation" id="FontVariation_mn76v"]
 base_font = ExtResource("7_h2wqw")
@@ -214,16 +214,14 @@ shape = SubResource("BoxShape3D_l061f")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-z_as_relative = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -261.0
+offset_top = -325.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_bo7vp")
-metadata/_edit_use_anchors_ = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2412b")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
 layout_mode = 1
@@ -238,7 +236,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_mn76v")
 expand_mode = 3
-metadata/_edit_use_anchors_ = true
 
 [node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer/Panel"]
 layout_mode = 1
@@ -247,8 +244,8 @@ anchor_left = 0.0486111
 anchor_top = 0.82716
 anchor_right = 0.9375
 anchor_bottom = 0.91358
-offset_top = -66.8889
-offset_bottom = -66.8889
+offset_top = -55.827118
+offset_bottom = -55.827118
 grow_horizontal = 2
 grow_vertical = 2
 fit_content = true
@@ -274,10 +271,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -64.0
-offset_right = -65.0
-offset_bottom = -24.0
+offset_left = -165.0
+offset_top = -88.0
+offset_right = -70.0
+offset_bottom = -48.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = SubResource("FontVariation_mn76v")

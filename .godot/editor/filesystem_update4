@@ -4,3 +4,4 @@ res://scenes/Scene3/Scene3.tscn
 res://scenes/TestingScenes/minimap_root.gd
 res://scenes/Scene3/Bookstore.tscn
 res://scenes/UI/LoadingScreen.tscn
+res://scenes/Player/Player3d.tscn

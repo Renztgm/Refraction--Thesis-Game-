@@ -1,7 +1,8 @@
-[gd_scene load_steps=68 format=3 uid="uid://c8jfqypwf5vw5"]
+[gd_scene load_steps=69 format=3 uid="uid://c8jfqypwf5vw5"]
 
 [ext_resource type="Script" uid="uid://cw3dugmb5cg08" path="res://script/player_3d.gd" id="1_526tg"]
 [ext_resource type="Texture2D" uid="uid://8g4clas8oawq" path="res://assets/Character/Justine -Character/idle_down_mc-Sheet-final.png" id="10_3y08u"]
+[ext_resource type="Texture2D" uid="uid://b8exmjschf3cw" path="res://assets/ui/bag.png" id="10_mvv3u"]
 [ext_resource type="Texture2D" uid="uid://duc6va48lnma5" path="res://assets/Character/Justine -Character/Sprite-0001.png" id="11_w3ql0"]
 [ext_resource type="Texture2D" uid="uid://bo6w73881rkl8" path="res://assets/Character/Justine -Character/idle_right_mc-sheet.png" id="12_516wo"]
 [ext_resource type="Texture2D" uid="uid://cfq4rlx0nlk7v" path="res://assets/Character/Justine -Character/Mc-forward-idle-Sheet.png" id="13_17lr3"]
@@ -484,16 +485,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="inventoryButton" type="Button" parent="hud"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -83.0
-offset_bottom = 31.0
+anchor_bottom = 1.0
+offset_left = -101.0
+offset_top = -102.0
+offset_right = 407.0
+offset_bottom = 406.0
 grow_horizontal = 0
-text = "Inventory"
+grow_vertical = 0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("10_mvv3u")
+flat = true
 
 [connection signal="pressed" from="hud/inventoryButton" to="." method="_on_inventory_button_pressed"]

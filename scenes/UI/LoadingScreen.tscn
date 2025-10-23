@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_3rg30"]
 
 [node name="LoadingScreen" type="Control"]
-z_index = 1
+z_index = 999
 y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 15
