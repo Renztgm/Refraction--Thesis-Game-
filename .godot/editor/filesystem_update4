@@ -1,7 +1,6 @@
-res://scenes/Main Menu/main_menu.tscn
-res://test_runner.gd
+res://scenes/TestingScenes/MinimapRoot.tscn
+res://Tres/ButtonTheme.tres
 res://scenes/Scene3/Scene3.tscn
-res://tests/test_npc_scene3.gd
+res://scenes/TestingScenes/minimap_root.gd
 res://scenes/Scene3/Bookstore.tscn
-res://tests/test_grid_system.gd
-res://tests/test_example.gd
+res://scenes/UI/LoadingScreen.tscn

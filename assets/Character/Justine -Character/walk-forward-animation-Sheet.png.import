@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bq3k5itqo8x2y"
 path.s3tc="res://.godot/imported/walk-forward-animation-Sheet.png-23c7fc70b167eed609cc3df48ca8c4a6.s3tc.ctex"
+path.etc2="res://.godot/imported/walk-forward-animation-Sheet.png-23c7fc70b167eed609cc3df48ca8c4a6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Character/Justine -Character/walk-forward-animation-Sheet.png"
-dest_files=["res://.godot/imported/walk-forward-animation-Sheet.png-23c7fc70b167eed609cc3df48ca8c4a6.s3tc.ctex"]
+dest_files=["res://.godot/imported/walk-forward-animation-Sheet.png-23c7fc70b167eed609cc3df48ca8c4a6.s3tc.ctex", "res://.godot/imported/walk-forward-animation-Sheet.png-23c7fc70b167eed609cc3df48ca8c4a6.etc2.ctex"]
 
 [params]
 

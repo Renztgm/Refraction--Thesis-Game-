@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c4irk4i63ynmd"]
+[gd_scene load_steps=32 format=3 uid="uid://c4irk4i63ynmd"]
 
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_5s2s3"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="2_3ni3a"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://cyby2eli2s01s" path="res://assets/Building/Building3.tscn" id="17_cjq0k"]
 [ext_resource type="PackedScene" uid="uid://ce3d7ovhkpl5l" path="res://assets/Building/Building6.tscn" id="18_e2ji0"]
 [ext_resource type="PackedScene" uid="uid://bf2m3lfijg51" path="res://assets/Building/wall_baricade.tscn" id="19_e2ji0"]
+[ext_resource type="Script" uid="uid://drt56em2leu86" path="res://scenes/Scene2/tutorial_manager.gd" id="22_c0bx3"]
+[ext_resource type="PackedScene" uid="uid://1ufufpujciht" path="res://scenes/UI/ControlHint.tscn" id="23_ldycq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_prnq5"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -372,5 +374,13 @@ transform = Transform3D(-0.6385287, 0.7668327, 0.06518132, -0.041858137, 0.04996
 
 [node name="WreakTrain5" parent="Vehicles" instance=ExtResource("14_lassv")]
 transform = Transform3D(0.72233474, 0.69153017, 0.004326202, -0.04185814, 0.049965397, -0.9978735, -0.6902759, 0.7206174, 0.0650379, 90.06876, 2.7289712, -13.526959)
+
+[node name="TutorialManager" type="Node3D" parent="."]
+script = ExtResource("22_c0bx3")
+
+[node name="ControlHint" parent="TutorialManager" instance=ExtResource("23_ldycq")]
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
 
 [connection signal="animation_finished" from="FadeLayer/AnimationPlayer" to="FadeLayer" method="_on_animation_player_animation_finished"]

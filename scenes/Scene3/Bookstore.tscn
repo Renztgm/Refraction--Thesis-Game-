@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=40 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="16_yli1t"]
 [ext_resource type="PackedScene" uid="uid://cctgl8qi55o8o" path="res://assets/Bookshelf/BS3.tscn" id="17_nemvj"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="18_qkotb"]
+[ext_resource type="PackedScene" uid="uid://dcoq37w1cr7c8" path="res://scenes/UI/MinimapRoot.tscn" id="19_2412b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -137,12 +138,12 @@ shape = SubResource("BoxShape3D_d83rn")
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
 size = Vector3(50, 1, 50)
 
-[node name="Npc2" parent="." instance=ExtResource("8_iarg8")]
+[node name="Npc2" parent="." groups=["npc"] instance=ExtResource("8_iarg8")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.34813, 0.02369, 13.3065)
 collision_layer = 4
 collision_mask = 7
 
-[node name="Player3d" parent="." instance=ExtResource("1_u6ydm")]
+[node name="Player3d" parent="." groups=["player2"] instance=ExtResource("1_u6ydm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891695, 0.06136185, 12.458539)
 collision_layer = 4
 collision_mask = 7
@@ -364,3 +365,5 @@ script = ExtResource("18_qkotb")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 visible = false
 mesh = SubResource("BoxMesh_d83rn")
+
+[node name="MinimapRoot" parent="." instance=ExtResource("19_2412b")]

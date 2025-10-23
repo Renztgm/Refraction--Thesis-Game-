@@ -475,3 +475,25 @@ sprite_frames = SubResource("SpriteFrames_t0ssm")
 animation = &"run_right"
 autoplay = "idle_down"
 frame_progress = 0.7768376
+
+[node name="hud" type="Control" parent="."]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inventoryButton" type="Button" parent="hud"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -83.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Inventory"
+
+[connection signal="pressed" from="hud/inventoryButton" to="." method="_on_inventory_button_pressed"]

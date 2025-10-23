@@ -1,2 +1,2 @@
-﻿60910
+﻿58724
 C:/GodotCLI/Godot_v4.5-stable_mono_win64.exe

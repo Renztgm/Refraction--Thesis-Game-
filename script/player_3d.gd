@@ -143,6 +143,9 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory()
 
+func _on_inventory_button_pressed() -> void:
+	toggle_inventory()
+
 func toggle_inventory():
 	if inventory_ui:
 		inventory_ui.visible = not inventory_ui.visible

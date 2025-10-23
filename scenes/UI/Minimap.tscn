@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqgyp1ip2dc01"]
+
+[ext_resource type="Script" uid="uid://bx547u66vlnwn" path="res://script/MinimapGridOverlay.gd" id="1_nkwr6"]
+
+[node name="Minimap" type="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="MinimapBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MinimapIcons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerIcon" type="TextureRect" parent="MinimapIcons"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NPCIcon" type="TextureRect" parent="MinimapIcons"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MinimapGridOverlay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nkwr6")

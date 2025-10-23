@@ -24,12 +24,13 @@ func _ready():
 func _on_close_button_pressed():
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
-		players[0].toggle_inventory()
+		var player = players[0]
+		if "toggle_inventory" in player:
+			player.toggle_inventory()
+		else:
+			push_warning("Player node does not have toggle_inventory method")
 	else:
-		visible = false  # fallback: just hide the UI
-
-
-
+		visible = false
 
 var slot_list: Array = []
 
