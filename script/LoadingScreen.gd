@@ -1,8 +1,8 @@
 extends Control
 
 # Nodes
-@onready var quote_label: Label = $MarginContainer/VBoxContainer/QuoteLabel
-@onready var loading_label: Label = $MarginContainer/VBoxContainer/LoadingLabel
+@onready var quote_label: Label = $CanvasLayer/MarginContainer/VBoxContainer/QuoteLabel
+@onready var loading_label: Label = $CanvasLayer/MarginContainer/VBoxContainer/LoadingLabel
 
 # Quotes
 var messages: Array = []

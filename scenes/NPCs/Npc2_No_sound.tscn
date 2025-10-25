@@ -553,9 +553,8 @@ billboard = 2
 shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_06rm7")
-animation = &"walk_forward"
+animation = &"walk_backward"
 autoplay = "idle"
-frame_progress = 0.69984454
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0928802, 3.59082, 0.0271606)

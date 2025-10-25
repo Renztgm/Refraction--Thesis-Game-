@@ -23,14 +23,20 @@ func _ready():
 
 func _on_close_button_pressed():
 	var players = get_tree().get_nodes_in_group("player")
-	if players.size() > 0:
-		var player = players[0]
-		if "toggle_inventory" in player:
+	if players.size() == 0:
+		players = get_tree().get_nodes_in_group("player2")
+
+	for player in players:
+		if player.has_method("toggle_inventory"):
 			player.toggle_inventory()
+			break
 		else:
-			push_warning("Player node does not have toggle_inventory method")
-	else:
+			print("Node in group does not have toggle_inventory:", player)
+
+	if players.size() == 0 or not players.any(func(p): return p.has_method("toggle_inventory")):
 		visible = false
+
+	print("Napindot ung close!")
 
 var slot_list: Array = []
 

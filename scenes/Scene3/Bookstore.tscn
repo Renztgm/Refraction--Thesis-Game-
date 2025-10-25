@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=34 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
@@ -54,31 +54,11 @@ size = Vector3(28.71936, 2.8309937, 1)
 base_font = ExtResource("7_h2wqw")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qwy0o"]
-texture = ExtResource("10_cudmw")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3alfa"]
 texture = ExtResource("10_cudmw")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x0oou"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ksjg"]
-texture = ExtResource("10_cudmw")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbmbb"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l061f"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qkotb"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2412b"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d83rn"]
-texture = ExtResource("10_cudmw")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_2412b"]
 vertices = PackedVector3Array(-24.5, 1, -24.5, -24.5, 1, 24.5, 24.5, 1, 24.5, 24.5, 1, -24.5)
@@ -266,23 +246,15 @@ color = Color(0, 0, 0, 1)
 [node name="NextButton" type="Button" parent="CanvasLayer"]
 z_index = 1
 z_as_relative = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -165.0
-offset_top = -88.0
-offset_right = -70.0
-offset_bottom = -48.0
-grow_horizontal = 0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = SubResource("FontVariation_mn76v")
 theme_override_styles/normal = SubResource("StyleBoxTexture_qwy0o")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_3alfa")
-theme_override_styles/hover = SubResource("StyleBoxTexture_x0oou")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_5ksjg")
-text = "Next"
+flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasPause" type="CanvasLayer" parent="."]
@@ -334,24 +306,14 @@ text = " Memory Shard 1"
 z_index = 1
 z_as_relative = false
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -319.0
-offset_top = -47.0
-offset_right = -224.0
-offset_bottom = -7.0
-grow_horizontal = 0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = SubResource("FontVariation_mn76v")
 theme_override_styles/normal = SubResource("StyleBoxTexture_lbmbb")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_l061f")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qkotb")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_2412b")
-theme_override_styles/focus = SubResource("StyleBoxTexture_d83rn")
-text = "Close"
+flat = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 

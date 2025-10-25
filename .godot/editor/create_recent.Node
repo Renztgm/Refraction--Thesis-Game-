@@ -1,14 +1,14 @@
+CanvasLayer
+Button
 TextureRect
 CSGBox3D
 Camera3D
 SubViewport
 Node3D
 Node
-CanvasLayer
 Control
 AnimationPlayer
 AnimatedSprite2D
 Label
-Button
 MarginContainer
 CollisionShape3D

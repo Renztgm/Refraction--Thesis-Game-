@@ -1,6 +1,5 @@
 [gd_scene load_steps=29 format=3 uid="uid://crieuya1rk71"]
 
-[ext_resource type="PackedScene" uid="uid://dcoq37w1cr7c8" path="res://scenes/UI/MinimapRoot.tscn" id="1_7j4dl"]
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_fnou3"]
 [ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="2_otrxq"]
 [ext_resource type="PackedScene" uid="uid://bf66clec7ik28" path="res://assets/Building/Building2.tscn" id="3_8hrhf"]
@@ -19,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_kv2g0"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="15_fnou3"]
 [ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/NPCs/Npc2_No_sound.tscn" id="15_u4lah"]
+[ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_7j4dl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q0b6v"]
 size = Vector3(14.4083, 9.09265, 11.1161)
@@ -306,4 +306,4 @@ mesh = SubResource("BoxMesh_qqu30")
 [node name="Npc3" parent="." groups=["npc"] instance=ExtResource("15_u4lah")]
 transform = Transform3D(0.51, 0, 0, 0, 0.51, 0, 0, 0, 0.51, 0.5029535, 0.5881989, 63.12042)
 
-[node name="MinimapRoot" parent="." instance=ExtResource("1_7j4dl")]
+[node name="Minimap" parent="." instance=ExtResource("19_7j4dl")]

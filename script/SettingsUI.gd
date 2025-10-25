@@ -21,7 +21,7 @@ var original_settings: Dictionary
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS   # UI works while game paused
 	mouse_filter = Control.MOUSE_FILTER_PASS
-	z_index = 10000
+	z_index = 9999
 	# Debug: Check all node references
 	print("=== SETTINGS UI NODE CHECK ===")
 	print("apply_button: ", apply_button)

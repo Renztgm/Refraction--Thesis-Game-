@@ -1,7 +1,11 @@
-res://scenes/TestingScenes/MinimapRoot.tscn
+res://script/SettingsUI.gd
+res://scenes/UI/DialogueManager.tscn
 res://Tres/ButtonTheme.tres
-res://scenes/Scene3/Scene3.tscn
-res://scenes/TestingScenes/minimap_root.gd
-res://scenes/Scene3/Bookstore.tscn
-res://scenes/UI/LoadingScreen.tscn
 res://scenes/Player/Player3d.tscn
+res://scenes/Scene2/Scene2.tscn
+res://scenes/UI/LoadingScreen.tscn
+res://script/LoadingScreen.gd
+res://scenes/Scene3/Scene3.tscn
+res://scenes/Scene1/Scene1.tscn
+res://scenes/Scene3/Bookstore.tscn
+res://script/Notebook.gd
