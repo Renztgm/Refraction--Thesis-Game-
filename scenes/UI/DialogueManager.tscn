@@ -1,44 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhshtkqj6blyb"]
+[gd_scene load_steps=7 format=3 uid="uid://dhshtkqj6blyb"]
 
 [ext_resource type="Script" uid="uid://5w8bp5qmr0ma" path="res://script/DialogueMngr.gd" id="1_xi3yh"]
 [ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="2_01vcs"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_ebjfy"]
 [ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="4_ebjfy"]
-[ext_resource type="Texture2D" uid="uid://c5utx7vxnxej0" path="res://addons/pngs/Button.png" id="5_01vcs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m70fm"]
 
 [sub_resource type="FontVariation" id="FontVariation_ebjfy"]
 base_font = ExtResource("2_ebjfy")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4jjta"]
-texture = ExtResource("5_01vcs")
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7kutu"]
-texture = ExtResource("5_01vcs")
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-modulate_color = Color(0.854902, 0.854902, 0.854902, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_01vcs"]
-texture = ExtResource("5_01vcs")
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
-
 [node name="DialogueManager" type="Control"]
-z_index = 1
+z_index = -4096
 y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 15
@@ -126,21 +99,15 @@ theme = ExtResource("4_ebjfy")
 theme_override_constants/separation = 30
 
 [node name="NextButton" type="Button" parent="."]
+z_index = -50
+y_sort_enabled = true
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -152.0
-offset_top = -88.0
-offset_right = -67.0
-offset_bottom = -49.0
-grow_horizontal = 0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_ebjfy")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxTexture_4jjta")
-theme_override_styles/hover = SubResource("StyleBoxTexture_7kutu")
-theme_override_styles/normal = SubResource("StyleBoxTexture_01vcs")
-text = "Next"
+flat = true

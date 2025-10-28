@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0qchlpr70m27"]
+
+[ext_resource type="PackedScene" uid="uid://cx85leg8kcbax" path="res://assets/item/Banig/Banig.gltf" id="1_d03u0"]
+
+[node name="Banig" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_d03u0")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)

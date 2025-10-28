@@ -1,0 +1,14 @@
+TextureRect
+Node3D
+CollisionShape3D
+StaticBody3D
+CanvasLayer
+Button
+CSGBox3D
+Camera3D
+SubViewport
+Node
+Control
+AnimationPlayer
+AnimatedSprite2D
+Label

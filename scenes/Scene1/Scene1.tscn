@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ch1ttkvnsghnw"]
+[gd_scene load_steps=38 format=3 uid="uid://ch1ttkvnsghnw"]
 
 [ext_resource type="PackedScene" uid="uid://buinssl07707h" path="res://assets/Building/Building 1/House-1.gltf" id="2_le1v4"]
 [ext_resource type="PackedScene" uid="uid://bi1lugsasrj5" path="res://addons/Station/rails/RailTrack.tscn" id="4_bjme1"]
@@ -18,7 +18,6 @@
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="14_pp1vh"]
 [ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="15_bjme1"]
 [ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="16_722yh"]
-[ext_resource type="Texture2D" uid="uid://c5utx7vxnxej0" path="res://addons/pngs/Button.png" id="17_2oxmw"]
 [ext_resource type="PackedScene" uid="uid://c3heuy5bku3an" path="res://assets/materials/trashbag/trash.tscn" id="17_4igs4"]
 [ext_resource type="PackedScene" uid="uid://cpvgpspfx5qx8" path="res://assets/Building/Wreak_train.tscn" id="21_cl7m3"]
 
@@ -118,23 +117,14 @@ size = Vector3(1, 1.67432, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp1vh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1iqc"]
-texture = ExtResource("17_2oxmw")
+texture_margin_top = 600.0
+texture_margin_right = 100.0
 expand_margin_left = 10.0
 expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2oxmw"]
-texture = ExtResource("17_2oxmw")
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-modulate_color = Color(0.854902, 0.854902, 0.854902, 1)
 
 [node name="NarrativeScene3d" type="Node3D"]
 
@@ -431,7 +421,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
 offset_top = -165.0
-offset_right = 1024.0
+offset_right = 1792.0
 offset_bottom = -135.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("14_pp1vh")
@@ -458,22 +448,16 @@ horizontal_alignment = 1
 
 [node name="NextButton" type="Button" parent="UILayer/DialogueBox"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -152.0
-offset_top = -88.0
-offset_right = -67.0
-offset_bottom = -49.0
-grow_horizontal = 0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("14_pp1vh")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_n1iqc")
-theme_override_styles/hover = SubResource("StyleBoxTexture_2oxmw")
-text = "Next"
+flat = true
+alignment = 2
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("9_t2ff0")

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkbc0mup8n1vv"
 path.s3tc="res://.godot/imported/signage_1.png-a5965185058ab265b9f12e87fab61c42.s3tc.ctex"
+path.etc2="res://.godot/imported/signage_1.png-a5965185058ab265b9f12e87fab61c42.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/item/signage/signage_1.png"
-dest_files=["res://.godot/imported/signage_1.png-a5965185058ab265b9f12e87fab61c42.s3tc.ctex"]
+dest_files=["res://.godot/imported/signage_1.png-a5965185058ab265b9f12e87fab61c42.s3tc.ctex", "res://.godot/imported/signage_1.png-a5965185058ab265b9f12e87fab61c42.etc2.ctex"]
 
 [params]
 

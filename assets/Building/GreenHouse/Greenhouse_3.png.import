@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgfnv8c102ybb"
 path.s3tc="res://.godot/imported/Greenhouse_3.png-ceeb259fec6cfd17aedfbdec67ab1716.s3tc.ctex"
+path.etc2="res://.godot/imported/Greenhouse_3.png-ceeb259fec6cfd17aedfbdec67ab1716.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Building/GreenHouse/Greenhouse_3.png"
-dest_files=["res://.godot/imported/Greenhouse_3.png-ceeb259fec6cfd17aedfbdec67ab1716.s3tc.ctex"]
+dest_files=["res://.godot/imported/Greenhouse_3.png-ceeb259fec6cfd17aedfbdec67ab1716.s3tc.ctex", "res://.godot/imported/Greenhouse_3.png-ceeb259fec6cfd17aedfbdec67ab1716.etc2.ctex"]
 
 [params]
 

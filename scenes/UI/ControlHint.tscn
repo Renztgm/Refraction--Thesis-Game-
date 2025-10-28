@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://1ufufpujciht"]
+
+[ext_resource type="Texture2D" uid="uid://bld37rayw8bvd" path="res://assets/ui/ControlHints.png" id="1_lxs5a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxs5a"]
+atlas = ExtResource("1_lxs5a")
+region = Rect2(0, 0, 750, 750)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc2dp"]
+atlas = ExtResource("1_lxs5a")
+region = Rect2(750, 0, 750, 750)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s4apv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxs5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc2dp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="ControlHint" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(504, 560)
+sprite_frames = SubResource("SpriteFrames_s4apv")
+autoplay = "default"
+frame_progress = 0.16555294

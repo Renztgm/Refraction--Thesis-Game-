@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2u43qii1qgfw"
 path.s3tc="res://.godot/imported/Banig_2.png-64d93bb0d99f056b5704b990e338cb25.s3tc.ctex"
+path.etc2="res://.godot/imported/Banig_2.png-64d93bb0d99f056b5704b990e338cb25.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/item/Banig/Banig_2.png"
-dest_files=["res://.godot/imported/Banig_2.png-64d93bb0d99f056b5704b990e338cb25.s3tc.ctex"]
+dest_files=["res://.godot/imported/Banig_2.png-64d93bb0d99f056b5704b990e338cb25.s3tc.ctex", "res://.godot/imported/Banig_2.png-64d93bb0d99f056b5704b990e338cb25.etc2.ctex"]
 
 [params]
 

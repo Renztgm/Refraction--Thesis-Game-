@@ -1,9 +1,12 @@
-[gd_scene load_steps=68 format=3 uid="uid://c8jfqypwf5vw5"]
+[gd_scene load_steps=71 format=3 uid="uid://c8jfqypwf5vw5"]
 
 [ext_resource type="Script" uid="uid://cw3dugmb5cg08" path="res://script/player_3d.gd" id="1_526tg"]
 [ext_resource type="Texture2D" uid="uid://8g4clas8oawq" path="res://assets/Character/Justine -Character/idle_down_mc-Sheet-final.png" id="10_3y08u"]
+[ext_resource type="Texture2D" uid="uid://b8exmjschf3cw" path="res://assets/ui/bag.png" id="10_mvv3u"]
+[ext_resource type="Texture2D" uid="uid://rl4gq0r5o1cv" path="res://assets/ui/box.png" id="11_vxnrg"]
 [ext_resource type="Texture2D" uid="uid://duc6va48lnma5" path="res://assets/Character/Justine -Character/Sprite-0001.png" id="11_w3ql0"]
 [ext_resource type="Texture2D" uid="uid://bo6w73881rkl8" path="res://assets/Character/Justine -Character/idle_right_mc-sheet.png" id="12_516wo"]
+[ext_resource type="Texture2D" uid="uid://btutaow4chjfc" path="res://assets/ui/quest.png" id="12_vxnrg"]
 [ext_resource type="Texture2D" uid="uid://cfq4rlx0nlk7v" path="res://assets/Character/Justine -Character/Mc-forward-idle-Sheet.png" id="13_17lr3"]
 [ext_resource type="Texture2D" uid="uid://uwg82a4m3lh5" path="res://assets/Character/Justine -Character/mc_walk_down-sheet.png" id="14_qa5ne"]
 [ext_resource type="Texture2D" uid="uid://cmfefjl288qp8" path="res://assets/Character/Justine -Character/walk-left-animation-Sheet.png" id="15_cnjxn"]
@@ -475,3 +478,53 @@ sprite_frames = SubResource("SpriteFrames_t0ssm")
 animation = &"run_right"
 autoplay = "idle_down"
 frame_progress = 0.7768376
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="leftHud" type="TextureRect" parent="hud"]
+z_index = -20
+y_sort_enabled = true
+offset_left = 1760.0
+offset_right = 1866.6666
+offset_bottom = 213.33331
+scale = Vector2(1.5, 1.5)
+mouse_filter = 2
+texture = ExtResource("11_vxnrg")
+expand_mode = 3
+stretch_mode = 4
+metadata/_edit_group_ = true
+
+[node name="questButton" type="Button" parent="hud"]
+z_index = 4096
+y_sort_enabled = true
+offset_left = 1792.0
+offset_top = 112.0
+offset_right = 1892.0
+offset_bottom = 212.0
+icon = ExtResource("12_vxnrg")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="inventoryButton" type="Button" parent="hud"]
+z_index = 4096
+y_sort_enabled = true
+custom_minimum_size = Vector2(30, 30)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -864.0
+offset_right = 372.0
+offset_bottom = -364.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("10_mvv3u")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="hud/inventoryButton" to="." method="_on_inventory_button_pressed"]

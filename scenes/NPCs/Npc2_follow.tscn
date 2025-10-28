@@ -321,6 +321,35 @@ animations = [{
 "texture": SubResource("AtlasTexture_aqov2")
 }],
 "loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlsht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3ap2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xkug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0h8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j81x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6x0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78xuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqov2")
+}],
+"loop": true,
 "name": &"idle_backward",
 "speed": 7.0
 }, {
@@ -380,35 +409,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_left",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dlsht")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m3ap2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0xkug")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p0h8q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j81x8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e6x0u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_78xuf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aqov2")
-}],
-"loop": true,
-"name": &"idle_right",
 "speed": 7.0
 }, {
 "frames": [{
@@ -636,13 +636,12 @@ script = ExtResource("1_t505e")
 
 [node name="CompanionSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 4.0104103, 0)
-flip_h = true
 billboard = 2
 shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_npboh")
-animation = &"idle_backward"
-autoplay = "idle_right"
+animation = &"walk_backward"
+autoplay = "idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0928802, 3.574092, 0.0271606)

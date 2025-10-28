@@ -17,6 +17,7 @@ extends CharacterBody3D
 # =========================
 @onready var grid_system = $"../NavigationRegion3D"  # Adjust path to your grid system
 @onready var player = $"../Player3d"
+@onready var companion_sprite: AnimatedSprite3D = $CompanionSprite
 
 # =========================
 # PATHFINDING
@@ -196,6 +197,25 @@ func _physics_process(delta):
 		velocity.y = -0.1  # Small downward force to stay grounded
 	
 	move_and_slide()
+	update_animation()
+
+func update_animation():
+	var movement = Vector2(velocity.x, velocity.z)
+	
+	if movement.length() < 0.1:
+		companion_sprite.play("idle")
+		return
+	
+	var angle = atan2(movement.y, movement.x)
+	
+	if angle > -PI/4 and angle <= PI/4:
+		companion_sprite.play("walk_right")
+	elif angle > PI/4 and angle <= 3*PI/4:
+		companion_sprite.play("walk_backward")
+	elif angle <= -PI/4 and angle > -3*PI/4:
+		companion_sprite.play("walk_forward")
+	else:
+		companion_sprite.play("walk_left")
 
 func check_if_stuck(delta):
 	var moved_distance = global_position.distance_to(last_position)

@@ -1,0 +1,145 @@
+[gd_scene load_steps=16 format=3 uid="uid://bj111x3valukd"]
+
+[ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/Scene4/AlleyScene.gdshader" id="1_5toq1"]
+[ext_resource type="PackedScene" uid="uid://csjehpoytegny" path="res://assets/Building/WoodFloors5x5.tscn" id="2_xxw1v"]
+[ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="3_jq7dr"]
+[ext_resource type="PackedScene" uid="uid://c0qchlpr70m27" path="res://assets/item/banig.tscn" id="4_aihtp"]
+[ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="5_vtpxn"]
+[ext_resource type="PackedScene" uid="uid://tkpvecb6nn1" path="res://assets/Bookshelf/StackBS.tscn" id="6_kc280"]
+[ext_resource type="PackedScene" uid="uid://cvwodonhiv8" path="res://assets/Building/greenhousev2.tscn" id="7_mc64s"]
+[ext_resource type="PackedScene" uid="uid://cavei4lm2httx" path="res://assets/Building/cementfloors.tscn" id="8_cto0d"]
+[ext_resource type="PackedScene" uid="uid://d0x6nxcr5aj6g" path="res://assets/Building/stairs.tscn" id="9_mfh66"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="10_jq7dr"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="11_aihtp"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="13_kc280"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3eqev"]
+shader = ExtResource("1_5toq1")
+shader_parameter/emerald = Color(0.31, 0.78, 0.47, 1)
+shader_parameter/dull_gray = Color(0.66, 0.66, 0.66, 1)
+shader_parameter/flicker = 0.0
+
+[sub_resource type="Sky" id="Sky_sknra"]
+sky_material = SubResource("ShaderMaterial_3eqev")
+
+[sub_resource type="Environment" id="Environment_r1ps4"]
+background_mode = 2
+sky = SubResource("Sky_sknra")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[node name="Chapter2Scene1" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_r1ps4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+sky_mode = 1
+
+[node name="Plane" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8288646, 0, -10.27223)
+use_collision = true
+size = Vector3(37, 1, 15.2)
+
+[node name="Structures" type="Node3D" parent="."]
+
+[node name="WoodFloors5x5" parent="Structures" instance=ExtResource("2_xxw1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6424046, 0.49987793, -15.923299)
+metadata/_edit_group_ = true
+
+[node name="Road" type="Node3D" parent="Structures"]
+
+[node name="walls" type="Node3D" parent="Structures"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.568588, -4, -2.6478662)
+
+[node name="Wall4" parent="Structures/walls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 3.9563167, -3.0776134, -5.4958553)
+
+[node name="Wall5" parent="Structures/walls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 3.4941657, 3.9715915, 32.029724)
+
+[node name="Wall11" parent="Structures/walls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 15.4, 4, 13.6)
+
+[node name="Wall12" parent="Structures/walls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 15.4, 4, 21.1)
+
+[node name="Wall13" parent="Structures/walls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 15.4, 4, 28.600002)
+
+[node name="Wall" parent="Structures/walls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 10.764589, 3.9715915, 12.474627)
+
+[node name="Wall2" parent="Structures/walls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 10.889659, 3.9715915, 32.029724)
+
+[node name="lowerWalls" type="Node3D" parent="Structures/walls"]
+
+[node name="Wall6" parent="Structures/walls/lowerWalls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 0.5000012, -2, -2)
+
+[node name="Wall7" parent="Structures/walls/lowerWalls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 0.50000095, -2, 5.5)
+
+[node name="Wall8" parent="Structures/walls/lowerWalls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 0.50000095, -2, 13)
+
+[node name="Wall9" parent="Structures/walls/lowerWalls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 0.50000143, -2, 20.5)
+
+[node name="Wall10" parent="Structures/walls/lowerWalls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 0.5000005, -2, 28)
+
+[node name="Wall14" parent="Structures/walls/lowerWalls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 15.499998, -2, -2)
+
+[node name="Wall15" parent="Structures/walls/lowerWalls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, 15.299997, -3, 5.9000006)
+
+[node name="Wall3" parent="Structures/walls/lowerWalls" instance=ExtResource("3_jq7dr")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 11.3896675, -2.0284085, -5.4958553)
+
+[node name="Banig" parent="Structures" instance=ExtResource("4_aihtp")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0.5, -14)
+
+[node name="Bs4" parent="Structures" instance=ExtResource("5_vtpxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, -16.8)
+
+[node name="StackBs2" parent="Structures" instance=ExtResource("6_kc280")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, 0.5, -13)
+
+[node name="Greenhousev2" parent="Structures" instance=ExtResource("7_mc64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.5, -13.6)
+
+[node name="Cementfloors" parent="Structures" instance=ExtResource("8_cto0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4, 0.5, -17.199999)
+
+[node name="Stairs" parent="Structures" instance=ExtResource("9_mfh66")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -24.5, -4.6331353, -6.779618)
+
+[node name="Player3d" parent="." instance=ExtResource("11_aihtp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0938816, 0.49130607, -8.687232)
+
+[node name="DialogueManager" parent="." instance=ExtResource("13_kc280")]
+z_index = 4096
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("10_jq7dr")]
+
+[node name="Fade" type="CanvasLayer" parent="."]
+layer = -99999
+visible = false
+
+[node name="FadeOverlay" type="ColorRect" parent="Fade"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmfefjl288qp8"
 path.s3tc="res://.godot/imported/walk-left-animation-Sheet.png-183399934bd898da3d05afa8cd79510d.s3tc.ctex"
+path.etc2="res://.godot/imported/walk-left-animation-Sheet.png-183399934bd898da3d05afa8cd79510d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Character/Justine -Character/walk-left-animation-Sheet.png"
-dest_files=["res://.godot/imported/walk-left-animation-Sheet.png-183399934bd898da3d05afa8cd79510d.s3tc.ctex"]
+dest_files=["res://.godot/imported/walk-left-animation-Sheet.png-183399934bd898da3d05afa8cd79510d.s3tc.ctex", "res://.godot/imported/walk-left-animation-Sheet.png-183399934bd898da3d05afa8cd79510d.etc2.ctex"]
 
 [params]
 

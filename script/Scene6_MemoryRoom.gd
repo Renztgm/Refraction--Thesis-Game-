@@ -223,9 +223,24 @@ func phase_memory_fragment():
 
 		phase_started = true
 
+		# Save the memory shard to the database
+		var saved = InventoryManager.save_memory_shard(
+			"Memory Shard 2",
+			"A broken shard of memory surfaces...",
+			"res://icons/memory_shard.png",
+			"Get while sleeping..."
+		)
+		if saved:
+			print("✓ Memory shard saved")
+
+		# Optionally add a reward item to inventory
+		InventoryManager.add_item(2, 1, 1)  # slot_id = 2, item_id = 1 (Potion), quantity = 1
+		print("✓ Reward item added to inventory")
+
 		# After showing for a while, fade out
 		await get_tree().create_timer(3.0).timeout
 		_fade_out_shard()
+
 
 func _fade_out_shard():
 	print("✨ Fading shard out, preparing scene transition...")

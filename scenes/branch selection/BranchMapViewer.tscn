@@ -16,7 +16,6 @@ script = ExtResource("1_5d0dc")
 [node name="Control" type="CanvasLayer" parent="."]
 
 [node name="CloseButton" type="Button" parent="Control"]
-anchors_preset = -1
 offset_left = 64.0
 offset_top = 64.0
 offset_right = 128.0

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://db2pfrmxh76f2"
 path.s3tc="res://.godot/imported/Bookshelf2_1.png-b2e5379bc7b259cde3fd97bae717dbc8.s3tc.ctex"
+path.etc2="res://.godot/imported/Bookshelf2_1.png-b2e5379bc7b259cde3fd97bae717dbc8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Bookshelf/Bookshelf2/Bookshelf2_1.png"
-dest_files=["res://.godot/imported/Bookshelf2_1.png-b2e5379bc7b259cde3fd97bae717dbc8.s3tc.ctex"]
+dest_files=["res://.godot/imported/Bookshelf2_1.png-b2e5379bc7b259cde3fd97bae717dbc8.s3tc.ctex", "res://.godot/imported/Bookshelf2_1.png-b2e5379bc7b259cde3fd97bae717dbc8.etc2.ctex"]
 
 [params]
 

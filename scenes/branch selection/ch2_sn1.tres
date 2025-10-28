@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BranchNode" load_steps=2 format=3 uid="uid://bniflv5tkrq7t"]
+
+[ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_g5yio"]
+
+[resource]
+script = ExtResource("1_g5yio")
+metadata/_custom_type_script = "uid://bdblq5joux0oh"

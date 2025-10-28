@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgp1vb6745mrk"
 path.s3tc="res://.godot/imported/Lyra-walk-left.png-631828a2f75280ceacc9e5e718d8e1e4.s3tc.ctex"
+path.etc2="res://.godot/imported/Lyra-walk-left.png-631828a2f75280ceacc9e5e718d8e1e4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/Companion/Lyra-walk-left.png"
-dest_files=["res://.godot/imported/Lyra-walk-left.png-631828a2f75280ceacc9e5e718d8e1e4.s3tc.ctex"]
+dest_files=["res://.godot/imported/Lyra-walk-left.png-631828a2f75280ceacc9e5e718d8e1e4.s3tc.ctex", "res://.godot/imported/Lyra-walk-left.png-631828a2f75280ceacc9e5e718d8e1e4.etc2.ctex"]
 
 [params]
 

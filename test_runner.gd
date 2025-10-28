@@ -1,15 +1,17 @@
 extends SceneTree
 
 func _init():
-	var gut = load("res://addons/gut/gut.gd").new()
-	root.add_child(gut)
+	call_deferred("_run_gut")
 
-	# Tell GUT which folder(s) to look in
-	gut.set_directories(["res://tests"])
-
-	# Configure output (use constants from gut instance instead of Gut.PRINT_DETAIL)
-	gut.set_print_format(gut.PRINT_DETAIL)
-	# gut.set_verbose(true) # if you also want asserts printed
-
-	# Run tests
-	gut.run_tests()
+func _run_gut() -> void:
+	var gut: Node = load("res://addons/gut/gut.gd").new()
+	get_root().add_child(gut)
+	await self.process_frame
+	
+	gut.call("add_directory", "res://tests")
+	gut.call("run_tests")
+	
+	await self.create_timer(2.0).timeout
+	
+	# Exit - CI will check logs for pass/fail
+	quit()

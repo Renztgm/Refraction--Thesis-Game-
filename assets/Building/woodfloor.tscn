@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://csevu5qu8hvxx"]
+
+[ext_resource type="PackedScene" uid="uid://pt1htrum458y" path="res://assets/Building/woodfloor/woodboard-floor.glb" id="1_uqnt8"]
+
+[node name="Woodfloor" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_uqnt8")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)

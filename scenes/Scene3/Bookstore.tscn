@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=34 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="16_yli1t"]
 [ext_resource type="PackedScene" uid="uid://cctgl8qi55o8o" path="res://assets/Bookshelf/BS3.tscn" id="17_nemvj"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="18_qkotb"]
+[ext_resource type="PackedScene" uid="uid://dcoq37w1cr7c8" path="res://scenes/UI/MinimapRoot.tscn" id="19_2412b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -47,37 +48,17 @@ size = Vector3(7.11823, 4.82605, 6.53577)
 [sub_resource type="BoxShape3D" id="BoxShape3D_l061f"]
 size = Vector3(28.71936, 2.8309937, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bo7vp"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2412b"]
 
 [sub_resource type="FontVariation" id="FontVariation_mn76v"]
 base_font = ExtResource("7_h2wqw")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qwy0o"]
-texture = ExtResource("10_cudmw")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3alfa"]
 texture = ExtResource("10_cudmw")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x0oou"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ksjg"]
-texture = ExtResource("10_cudmw")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbmbb"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l061f"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qkotb"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2412b"]
-texture = ExtResource("10_cudmw")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d83rn"]
-texture = ExtResource("10_cudmw")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_2412b"]
 vertices = PackedVector3Array(-24.5, 1, -24.5, -24.5, 1, 24.5, 24.5, 1, 24.5, 24.5, 1, -24.5)
@@ -137,12 +118,12 @@ shape = SubResource("BoxShape3D_d83rn")
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
 size = Vector3(50, 1, 50)
 
-[node name="Npc2" parent="." instance=ExtResource("8_iarg8")]
+[node name="Npc2" parent="." groups=["npc"] instance=ExtResource("8_iarg8")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.34813, 0.02369, 13.3065)
 collision_layer = 4
 collision_mask = 7
 
-[node name="Player3d" parent="." instance=ExtResource("1_u6ydm")]
+[node name="Player3d" parent="." groups=["player2"] instance=ExtResource("1_u6ydm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891695, 0.06136185, 12.458539)
 collision_layer = 4
 collision_mask = 7
@@ -213,16 +194,14 @@ shape = SubResource("BoxShape3D_l061f")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-z_as_relative = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -261.0
+offset_top = -325.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_bo7vp")
-metadata/_edit_use_anchors_ = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2412b")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
 layout_mode = 1
@@ -237,7 +216,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_mn76v")
 expand_mode = 3
-metadata/_edit_use_anchors_ = true
 
 [node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer/Panel"]
 layout_mode = 1
@@ -246,8 +224,8 @@ anchor_left = 0.0486111
 anchor_top = 0.82716
 anchor_right = 0.9375
 anchor_bottom = 0.91358
-offset_top = -66.8889
-offset_bottom = -66.8889
+offset_top = -55.827118
+offset_bottom = -55.827118
 grow_horizontal = 2
 grow_vertical = 2
 fit_content = true
@@ -268,23 +246,15 @@ color = Color(0, 0, 0, 1)
 [node name="NextButton" type="Button" parent="CanvasLayer"]
 z_index = 1
 z_as_relative = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -64.0
-offset_right = -65.0
-offset_bottom = -24.0
-grow_horizontal = 0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = SubResource("FontVariation_mn76v")
 theme_override_styles/normal = SubResource("StyleBoxTexture_qwy0o")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_3alfa")
-theme_override_styles/hover = SubResource("StyleBoxTexture_x0oou")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_5ksjg")
-text = "Next"
+flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasPause" type="CanvasLayer" parent="."]
@@ -336,24 +306,14 @@ text = " Memory Shard 1"
 z_index = 1
 z_as_relative = false
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -319.0
-offset_top = -47.0
-offset_right = -224.0
-offset_bottom = -7.0
-grow_horizontal = 0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = SubResource("FontVariation_mn76v")
 theme_override_styles/normal = SubResource("StyleBoxTexture_lbmbb")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_l061f")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qkotb")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_2412b")
-theme_override_styles/focus = SubResource("StyleBoxTexture_d83rn")
-text = "Close"
+flat = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -364,3 +324,5 @@ script = ExtResource("18_qkotb")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 visible = false
 mesh = SubResource("BoxMesh_d83rn")
+
+[node name="MinimapRoot" parent="." instance=ExtResource("19_2412b")]

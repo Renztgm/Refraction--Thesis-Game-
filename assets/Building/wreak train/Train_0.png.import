@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://7i0whn4x6lk3"
 path.s3tc="res://.godot/imported/Train_0.png-c0f2151c4b9212260f918283cbb6e0c8.s3tc.ctex"
+path.etc2="res://.godot/imported/Train_0.png-c0f2151c4b9212260f918283cbb6e0c8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/Building/wreak train/Train_0.png"
-dest_files=["res://.godot/imported/Train_0.png-c0f2151c4b9212260f918283cbb6e0c8.s3tc.ctex"]
+dest_files=["res://.godot/imported/Train_0.png-c0f2151c4b9212260f918283cbb6e0c8.s3tc.ctex", "res://.godot/imported/Train_0.png-c0f2151c4b9212260f918283cbb6e0c8.etc2.ctex"]
 
 [params]
 

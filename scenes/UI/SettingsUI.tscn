@@ -89,6 +89,7 @@ layout_mode = 2
 button_pressed = true
 
 [node name="VideoSection" type="VBoxContainer" parent="SettingsPanel/VBox"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 
