@@ -1,0 +1,6 @@
+# Made in Blockbench 5.0.1
+newmtl m_74a75c88-b98e-759e-eff5-8dfa8e65a3db
+map_Kd texture light .png
+newmtl m_42af5678-2601-befe-d3e5-e59f8ce74fc4
+map_Kd texture light 2.png
+newmtl none

@@ -1,0 +1,148 @@
+[gd_scene load_steps=2 format=3 uid="uid://csjehpoytegny"]
+
+[ext_resource type="PackedScene" uid="uid://csevu5qu8hvxx" path="res://assets/Building/woodfloor.tscn" id="1_0j1p7"]
+
+[node name="WoodFloors5x5" type="Node3D"]
+
+[node name="Woodfloor" parent="." instance=ExtResource("1_0j1p7")]
+
+[node name="Woodfloor2" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.500183, 0, 0)
+
+[node name="Woodfloor3" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+
+[node name="Woodfloor4" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.500183, 0, 2.5)
+
+[node name="Woodfloor5" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="Woodfloor6" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.500183, 0, 0)
+
+[node name="Woodfloor7" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2.5)
+
+[node name="Woodfloor8" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.500183, 0, 2.5)
+
+[node name="Woodfloor9" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Woodfloor10" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.500183, 0, 5)
+
+[node name="Woodfloor11" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5)
+
+[node name="Woodfloor12" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.500183, 0, 7.5)
+
+[node name="Woodfloor13" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+
+[node name="Woodfloor14" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.500183, 0, 5)
+
+[node name="Woodfloor15" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7.5)
+
+[node name="Woodfloor16" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.500183, 0, 7.5)
+
+[node name="Woodfloor17" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.000183, 0, 0)
+
+[node name="Woodfloor18" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.000183, 0, 2.5)
+
+[node name="Woodfloor19" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.000183, 0, 5)
+
+[node name="Woodfloor20" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.000183, 0, 7.5)
+
+[node name="Woodfloor21" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.500183, 0, 0)
+
+[node name="Woodfloor22" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.500183, 0, 2.5)
+
+[node name="Woodfloor23" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.500183, 0, 5)
+
+[node name="Woodfloor24" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.500183, 0, 7.5)
+
+[node name="Woodfloor25" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.000183, 0, 0)
+
+[node name="Woodfloor26" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.000183, 0, 2.5)
+
+[node name="Woodfloor27" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.000183, 0, 5)
+
+[node name="Woodfloor28" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.000183, 0, 7.5)
+
+[node name="Woodfloor29" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.500183, 0, 0)
+
+[node name="Woodfloor30" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.500183, 0, 2.5)
+
+[node name="Woodfloor31" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.500183, 0, 5)
+
+[node name="Woodfloor32" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.500183, 0, 7.5)
+
+[node name="Woodfloor33" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Woodfloor34" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.500183, 0, 10)
+
+[node name="Woodfloor35" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
+
+[node name="Woodfloor36" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.500183, 0, 10)
+
+[node name="Woodfloor37" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.000183, 0, 10)
+
+[node name="Woodfloor38" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.500183, 0, 10)
+
+[node name="Woodfloor39" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.000183, 0, 10)
+
+[node name="Woodfloor40" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.500183, 0, 10)
+
+[node name="Woodfloor41" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.5)
+
+[node name="Woodfloor42" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.500183, 0, 12.5)
+
+[node name="Woodfloor43" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 12.5)
+
+[node name="Woodfloor44" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.500183, 0, 12.5)
+
+[node name="Woodfloor45" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.000183, 0, 12.5)
+
+[node name="Woodfloor46" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.500183, 0, 12.5)
+
+[node name="Woodfloor47" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.000183, 0, 12.5)
+
+[node name="Woodfloor48" parent="." instance=ExtResource("1_0j1p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.500183, 0, 12.5)

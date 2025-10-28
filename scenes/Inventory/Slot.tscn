@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://drrk8d0rgbl65"]
+[gd_scene load_steps=3 format=3 uid="uid://drrk8d0rgbl65"]
 
 [ext_resource type="Script" uid="uid://xcocbdvh126v" path="res://scenes/Inventory/slot.gd" id="1_ksvlt"]
+[ext_resource type="Texture2D" uid="uid://d3jdkhsml4ko6" path="res://assets/ui/slot.png" id="2_uf67u"]
 
 [node name="Slot" type="Control"]
 custom_minimum_size = Vector2(128, 128)
@@ -22,6 +23,16 @@ script = ExtResource("1_ksvlt")
 [node name="Slot" type="Button" parent="."]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
+flat = true
+
+[node name="background" type="TextureRect" parent="Slot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_uf67u")
 
 [node name="TextureRect" type="TextureRect" parent="Slot"]
 custom_minimum_size = Vector2(96, 96)
@@ -41,14 +52,15 @@ expand_mode = 3
 
 [node name="Label" type="Label" parent="Slot"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.234375
+anchor_top = 0.9375
+anchor_right = 0.7734375
+anchor_bottom = 0.9375
 offset_left = -20.0
 offset_top = -23.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_font_sizes/font_size = 11
 metadata/_edit_use_anchors_ = true

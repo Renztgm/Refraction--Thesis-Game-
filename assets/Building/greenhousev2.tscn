@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvwodonhiv8"]
+
+[ext_resource type="PackedScene" uid="uid://bvmwkkxi1h8jn" path="res://assets/Building/greenhousev2/Greenhouse2.gltf" id="1_wri2y"]
+
+[node name="Greenhousev2" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_wri2y")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)

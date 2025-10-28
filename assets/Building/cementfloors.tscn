@@ -1,0 +1,130 @@
+[gd_scene load_steps=2 format=3 uid="uid://cavei4lm2httx"]
+
+[ext_resource type="PackedScene" uid="uid://g5m5pm4jrdmk" path="res://assets/Building/cementfloor.tscn" id="1_odolf"]
+
+[node name="Cementfloors" type="Node3D"]
+
+[node name="Cementfloor" parent="." instance=ExtResource("1_odolf")]
+
+[node name="Cementfloor2" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="Cementfloor3" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="Cementfloor4" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
+
+[node name="Cementfloor5" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+
+[node name="Cementfloor6" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
+
+[node name="Cementfloor7" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2.5)
+
+[node name="Cementfloor8" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 2.5)
+
+[node name="Cementfloor9" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="Cementfloor10" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 2.5)
+
+[node name="Cementfloor11" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Cementfloor12" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 5)
+
+[node name="Cementfloor13" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+
+[node name="Cementfloor14" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 5)
+
+[node name="Cementfloor15" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5)
+
+[node name="Cementfloor16" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 7.5)
+
+[node name="Cementfloor17" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7.5)
+
+[node name="Cementfloor18" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 7.5)
+
+[node name="Cementfloor19" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 5)
+
+[node name="Cementfloor20" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 7.5)
+
+[node name="Cementfloor21" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Cementfloor22" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 10)
+
+[node name="Cementfloor23" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
+
+[node name="Cementfloor24" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 10)
+
+[node name="Cementfloor25" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+
+[node name="Cementfloor26" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.5)
+
+[node name="Cementfloor31" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+
+[node name="Cementfloor32" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2.5)
+
+[node name="Cementfloor33" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 5)
+
+[node name="Cementfloor34" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
+
+[node name="Cementfloor35" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 10)
+
+[node name="Cementfloor36" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 12.5)
+
+[node name="Cementfloor37" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="Cementfloor38" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2.5)
+
+[node name="Cementfloor39" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
+
+[node name="Cementfloor40" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7.5)
+
+[node name="Cementfloor41" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 10)
+
+[node name="Cementfloor42" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 12.5)
+
+[node name="Cementfloor27" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 12.5)
+
+[node name="Cementfloor28" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 12.5)
+
+[node name="Cementfloor29" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 12.5)
+
+[node name="Cementfloor30" parent="." instance=ExtResource("1_odolf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12.5)

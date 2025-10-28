@@ -1,15 +1,10 @@
-[gd_resource type="Resource" script_class="BranchNode" load_steps=6 format=3 uid="uid://br0sfy2wv7ys5"]
+[gd_resource type="Resource" script_class="BranchNode" load_steps=2 format=3 uid="uid://br0sfy2wv7ys5"]
 
 [ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_rax70"]
-[ext_resource type="Resource" uid="uid://bo5xn4yegfewn" path="res://scenes/branch selection/ch2_sn1a.tres" id="2_1l78w"]
-[ext_resource type="Resource" uid="uid://d136m56jy6be0" path="res://scenes/branch selection/ch2_sn1b.tres" id="3_hdl21"]
-[ext_resource type="Resource" uid="uid://dbl802cjnbf5j" path="res://scenes/branch selection/ch2_sn1c.tres" id="4_2unfd"]
-[ext_resource type="Resource" uid="uid://cf3hd82vpq7ld" path="res://scenes/branch selection/ch2_sn1d.tres" id="5_fto0w"]
 
 [resource]
 script = ExtResource("1_rax70")
 title = "\"First Sleep\""
 description = "- - -"
 scene_path = "res://scenes/Scene7/Scene7.tscn"
-children = Array[ExtResource("1_rax70")]([ExtResource("2_1l78w"), ExtResource("3_hdl21"), ExtResource("4_2unfd"), ExtResource("5_fto0w")])
 metadata/_custom_type_script = "uid://bdblq5joux0oh"

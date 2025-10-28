@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://g5m5pm4jrdmk"]
+
+[ext_resource type="PackedScene" uid="uid://ctk8rpud32ly4" path="res://assets/Building/cement_floor/cement_floor.gltf" id="1_1y4pv"]
+
+[node name="Cementfloor" type="Node3D"]
+
+[node name="blockbench_export2" parent="." instance=ExtResource("1_1y4pv")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)

@@ -29,6 +29,10 @@ func _ready():
 	#  InventoryUI
 	# -----------------------------
 	
+	# Enable step-up behavior
+	floor_snap_length = 0.5  # Try 0.2–0.4 depending on ledge height
+	floor_block_on_wall = false
+	floor_max_angle = deg_to_rad(45.0)  # Optional: allow steeper slopes
 	# Load inventory UI into the CanvasLayer
 	var ui_layer = get_tree().current_scene.get_node("UI")
 	if not ui_layer:
@@ -161,31 +165,31 @@ func toggle_inventory():
 # Movement and animation
 # -----------------------------
 func _physics_process(delta: float) -> void:
-	# Check both can_move and frozen state
 	if not can_move or is_frozen or get_tree().paused:
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
-	
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
+
 	var input_dir = Vector2.ZERO
 	if Input.is_key_pressed(KEY_A): input_dir.x -= 1
 	if Input.is_key_pressed(KEY_D): input_dir.x += 1
 	if Input.is_key_pressed(KEY_W): input_dir.y -= 1
 	if Input.is_key_pressed(KEY_S): input_dir.y += 1
-	
+
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
+
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
-	move_and_slide()
+
+	move_and_slide()  # This now respects floor snapping
+
 	handle_camera_collision()
 	set_animation()
 
