@@ -1,0 +1,66 @@
+{
+  "Lyra": {
+	"start": {
+	  "name": "Lyra",
+	  "sentences": ["You again. Still chasing memories, aren't you?"],
+	  "options": [
+		{
+		  "text": "Do you know anything about the broken picture?",
+		  "next": "offer"
+		},
+		{
+		  "text": "Just passing through.",
+		  "next": "dismissed"
+		}
+	  ]
+	},
+
+	"offer": {
+	  "name": "Lyra",
+	  "sentences": [
+		"It was shattered long ago. Four fragments scattered like regrets.",
+        "Find them, and maybe you'll understand what was lost."
+	  ],
+	  "options": [
+		{
+		  "text": "I'll find them.",
+		  "full_text": "I’ll bring the fragments back.",
+		  "start_quest": "res://scenes/quest/resources/quest.json",
+		  "set_flag": "picture_fragments_started",
+		  "next": "accepted"
+		},
+		{
+		  "text": "Sounds like a waste of time.",
+		  "next": "dismissed"
+		}
+	  ]
+	},
+
+	"accepted": {
+	  "name": "Lyra",
+	  "sentences": ["Good. The forest remembers. Listen closely."],
+	  "next": "end"
+	},
+
+	"dismissed": {
+	  "name": "Lyra",
+	  "sentences": ["Then keep wandering. The pieces won’t wait forever."],
+	  "next": "end"
+	},
+
+	"quest_active": {
+	  "name": "Lyra",
+	  "sentences": ["The fragments are still out there. You’ve found some, but not all."],
+	  "next": "end"
+	},
+
+	"quest_done": {
+	  "name": "Lyra",
+	  "sentences": [
+		"You found them all. The picture is whole again.",
+        "But wholeness doesn’t always mean peace. Remember that."
+	  ],
+	  "next": "end"
+	}
+  }
+}

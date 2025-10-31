@@ -1,0 +1,13 @@
+[
+  {
+	"id": "rebuild_picture",
+	"title": "Rebuild the Broken Picture",
+	"description": "Find all 4 missing pieces scattered across the world.",
+	"objectives": [
+	  { "id": "piece_1", "text": "Find the first fragment", "is_completed": false },
+	  { "id": "piece_2", "text": "Find the second fragment", "is_completed": false },
+	  { "id": "piece_3", "text": "Find the third fragment", "is_completed": false },
+	  { "id": "piece_4", "text": "Find the fourth fragment", "is_completed": false }
+	]
+  }
+]

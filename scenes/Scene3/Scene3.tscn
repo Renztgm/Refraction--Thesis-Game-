@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://crieuya1rk71"]
+[gd_scene load_steps=30 format=3 uid="uid://crieuya1rk71"]
 
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_fnou3"]
 [ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="2_otrxq"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ci7k4s7fyre1b" path="res://assets/Building/wall_okd.tscn" id="12_8hrhf"]
 [ext_resource type="AudioStream" uid="uid://kc6yxx08keph" path="res://assets/audio/music/background_music.wav" id="12_ogqrk"]
 [ext_resource type="AudioStream" uid="uid://d3eleqvy3v1op" path="res://assets/audio/ui/Click_sound.wav" id="13_foqjr"]
+[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="13_qt3ua"]
 [ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_kv2g0"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="15_fnou3"]
 [ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/NPCs/Npc2_No_sound.tscn" id="15_u4lah"]
@@ -24,7 +25,7 @@
 size = Vector3(14.4083, 9.09265, 11.1161)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xcpug"]
-size = Vector3(76.0434, 10.4154, 1.56982)
+size = Vector3(80.70187, 10.4154, 1.56982)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cb1v0"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -208,7 +209,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1383, 1.22429, -0.651217)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.467533, 1.22429, -0.65121555)
 shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Barrier3" type="StaticBody3D" parent="Structures/Barrier"]
@@ -262,6 +263,9 @@ shape = SubResource("BoxShape3D_qqu30")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
 size = Vector3(250, 1, 250)
+
+[node name="Sky" parent="Environment" instance=ExtResource("13_qt3ua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841215, 5.63674, 2.09051)
 
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 

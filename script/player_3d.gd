@@ -9,6 +9,8 @@ extends CharacterBody3D
 
 # InventoryUI.Tcsn
 @onready var inventory_ui: Control = null
+@onready var quest_ui: CanvasLayer = $"../UI/QuestUi"
+@onready var quest_button: Button = $hud/questButton
 
 @onready var audio_manager = get_node("/root/Main/AudioManager")
 
@@ -24,6 +26,10 @@ var camera_collision_mask = 0xFFFFFFFF
 
 func _ready():
 	add_to_group("player")
+	# -----------------------------
+	#  Quest
+	# -----------------------------
+	quest_button.pressed.connect(_on_quest_button_pressed)
 	
 	# -----------------------------
 	#  InventoryUI
@@ -135,8 +141,8 @@ func _input(event):
 	if get_tree().paused:
 		return
 		
-	#if event.is_action_pressed("ui_accept"): # Enter
-		#save_game_here()
+	if event.is_action_pressed("toggle_quest"):
+			$UI/QuestUi.visible = !$UI/QuestUi.visible
 		
 
 func save_game_here():
@@ -246,3 +252,9 @@ func print_player_debug():
 	print("🟢 Scene:", scene_path, 
 		  "| Position:", position, 
 		  "| Direction:", last_direction)
+
+
+func _on_quest_button_pressed():
+	if quest_ui:
+		quest_ui.visible = not quest_ui.visible
+		print("Quest UI toggled:", quest_ui.visible)

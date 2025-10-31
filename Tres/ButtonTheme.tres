@@ -20,8 +20,14 @@ axis_stretch_vertical = 2
 modulate_color = Color(0.856067, 0.856067, 0.856067, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fmy6y"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 texture = ExtResource("2_6nk5b")
+expand_margin_left = 10.0
 expand_margin_top = 10.0
+expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i37dc"]

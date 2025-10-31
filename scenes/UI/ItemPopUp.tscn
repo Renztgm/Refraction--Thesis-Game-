@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1wgjkosl730k"]
+
+[ext_resource type="Script" uid="uid://bpt0wa2mhdeqv" path="res://scenes/UI/ItemPopUp.gd" id="1_a6gj2"]
+
+[node name="ItemPopUp" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_a6gj2")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -640.0
+offset_top = 32.0
+offset_right = -192.0
+offset_bottom = 104.0
+grow_horizontal = 0
+
+[node name="MessageLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 24.5
+offset_right = -40.0
+offset_bottom = -24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "asdasd"
+horizontal_alignment = 2
+vertical_alignment = 1
