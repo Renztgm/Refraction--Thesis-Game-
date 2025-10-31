@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://crr85kvm8e1vw"]
+[gd_scene load_steps=5 format=3 uid="uid://crr85kvm8e1vw"]
 
 [ext_resource type="Script" uid="uid://dlfm01xcf731s" path="res://scenes/Inventory/InventoryUI.gd" id="1_pqlvk"]
+[ext_resource type="Texture2D" uid="uid://dyesvrdup0jst" path="res://assets/ui/background_inventory.png" id="2_lcmbl"]
 [ext_resource type="Texture2D" uid="uid://brry7rdwawx3g" path="res://assets/ui/close.png" id="2_mliu5"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_mliu5"]
+[ext_resource type="Texture2D" uid="uid://l6560hufl0y" path="res://assets/ui/Inventory_button.png" id="4_5nxsr"]
 
 [node name="InventoryUI" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,15 +17,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_pqlvk")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mliu5")
-
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -32,6 +24,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lcmbl")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -76,15 +77,76 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CloseButton" type="Button" parent="."]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 0
-offset_left = 160.0
-offset_top = 192.0
-offset_right = 192.0
-offset_bottom = 224.0
+offset_left = 64.0
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 160.0
 
 [node name="TextureRect" type="TextureRect" parent="CloseButton"]
 layout_mode = 1
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 64.0
+offset_bottom = 64.0
 texture = ExtResource("2_mliu5")
 expand_mode = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 160.0
+offset_right = 512.0
+offset_bottom = 224.0
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Shards" type="Button" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Shards"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/Shards"]
+layout_mode = 0
+offset_right = 99.0
+offset_bottom = 64.0
+texture = ExtResource("4_5nxsr")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HBoxContainer2/Shards"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Shards"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Items" type="Button" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Items"
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer2/Items"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 100.0
+offset_bottom = 64.0
+texture = ExtResource("4_5nxsr")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer2/Items"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Items"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,4 +1,5 @@
-BranchNode
+QuestResource
 Resource
+BranchNode
 AnimatedTexture
 ShaderMaterial

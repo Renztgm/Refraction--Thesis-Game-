@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=7 format=3 uid="uid://bwggb4o77scoa"]
+
+[ext_resource type="Script" uid="uid://bor5xkpns2fai" path="res://scenes/quest/resources/QuestResource.gd" id="1_45ldo"]
+[ext_resource type="Script" uid="uid://dpltxcqbmtt6r" path="res://scenes/quest/script/QuestObjective.gd" id="1_i38ps"]
+
+[sub_resource type="Resource" id="Resource_cv0rt"]
+script = ExtResource("1_i38ps")
+id = "piece_1"
+text = "Please get all picture"
+metadata/_custom_type_script = "uid://dpltxcqbmtt6r"
+
+[sub_resource type="Resource" id="Resource_q8a8e"]
+script = ExtResource("1_i38ps")
+id = "piece_2"
+text = "Please get all picture"
+metadata/_custom_type_script = "uid://dpltxcqbmtt6r"
+
+[sub_resource type="Resource" id="Resource_5p3hg"]
+script = ExtResource("1_i38ps")
+id = "piece_3"
+text = "Please get all picture"
+metadata/_custom_type_script = "uid://dpltxcqbmtt6r"
+
+[sub_resource type="Resource" id="Resource_mtgp0"]
+script = ExtResource("1_i38ps")
+metadata/_custom_type_script = "uid://dpltxcqbmtt6r"
+
+[resource]
+script = ExtResource("1_45ldo")
+id = "\"rebuild_picture\""
+title = "\"Rebuild the Broken Picture\""
+description = "\"Find all 4 missing pieces scattered across the area.\""
+objectives = Array[ExtResource("1_i38ps")]([SubResource("Resource_cv0rt"), SubResource("Resource_q8a8e"), SubResource("Resource_5p3hg"), SubResource("Resource_mtgp0")])
+metadata/_custom_type_script = "uid://bor5xkpns2fai"

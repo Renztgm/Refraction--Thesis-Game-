@@ -191,22 +191,49 @@ func _on_next_pressed():
 
 # --- Player selects an option ---
 func _on_option_selected(option_data: Dictionary):
+	print("🧪 Option selected:", option_data)
+	
+
+
 	_clear_options()
 	options_container.visible = false
 
-	# Use full_text if it exists, fallback to short text
 	var mc_text = option_data.get("full_text", option_data.get("text", "…"))
 
-	# Determine next node safely
+	# Handle quest triggers
+	if option_data.has("start_quest"):
+		var quest_path = option_data["start_quest"]
+		var quest = load(quest_path)
+		print("📦 Loaded quest:", quest)
+		
+		var quest_manager = QuestManager
+		print("🧠 QuestManager reference:", quest_manager)
+
+		if quest == null:
+			push_error("❌ Failed to load quest from: " + quest_path)
+		else:
+			if QuestManager and QuestManager.has_method("add_quest"):
+				QuestManager.add_quest(quest)
+				print("🧩 Quest started:", quest.id)
+			else:
+				push_error("❌ QuestManager not found or missing 'add_quest' method.")
+
+	if option_data.has("complete_objective"):
+		var quest_id = option_data["quest_id"]
+		var objective = option_data["complete_objective"]
+		QuestManager.complete_objective(quest_id, objective)
+
+	if option_data.has("set_flag"):
+		var flag_name = option_data["set_flag"]
+		get_node("/root/NarrativeState").set_flag(flag_name, true)
+
 	var next_node = option_data.get("next", "end")
 	if not dialogue.has(next_node):
 		next_node = "end"
 
-	# Queue MC line and next node
 	pending_mc_text = mc_text
 	pending_next_node = next_node
 
-	# Simulate pressing Next so MC text will type
 	_on_next_pressed()
 
 # --- Clear all options ---

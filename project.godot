@@ -29,6 +29,9 @@ GameManager="*res://script/GameManager.gd"
 SceneTransitionManager="*res://script/SceneTransitionManager.gd"
 InventoryManager="*res://script/InventoryManager.gd"
 DisplayManager="*res://script/DisplayManager.gd"
+QuestManager="*res://scenes/quest/script/QuestManager.gd"
+NarrativeState="*res://scenes/quest/script/NarrativeState.gd"
+ItemPopUp="*res://scenes/UI/ItemPopUp.gd"
 
 [display]
 

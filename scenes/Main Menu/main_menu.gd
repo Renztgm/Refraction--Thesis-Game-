@@ -23,7 +23,7 @@ func _ready() -> void:
 func _on_continue_pressed() -> void:
 	AudioMgr.play_ui_sound()
 	print("MainMenu: Continue pressed")
-
+	
 	# Try to continue; if it fails, fallback to new game
 	if not await SaveManager.continue_game():
 		print("⚠️ No save found. Starting new game...")

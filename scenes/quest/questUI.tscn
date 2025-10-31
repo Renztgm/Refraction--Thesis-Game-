@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsc2rl8o0kypo"]
+
+[ext_resource type="Script" uid="uid://gpburvopnpqp" path="res://scenes/quest/script/quest_ui.gd" id="1_jly6o"]
+[ext_resource type="Texture2D" uid="uid://brry7rdwawx3g" path="res://assets/ui/close.png" id="2_24e3a"]
+[ext_resource type="Texture2D" uid="uid://dyesvrdup0jst" path="res://assets/ui/background_inventory.png" id="2_ehxvs"]
+
+[node name="QuestUi" type="CanvasLayer"]
+script = ExtResource("1_jly6o")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ehxvs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(750, 500)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.41500002
+anchor_right = 0.5
+anchor_bottom = 0.41500002
+offset_left = -376.0
+offset_top = -264.2
+offset_right = 374.0
+offset_bottom = 235.79999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 160.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/CloseButton"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_24e3a")
+expand_mode = 1

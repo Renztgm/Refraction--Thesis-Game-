@@ -45,6 +45,19 @@ func init_db() -> bool:
         );
 	""")
 
+	var create_quest_table := db.query("""
+	    CREATE TABLE IF NOT EXISTS quests (
+	        id TEXT PRIMARY KEY,
+	        title TEXT,
+	        description TEXT,
+	        is_completed INTEGER,
+	        objectives TEXT
+	    );
+	""")
+
+
+
+
 	var create_branch_table := db.query("""
         CREATE TABLE IF NOT EXISTS game_path (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -56,7 +69,8 @@ func init_db() -> bool:
 
 	print("🔧 Save table creation result: ", create_save_table)
 	print("🔧 Branch table creation result: ", create_branch_table)
-	return create_save_table and create_branch_table
+	return create_save_table and create_branch_table and create_quest_table
+
 
 # -----------------------
 # Save helpers
@@ -72,6 +86,28 @@ func has_save_file() -> bool:
 # -----------------------
 # Save game
 # -----------------------
+
+#func save_all_quests():
+	#if db == null:
+		#if not init_db():
+			#return
+#
+	#db.query("DELETE FROM quests;")  # Clear old data
+#
+	#for quest in QuestManager.active_quests.values():
+		#var objectives_json = JSON.stringify(quest.objectives)
+		#var completed = 1 if quest.is_completed else 0  # ✅ Valid
+#
+#
+		#db.query_with_bindings("""
+			#INSERT INTO quests (id, title, description, is_completed, objectives)
+			#VALUES (?, ?, ?, ?, ?);
+		#""", [quest.id, quest.title, quest.description, completed, objectives_json])
+		#print("💾 Saving objectives for", quest.id, ":", objectives_json)
+
+
+
+
 func save_game() -> bool:
 	print("🔧 Starting save_game()...")
 
@@ -123,13 +159,39 @@ func save_game() -> bool:
 
 	# ✅ Log scene completion for branching
 	log_scene_completion(game_data["current_scene"], "auto")
-
+	#save_all_quests()
+	
 	print("✅ Save successful")
 	return true
 
 # -----------------------
 # Load game
 # -----------------------
+#func load_all_quests():
+	#if db.query_with_bindings("SELECT * FROM quests", []):
+		#for row in db.query_result:
+			#var objectives: Array = []
+#
+			#var quest := QuestResource.new()
+			#quest.id = row["id"]
+			#quest.title = row["title"]
+			#quest.description = row.get("description", "")
+			#quest.is_completed = row["is_completed"] == 1
+			#quest.objectives = objectives
+#
+			#QuestManager.active_quests[quest.id] = {
+				#"id": quest.id,
+				#"title": quest.title,
+				#"description": quest.description,
+				#"is_completed": quest.is_completed,
+				#"objectives": quest.objectives
+			#}
+#
+			#print("📝 Description for", quest.id, ":", quest.description)
+			#print("📦 Loaded quest:", quest.id, "Objectives:", objectives)
+	#else:
+		#push_error("❌ Failed to query quests table.")
+
 func load_game() -> bool:
 	if db == null:
 		if not init_db():
@@ -179,6 +241,8 @@ func continue_game() -> bool:
 
 		if "last_direction" in player:
 			player.last_direction = game_data["player_direction"]
+			
+	#load_all_quests()
 
 	return true
 
