@@ -166,6 +166,8 @@ animations = [{
 size = Vector3(6, 4, 4.2000003)
 
 [node name="Npc2" type="CharacterBody3D"]
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("1_0jqct")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -195,6 +197,8 @@ autoplay = "Idle"
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8390193, 0)
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.031152248, 0.29999948, 0.5)

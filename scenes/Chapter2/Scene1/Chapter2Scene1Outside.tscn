@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://tyasr24qos6a"]
+[gd_scene load_steps=26 format=3 uid="uid://tyasr24qos6a"]
 
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="5_t7hhd"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="6_u854x"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bk7bh8s2vdgpy" path="res://scenes/Chapter2/Scene1/picturefragments/picturefragment3_area3d.gd" id="15_jweqw"]
 [ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="16_104w6"]
 [ext_resource type="Script" uid="uid://hamb1he4k7er" path="res://scenes/Chapter2/Scene1/picturefragments/picturefragment4_area3d.gd" id="16_brjns"]
+[ext_resource type="Script" uid="uid://cwbhdlkybs557" path="res://scenes/Chapter2/Scene1/going_in.gd" id="16_xs032"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="17_cj6ks"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="18_3x1ch"]
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_jaf3d"]
@@ -47,6 +48,9 @@ size = Vector3(250, 1, 250)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_brjns"]
 size = Vector3(3, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hhcxs"]
+size = Vector3(2.4120483, 4, 7.4042664)
 
 [node name="Chapter2Scene1Outside" type="Node3D"]
 
@@ -115,65 +119,75 @@ script = ExtResource("18_3x1ch")
 visible = false
 mesh = SubResource("BoxMesh_eqb1a")
 
-[node name="Minimap" parent="." groups=["minimap_overlay"] instance=ExtResource("19_jaf3d")]
+[node name="Minimap" parent="." groups=["minimap"] instance=ExtResource("19_jaf3d")]
 
 [node name="Structures" parent="." instance=ExtResource("8_mthr6")]
 
 [node name="items" type="Node3D" parent="."]
 
-[node name="piece1" type="Node3D" parent="items" groups=["quest_item"]]
+[node name="piece_1" type="Node3D" parent="items" groups=["quest_item"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 2, -81)
 
-[node name="piece1" type="Area3D" parent="items/piece1"]
+[node name="Area3D" type="Area3D" parent="items/piece_1"]
 collision_layer = 6
 collision_mask = 6
 script = ExtResource("11_l43sj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece1/piece1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece_1/Area3D"]
 shape = SubResource("BoxShape3D_brjns")
 
-[node name="blockbench_export" parent="items/piece1/piece1" instance=ExtResource("12_luyfs")]
+[node name="blockbench_export" parent="items/piece_1/Area3D" instance=ExtResource("12_luyfs")]
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0, 0, 0)
 
-[node name="piece2" type="Node3D" parent="items" groups=["quest_item"]]
+[node name="piece_2" type="Node3D" parent="items" groups=["quest_item"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 2, -75)
 
-[node name="Area3D" type="Area3D" parent="items/piece2"]
+[node name="Area3D" type="Area3D" parent="items/piece_2"]
 collision_layer = 6
 collision_mask = 6
 script = ExtResource("14_luyfs")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece2/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece_2/Area3D"]
 shape = SubResource("BoxShape3D_brjns")
 
-[node name="blockbench_export" parent="items/piece2/Area3D" instance=ExtResource("12_luyfs")]
+[node name="blockbench_export" parent="items/piece_2/Area3D" instance=ExtResource("12_luyfs")]
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, 0, 0)
 
-[node name="piece3" type="Node3D" parent="items" groups=["quest_item"]]
+[node name="piece_3" type="Node3D" parent="items" groups=["quest_item"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -82)
 
-[node name="Area3D2" type="Area3D" parent="items/piece3"]
+[node name="Area3D" type="Area3D" parent="items/piece_3"]
 collision_layer = 6
 collision_mask = 6
 script = ExtResource("15_jweqw")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece3/Area3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece_3/Area3D"]
 shape = SubResource("BoxShape3D_brjns")
 
-[node name="blockbench_export" parent="items/piece3/Area3D2" instance=ExtResource("12_luyfs")]
+[node name="blockbench_export" parent="items/piece_3/Area3D" instance=ExtResource("12_luyfs")]
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, 0, 0)
 
-[node name="piece4" type="Node3D" parent="items" groups=["quest_item"]]
+[node name="piece_4" type="Node3D" parent="items" groups=["quest_item"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, -74)
 
-[node name="Area3D3" type="Area3D" parent="items/piece4"]
+[node name="Area3D3" type="Area3D" parent="items/piece_4"]
 collision_layer = 6
 collision_mask = 6
 collision_priority = 10.0
 script = ExtResource("16_brjns")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece4/Area3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece_4/Area3D3"]
 shape = SubResource("BoxShape3D_brjns")
 
-[node name="blockbench_export" parent="items/piece4/Area3D3" instance=ExtResource("12_luyfs")]
+[node name="blockbench_export" parent="items/piece_4/Area3D3" instance=ExtResource("12_luyfs")]
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, -1, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.24321, 1.1322818, -81.40962)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("16_xs032")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018615723, 1.4008179, -1.4249115)
+shape = SubResource("BoxShape3D_hhcxs")

@@ -1,4 +1,18 @@
 res://scenes/Main Menu/main_menu.tscn
-res://tests/quest_test.gd
-res://test_runner.gd
-res://tests/test_quest.gd
+res://script/SaveManager.gd
+res://scenes/NPCs/Ch2Scene1NPC.tscn
+res://Tres/ButtonTheme.tres
+res://scenes/Chapter2/Scene1/Chapter2Scene1Outside.tscn
+res://scenes/Chapter2/Scene1/picturefragment1_area3d.gd
+res://scenes/UI/Minimap.tscn
+res://script/MinimapGridOverlay.gd
+res://scenes/Chapter2/Scene1/picturefragments/picturefragment2_area3d.gd
+res://scenes/Chapter2/Scene1/picturefragments/picturefragment3_area3d.gd
+res://scenes/Chapter2/Scene1/picturefragments/picturefragment4_area3d.gd
+res://scenes/Chapter2/Scene1/going_in.gd
+res://scenes/Chapter2/Scene1/Chapter2Scene1.tscn
+res://scenes/Chapter2/Scene1/Chapter2Scene1Inside.tscn
+res://scenes/Chapter2/Scene1/going_out.gd
+res://script/Database.gd
+res://script/DatabaseManager.gd
+res://script/GameManager.gd

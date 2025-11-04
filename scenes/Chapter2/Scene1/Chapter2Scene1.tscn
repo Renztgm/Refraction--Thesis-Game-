@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bj111x3valukd"]
+[gd_scene load_steps=25 format=3 uid="uid://bj111x3valukd"]
 
 [ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/Scene4/AlleyScene.gdshader" id="1_5toq1"]
 [ext_resource type="PackedScene" uid="uid://csjehpoytegny" path="res://assets/Building/WoodFloors5x5.tscn" id="2_xxw1v"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dl1oxf6kjobol" path="res://assets/item/paper/torn_paper_item.gltf" id="16_mfh66"]
 [ext_resource type="Script" uid="uid://duhr5p7qmru8o" path="res://scenes/quest/items/picturefragment1.gd" id="17_miwnq"]
 [ext_resource type="Script" uid="uid://dmybqcpulihgk" path="res://scenes/Chapter2/Scene1/going_out.gd" id="18_fboxb"]
+[ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_wt8n1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3eqev"]
 shader = ExtResource("1_5toq1")
@@ -182,3 +183,5 @@ script = ExtResource("18_fboxb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018615723, 0.0987854, -1.4249115)
 shape = SubResource("BoxShape3D_wt8n1")
+
+[node name="Minimap" parent="." groups=["minimap"] instance=ExtResource("19_wt8n1")]

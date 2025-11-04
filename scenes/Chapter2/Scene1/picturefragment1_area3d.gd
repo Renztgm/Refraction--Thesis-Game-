@@ -8,24 +8,22 @@ extends Area3D
 func _ready():
 	add_to_group("quest_item")
 
-	# ✅ Check if objective is already completed
 	var is_completed := QuestManager.is_objective_completed("rebuild_picture", objective_id)
 	if is_completed:
 		print("🧼 Objective already completed:", objective_id)
 
-		var minimap = get_node("root/Minimap/MinimapGridOverlay")
-		if minimap and minimap.has_method("remove_quest_item"):
-			print("📡 Found minimap:", minimap.name)
-			minimap.remove_quest_item(self)
+		var minimap_root = get_tree().get_first_node_in_group("minimap")
+		var minimap_script_node = minimap_root.get_node("MinimapGridOverlay")
+		if minimap_script_node and minimap_script_node.has_method("remove_quest_item"):
+			minimap_script_node.remove_quest_item(get_parent())
 		else:
 			print("⚠️ Minimap not found or missing method")
-
-
 
 		queue_free()
 		return
 
 	connect("body_entered", Callable(self, "_on_body_entered"))
+
 
 func _on_body_entered(body):
 	print("👤 Body entered:", body.name)
@@ -58,13 +56,4 @@ func collect_item():
 	var ui = get_tree().get_nodes_in_group("inventory_ui")
 	if ui.size() > 0 and ui[0].active_tab == "items":
 		ui[0].load_inventory()
-
-	# ✅ Notify minimap to remove this item
-	var minimap = get_tree().get_first_node_in_group("minimap_overlay")
-	if minimap:
-		print("📡 Removing item from minimap (collected):", item_name)
-		minimap.remove_quest_item(self)
-	else:
-		print("⚠️ Minimap not found in group 'minimap_overlay'")
-
 	queue_free()
