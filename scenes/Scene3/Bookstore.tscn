@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=36 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="16_yli1t"]
 [ext_resource type="PackedScene" uid="uid://cctgl8qi55o8o" path="res://assets/Bookshelf/BS3.tscn" id="17_nemvj"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="18_qkotb"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="18_yli1t"]
 [ext_resource type="PackedScene" uid="uid://dcoq37w1cr7c8" path="res://scenes/UI/MinimapRoot.tscn" id="19_2412b"]
+[ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="19_nemvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ecfh2"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -316,6 +318,11 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_lbmbb")
 flat = true
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("18_yli1t")]
+
+[node name="QuestUi" parent="UI" instance=ExtResource("19_nemvj")]
+visible = false
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_2412b")

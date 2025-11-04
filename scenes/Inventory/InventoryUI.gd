@@ -91,18 +91,33 @@ func load_inventory():
 
 	if active_tab == "items":
 		var all_items = InventoryManager.get_all_items()
+		var inventory = InventoryManager.get_inventory()
 
 		for item in all_items:
+			var objective_id = str(item["id"])
+			var is_completed = QuestManager.is_objective_completed("rebuild_picture", objective_id)
+
+			var is_in_inventory = false
+			for row in inventory:
+				if str(row["item_id"]) == objective_id:
+					is_in_inventory = true
+					break
+
+			if not is_in_inventory:
+				continue  # ✅ Only show items that are actually in inventory
+
 			while current_slot_index in used_slots:
 				current_slot_index += 1
 			if current_slot_index >= slot_list.size():
 				break
 
 			var slot = slot_list[current_slot_index]
-			slot.set_item(item["name"], 1, item["icon_path"])  # Quantity is set to 1 by default
+			slot.set_item(item["name"], 1, item["icon_path"])
 			slot.item_id = item["id"]
 			used_slots.append(current_slot_index)
 			current_slot_index += 1
+
+
 
 	elif active_tab == "shards":
 		var memory_shards = InventoryManager.get_all_memory_shards()

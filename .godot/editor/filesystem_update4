@@ -1,33 +1,4 @@
-res://scenes/Chapter2/Scene1/Chapter2Scene1.tscn
-res://Tres/ButtonTheme.tres
-res://scenes/quest/resources/QuestResource.gd
-res://scenes/quest/script/QuestManager.gd
-res://scenes/quest/QuestEntry.tscn
-res://scenes/quest/questUI.tscn
-res://scenes/quest/script/quest_ui.gd
 res://scenes/Main Menu/main_menu.tscn
-res://scenes/Main Menu/main_menu.gd
-res://script/SaveManager.gd
-res://scenes/Player/Player3d.tscn
-res://scenes/quest/request/picture_fragments.tres
-res://assets/Building/stairs.tscn
-res://scenes/quest/items/picturefragment1.gd
-res://scenes/quest/items/picturefragment2.gd
-res://scenes/quest/items/picturefragment3.gd
-res://scenes/quest/items/picturefragment4.gd
-res://scenes/Chapter2/Scene1/picturefragment1.gd
-res://scenes/UI/ItemPopUp.tscn
-res://scenes/UI/ItemPopUp.gd
-res://scenes/Chapter2/Scene1/picturefragment1_area3d.gd
-res://scenes/UI/DialogueManager.tscn
-res://scenes/Scene7/Scene7.tscn
-res://script/Scene7.gd
-res://scenes/Inventory/InventoryUI.tscn
-res://scenes/Inventory/Slot.tscn
-res://script/InventoryManager.gd
-res://scenes/Inventory/InventoryUI.gd
-res://scenes/Inventory/InventoryUI.tres
-res://scenes/quest/script/QuestObjective.gd
-res://scenes/quest/resources/quest.json
-res://script/ch_2_scene_1npc.gd
-res://dialogues/picture_fragment_quest.json
+res://tests/quest_test.gd
+res://test_runner.gd
+res://tests/test_quest.gd

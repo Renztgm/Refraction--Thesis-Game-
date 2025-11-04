@@ -69,6 +69,21 @@ func complete_objective(quest_id: String, objective_id: String) -> void:
 			emit_signal("quest_updated", quest_id)
 			break
 
+
+# ----------------------------------------------
+# When the Objective is been finished handler
+# ----------------------------------------------
+
+func is_objective_completed(quest_id: String, objective_id: String) -> bool:
+	var quest = active_quests.get(quest_id)
+	if not quest:
+		return false
+	for obj in quest["objectives"]:
+		if obj.get("id", "") == objective_id:
+			return obj.get("is_completed", false)
+	return false
+
+
 # -----------------------------
 # Save all quests to database
 # -----------------------------

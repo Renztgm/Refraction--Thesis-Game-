@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxbcvr3fkfac4"]
+
+[ext_resource type="Texture2D" uid="uid://ci8p2flumhkwq" path="res://road.png" id="1_6i8gg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmiqv"]
+albedo_texture = ExtResource("1_6i8gg")
+
+[node name="RoadSingle" type="Node3D"]
+
+[node name="road" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_bmiqv")
+size = Vector3(20, 0.5, 10)

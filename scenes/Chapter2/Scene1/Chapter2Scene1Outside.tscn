@@ -1,0 +1,179 @@
+[gd_scene load_steps=24 format=3 uid="uid://tyasr24qos6a"]
+
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="5_t7hhd"]
+[ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="6_u854x"]
+[ext_resource type="PackedScene" uid="uid://b42g54u5kjqbp" path="res://scenes/Map/OutsideMap.tscn" id="8_mthr6"]
+[ext_resource type="Script" uid="uid://xf2crlmvno8x" path="res://scenes/Chapter2/Scene1/picturefragment1_area3d.gd" id="11_l43sj"]
+[ext_resource type="PackedScene" uid="uid://dl1oxf6kjobol" path="res://assets/item/paper/torn_paper_item.gltf" id="12_luyfs"]
+[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="13_rmxp3"]
+[ext_resource type="Script" uid="uid://c1jp55hao6r3b" path="res://scenes/Chapter2/Scene1/picturefragments/picturefragment2_area3d.gd" id="14_luyfs"]
+[ext_resource type="AudioStream" uid="uid://kc6yxx08keph" path="res://assets/audio/music/background_music.wav" id="14_xlsfn"]
+[ext_resource type="AudioStream" uid="uid://d3eleqvy3v1op" path="res://assets/audio/ui/Click_sound.wav" id="15_h5l5s"]
+[ext_resource type="Script" uid="uid://bk7bh8s2vdgpy" path="res://scenes/Chapter2/Scene1/picturefragments/picturefragment3_area3d.gd" id="15_jweqw"]
+[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="16_104w6"]
+[ext_resource type="Script" uid="uid://hamb1he4k7er" path="res://scenes/Chapter2/Scene1/picturefragments/picturefragment4_area3d.gd" id="16_brjns"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="17_cj6ks"]
+[ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="18_3x1ch"]
+[ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_jaf3d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a24s8"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_curve = 0.243676
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_fnou3"]
+sky_material = SubResource("ProceduralSkyMaterial_a24s8")
+
+[sub_resource type="Environment" id="Environment_ox1sq"]
+background_mode = 2
+sky = SubResource("Sky_fnou3")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rhfvj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjs00"]
+size = Vector3(250, 1, 250)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ahr8w"]
+vertices = PackedVector3Array(-124.5, 1, -124.5, -124.5, 1, 124.5, 124.5, 1, 124.5, 124.5, 1, -124.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eqb1a"]
+size = Vector3(250, 1, 250)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_brjns"]
+size = Vector3(3, 3, 1)
+
+[node name="Chapter2Scene1Outside" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_ox1sq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+sky_mode = 1
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_rhfvj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+shape = SubResource("BoxShape3D_jjs00")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
+size = Vector3(250, 1, 250)
+
+[node name="Sky" parent="Environment" instance=ExtResource("13_rmxp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841215, 5.63674, 2.09051)
+
+[node name="AudioManager" type="Node" parent="." groups=["player"]]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("14_xlsfn")
+autoplay = true
+bus = &"Music"
+playback_type = 1
+
+[node name="UISounds" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("15_h5l5s")
+bus = &"Music"
+
+[node name="WaterPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+bus = &"Music"
+
+[node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("16_104w6")
+autoplay = true
+bus = &"Music"
+playback_type = 1
+parameters/looping = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("5_t7hhd")]
+
+[node name="QuestUi" parent="UI" instance=ExtResource("6_u854x")]
+visible = false
+
+[node name="Player3d" parent="." groups=["player2"] instance=ExtResource("17_cj6ks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.40884, 0.8313031, -74.49312)
+collision_layer = 4
+collision_mask = 7
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["grid"]]
+navigation_mesh = SubResource("NavigationMesh_ahr8w")
+script = ExtResource("18_3x1ch")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+visible = false
+mesh = SubResource("BoxMesh_eqb1a")
+
+[node name="Minimap" parent="." groups=["minimap_overlay"] instance=ExtResource("19_jaf3d")]
+
+[node name="Structures" parent="." instance=ExtResource("8_mthr6")]
+
+[node name="items" type="Node3D" parent="."]
+
+[node name="piece1" type="Node3D" parent="items" groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 2, -81)
+
+[node name="piece1" type="Area3D" parent="items/piece1"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("11_l43sj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece1/piece1"]
+shape = SubResource("BoxShape3D_brjns")
+
+[node name="blockbench_export" parent="items/piece1/piece1" instance=ExtResource("12_luyfs")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0, 0, 0)
+
+[node name="piece2" type="Node3D" parent="items" groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 2, -75)
+
+[node name="Area3D" type="Area3D" parent="items/piece2"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("14_luyfs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece2/Area3D"]
+shape = SubResource("BoxShape3D_brjns")
+
+[node name="blockbench_export" parent="items/piece2/Area3D" instance=ExtResource("12_luyfs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, 0, 0)
+
+[node name="piece3" type="Node3D" parent="items" groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -82)
+
+[node name="Area3D2" type="Area3D" parent="items/piece3"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("15_jweqw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece3/Area3D2"]
+shape = SubResource("BoxShape3D_brjns")
+
+[node name="blockbench_export" parent="items/piece3/Area3D2" instance=ExtResource("12_luyfs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, 0, 0)
+
+[node name="piece4" type="Node3D" parent="items" groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, -74)
+
+[node name="Area3D3" type="Area3D" parent="items/piece4"]
+collision_layer = 6
+collision_mask = 6
+collision_priority = 10.0
+script = ExtResource("16_brjns")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="items/piece4/Area3D3"]
+shape = SubResource("BoxShape3D_brjns")
+
+[node name="blockbench_export" parent="items/piece4/Area3D3" instance=ExtResource("12_luyfs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, -1, 0)
