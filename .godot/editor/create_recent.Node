@@ -1,5 +1,6 @@
-Node3D
 CollisionShape3D
+StaticBody3D
+Node3D
 Area3D
 TextureRect
 Label
@@ -11,4 +12,3 @@ MeshInstance3D
 Control
 VBoxContainer
 TextEdit
-StaticBody3D

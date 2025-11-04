@@ -11,6 +11,7 @@ const CELL_SIZE := Vector2(10, 10)
 const PADDING := 0.5
 
 var quest_item_refs: Array = []
+
 var blink_timer := 0.0
 var blink_alpha := 1.0
 
@@ -62,6 +63,12 @@ func _process(delta):
 	queue_redraw()
 
 func remove_quest_item(item: Node3D) -> void:
+	print("🔍 quest_item_refs contents:")
+	for i in quest_item_refs:
+		if is_instance_valid(i):
+			print(" -", i.name, "::", i)
+			print("🔍 Comparing:", i.name, "::", i, "==", item, "→", i == item)
+	
 	if quest_item_refs.has(item):
 		print("🧼 Removing item from minimap:", item.name)
 		quest_item_refs.erase(item)
@@ -124,6 +131,12 @@ func _draw():
 		if not is_instance_valid(item) or not item is Node3D:
 			continue
 
+		if item.has_meta("objective_id"):
+			var id = item.objective_id
+			if QuestManager.is_objective_completed("rebuild_picture", id):
+				continue  # ✅ This is valid because it's inside the loop
+
+		# ✅ Drawing logic goes here
 		var item_grid = grid_ref.world_to_grid(item.global_transform.origin)
 		var offset = item_grid - player_grid
 		var minimap_pos = center + offset * CELL_SIZE

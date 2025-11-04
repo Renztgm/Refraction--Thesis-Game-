@@ -257,9 +257,26 @@ func start_new_game() -> void:
 		"player_direction": "down",
 		"has_save": false
 	}
+
 	if db:
-		db.query("DELETE FROM save_data;")
-		print("🗑️ Cleared all saves from DB")
+		var tables_to_clear := [
+			"save_data",
+			"quests",
+			"quest_objectives",
+			"game_path",
+			"items",
+			"inventory",
+			"memory_shards"
+			# Note: Do NOT clear `items` unless you want to reset your item definitions
+		]
+
+		for table_name in tables_to_clear:
+			var result := db.query("DELETE FROM %s;" % table_name)
+			if result:
+				print("🧹 Cleared table:", table_name)
+			else:
+				push_error("❌ Failed to clear table: %s" % table_name)
+
 
 # -----------------------
 # Branching Progress
@@ -345,3 +362,15 @@ func set_next_scene_path(path: String) -> void:
 
 func get_next_scene_path() -> String:
 	return next_chapter_scene_path
+
+func is_quest_completed(quest_id: String) -> bool:
+	if db == null:
+		if not init_db():
+			return false
+
+	var success := db.query_with_bindings("SELECT is_completed FROM quests WHERE id = ?", [quest_id])
+	if not success or db.query_result.size() == 0:
+		print("⚠️ Quest not found or query failed:", quest_id)
+		return false
+
+	return int(db.query_result[0]["is_completed"]) == 1
