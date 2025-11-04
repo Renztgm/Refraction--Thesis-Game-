@@ -1,13 +1,13 @@
 Node3D
-Label
+CollisionShape3D
+Area3D
 TextureRect
+Label
 Button
 HBoxContainer
 Panel
 CanvasLayer
 MeshInstance3D
-CollisionShape3D
-Area3D
 Control
 VBoxContainer
 TextEdit

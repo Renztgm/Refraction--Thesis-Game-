@@ -44,7 +44,17 @@ func start_dialogue() -> void:
 		return
 
 	dialogue_manager.load_dialogue(dialogue_file, npc_id)
-	dialogue_manager.show_node("start")
+
+	# ✅ Check quest status
+	if QuestManager.active_quests.has(quest_id):
+		var quest = QuestManager.active_quests[quest_id]
+		if quest.get("is_completed", false):
+			dialogue_manager.show_node("quest_done")
+		else:
+			dialogue_manager.show_node("quest_active")
+	else:
+		dialogue_manager.show_node("start")  
+
 	dialogue_manager.show()
 
 	if not dialogue_manager.is_connected("dialogue_finished", Callable(self, "_on_dialogue_finished")):
@@ -54,11 +64,10 @@ func _on_dialogue_finished() -> void:
 	if player_ref and player_ref.has_method("unfreeze_player"):
 		player_ref.unfreeze_player()
 
-	if gives_quest:
+	if gives_quest and not QuestManager.active_quests.has(quest_id):
 		QuestManager.import_quests_from_json(quest_json_path)
 		QuestManager.load_all_quests()
-		QuestManager.save_all_quests() # ✅ This makes it permanent
+		QuestManager.save_all_quests()
 
 		if QuestManager.active_quests.has(quest_id):
 			print("🧭 Quest received: " + quest_id)
-			# Optional: trigger quest UI or popup

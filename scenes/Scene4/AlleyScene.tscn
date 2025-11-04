@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://g3gndto2e636"]
+[gd_scene load_steps=41 format=3 uid="uid://g3gndto2e636"]
 
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_6er7q"]
 [ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="2_hjv4e"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://b7xyc2jckr8uq" path="res://assets/audio/ambient/Static_Sound.mp3" id="16_21pj3"]
 [ext_resource type="Shader" uid="uid://p2trvwfmiiq6" path="res://scenes/Scene4/AlleySceneScreenWarp.gdshader" id="16_fd1bb"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="18_nn26f"]
+[ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="19_affr1"]
 [ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/NPCs/Npc2_follow.tscn" id="19_e7sh1"]
 [ext_resource type="Script" uid="uid://4gntmajsnftj" path="res://scenes/Scene4/jump_scare.gd" id="20_0tfac"]
 
@@ -236,6 +237,8 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -80.28
 
 [node name="Barrier" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53165, 0, -72.871)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.662018, 1.22429, -0.654297)
@@ -243,6 +246,8 @@ shape = SubResource("BoxShape3D_l4n2c")
 
 [node name="Barrier2" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.21536, 0.760214, -47.1706)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1383, 1.22429, -0.651217)
@@ -250,7 +255,8 @@ shape = SubResource("BoxShape3D_l4n2c")
 
 [node name="Barrier3" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.65681, -1.15006, -47.1706)
-collision_layer = 3
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35107, 3.90953, -0.214016)
@@ -258,6 +264,8 @@ shape = SubResource("BoxShape3D_l4n2c")
 
 [node name="Barrier4" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.7063, 0, -8.54543)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4822, -0.627639, 1.90735e-06)
@@ -265,6 +273,8 @@ shape = SubResource("BoxShape3D_l4n2c")
 
 [node name="Barrier5" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.585, 0, 0.84929)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier5"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.377106, 0.25788, -0.748911)
@@ -272,6 +282,8 @@ shape = SubResource("BoxShape3D_l4n2c")
 
 [node name="Barrier6" type="StaticBody3D" parent="Structures/Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.4372, 0, 20.5207)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Barrier/Barrier6"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.377106, 0.25788, -0.748911)
@@ -307,6 +319,8 @@ sky_mode = 1
 [node name="Plane" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128864, 0, -0.251266)
 use_collision = true
+collision_layer = 4
+collision_mask = 4
 size = Vector3(500, 1, 250)
 
 [node name="Player3d" parent="." instance=ExtResource("11_oly33")]
@@ -331,6 +345,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.2066, 0, -3.55206)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.185, 0, -18.642)
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("12_hjv4e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
@@ -375,11 +391,15 @@ color = Color(0.00392157, 0.00392157, 0.00392157, 0)
 
 [node name="InventoryUI" parent="UI" instance=ExtResource("18_nn26f")]
 
+[node name="QuestUi" parent="UI" instance=ExtResource("19_affr1")]
+visible = false
+
 [node name="Npc2" parent="." instance=ExtResource("19_e7sh1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 81.326706, 0.6049371, -4.971503)
 
 [node name="JumpScare" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.89272, 0, -9.910536)
+collision_mask = 5
 script = ExtResource("20_0tfac")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JumpScare"]

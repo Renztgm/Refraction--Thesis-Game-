@@ -99,3 +99,10 @@ func _pick_new_quote() -> void:
 
 	message_index = new_index
 	quote_label.text = messages[message_index]
+
+func update_progress(value: float) -> void:
+	# Optional: connect to a ProgressBar node
+	# $ProgressBar.value = value * 100.0
+
+	# Or just log it for now
+	print("Loading progress: ", value * 100)

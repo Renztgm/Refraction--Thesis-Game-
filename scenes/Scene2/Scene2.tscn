@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c4irk4i63ynmd"]
+[gd_scene load_steps=34 format=3 uid="uid://c4irk4i63ynmd"]
 
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_5s2s3"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="2_3ni3a"]
@@ -21,7 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://cyby2eli2s01s" path="res://assets/Building/Building3.tscn" id="17_cjq0k"]
 [ext_resource type="PackedScene" uid="uid://ce3d7ovhkpl5l" path="res://assets/Building/Building6.tscn" id="18_e2ji0"]
 [ext_resource type="PackedScene" uid="uid://bf2m3lfijg51" path="res://assets/Building/wall_baricade.tscn" id="19_e2ji0"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="21_axqst"]
 [ext_resource type="Script" uid="uid://drt56em2leu86" path="res://scenes/Scene2/tutorial_manager.gd" id="22_c0bx3"]
+[ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="22_k1ty1"]
 [ext_resource type="PackedScene" uid="uid://1ufufpujciht" path="res://scenes/UI/ControlHint.tscn" id="23_ldycq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_prnq5"]
@@ -221,7 +223,7 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.5867, 0.258544, -38.6013
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 63.3891, 0.25, -38.6314)
 
 [node name="Wall" parent="Environment/Structures/Walls" instance=ExtResource("6_ynkw3")]
-transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 68.3832, 0.25, -43.5588)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 68.3832, 0.25, -43.5588)
 
 [node name="Walls3" parent="Environment/Structures/Walls" instance=ExtResource("5_70fl2")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -48.117, 0.25, -38.5979)
@@ -358,6 +360,11 @@ bus = &"Music"
 bus = &"Music"
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("21_axqst")]
+
+[node name="QuestUi" parent="UI" instance=ExtResource("22_k1ty1")]
+visible = false
 
 [node name="Vehicles" type="Node3D" parent="."]
 
