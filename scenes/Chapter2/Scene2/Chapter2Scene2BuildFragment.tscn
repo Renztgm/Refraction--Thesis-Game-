@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn1btw2ad0eja"]
+
+[ext_resource type="Script" uid="uid://dxfiargl6u18p" path="res://scenes/Chapter2/Scene2/fragment.gd" id="1_a5r8y"]
+[ext_resource type="Texture2D" uid="uid://ckh15j3c05a4q" path="res://scenes/Chapter2/Scene2/Fragments/Fragment 1.png" id="1_minac"]
+[ext_resource type="Script" uid="uid://bm23hd0o581gb" path="res://scenes/Chapter2/Scene2/puzzle_manager.gd" id="2_k57ul"]
+[ext_resource type="Texture2D" uid="uid://gu714bxx2s6i" path="res://scenes/Chapter2/Scene2/Fragments/Fragment 2.png" id="3_3taua"]
+[ext_resource type="Texture2D" uid="uid://db0rnfabi42an" path="res://scenes/Chapter2/Scene2/Fragments/Fragment 3.png" id="4_684lj"]
+[ext_resource type="Texture2D" uid="uid://cgv501req68mf" path="res://scenes/Chapter2/Scene2/Fragments/Fragment 4.png" id="5_yms8t"]
+
+[node name="PuzzleScene" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 592.0
+offset_top = 128.0
+offset_right = 1376.0
+offset_bottom = 912.0
+
+[node name="FragmentsContainer" type="Node2D" parent="."]
+position = Vector2(96, 8)
+
+[node name="Fragment1" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(1080, 320)
+scale = Vector2(3, 3)
+texture = ExtResource("1_minac")
+script = ExtResource("1_a5r8y")
+
+[node name="Fragment2" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(696, 704.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("3_3taua")
+script = ExtResource("1_a5r8y")
+
+[node name="Fragment3" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(1080, 704.00006)
+scale = Vector2(3, 3)
+texture = ExtResource("4_684lj")
+script = ExtResource("1_a5r8y")
+
+[node name="Fragment4" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(696, 320)
+scale = Vector2(3, 3)
+texture = ExtResource("5_yms8t")
+script = ExtResource("1_a5r8y")
+
+[node name="PuzzleManager" type="Node2D" parent="."]
+script = ExtResource("2_k57ul")
+
+[node name="CompletionLabel" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1765.0
+offset_top = 1024.0
+offset_right = 1898.0
+offset_bottom = 1066.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1920.0
+offset_bottom = 1088.0
+color = Color(0, 0, 0, 1)

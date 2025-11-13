@@ -141,8 +141,8 @@ func _input(event):
 	if get_tree().paused:
 		return
 		
-	if event.is_action_pressed("toggle_quest"):
-			$UI/QuestUi.visible = !$UI/QuestUi.visible
+	if event.is_action_pressed("quest"):
+		_on_quest_button_pressed()
 		
 
 func save_game_here():

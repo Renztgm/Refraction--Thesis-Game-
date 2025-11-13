@@ -1,0 +1,116 @@
+[gd_scene load_steps=17 format=3 uid="uid://cvicw8o2rx05t"]
+
+[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="1_5fmib"]
+[ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="2_5m45q"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="2_p2jod"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="3_7tx5h"]
+[ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="4_emwus"]
+[ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="5_emwus"]
+[ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="6_oqs17"]
+[ext_resource type="PackedScene" uid="uid://cwnoxs81t5ajn" path="res://assets/Building/Market/Market.tscn" id="7_n0bjb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7tx5h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_emwus"]
+size = Vector3(250, 1, 250)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xe5ti"]
+albedo_texture = ExtResource("2_5m45q")
+uv1_triplanar = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5m45q"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_axqst"]
+sky_material = SubResource("ProceduralSkyMaterial_5m45q")
+
+[sub_resource type="Environment" id="Environment_xe5ti"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_axqst")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+reflected_light_source = 2
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_bloom = 0.85
+glow_hdr_threshold = 1.75
+glow_hdr_luminance_cap = 46.29
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1571
+volumetric_fog_emission_energy = 110.71
+volumetric_fog_anisotropy = 0.9
+volumetric_fog_temporal_reprojection_amount = 0.99
+adjustment_enabled = true
+adjustment_brightness = 0.79
+adjustment_contrast = 1.07
+adjustment_saturation = 1.46
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_n0bjb"]
+vertices = PackedVector3Array(-124.5, 1, -124.5, -124.5, 1, 124.5, 124.5, 1, 124.5, 124.5, 1, -124.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5m45q"]
+size = Vector3(250, 1, 250)
+
+[node name="Chapter2Scene2" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Sky" parent="Environment" instance=ExtResource("1_5fmib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841215, 5.63674, 2.09051)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_7tx5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+shape = SubResource("BoxShape3D_emwus")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_xe5ti")
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(250, 1, 250)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.32051834, -0.86823887, -0.37872103, -0.82024914, -0.4543697, 0.34747612, -0.4737716, 0.1992731, -0.85780585, 0, 0, 0)
+light_color = Color(0.64705884, 1, 0.47843137, 1)
+shadow_enabled = true
+shadow_bias = 2.944
+shadow_normal_bias = 2.05
+shadow_transmittance_bias = 1.33
+shadow_blur = 1.12
+directional_shadow_max_distance = 200.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_xe5ti")
+
+[node name="Player3d" parent="." groups=["player2"] instance=ExtResource("2_p2jod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("3_7tx5h")]
+
+[node name="QuestUi" parent="UI" instance=ExtResource("4_emwus")]
+visible = false
+
+[node name="Minimap" parent="." groups=["minimap"] instance=ExtResource("5_emwus")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["grid"]]
+navigation_mesh = SubResource("NavigationMesh_n0bjb")
+script = ExtResource("6_oqs17")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+visible = false
+mesh = SubResource("BoxMesh_5m45q")
+
+[node name="Market" parent="." instance=ExtResource("7_n0bjb")]

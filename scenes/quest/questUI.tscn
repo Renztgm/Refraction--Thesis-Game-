@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dyesvrdup0jst" path="res://assets/ui/background_inventory.png" id="2_ehxvs"]
 
 [node name="QuestUi" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_jly6o")
 
 [node name="Panel" type="Panel" parent="."]

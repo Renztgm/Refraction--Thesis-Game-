@@ -7,7 +7,8 @@
 	  { "id": "piece_1", "text": "Find the first fragment", "is_completed": false },
 	  { "id": "piece_2", "text": "Find the second fragment", "is_completed": false },
 	  { "id": "piece_3", "text": "Find the third fragment", "is_completed": false },
-	  { "id": "piece_4", "text": "Find the fourth fragment", "is_completed": false }
+	  { "id": "piece_4", "text": "Find the fourth fragment", "is_completed": false },
+	  { "id": "go_back_quest_1","text": "go back to the safehouse and talk to companion.", "is_completed": false}
 	]
   }
 ]

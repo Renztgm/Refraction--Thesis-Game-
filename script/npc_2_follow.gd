@@ -198,6 +198,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	update_animation()
+	apply_player_push()
 
 func update_animation():
 	var movement = Vector2(velocity.x, velocity.z)
@@ -311,3 +312,20 @@ func follow_path(delta):
 		var target_rotation = atan2(direction.x, direction.z)
 		var current_rotation = rotation.y
 		rotation.y = lerp_angle(current_rotation, target_rotation, rotation_speed * delta)
+		
+		
+func apply_player_push():
+	if not is_instance_valid(player):
+		return
+	
+	# Predict player's next position
+	var player_motion = player.velocity * get_physics_process_delta_time()
+	var player_future_pos = player.global_transform.translated(player_motion)
+	
+	# Check if player's movement would collide with this NPC
+	if player.test_move(player.global_transform, player_motion):
+		var push_dir = (global_position - player.global_position).normalized()
+		var push_strength = player.velocity.length() * 0.3  # Scale based on player speed
+		
+		# Apply push force away from player
+		velocity += push_dir * push_strength

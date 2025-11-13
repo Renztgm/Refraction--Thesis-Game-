@@ -1,0 +1,74 @@
+[gd_scene load_steps=15 format=3 uid="uid://chsbwne70pgsl"]
+
+[ext_resource type="Script" uid="uid://bm23hd0o581gb" path="res://scenes/Chapter2/Scene2/puzzle_manager.gd" id="1_ens8b"]
+[ext_resource type="Script" uid="uid://dah8xileclpem" path="res://scenes/Chapter2/Scene2/camera_3d.gd" id="1_hsqq4"]
+[ext_resource type="Texture2D" uid="uid://ckh15j3c05a4q" path="res://scenes/Chapter2/Scene2/Fragments/Fragment 1.png" id="1_sru5j"]
+[ext_resource type="Texture2D" uid="uid://gu714bxx2s6i" path="res://scenes/Chapter2/Scene2/Fragments/Fragment 2.png" id="2_hsqq4"]
+[ext_resource type="Texture2D" uid="uid://db0rnfabi42an" path="res://scenes/Chapter2/Scene2/Fragments/Fragment 3.png" id="3_sxbyg"]
+[ext_resource type="Texture2D" uid="uid://cgv501req68mf" path="res://scenes/Chapter2/Scene2/Fragments/Fragment 4.png" id="4_4y5kc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ens8b"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_jddrb"]
+sky_material = SubResource("ProceduralSkyMaterial_ens8b")
+
+[sub_resource type="Environment" id="Environment_vegbd"]
+background_mode = 2
+sky = SubResource("Sky_jddrb")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_apfvw"]
+albedo_texture = ExtResource("1_sru5j")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jddrb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfrr3"]
+albedo_texture = ExtResource("2_hsqq4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrjca"]
+albedo_texture = ExtResource("3_sxbyg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0k0kr"]
+albedo_texture = ExtResource("4_4y5kc")
+
+[node name="Chapter2Scene2BuildPicture" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vegbd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("1_hsqq4")
+
+[node name="FragmentsContainer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0)
+
+[node name="Fragment1" type="MeshInstance3D" parent="FragmentsContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+material_override = SubResource("StandardMaterial3D_apfvw")
+mesh = SubResource("QuadMesh_jddrb")
+
+[node name="Fragment2" type="MeshInstance3D" parent="FragmentsContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_qfrr3")
+mesh = SubResource("QuadMesh_jddrb")
+
+[node name="Fragment3" type="MeshInstance3D" parent="FragmentsContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+material_override = SubResource("StandardMaterial3D_jrjca")
+mesh = SubResource("QuadMesh_jddrb")
+
+[node name="Fragment4" type="MeshInstance3D" parent="FragmentsContainer"]
+material_override = SubResource("StandardMaterial3D_0k0kr")
+mesh = SubResource("QuadMesh_jddrb")
+
+[node name="UIOverlay" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="UIOverlay"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PuzzleManager" type="Node" parent="."]
+script = ExtResource("1_ens8b")

@@ -234,4 +234,8 @@ func _on_shard_close_pressed():
 
 	if player_ref and player_ref.has_method("unfreeze_player"):
 		player_ref.unfreeze_player()
-		get_tree().change_scene_to_file("res://scenes/Scene4/AlleyScene.tscn")
+		
+		# Instead of instantly changing scene, fade out first
+		FadeOutCanvas.fade_out(1.0, func():
+			get_tree().change_scene_to_file("res://scenes/Scene4/AlleyScene.tscn")
+		)
