@@ -25,14 +25,22 @@ sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
 ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
 ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
 
-[sub_resource type="Sky" id="Sky_fnou3"]
+[sub_resource type="Sky" id="Sky_brjns"]
 sky_material = SubResource("ProceduralSkyMaterial_a24s8")
 
 [sub_resource type="Environment" id="Environment_ox1sq"]
 background_mode = 2
-sky = SubResource("Sky_fnou3")
+sky = SubResource("Sky_brjns")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_bloom = 0.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1929
+adjustment_enabled = true
+adjustment_saturation = 1.6
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rhfvj"]
 
@@ -50,7 +58,7 @@ size = Vector3(250, 1, 250)
 size = Vector3(3, 3, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hhcxs"]
-size = Vector3(2.4120483, 4, 7.4042664)
+size = Vector3(4.3, 4, 1.2)
 
 [node name="Chapter2Scene1Outside" type="Node3D"]
 
@@ -60,9 +68,10 @@ size = Vector3(2.4120483, 4, 7.4042664)
 environment = SubResource("Environment_ox1sq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.222197e-08, 0.25881904, -0.9659258, 1.1313342e-08, 0.9659258, 0.25881904, 1, 0, -4.37114e-08, 0, 0, 0)
 light_color = Color(0.647059, 1, 0.478431, 1)
-sky_mode = 1
+shadow_enabled = true
+shadow_blur = 5.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
 collision_mask = 0
@@ -126,7 +135,7 @@ mesh = SubResource("BoxMesh_eqb1a")
 [node name="items" type="Node3D" parent="."]
 
 [node name="piece_1" type="Node3D" parent="items" groups=["quest_item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 2, -81)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, 2, -3)
 
 [node name="Area3D" type="Area3D" parent="items/piece_1"]
 collision_layer = 6
@@ -140,7 +149,7 @@ shape = SubResource("BoxShape3D_brjns")
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0, 0, 0)
 
 [node name="piece_2" type="Node3D" parent="items" groups=["quest_item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 2, -75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, -23)
 
 [node name="Area3D" type="Area3D" parent="items/piece_2"]
 collision_layer = 6
@@ -154,7 +163,7 @@ shape = SubResource("BoxShape3D_brjns")
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, 0, 0)
 
 [node name="piece_3" type="Node3D" parent="items" groups=["quest_item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, -82)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 2, -6)
 
 [node name="Area3D" type="Area3D" parent="items/piece_3"]
 collision_layer = 6
@@ -168,7 +177,7 @@ shape = SubResource("BoxShape3D_brjns")
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, 0, 0)
 
 [node name="piece_4" type="Node3D" parent="items" groups=["quest_item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, -74)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2, -74)
 
 [node name="Area3D3" type="Area3D" parent="items/piece_4"]
 collision_layer = 6
@@ -182,12 +191,12 @@ shape = SubResource("BoxShape3D_brjns")
 [node name="blockbench_export" parent="items/piece_4/Area3D3" instance=ExtResource("12_luyfs")]
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, -1, 0)
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.24321, 1.1322818, -81.40962)
+[node name="Entrance" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.84321, 1.1322818, -81.40962)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("16_xs032")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018615723, 1.4008179, -1.4249115)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85788727, 1.7008181, -1.5270462)
 shape = SubResource("BoxShape3D_hhcxs")

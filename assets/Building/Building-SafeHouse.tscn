@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://divlh86tcj7iw"]
+
+[ext_resource type="PackedScene" uid="uid://bvcm7hdvo3qay" path="res://assets/Building/BuildingSafehouse/safehouse.gltf" id="1_85ywk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_85ywk"]
+size = Vector3(8.900001, 6.6, 18.300001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4ykb"]
+size = Vector3(5.8, 4, 12.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wgr6d"]
+size = Vector3(1.2, 6, 1.3000001)
+
+[node name="BuildingSafeHouse" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_85ywk")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3499999, 2.8, 0.34999943)
+shape = SubResource("BoxShape3D_85ywk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.799999, 1.0999999, -3.2)
+shape = SubResource("BoxShape3D_g4ykb")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.799999, 2.5, 9.450001)
+shape = SubResource("BoxShape3D_wgr6d")

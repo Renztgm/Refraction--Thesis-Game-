@@ -1,0 +1,331 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwnoxs81t5ajn"]
+
+[ext_resource type="PackedScene" uid="uid://b5i28tvdnyqh5" path="res://assets/Building/Market/Floor/Ground_Market.gltf" id="1_hkg4p"]
+[ext_resource type="PackedScene" uid="uid://c64d6tqtjvjjy" path="res://assets/Building/Market/Ceilling/Upper_Market.gltf" id="2_q7fij"]
+[ext_resource type="PackedScene" uid="uid://b77h2w8wuvhpg" path="res://assets/Building/Market/Stall/Stall_Market.gltf" id="3_svwgl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_svwgl"]
+size = Vector3(0.11154785, 0.099804685, 0.07471875)
+
+[node name="Market" type="Node3D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_hkg4p")]
+transform = Transform3D(-4.371139e-06, 0, -100, 0, 100, 0, 100, 0, -4.371139e-06, 0, 0.1, 0)
+visible = false
+
+[node name="Ceilling" parent="." instance=ExtResource("2_q7fij")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, 0, 2, 0)
+
+[node name="Stalls" type="Node3D" parent="."]
+
+[node name="Stall_1" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -30, 0, 18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_1"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_1/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_2" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -30, 0, 4)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_2"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_2/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_3" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -30, 0, -10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_3"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_3/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_4" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -30, 0, -24)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_4"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_4/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_13" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, 35, 0, 18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_13"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_13/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_14" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, 35, 0, 4)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_14"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_14/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_15" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, 35, 0, -10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_15"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_15/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_16" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, 35, 0, -24)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_16"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_16/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_5" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -8, 0, 17.8)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_5"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_5/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_6" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -8, 0, 3.8)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_6"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_6/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_7" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, -8, 0, -10.2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_7"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_7/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_8" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(0.105759874, -0.23752916, -79.99957, 0.2692634, 79.99919, -0.23717114, 79.99947, -0.2689476, 0.106560305, -8, 0, -24.2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_8"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_8/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_9" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, 80, 0, 80, 0, -80, 0, -3.4969112e-06, -17.2, 0, 25.8)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_9"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_9/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_10" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, 80, 0, 80, 0, -80, 0, -3.4969112e-06, -17.2, 0, 11.8)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_10"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_10/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_11" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, 80, 0, 80, 0, -80, 0, -3.4969112e-06, -17.2, 0, -2.2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_11"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_11/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_12" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, 80, 0, 80, 0, -80, 0, -3.4969112e-06, -17.2, 0, -16.2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_12"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_12/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_17" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, 20, 0, 18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_17"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_17/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_18" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, 20, 0, 4)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_18"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_18/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_19" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, -80, 0, 80, 0, 80, 0, -3.4969112e-06, 20, 0, -10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_19"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_19/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_20" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(0.105759874, -0.23752916, -79.99957, 0.2692634, 79.99919, -0.23717114, 79.99947, -0.2689476, 0.106560305, 20, 0, -24)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_20"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_20/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_21" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, 80, 0, 80, 0, -80, 0, -3.4969112e-06, 10.8, 0, 26)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_21"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_21/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_22" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, 80, 0, 80, 0, -80, 0, -3.4969112e-06, 10.8, 0, 12)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_22"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_22/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_23" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, 80, 0, 80, 0, -80, 0, -3.4969112e-06, 10.8, 0, -2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_23"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_23/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true
+
+[node name="Stall_24" parent="Stalls" instance=ExtResource("3_svwgl")]
+transform = Transform3D(-3.4969112e-06, 0, 80, 0, 80, 0, -80, 0, -3.4969112e-06, 10.8, 0, -16)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stalls/Stall_24"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stalls/Stall_24/StaticBody3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0.050109982, 0.050097674, 0.018207043)
+shape = SubResource("BoxShape3D_svwgl")
+debug_color = Color(0.9757455, 0, 0.42064235, 0.41960785)
+metadata/_edit_group_ = true

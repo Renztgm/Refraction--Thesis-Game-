@@ -8,17 +8,9 @@ extends Area3D  # or Area2D if you're in 2D
 func _ready():
 	add_to_group("quest_item")
 
-	var is_completed := QuestManager.is_objective_completed("rebuild_picture", objective_id)
-	if is_completed:
+	if QuestManager.is_objective_completed("rebuild_picture", objective_id):
 		print("🧼 Objective already completed:", objective_id)
-
-		var minimap_root = get_tree().get_first_node_in_group("minimap")
-		var minimap_script_node = minimap_root.get_node("MinimapGridOverlay")
-		if minimap_script_node and minimap_script_node.has_method("remove_quest_item"):
-			minimap_script_node.remove_quest_item(get_parent())
-		else:
-			print("⚠️ Minimap not found or missing method")
-
+		remove_minimap_marker()
 		queue_free()
 		return
 
@@ -52,8 +44,27 @@ func collect_item():
 	InventoryManager.add_item(slot_id, item_id, 1)
 
 	QuestManager.complete_objective("rebuild_picture", str(objective_id))
+	
+	# 🔔 Show popup via autoload
+	ItemPopUp.show_message("📦 Collected: " + objective_id, 2.0, Color.GREEN)
+
 
 	var ui = get_tree().get_nodes_in_group("inventory_ui")
 	if ui.size() > 0 and ui[0].active_tab == "items":
 		ui[0].load_inventory()
+	remove_minimap_marker()
 	queue_free()
+
+func remove_minimap_marker():
+	var minimap_root = get_tree().get_first_node_in_group("minimap")
+	if not minimap_root:
+		print("⚠️ Minimap root not found")
+		return
+
+	for child in minimap_root.get_children():
+		if child.is_in_group("minimap_overlay") and child.has_method("remove_quest_item"):
+			print("🗺️ Found minimap overlay:", child.name)
+			child.remove_quest_item(get_parent())
+			return
+
+	print("⚠️ No minimap_overlay with remove_quest_item found")

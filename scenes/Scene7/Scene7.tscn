@@ -1,64 +1,102 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxtxjayw7pphx"]
+[gd_scene load_steps=26 format=3 uid="uid://bxtxjayw7pphx"]
 
-[ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/Scene4/AlleyScene.gdshader" id="1_tgw5q"]
 [ext_resource type="Script" uid="uid://dqpaxoogojg4n" path="res://script/Scene7.gd" id="1_tq8mp"]
 [ext_resource type="PackedScene" uid="uid://fqfjbjf4um00" path="res://scenes/NPCs/Scene7NPC.tscn" id="2_ddao0"]
-[ext_resource type="PackedScene" uid="uid://bosx8o2eakej2" path="res://addons/walls/wall.tscn" id="5_dqebc"]
+[ext_resource type="PackedScene" uid="uid://dpvkvaejbmaf1" path="res://assets/Building/Skybox/Skybox.tscn" id="2_dqebc"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="5_tspmt"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="7_3nsrw"]
-[ext_resource type="PackedScene" uid="uid://csjehpoytegny" path="res://assets/Building/WoodFloors5x5.tscn" id="7_y0ite"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="8_tspmt"]
 [ext_resource type="PackedScene" uid="uid://c0qchlpr70m27" path="res://assets/item/banig.tscn" id="9_3nsrw"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="10_2c81m"]
+[ext_resource type="PackedScene" uid="uid://divlh86tcj7iw" path="res://assets/Building/Building-SafeHouse.tscn" id="10_ddao0"]
 [ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="10_tspmt"]
-[ext_resource type="PackedScene" uid="uid://tkpvecb6nn1" path="res://assets/Bookshelf/StackBS.tscn" id="11_tjldj"]
-[ext_resource type="PackedScene" uid="uid://cvwodonhiv8" path="res://assets/Building/greenhousev2.tscn" id="12_mb5ti"]
-[ext_resource type="PackedScene" uid="uid://cavei4lm2httx" path="res://assets/Building/cementfloors.tscn" id="13_j4qht"]
-[ext_resource type="PackedScene" uid="uid://d0x6nxcr5aj6g" path="res://assets/Building/stairs.tscn" id="14_3nsrw"]
+[ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="11_ddao0"]
+[ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="12_dqebc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tjldj"]
-shader = ExtResource("1_tgw5q")
-shader_parameter/emerald = Color(0.31, 0.78, 0.47, 1)
-shader_parameter/dull_gray = Color(0.66, 0.66, 0.66, 1)
-shader_parameter/flicker = 0.0
-
-[sub_resource type="Sky" id="Sky_sknra"]
-sky_material = SubResource("ShaderMaterial_tjldj")
-
-[sub_resource type="Environment" id="Environment_mb5ti"]
-background_mode = 2
-sky = SubResource("Sky_sknra")
-ambient_light_source = 2
-ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ddao0"]
+size = Vector3(21, 1, 18)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2c81m"]
 size = Vector3(2.8005524, 4.2456055, 7.4434137)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dqebc"]
+size = Vector3(19, 1, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y0ite"]
+size = Vector3(3.2, 1.2, 14.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3nsrw"]
+size = Vector3(0.5, 1, 18.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tspmt"]
+size = Vector3(21.300001, 1, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjldj"]
+size = Vector3(1, 1, 2.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mb5ti"]
+size = Vector3(0.2, 1.9, 7)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_y0ite"]
+vertices = PackedVector3Array(-105.5, 1, -109.5, -105.5, 1, 89.5, 93.5, 1, 89.5, 93.5, 1, -109.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3nsrw"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ddao0"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_curve = 0.243676
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_brjns"]
+sky_material = SubResource("ProceduralSkyMaterial_ddao0")
+
+[sub_resource type="Environment" id="Environment_dqebc"]
+background_mode = 2
+sky = SubResource("Sky_brjns")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_bloom = 0.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1929
+adjustment_enabled = true
+adjustment_saturation = 1.6
+
 [node name="Scene7" type="Node3D"]
 script = ExtResource("1_tq8mp")
 
+[node name="Skybox" parent="." instance=ExtResource("2_dqebc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -139.70033)
+
 [node name="Environment" type="Node3D" parent="."]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_mb5ti")
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+collision_mask = 0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-light_color = Color(0.647059, 1, 0.478431, 1)
-sky_mode = 1
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 13.2, -3.5)
+shape = SubResource("BoxShape3D_ddao0")
 
 [node name="Plane" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8288646, 0, -10.27223)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, -5.6779857, 13, -3.9722302)
+visible = false
 use_collision = true
 collision_layer = 4
 collision_mask = 0
-size = Vector3(37, 1, 15.2)
+size = Vector3(36.698242, 1, 15.2)
 
 [node name="Spawnpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8498, 0, 0)
 
-[node name="Player3d" parent="." instance=ExtResource("7_3nsrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0938816, 0.49130607, -15.759131)
+[node name="Player3d" parent="." groups=["player2"] instance=ExtResource("7_3nsrw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5649137, 13.619359, -6.881769)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -84,11 +122,11 @@ metadata/_edit_use_anchors_ = true
 [node name="DialogueManager" parent="." instance=ExtResource("10_2c81m")]
 z_index = 4096
 
-[node name="Npc2" parent="." instance=ExtResource("2_ddao0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.045335, 0.4805529, -15.7188015)
+[node name="Npc2" parent="." groups=["npc"] instance=ExtResource("2_ddao0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.6374099, 13.576181, -2.0342846)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.459803, 0, -6.9354467)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.932463, 12.868003, 1.3199835)
 collision_layer = 3
 collision_mask = 4
 
@@ -98,71 +136,62 @@ shape = SubResource("BoxShape3D_2c81m")
 
 [node name="Structures" type="Node3D" parent="."]
 
-[node name="WoodFloors5x5" parent="Structures" instance=ExtResource("7_y0ite")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6424046, 0.49987793, -15.923299)
-metadata/_edit_group_ = true
-
-[node name="Road" type="Node3D" parent="Structures"]
-
 [node name="Banig" parent="Structures" instance=ExtResource("9_3nsrw")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6, 0.5, -14)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 13.8, -8)
 
 [node name="Bs4" parent="Structures" instance=ExtResource("10_tspmt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, -16.8)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.9, 13.8, -6.799999)
 
-[node name="StackBs2" parent="Structures" instance=ExtResource("11_tjldj")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, 0.5, -13)
+[node name="BuildingSafeHouse" parent="Structures" instance=ExtResource("10_ddao0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.2, 0)
 
-[node name="Greenhousev2" parent="Structures" instance=ExtResource("12_mb5ti")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.5, -13.6)
+[node name="barriers" type="Node3D" parent="Structures"]
 
-[node name="Cementfloors" parent="Structures" instance=ExtResource("13_j4qht")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4, 0.5, -17.199999)
+[node name="StaticBody3D" type="StaticBody3D" parent="Structures/barriers"]
+collision_layer = 2
+collision_mask = 0
 
-[node name="Stairs" parent="Structures" instance=ExtResource("14_3nsrw")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -24.5, -4.6331353, -6.779618)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, 14, -12)
+shape = SubResource("BoxShape3D_dqebc")
 
-[node name="walls" type="Node3D" parent="Structures"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.568588, -4, -2.6478662)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Structures/barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.200001, 14.2, -5.05)
+shape = SubResource("BoxShape3D_y0ite")
 
-[node name="Wall4" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.234952, -3.0776134, -5.4958553)
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Structures/barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.85, 14, -3.4499998)
+shape = SubResource("BoxShape3D_3nsrw")
 
-[node name="Wall6" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1966677, -5.0219584, -5.4958553)
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Structures/barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.650002, 14.1, 5.7)
+shape = SubResource("BoxShape3D_tspmt")
 
-[node name="Wall5" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4941657, 3.9715915, 32.029724)
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Structures/barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 14, 3.9)
+shape = SubResource("BoxShape3D_tjldj")
 
-[node name="Wall11" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.4, 4, 13.6)
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Structures/barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999996, 14.549999, -8.4)
+shape = SubResource("BoxShape3D_mb5ti")
 
-[node name="Wall12" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.4, 4, 21.1)
+[node name="Minimap" parent="." groups=["minimap"] instance=ExtResource("11_ddao0")]
 
-[node name="Wall13" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.4, 4, 28.600002)
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["grid"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
+navigation_mesh = SubResource("NavigationMesh_y0ite")
+script = ExtResource("12_dqebc")
 
-[node name="Wall" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.764589, 3.9715915, 12.474627)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -10)
+visible = false
+mesh = SubResource("BoxMesh_3nsrw")
 
-[node name="Wall3" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.46969867, -3.1679406, -0.6582184)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dqebc")
 
-[node name="Wall7" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.46969843, -3.1679406, 8.75014)
-
-[node name="Wall8" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.4696982, -3.1679406, 18.05014)
-
-[node name="Wall9" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.4696977, -3.1679406, 27.05014)
-
-[node name="Wall10" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.469698, -4.16794, 5.0501413)
-
-[node name="Wall14" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.469698, -3.1679406, -0.9498596)
-
-[node name="Wall2" parent="Structures/walls" instance=ExtResource("5_dqebc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.889659, 3.9715915, 32.029724)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.222197e-08, 0.25881904, -0.9659258, 1.1313342e-08, 0.9659258, 0.25881904, 1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.647059, 1, 0.478431, 1)
+shadow_enabled = true
+shadow_blur = 5.0

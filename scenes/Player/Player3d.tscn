@@ -465,7 +465,7 @@ shape = SubResource("CylinderShape3D_s7x7m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.682, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Camera_Mount"]
-transform = Transform3D(0.999834, -0.00149604, -0.0181332, 0.00650215, 0.960182, 0.2793, 0.0169933, -0.279372, 0.960033, 0, 1.73992, 5.05478)
+transform = Transform3D(0.9998345, -0.0014960439, -0.018133184, 0.0065021534, 0.9601818, 0.27930033, 0.016993307, -0.27937195, 0.96003264, 0, 2.521945, 5.05478)
 
 [node name="Visual" type="Node3D" parent="Camera_Mount"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.38414, 0)

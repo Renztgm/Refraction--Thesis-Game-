@@ -1,6 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://g3gndto2e636"]
+[gd_scene load_steps=43 format=3 uid="uid://g3gndto2e636"]
 
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_6er7q"]
+[ext_resource type="Script" uid="uid://mr5s52tyupua" path="res://scenes/Scene4/alley_scene.gd" id="1_s15yi"]
 [ext_resource type="PackedScene" uid="uid://c51atvquonid3" path="res://assets/Building/Building1.tscn" id="2_hjv4e"]
 [ext_resource type="PackedScene" uid="uid://cfktk12g8ivvp" path="res://assets/roads/alleyroad.tscn" id="2_nn26f"]
 [ext_resource type="PackedScene" uid="uid://bf66clec7ik28" path="res://assets/Building/Building2.tscn" id="3_jjybt"]
@@ -21,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="19_affr1"]
 [ext_resource type="PackedScene" uid="uid://jjwwj1v4ia2" path="res://scenes/NPCs/Npc2_follow.tscn" id="19_e7sh1"]
 [ext_resource type="Script" uid="uid://4gntmajsnftj" path="res://scenes/Scene4/jump_scare.gd" id="20_0tfac"]
+[ext_resource type="PackedScene" uid="uid://dpvkvaejbmaf1" path="res://assets/Building/Skybox/Skybox.tscn" id="23_bmb07"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7igll"]
 size = Vector3(14.4083, 9.09265, 11.1161)
@@ -42,6 +44,16 @@ background_mode = 2
 sky = SubResource("Sky_vxn0d")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+ssr_enabled = true
+ssil_enabled = true
+glow_enabled = true
+glow_bloom = 0.83
+glow_hdr_luminance_cap = 46.29
+volumetric_fog_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 0.79
+adjustment_contrast = 1.07
+adjustment_saturation = 1.46
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjybt"]
 size = Vector3(9.72504, 4.36279, 1)
@@ -132,6 +144,7 @@ shader_parameter/fade_amount = 0.0
 size = Vector3(6.7371674, 1.645752, 4.7926025)
 
 [node name="AlleyScene" type="Node3D"]
+script = ExtResource("1_s15yi")
 
 [node name="Structures" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -408,3 +421,6 @@ shape = SubResource("BoxShape3D_e7sh1")
 
 [node name="JumpscareCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.28511, 4.194548, -53.825573)
+
+[node name="Skybox" parent="." instance=ExtResource("23_bmb07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -137.74527)

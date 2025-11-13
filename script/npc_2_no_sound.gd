@@ -16,7 +16,7 @@ extends CharacterBody3D
 # REFERENCES
 # =========================
 @onready var grid_system = $"../NavigationRegion3D"  # Adjust path to your grid system
-@onready var player = $"../Structures/Building/Bookstore/BookstoreMarker"
+@onready var player = $"../Structures/Bookstore/BookstoreMarker"
 @onready var companion_sprite: AnimatedSprite3D = $CompanionSprite
 
 # =========================

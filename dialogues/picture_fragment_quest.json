@@ -2,24 +2,52 @@
   "Lyra": {
 	"start": {
 	  "name": "Lyra",
-	  "sentences": ["You again. Still chasing memories, aren't you?"],
+	  "sentences": ["Hey!, How's your sleep?"],
 	  "options": [
 		{
-		  "text": "Do you know anything about the broken picture?",
-		  "next": "offer"
+		  "text": "Just fine...",
+		  "full_text" : "It's fine. None of this is real… right?",
+		  "next": "mesmarize"
 		},
 		{
-		  "text": "Just passing through.",
-		  "next": "dismissed"
+		  "text": "I can't Believed...",
+		  "full_text" : "It's fine, but I can't believed it. None of this is real… right?",
+		  "next": "mesmarize"
 		}
 	  ]
+	},
+	"mesmarize": {
+		"name": "Lyra",
+		"sentences": ["Real doesn’t mean solid. This place builds itself around you now. You’re shaping it."],
+		"options" : [
+			{
+		  "text": "How is that possible?",
+		  "full_text" : "It's fine. None of this is real… right?",
+		  "next": "Memory_bleads"
+			},
+			{
+		  "text": "Then What am I?",
+		  "full_text" : "Then What am I?",
+		  "next": "Something_human"
+			}
+		] 
+	},
+		"Memory_bleads": {
+		"name": "Lyra",
+		"sentences": ["Memory bleeds. And you… you’re bleeding a lot."],
+		"next": "offer"
+	},
+		"Something_human": {
+		"name": "Lyra",
+		"sentences": ["Something that remembers being human."],
+		"next": "offer"
 	},
 
 	"offer": {
 	  "name": "Lyra",
 	  "sentences": [
-		"It was shattered long ago. Four fragments scattered like regrets.",
-        "Find them, and maybe you'll understand what was lost."
+		"These started appearing after you woke up.",
+        "Find them, Maybe if you put them together… you’ll remember why."
 	  ],
 	  "options": [
 		{
@@ -58,7 +86,25 @@
 	  "name": "Lyra",
 	  "sentences": [
 		"You found them all. The picture is whole again.",
-        "But wholeness doesn’t always mean peace. Remember that."
+		"But wholeness doesn’t always mean peace. Remember that.",
+		"If you really want to understand what you’ve restored… go to the old market.",
+        "The air there hums with what was left behind — memories that never let go."
+	  ],
+	  "options": [
+		{
+		  "text": "Go to the market.",
+		  "full_text": "Head toward the Abandoned Market.",
+		  "trigger_scene": "res://scenes/scene3_abandoned_market.tscn",
+		  "set_flag": "go_to_scene3",
+		  "next": "market_transition"
+		}
+	  ]
+	},
+
+	"market_transition": {
+	  "name": "Lyra",
+	  "sentences": [
+        "Follow the flickering lights. They’ll lead you to what still lingers."
 	  ],
 	  "next": "end"
 	}

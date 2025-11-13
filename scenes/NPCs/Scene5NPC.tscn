@@ -163,7 +163,7 @@ height = 7.31097
 radius = 2.17188
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3lx0t"]
-size = Vector3(14.3677, 8.37354, 17.1423)
+size = Vector3(6.1123104, 8.37354, 7.0275183)
 
 [node name="Npc2" type="CharacterBody3D"]
 collision_layer = 4
@@ -196,6 +196,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12060881, 0, 0.028721333)
 shape = SubResource("BoxShape3D_3lx0t")
 
 [node name="InteractLabel3D" type="Label3D" parent="."]
