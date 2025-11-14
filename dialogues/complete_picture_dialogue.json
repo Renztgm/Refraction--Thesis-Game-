@@ -1,0 +1,79 @@
+{
+  "You": {
+	"start": {
+	  "name": "You",
+	  "sentences": ["System dialogue entry point."],
+	  "next": "need_scotch_tape"
+	},
+	"need_scotch_tape": {
+	  "name": "You",
+	  "sentences": [
+        "I still don’t have the Scotch tape, we need to find it first!"
+	  ],
+	  "next": "end"
+	},
+	"quest_already_done": {
+	  "name": "You",
+	  "sentences": [
+		"I already fixed the picture, I don’t have anything to fix...",
+        "We need to find what the meaning of that image."
+	  ],
+	  "next": "end"
+	},
+	"quest_not_exist": {
+	  "name": "You",
+	  "sentences": [
+		"I think we don't need to use this working bench..."
+	  ],
+	  "next": "end"
+	},
+	"complete_quest": {
+	  "name": "You",
+	  "sentences": [
+		"That's me! That's —What is this? "
+	  ],
+	  "next": "questioned_picture"
+	},
+	"questioned_picture": {
+	  "name": "Companion",
+	  "sentences": [
+		"Photos like that don’t just show the past here. They pull it closer. Careful what you rebuild."
+	  ],
+	  "next": "check_at_the_back_of_picture"
+	},
+	"questioned_picture": {
+	  "name": "You",
+	  "sentences": [
+		"You check the back of the picture showing the Riddle hidden to it...",
+		"Reads riddle",
+		"I know this riddle, but I can't remember.",
+		"I think we should go to the Mirror District,",
+		"So we can get more clue about this.",
+		"What passage we will use? Collapsed Alley or Different path?"
+	  ],	  
+		"options": [
+		{
+		  "text": "Collapse Alley",
+		  "full_text": "Head toward the Collapse Alley way",
+		  "set_flag": "Collapsed_alley_adventure",
+		  "start_quest": "res://scenes/quest/resources/go_to_mirror_district.json",
+		  "next": "lets_go"
+		},
+		{
+		  "text": "Different Path",
+		  "full_text": "I am going to a different path",
+		  "set_flag": "different_path",
+		  "start_quest": "res://scenes/quest/resources/different_path.json",
+		  "next": "lets_go"
+		}
+	  ]
+	},
+	"lets_go": {
+	  "name": "You",
+	  "sentences": [
+		"Lets go now"
+	  ],
+	  "next": "end"
+	}
+  }
+}

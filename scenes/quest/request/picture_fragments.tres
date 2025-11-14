@@ -30,5 +30,5 @@ script = ExtResource("1_45ldo")
 id = "\"rebuild_picture\""
 title = "\"Rebuild the Broken Picture\""
 description = "\"Find all 4 missing pieces scattered across the area.\""
-objectives = Array[ExtResource("1_i38ps")]([SubResource("Resource_cv0rt"), SubResource("Resource_q8a8e"), SubResource("Resource_5p3hg"), SubResource("Resource_mtgp0")])
+objectives = [SubResource("Resource_cv0rt"), SubResource("Resource_q8a8e"), SubResource("Resource_5p3hg"), SubResource("Resource_mtgp0")]
 metadata/_custom_type_script = "uid://bor5xkpns2fai"

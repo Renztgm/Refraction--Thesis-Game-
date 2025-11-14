@@ -192,3 +192,22 @@ func import_quests_from_json(path: String) -> void:
 
 	save_all_quests()
 	load_all_quests()
+
+
+#=============================
+# Mga Helper natin
+#=============================
+func is_quest_completed(quest_id: String) -> bool:
+	var res = db.select_rows("quests", "id = '%s' AND is_completed = 1" % quest_id, ["*"])
+	print("Checking Quest id:", quest_id)
+	print("is_complete = ", res)
+	return res.size() > 0
+
+
+func complete_quest(quest_id: String) -> void:
+	db.query("INSERT OR REPLACE INTO quests (id, is_completed) VALUES ('%s', 1);" % quest_id)
+	print("✅ Quest completed:", quest_id)
+	
+func quest_exists(quest_id: String) -> bool:
+	var res = db.select_rows("quests", "id = '%s'" % quest_id, ["id"])
+	return res.size() > 0

@@ -87,8 +87,11 @@
 	  "sentences": [
 		"You found them all. The picture is whole again.",
 		"But wholeness doesn’t always mean peace. Remember that.",
+		"You found them all now we just need to put all together", 
+		"unfortunately I don’t have the tool for that.", 
+		"I think there’s a tool at the market that can make this image complete.",
 		"If you really want to understand what you’ve restored… go to the old market.",
-        "The air there hums with what was left behind — memories that never let go."
+	    "The air there hums with what was left behind — memories that never let go."
 	  ],
 	  "options": [
 		{
@@ -96,11 +99,11 @@
 		  "full_text": "Head toward the Abandoned Market.",
 		  "trigger_scene": "res://scenes/scene3_abandoned_market.tscn",
 		  "set_flag": "go_to_scene3",
+		  "start_quest": "res://scenes/quest/resources/complete_picture.json",
 		  "next": "market_transition"
 		}
 	  ]
 	},
-
 	"market_transition": {
 	  "name": "Lyra",
 	  "sentences": [

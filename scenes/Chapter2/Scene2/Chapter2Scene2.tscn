@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvicw8o2rx05t"]
+[gd_scene load_steps=26 format=3 uid="uid://cvicw8o2rx05t"]
 
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="1_5fmib"]
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="2_5m45q"]
@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="5_emwus"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="6_oqs17"]
 [ext_resource type="PackedScene" uid="uid://cwnoxs81t5ajn" path="res://assets/Building/Market/Market.tscn" id="7_n0bjb"]
+[ext_resource type="Script" uid="uid://b0is1qmy87orp" path="res://assets/Building/Market/WorkingBench.gd" id="9_xe5ti"]
+[ext_resource type="Script" uid="uid://dru2dl5w6wc16" path="res://scenes/Chapter2/Scene2/scotch_tape_item.gd" id="10_qa21w"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="11_8wueo"]
+[ext_resource type="PackedScene" uid="uid://bf2m3lfijg51" path="res://assets/Building/wall_baricade.tscn" id="12_iesnv"]
+[ext_resource type="Script" uid="uid://blgv7ydxvf7y6" path="res://scenes/Chapter2/Scene2/collapsed_alley_trigger.gd" id="13_c5t07"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7tx5h"]
 
@@ -59,6 +64,18 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [sub_resource type="BoxMesh" id="BoxMesh_5m45q"]
 size = Vector3(250, 1, 250)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa21w"]
+size = Vector3(7, 2, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xe5ti"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iesnv"]
+size = Vector3(1, 7, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c5t07"]
+size = Vector3(1, 1, 24)
+
 [node name="Chapter2Scene2" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
@@ -81,7 +98,7 @@ collision_mask = 0
 size = Vector3(250, 1, 250)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(0.32051834, -0.86823887, -0.37872103, -0.82024914, -0.4543697, 0.34747612, -0.4737716, 0.1992731, -0.85780585, 0, 0, 0)
+transform = Transform3D(0.10762203, -0.33931252, -0.934497, -0.8203471, -0.56131655, 0.10933622, -0.5616477, 0.7548447, -0.33876413, 0, 0, 0)
 light_color = Color(0.64705884, 1, 0.47843137, 1)
 shadow_enabled = true
 shadow_bias = 2.944
@@ -94,7 +111,7 @@ directional_shadow_max_distance = 200.0
 environment = SubResource("Environment_xe5ti")
 
 [node name="Player3d" parent="." groups=["player2"] instance=ExtResource("2_p2jod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 50)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -114,3 +131,199 @@ visible = false
 mesh = SubResource("BoxMesh_5m45q")
 
 [node name="Market" parent="." instance=ExtResource("7_n0bjb")]
+
+[node name="WorkBench" type="Node3D" parent="." groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorkBench"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 0)
+size = Vector3(2, 1, 2)
+
+[node name="Area3D" type="Area3D" parent="WorkBench"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("9_xe5ti")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorkBench/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
+shape = SubResource("BoxShape3D_qa21w")
+
+[node name="Label3D" type="Label3D" parent="WorkBench/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.2964344, 0)
+billboard = 1
+texture_filter = 2
+font_size = 60
+
+[node name="ScotchTapeItem" type="Area3D" parent="." groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.980747, -1, -1.3145697)
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("10_qa21w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScotchTapeItem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_xe5ti")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="ScotchTapeItem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="DialogueManager" parent="." instance=ExtResource("11_8wueo")]
+z_index = 4096
+
+[node name="Baricade Left" type="Node3D" parent="."]
+
+[node name="WallBaricade3" parent="Baricade Left" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -62)
+
+[node name="WallBaricade4" parent="Baricade Left" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -37)
+
+[node name="WallBaricade5" parent="Baricade Left" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -11)
+
+[node name="WallBaricade6" parent="Baricade Left" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 15)
+
+[node name="WallBaricade7" parent="Baricade Left" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 41)
+
+[node name="WallBaricade8" parent="Baricade Left" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 67)
+
+[node name="WallBaricade9" parent="Baricade Left" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 93)
+
+[node name="WallBaricade10" parent="Baricade Left" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 119)
+
+[node name="Baricade2 Right" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="WallBaricade" parent="Baricade2 Right" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -114)
+
+[node name="WallBaricade2" parent="Baricade2 Right" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -88)
+
+[node name="WallBaricade3" parent="Baricade2 Right" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -62)
+
+[node name="WallBaricade5" parent="Baricade2 Right" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -11)
+
+[node name="WallBaricade6" parent="Baricade2 Right" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 15)
+
+[node name="WallBaricade7" parent="Baricade2 Right" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 41)
+
+[node name="WallBaricade8" parent="Baricade2 Right" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 67)
+
+[node name="Baricade3" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 29)
+
+[node name="WallBaricade2" parent="Baricade3" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -88)
+
+[node name="WallBaricade3" parent="Baricade3" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -62)
+
+[node name="WallBaricade4" parent="Baricade3" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -37)
+
+[node name="WallBaricade5" parent="Baricade3" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -11)
+
+[node name="WallBaricade6" parent="Baricade3" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 15)
+
+[node name="WallBaricade7" parent="Baricade3" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 41)
+
+[node name="WallBaricade8" parent="Baricade3" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 67)
+
+[node name="WallBaricade9" parent="Baricade3" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 93)
+
+[node name="Baricade4" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 25.3)
+
+[node name="WallBaricade2" parent="Baricade4" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -88)
+
+[node name="WallBaricade3" parent="Baricade4" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -62)
+
+[node name="WallBaricade4" parent="Baricade4" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -37)
+
+[node name="WallBaricade5" parent="Baricade4" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, -11)
+
+[node name="WallBaricade6" parent="Baricade4" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 15)
+
+[node name="WallBaricade8" parent="Baricade4" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 67)
+
+[node name="WallBaricade9" parent="Baricade4" instance=ExtResource("12_iesnv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92, 1, 93)
+
+[node name="Arch" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 1, 22.4)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Arch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30000305, 3, 12.000002)
+size = Vector3(1, 7, 25)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Arch/CSGBox3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.80000305, 0, 0)
+operation = 2
+polygon = PackedVector2Array(-11, -4, -10, 2, 10, 2, 12, -4)
+depth = 2.13
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Arch"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arch/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30000305, 3, 0.5)
+shape = SubResource("BoxShape3D_iesnv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arch/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30000305, 3, 23.500002)
+shape = SubResource("BoxShape3D_iesnv")
+
+[node name="Arch2" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -55, 1, -64.6)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Arch2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30000305, 3, 12.000002)
+size = Vector3(1, 7, 25)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Arch2/CSGBox3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.80000305, 0, 0)
+operation = 2
+polygon = PackedVector2Array(-11, -4, -10, 2, 10, 2, 12, -4)
+depth = 2.13
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Arch2"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arch2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30000305, 3, 0.5)
+shape = SubResource("BoxShape3D_iesnv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arch2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30000305, 3, 23.500002)
+shape = SubResource("BoxShape3D_iesnv")
+
+[node name="CollapsedAlleyTrigger" type="Area3D" parent="Arch2"]
+script = ExtResource("13_c5t07")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arch2/CollapsedAlleyTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.5)
+shape = SubResource("BoxShape3D_c5t07")

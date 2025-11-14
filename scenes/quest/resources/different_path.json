@@ -1,0 +1,10 @@
+[
+	{
+	"id": "different_path",
+	"title": "Go to Miror District",
+	"description": "Your going to Mirror District to know what is the meaning of the riddle, you will use the collapse alley passage.",
+	"objectives": [
+	  { "id": "escape_the_beast", "text": "Unknown quest", "is_completed": false }
+	]
+  }
+]

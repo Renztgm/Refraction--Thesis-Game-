@@ -24,20 +24,56 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ehxvs")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-custom_minimum_size = Vector2(750, 500)
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.41500002
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.41500002
-offset_left = -376.0
-offset_top = -264.2
-offset_right = 374.0
-offset_bottom = 235.79999
+anchor_bottom = 0.5
+offset_left = -768.0
+offset_top = -284.0
+offset_right = 768.0
+offset_bottom = 484.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="ActiveContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActiveLabel" type="Label" parent="Panel/HBoxContainer/ActiveContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Active Quest"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/HBoxContainer/ActiveContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ActiveList" type="VBoxContainer" parent="Panel/HBoxContainer/ActiveContainer"]
+layout_mode = 2
+
+[node name="CompletedContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CompletedLabel" type="Label" parent="Panel/HBoxContainer/CompletedContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Completed Quests"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/HBoxContainer/CompletedContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="CompletedList" type="VBoxContainer" parent="Panel/HBoxContainer/CompletedContainer"]
+layout_mode = 2
 
 [node name="CloseButton" type="Button" parent="Panel"]
 layout_mode = 0

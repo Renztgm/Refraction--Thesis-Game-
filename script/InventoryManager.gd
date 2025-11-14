@@ -98,6 +98,9 @@ func get_item(item_id: int) -> Dictionary:
 	var res = db.select_rows("items", "id = %d" % item_id, ["*"])
 	return res[0] if res.size() > 0 else {}
 
+func has_item(item_id: int) -> bool:
+	var res = db.select_rows("inventory", "item_id = %d AND quantity > 0" % item_id, ["*"])
+	return res.size() > 0
 
 func add_item(slot_id: int, item_id: int, quantity: int) -> void:
 	db.query("INSERT OR REPLACE INTO inventory (slot_id, item_id, quantity) VALUES (%d, %d, %d);" % [slot_id, item_id, quantity])
