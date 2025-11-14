@@ -11,6 +11,7 @@ const CELL_SIZE := Vector2(10, 10)
 const PADDING := 0.5
 
 var quest_item_refs: Array = []
+var interactable_refs: Array = [] 
 
 var blink_timer := 0.0
 var blink_alpha := 1.0
@@ -23,7 +24,9 @@ func _ready():
 	var grids = get_tree().get_nodes_in_group("grid")
 	var npcs = get_tree().get_nodes_in_group("npc")
 	var quest_items = get_tree().get_nodes_in_group("quest_item")
+	var interactables = get_tree().get_nodes_in_group("interactable")
 	quest_item_refs = quest_items
+	interactable_refs = interactables 
 
 	if players.size() > 0:
 		player_ref = players[0] as CharacterBody3D
@@ -42,6 +45,9 @@ func _process(delta):
 
 	# Clean up freed items
 	quest_item_refs = quest_item_refs.filter(func(item):
+		return is_instance_valid(item) and item is Node3D
+	)
+	interactable_refs = interactable_refs.filter(func(item):
 		return is_instance_valid(item) and item is Node3D
 	)
 
@@ -144,3 +150,14 @@ func _draw():
 		if minimap_pos.x >= 0 and minimap_pos.x <= draw_size.x and minimap_pos.y >= 0 and minimap_pos.y <= draw_size.y:
 			var blink_color = Color(1, 1, 0, blink_alpha)
 			draw_rect(Rect2(minimap_pos.floor(), CELL_SIZE), blink_color)
+		 # ✅ Draw interactables as blue dots
+	for interactable in interactable_refs:
+		if not is_instance_valid(interactable) or not interactable is Node3D:
+			continue
+
+		var item_grid = grid_ref.world_to_grid(interactable.global_transform.origin)
+		var offset = item_grid - player_grid
+		var minimap_pos = center + offset * CELL_SIZE
+
+		if minimap_pos.x >= 0 and minimap_pos.x <= draw_size.x and minimap_pos.y >= 0 and minimap_pos.y <= draw_size.y:
+			draw_rect(Rect2(minimap_pos.floor(), CELL_SIZE), Color(0.202, 0.361, 0.88, 1.0))  # ✅ Blue dot

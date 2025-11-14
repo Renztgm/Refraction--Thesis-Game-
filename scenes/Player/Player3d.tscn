@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://c8jfqypwf5vw5"]
+[gd_scene load_steps=72 format=3 uid="uid://c8jfqypwf5vw5"]
 
 [ext_resource type="Script" uid="uid://cw3dugmb5cg08" path="res://script/player_3d.gd" id="1_526tg"]
 [ext_resource type="Texture2D" uid="uid://8g4clas8oawq" path="res://assets/Character/Justine -Character/idle_down_mc-Sheet-final.png" id="10_3y08u"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bo6w73881rkl8" path="res://assets/Character/Justine -Character/idle_right_mc-sheet.png" id="12_516wo"]
 [ext_resource type="Texture2D" uid="uid://btutaow4chjfc" path="res://assets/ui/quest.png" id="12_vxnrg"]
 [ext_resource type="Texture2D" uid="uid://cfq4rlx0nlk7v" path="res://assets/Character/Justine -Character/Mc-forward-idle-Sheet.png" id="13_17lr3"]
+[ext_resource type="Texture2D" uid="uid://dge13aqje2e6f" path="res://assets/ui/Menu Button.png" id="13_mawlu"]
 [ext_resource type="Texture2D" uid="uid://uwg82a4m3lh5" path="res://assets/Character/Justine -Character/mc_walk_down-sheet.png" id="14_qa5ne"]
 [ext_resource type="Texture2D" uid="uid://cmfefjl288qp8" path="res://assets/Character/Justine -Character/walk-left-animation-Sheet.png" id="15_cnjxn"]
 [ext_resource type="Texture2D" uid="uid://dcffst62irmrm" path="res://assets/Character/Justine -Character/walk-right-animation-Sheet.png" id="16_jbebn"]
@@ -484,7 +485,6 @@ frame_progress = 0.47339892
 [node name="hud" type="CanvasLayer" parent="."]
 
 [node name="leftHud" type="TextureRect" parent="hud"]
-z_index = -20
 y_sort_enabled = true
 offset_left = 1760.0
 offset_right = 1866.6666
@@ -499,10 +499,10 @@ metadata/_edit_group_ = true
 [node name="questButton" type="Button" parent="hud"]
 z_index = 4096
 y_sort_enabled = true
-offset_left = 1792.0
+offset_left = 1768.0
 offset_top = 112.0
-offset_right = 1892.0
-offset_bottom = 212.0
+offset_right = 1904.0
+offset_bottom = 208.0
 icon = ExtResource("12_vxnrg")
 flat = true
 icon_alignment = 1
@@ -517,10 +517,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -128.0
+offset_left = -144.0
 offset_top = -864.0
-offset_right = 372.0
-offset_bottom = -364.0
+offset_right = 496.0
+offset_bottom = -384.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.2, 0.2)
@@ -529,5 +529,23 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[node name="PauseButton" type="Button" parent="hud"]
+offset_left = 1776.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 96.0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="hud/PauseButton"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 72.0
+texture = ExtResource("13_mawlu")
+expand_mode = 1
+
 [connection signal="pressed" from="hud/questButton" to="." method="_on_quest_button_pressed"]
 [connection signal="pressed" from="hud/inventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="hud/PauseButton" to="." method="_on_pause_button_pressed"]

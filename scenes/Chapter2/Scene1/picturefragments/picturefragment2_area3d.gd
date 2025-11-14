@@ -25,7 +25,7 @@ func _on_body_entered(body):
 func collect_item():
 	print("🎒 Collecting item:", item_id)
 
-	var icon_path = "res://assets/icons/picturefragment1.png"
+	var icon_path = "res://scenes/Chapter2/Scene2/Fragments/Fragment 2.png"
 	if not ResourceLoader.exists(icon_path):
 		icon_path = "res://assets/icons/default.png"
 

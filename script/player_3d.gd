@@ -258,3 +258,7 @@ func _on_quest_button_pressed():
 	if quest_ui:
 		quest_ui.visible = not quest_ui.visible
 		print("Quest UI toggled:", quest_ui.visible)
+
+
+func _on_pause_button_pressed() -> void:
+	CanvasPause.toggle_pause_menu()

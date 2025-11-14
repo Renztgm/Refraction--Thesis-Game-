@@ -1,0 +1,12 @@
+[
+	{
+	"id": "complete_picture",
+	"title": "Complete the Picture",
+	"description": "Now that you’ve found all the fragments, head to the market to piece them together.",
+	"objectives": [
+	  { "id": "go_to_market_shop", "text": "Go to the market picture shop with the working bench.", "is_completed": false },
+	  { "id": "find_sticky_tape", "text": "Find the sticky tape to repair the picture.", "is_completed": false },
+	  { "id": "assemble_picture", "text": "Use the bench to complete the picture.", "is_completed": false }
+	]
+  }
+]

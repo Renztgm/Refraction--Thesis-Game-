@@ -192,9 +192,6 @@ func _on_next_pressed():
 # --- Player selects an option ---
 func _on_option_selected(option_data: Dictionary):
 	print("🧪 Option selected:", option_data)
-	
-
-
 	_clear_options()
 	options_container.visible = false
 
@@ -203,20 +200,33 @@ func _on_option_selected(option_data: Dictionary):
 	# Handle quest triggers
 	if option_data.has("start_quest"):
 		var quest_path = option_data["start_quest"]
-		var quest = load(quest_path)
-		print("📦 Loaded quest:", quest)
-		
-		var quest_manager = QuestManager
-		print("🧠 QuestManager reference:", quest_manager)
+		print("📦 Starting quest from:", quest_path)
 
-		if quest == null:
-			push_error("❌ Failed to load quest from: " + quest_path)
-		else:
-			if QuestManager and QuestManager.has_method("add_quest"):
-				QuestManager.add_quest(quest)
-				print("🧩 Quest started:", quest.id)
+		if FileAccess.file_exists(quest_path):
+			var file = FileAccess.open(quest_path, FileAccess.READ)
+			var content = file.get_as_text()
+			file.close()
+
+			var quest_data = JSON.parse_string(content)
+			if typeof(quest_data) == TYPE_ARRAY:
+				# ✅ Import the quest(s) properly
+				if QuestManager and QuestManager.has_method("import_quests_from_json"):
+					QuestManager.import_quests_from_json(quest_path)
+					QuestManager.load_all_quests()
+					QuestManager.save_all_quests()
+
+					var started_quests = quest_data
+					for q in started_quests:
+						var quest_id = q.get("id", "unknown")
+						var quest_title = q.get("title", quest_id)
+						print("🧩 Quest started:", quest_id)
+						ItemPopUp.show_message("🧭 New Quest Started: " + quest_title, 3.0, Color.CYAN)
+				else:
+					push_error("❌ QuestManager missing or import method unavailable!")
 			else:
-				push_error("❌ QuestManager not found or missing 'add_quest' method.")
+				push_error("❌ Invalid quest JSON structure in " + quest_path)
+		else:
+			push_error("❌ Quest file not found at: " + quest_path)
 
 	if option_data.has("complete_objective"):
 		var quest_id = option_data["quest_id"]
