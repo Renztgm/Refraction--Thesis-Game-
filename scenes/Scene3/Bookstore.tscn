@@ -223,6 +223,7 @@ visible = false
 z_index = 1
 
 [node name="MemoryShard" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ShardPanel" type="Panel" parent="MemoryShard"]
 anchors_preset = 15

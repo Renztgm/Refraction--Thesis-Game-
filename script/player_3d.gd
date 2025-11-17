@@ -12,7 +12,7 @@ extends CharacterBody3D
 @onready var quest_ui: CanvasLayer = $"../UI/QuestUi"
 @onready var quest_button: Button = $hud/questButton
 
-@onready var audio_manager = get_node("/root/Main/AudioManager")
+@onready var audio_manager = get_node("/root/Main/AudioMgr")
 
 var last_direction: String = "down"
 const SPEED = 5.0
@@ -165,8 +165,7 @@ func toggle_inventory():
 			freeze_player()
 		else:
 			unfreeze_player()
-
-
+			
 # -----------------------------
 # Movement and animation
 # -----------------------------
@@ -258,7 +257,13 @@ func _on_quest_button_pressed():
 	if quest_ui:
 		quest_ui.visible = not quest_ui.visible
 		print("Quest UI toggled:", quest_ui.visible)
+		
+		# ✅ Only refresh when opening
+		if quest_ui.visible:
+			QuestManager.load_all_quests()   # reload from DB or file
+			quest_ui.refresh_quests()        # rebuild UIq
 
 
 func _on_pause_button_pressed() -> void:
 	CanvasPause.toggle_pause_menu()
+	

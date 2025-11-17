@@ -95,34 +95,11 @@ expand_mode = 1
 layout_mode = 0
 offset_left = 192.0
 offset_top = 160.0
-offset_right = 512.0
+offset_right = 592.0
 offset_bottom = 224.0
-theme_override_constants/separation = 30
+theme_override_constants/separation = 100
 alignment = 1
-
-[node name="Shards" type="Button" parent="HBoxContainer2"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Shards"
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/Shards"]
-layout_mode = 0
-offset_right = 99.0
-offset_bottom = 64.0
-texture = ExtResource("4_5nxsr")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="HBoxContainer2/Shards"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Shards"
-horizontal_alignment = 1
-vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Items" type="Button" parent="HBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
@@ -148,5 +125,29 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Items"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shards" type="Button" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Shards"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/Shards"]
+layout_mode = 0
+offset_right = 99.0
+offset_bottom = 64.0
+texture = ExtResource("4_5nxsr")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HBoxContainer2/Shards"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Shards"
 horizontal_alignment = 1
 vertical_alignment = 1

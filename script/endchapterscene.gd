@@ -15,7 +15,7 @@ var next_chapter_scene_path: String = ""
 @onready var branch_map_viewer: Control = $BranchMapViewer
 
 func _ready() -> void:
-	
+	FadeOutCanvas.fade_in(5.0)
 	var chapter = SaveManager.get_current_chapter()
 	var next_scene = SaveManager.get_next_scene_path()
 	print("Initializing ChapterCompleteUI with chapter:", chapter, "next scene:", next_scene)

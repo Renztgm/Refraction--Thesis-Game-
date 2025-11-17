@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://wbyekqgiahjr"]
 
 [ext_resource type="Script" uid="uid://dquwasvbvcipd" path="res://scenes/branch selection/branch_selection.gd" id="1_5d0dc"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_5d0dc"]
+[ext_resource type="Texture2D" uid="uid://2ouqroao1xf1" path="res://assets/ui/MAP.png" id="2_qq0f2"]
 
 [node name="BranchMapViewer" type="Control"]
 z_index = 999
@@ -46,11 +45,22 @@ offset_right = 40.0
 offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="bg" type="CanvasLayer" parent="."]
+layer = -1
 visible = false
-modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
-self_modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(3044, 1880)
-scale = Vector2(6088, 3776.0002)
-texture = SubResource("CanvasTexture_5d0dc")
+follow_viewport_enabled = true
+
+[node name="bg" type="TextureRect" parent="bg"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -104.0
+offset_right = -200.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_qq0f2")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true

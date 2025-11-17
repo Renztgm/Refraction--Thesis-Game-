@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BranchNode" load_steps=2 format=3 uid="uid://dykti8l61hm4w"]
+
+[ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_8hcrg"]
+
+[resource]
+script = ExtResource("1_8hcrg")
+title = "Ending E"
+metadata/_custom_type_script = "uid://bdblq5joux0oh"

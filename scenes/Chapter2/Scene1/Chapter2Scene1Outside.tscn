@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://tyasr24qos6a"]
+[gd_scene load_steps=35 format=3 uid="uid://tyasr24qos6a"]
 
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="5_t7hhd"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="6_u854x"]
@@ -14,7 +14,9 @@
 [ext_resource type="Script" uid="uid://hamb1he4k7er" path="res://scenes/Chapter2/Scene1/picturefragments/picturefragment4_area3d.gd" id="16_brjns"]
 [ext_resource type="Script" uid="uid://cwbhdlkybs557" path="res://scenes/Chapter2/Scene1/going_in.gd" id="16_xs032"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="17_cj6ks"]
+[ext_resource type="Script" uid="uid://dn5jof5w1gwno" path="res://scenes/Chapter2/Scene1/MemoryShard.gd" id="17_hhcxs"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="18_3x1ch"]
+[ext_resource type="Texture2D" uid="uid://cl87ahsoj60p4" path="res://addons/pngs/shard_sprite.png" id="18_5v14d"]
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_jaf3d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a24s8"]
@@ -25,12 +27,12 @@ sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
 ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
 ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
 
-[sub_resource type="Sky" id="Sky_brjns"]
+[sub_resource type="Sky" id="Sky_hhcxs"]
 sky_material = SubResource("ProceduralSkyMaterial_a24s8")
 
 [sub_resource type="Environment" id="Environment_ox1sq"]
 background_mode = 2
-sky = SubResource("Sky_brjns")
+sky = SubResource("Sky_hhcxs")
 ambient_light_source = 2
 ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
 ssao_enabled = true
@@ -59,6 +61,51 @@ size = Vector3(3, 3, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hhcxs"]
 size = Vector3(4.3, 4, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q1ome"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otrxq"]
+atlas = ExtResource("18_5v14d")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hrhf"]
+atlas = ExtResource("18_5v14d")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j4dl"]
+atlas = ExtResource("18_5v14d")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt3ua"]
+atlas = ExtResource("18_5v14d")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq0lp"]
+atlas = ExtResource("18_5v14d")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4s1jw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otrxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hrhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j4dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt3ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq0lp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="Chapter2Scene1Outside" type="Node3D"]
 
@@ -200,3 +247,20 @@ script = ExtResource("16_xs032")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85788727, 1.7008181, -1.5270462)
 shape = SubResource("BoxShape3D_hhcxs")
+
+[node name="Shard" type="Node3D" parent="." groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.753742, 0, 29.650928)
+
+[node name="Area3D" type="Area3D" parent="Shard"]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("17_hhcxs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shard/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.164978, 0)
+shape = SubResource("BoxShape3D_q1ome")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Shard/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7147343, 0)
+sprite_frames = SubResource("SpriteFrames_4s1jw")
+autoplay = "default"

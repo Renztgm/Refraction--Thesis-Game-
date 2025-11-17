@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://sn65cml7m8cp"]
+
+[ext_resource type="PackedScene" uid="uid://cgd13cc58yt12" path="res://assets/Building/Bigasan/Bigasan.gltf" id="1_1v3gu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qvy4e"]
+size = Vector3(17, 9, 20.5)
+
+[node name="Bigasan" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_1v3gu")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -0.25)
+shape = SubResource("BoxShape3D_qvy4e")

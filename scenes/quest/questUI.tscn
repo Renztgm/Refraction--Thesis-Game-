@@ -88,3 +88,5 @@ offset_right = 64.0
 offset_bottom = 64.0
 texture = ExtResource("2_24e3a")
 expand_mode = 1
+
+[connection signal="visibility_changed" from="Panel/HBoxContainer/CompletedContainer" to="." method="_on_completed_container_visibility_changed"]

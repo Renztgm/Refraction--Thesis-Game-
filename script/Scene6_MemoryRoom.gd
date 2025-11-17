@@ -217,9 +217,18 @@ func phase_memory_fragment():
 		if fade_overlay:
 			fade_overlay.color = Color(0, 0, 0, 0)
 
-		var tween_in = create_tween()
-		tween_in.tween_property(shard_memory, "modulate:a", 1.0, 2.0)
-		tween_in.tween_property(shard_text, "modulate:a", 1.0, 2.0)
+		var tween = create_tween()
+
+		# Fade IN
+		tween.parallel().tween_property(shard_memory, "modulate:a", 1.0, 2.0)
+		tween.parallel().tween_property(shard_text,  "modulate:a", 1.0, 2.0)
+
+		# Wait 1 second
+		tween.tween_interval(1.0)
+
+		# Fade OUT
+		tween.parallel().tween_property(shard_memory, "modulate:a", 0.0, 2.0)
+		tween.parallel().tween_property(shard_text,  "modulate:a", 0.0, 2.0)
 
 		phase_started = true
 
