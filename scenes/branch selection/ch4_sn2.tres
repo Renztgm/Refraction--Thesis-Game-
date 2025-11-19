@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BranchNode" load_steps=4 format=3 uid="uid://n033lr7ekhun"]
+
+[ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_odtdy"]
+[ext_resource type="Resource" uid="uid://bn1kadat0rscu" path="res://scenes/branch selection/ch5_B.tres" id="2_5cnko"]
+[ext_resource type="Resource" uid="uid://dkset8dyjida" path="res://scenes/branch selection/ch5_C.tres" id="3_jj37t"]
+
+[resource]
+script = ExtResource("1_odtdy")
+title = "Chapter 4 Scene 2"
+children = Array[ExtResource("1_odtdy")]([ExtResource("2_5cnko"), ExtResource("3_jj37t")])
+metadata/_custom_type_script = "uid://bdblq5joux0oh"

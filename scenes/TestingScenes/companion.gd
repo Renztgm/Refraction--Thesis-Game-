@@ -50,6 +50,18 @@ func _input(event):
 		start_dialogue()
 		
 func _on_dialogue_finished():
+		# ✅ Log scene completion for branching system
+	if SaveManager:
+		var scene_path = get_tree().current_scene.scene_file_path
+		var branch_id = "First_Exploration"  # You can use a meaningful ID like the BranchNode title or event name
+		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
+		if logged:
+			print("📌 Scene logged to game_path:", scene_path)
+			ItemPopUp.show_message("Saving...")
+		else:
+			print("ℹ️ Scene already logged or failed to log.")
+			
+			
 	var fade_layer = get_tree().root.get_node("NarrativeScene3d/FadeLayer")
 	fade_layer.start_transition("res://scenes/Scene3/Scene3.tscn")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cvicw8o2rx05t"]
+[gd_scene load_steps=32 format=3 uid="uid://cvicw8o2rx05t"]
 
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="1_5fmib"]
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="2_5m45q"]
@@ -11,8 +11,14 @@
 [ext_resource type="Script" uid="uid://b0is1qmy87orp" path="res://assets/Building/Market/WorkingBench.gd" id="9_xe5ti"]
 [ext_resource type="Script" uid="uid://dru2dl5w6wc16" path="res://scenes/Chapter2/Scene2/scotch_tape_item.gd" id="10_qa21w"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="11_8wueo"]
+[ext_resource type="PackedScene" uid="uid://c1txhnuijyy4u" path="res://assets/item/tape/Tape.gltf" id="11_ljypl"]
 [ext_resource type="PackedScene" uid="uid://bf2m3lfijg51" path="res://assets/Building/wall_baricade.tscn" id="12_iesnv"]
 [ext_resource type="Script" uid="uid://blgv7ydxvf7y6" path="res://scenes/Chapter2/Scene2/collapsed_alley_trigger.gd" id="13_c5t07"]
+[ext_resource type="Script" uid="uid://cqg2qa3aj0k0p" path="res://scenes/Chapter2/Scene2/different_path.gd" id="13_nc53v"]
+[ext_resource type="PackedScene" uid="uid://dxnm7refmxvnb" path="res://assets/karendirya.tscn" id="15_2iurd"]
+[ext_resource type="PackedScene" uid="uid://sn65cml7m8cp" path="res://assets/Building/bigasan.tscn" id="16_la8r1"]
+[ext_resource type="PackedScene" uid="uid://dwk03urdd1xyp" path="res://assets/Building/store.tscn" id="17_rhig5"]
+[ext_resource type="PackedScene" uid="uid://dg62nhrv67m03" path="res://assets/item/lanterns.tscn" id="19_y6mex"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7tx5h"]
 
@@ -74,7 +80,7 @@ size = Vector3(1, 2, 1)
 size = Vector3(1, 7, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c5t07"]
-size = Vector3(1, 1, 24)
+size = Vector3(2, 1, 23)
 
 [node name="Chapter2Scene2" type="Node3D"]
 
@@ -111,7 +117,7 @@ directional_shadow_max_distance = 200.0
 environment = SubResource("Environment_xe5ti")
 
 [node name="Player3d" parent="." groups=["player2"] instance=ExtResource("2_p2jod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.39999998, 37)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -133,10 +139,11 @@ mesh = SubResource("BoxMesh_5m45q")
 [node name="Market" parent="." instance=ExtResource("7_n0bjb")]
 
 [node name="WorkBench" type="Node3D" parent="." groups=["interactable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 0, -36)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="WorkBench"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 0)
+visible = false
 size = Vector3(2, 1, 2)
 
 [node name="Area3D" type="Area3D" parent="WorkBench"]
@@ -155,7 +162,7 @@ texture_filter = 2
 font_size = 60
 
 [node name="ScotchTapeItem" type="Area3D" parent="." groups=["quest_item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.980747, -1, -1.3145697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.01926, -1, -60.31457)
 collision_layer = 6
 collision_mask = 6
 script = ExtResource("10_qa21w")
@@ -164,8 +171,8 @@ script = ExtResource("10_qa21w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_xe5ti")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="ScotchTapeItem"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="blockbench_export" parent="ScotchTapeItem" instance=ExtResource("11_ljypl")]
+transform = Transform3D(1.5719576, -2.5551808, 1.116905e-07, 0, -1.3113416e-07, -3, 2.5551808, 1.5719576, -6.871245e-08, 0, 3, 0)
 
 [node name="DialogueManager" parent="." instance=ExtResource("11_8wueo")]
 z_index = 4096
@@ -296,6 +303,17 @@ shape = SubResource("BoxShape3D_iesnv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30000305, 3, 23.500002)
 shape = SubResource("BoxShape3D_iesnv")
 
+[node name="DifferentPath" type="Area3D" parent="Arch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50001526, 0, 0.39998817)
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("13_nc53v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arch/DifferentPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 11.5)
+shape = SubResource("BoxShape3D_c5t07")
+debug_color = Color(0.96392137, 0, 0.49870622, 0.41960785)
+
 [node name="Arch2" type="Node3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -55, 1, -64.6)
 
@@ -322,8 +340,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30000305, 3, 23.500002)
 shape = SubResource("BoxShape3D_iesnv")
 
 [node name="CollapsedAlleyTrigger" type="Area3D" parent="Arch2"]
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("13_c5t07")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Arch2/CollapsedAlleyTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 11.5)
 shape = SubResource("BoxShape3D_c5t07")
+debug_color = Color(0.96392137, 0, 0.49870622, 0.41960785)
+
+[node name="Karendirya" parent="." instance=ExtResource("15_2iurd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, -49)
+
+[node name="Karendirya2" parent="." instance=ExtResource("15_2iurd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, -30)
+
+[node name="Bigasan" parent="." instance=ExtResource("16_la8r1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 30, 0.5, -58)
+
+[node name="Store" parent="." instance=ExtResource("17_rhig5")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 61.008236, 0.4, -53.81)
+
+[node name="Lanterns" parent="." instance=ExtResource("19_y6mex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5000001, 29)

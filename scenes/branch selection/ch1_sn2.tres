@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="BranchNode" load_steps=3 format=3 uid="uid://bra1x8pdnnowr"]
+[gd_resource type="Resource" script_class="BranchNode" load_steps=4 format=3 uid="uid://bra1x8pdnnowr"]
 
 [ext_resource type="Script" uid="uid://bdblq5joux0oh" path="res://scenes/branch selection/BranchNode.gd" id="1_jicx3"]
 [ext_resource type="Resource" uid="uid://b1bhlbt2bs7o" path="res://scenes/branch selection/ch1_sn3.tres" id="2_4e7dx"]
+[ext_resource type="Resource" uid="uid://dykti8l61hm4w" path="res://scenes/branch selection/ch5_E.tres" id="3_4e7dx"]
 
 [resource]
 script = ExtResource("1_jicx3")
 title = "\"Meeting the Companion\""
 description = " \"A cloaked figure watches you. 'You finally woke up. I was starting to think you were just another echo.'\""
 scene_path = "res://scenes/Scene2/Scene2.tscn"
-children = Array[ExtResource("1_jicx3")]([ExtResource("2_4e7dx")])
+children = Array[ExtResource("1_jicx3")]([ExtResource("2_4e7dx"), ExtResource("3_4e7dx")])
 metadata/_custom_type_script = "uid://bdblq5joux0oh"

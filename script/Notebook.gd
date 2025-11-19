@@ -5,37 +5,17 @@ extends Area3D
 @onready var next_button: Button = $"../CanvasLayer/NextButton"
 @onready var panel: Panel = $"../CanvasLayer/Panel"
 
-# Memory Shard UI references
-@onready var memory_shard_layer: CanvasLayer = $"../MemoryShard"
-@onready var shard_panel: Panel = $"../MemoryShard/ShardPanel"
-@onready var shard_image: TextureRect = $"../MemoryShard/ShardPanel/ShardImage"
-@onready var shard_description: Label = $"../MemoryShard/ShardPanel/ShardDescription"
-@onready var shard_close_button: Button = $"../MemoryShard/ShardPanel/CloseButton"
-
-# Dialogue text
 var notebook_message: String = "I used to come here. Someone read to me here... but who?"
 var mc_line: String = "It's... still a little fuzzy."
 var companion_line: String = "Companion: Careful. Touching pieces like that… it might hurt. Or help. Depends on what you've forgotten."
 
-# Memory Shard data
-var shard_texture: Texture2D = preload("res://addons/pngs/shard.png")
-var shard_text: String = "This shard contains a memory of warmth and a forgotten voice..."
-var shard_name: String = "Memory_shard_1"
-var shard_scene_location: String = "Library Notebook Area"
-
-# Dialogue state
-enum DialogueState { NONE, NOTEBOOK, MC, COMPANION, SHARD }
+enum DialogueState { NONE, NOTEBOOK, MC, COMPANION, END }
 var dialogue_state: DialogueState = DialogueState.NONE
 
-# Player + state flags
 var has_triggered: bool = false
 var player_ref: Node = null
 var text_is_showing: bool = false
 
-# InventoryManager reference
-var inventory_manager: Node = null
-
-# Typewriter effect
 var typewriter_speed: float = 0.03
 var typewriter_tween: Tween = null
 var full_text: String = ""
@@ -43,18 +23,10 @@ var full_text: String = ""
 func _ready():
 	body_entered.connect(_on_body_entered)
 
-	inventory_manager = get_node_or_null("/root/InventoryManager")
-	if not inventory_manager:
-		print("ERROR: InventoryManager autoload not found!")
-	else:
-		print("DEBUG: InventoryManager successfully loaded")
-
 	if next_button:
 		next_button.pressed.connect(_on_next_button_pressed)
 		next_button.visible = false
 		next_button.disabled = false
-	else:
-		print("ERROR: next_button not found!")
 
 	if panel:
 		panel.visible = false
@@ -62,11 +34,6 @@ func _ready():
 	if flash_screen:
 		flash_screen.modulate.a = 0.0
 		flash_screen.visible = false
-
-	if memory_shard_layer:
-		memory_shard_layer.visible = false
-	if shard_close_button:
-		shard_close_button.pressed.connect(_on_shard_close_pressed)
 
 
 func _on_next_button_pressed():
@@ -76,39 +43,51 @@ func _on_next_button_pressed():
 			dialogue_state = DialogueState.MC
 
 		DialogueState.MC:
-			show_typewriter_text(companion_line)
+			# ✅ On the last line, auto‑advance after typewriter finishes
+			show_typewriter_text(companion_line, true)
 			dialogue_state = DialogueState.COMPANION
-
-		DialogueState.COMPANION:
-			hide_text()
-			if memory_shard_layer:
-				shard_image.texture = shard_texture
-				shard_description.text = shard_text
-				memory_shard_layer.visible = true
-				save_memory_shard_to_db()
-			dialogue_state = DialogueState.SHARD
 
 		_:
 			hide_text()
 
 
-func save_memory_shard_to_db():
-	if not inventory_manager:
-		print("ERROR: Cannot save memory shard - InventoryManager not available")
-		return
+func show_typewriter_text(text: String, auto_advance: bool = false) -> void:
+	full_text = text
+	dialogue_label.text = ""
+	if typewriter_tween:
+		typewriter_tween.kill()
+	typewriter_tween = create_tween()
 
-	var icon_path = shard_texture.resource_path if shard_texture else ""
-	var success = inventory_manager.save_memory_shard(
-		shard_name,
-		shard_text,
-		icon_path,
-		shard_scene_location
+	for i in range(text.length()):
+		var partial = text.substr(0, i + 1)
+		typewriter_tween.tween_callback(func(): dialogue_label.text = partial)
+		typewriter_tween.tween_interval(typewriter_speed)
+
+	# ✅ When finished, optionally auto‑advance
+	if auto_advance:
+		typewriter_tween.tween_interval(2.0)  # delay
+		typewriter_tween.tween_callback(func(): go_to_next_scene())
+
+
+func go_to_next_scene():
+	hide_text()
+	ItemPopUp.show_message("Saving...")
+	# ✅ Log scene completion for branching system
+	if SaveManager:
+		var scene_path = get_tree().current_scene.scene_file_path
+		var branch_id = "Scene_3"  # You can use a meaningful ID like the BranchNode title or event name
+		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
+		if logged:
+			print("📌 Scene logged to game_path:", scene_path)
+		else:
+			print("ℹ️ Scene already logged or failed to log.")
+			
+	if player_ref and player_ref.has_method("unfreeze_player"):
+		player_ref.unfreeze_player()
+
+	FadeOutCanvas.fade_out(1.0, func():
+		get_tree().change_scene_to_file("res://scenes/Scene4/AlleyScene.tscn")
 	)
-
-	if success:
-		print("Memory shard '%s' successfully saved!" % shard_name)
-	else:
-		print("Memory shard '%s' was already collected" % shard_name)
 
 
 func _on_body_entered(body: Node) -> void:
@@ -117,7 +96,6 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		has_triggered = true
 		player_ref = body
-		print("DEBUG: Player entered the notebook area.")
 
 		if player_ref.has_method("freeze_player"):
 			player_ref.freeze_player()
@@ -183,10 +161,8 @@ func get_random_glitch_color() -> Color:
 	]
 	return colors[randi() % colors.size()]
 
-
 func set_flash_alpha(alpha: float) -> void:
 	flash_screen.modulate.a = alpha
-
 
 func show_text() -> void:
 	show_typewriter_text(notebook_message)
@@ -197,7 +173,6 @@ func show_text() -> void:
 	if panel:
 		panel.visible = true
 
-
 func hide_text() -> void:
 	dialogue_label.text = ""
 	text_is_showing = false
@@ -205,37 +180,3 @@ func hide_text() -> void:
 		next_button.visible = false
 	if panel:
 		panel.visible = false
-
-
-func show_typewriter_text(text: String) -> void:
-	full_text = text
-	dialogue_label.text = ""
-	if typewriter_tween:
-		typewriter_tween.kill()
-	typewriter_tween = create_tween()
-
-	for i in range(text.length()):
-		var partial = text.substr(0, i + 1)
-		typewriter_tween.tween_callback(func(): dialogue_label.text = partial)
-		typewriter_tween.tween_interval(typewriter_speed)
-
-
-func _on_shard_close_pressed():
-	memory_shard_layer.visible = false
-
-	if SaveManager:
-		var scene_path = get_tree().current_scene.scene_file_path
-		var branch_id = "scene_3"
-		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
-		if logged:
-			print("📌 Scene 3 logged:", scene_path)
-		else:
-			print("ℹ️ Scene 3 already logged or failed to log.")
-
-	if player_ref and player_ref.has_method("unfreeze_player"):
-		player_ref.unfreeze_player()
-		
-		# Instead of instantly changing scene, fade out first
-		FadeOutCanvas.fade_out(1.0, func():
-			get_tree().change_scene_to_file("res://scenes/Scene4/AlleyScene.tscn")
-		)

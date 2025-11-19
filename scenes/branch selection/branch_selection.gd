@@ -11,7 +11,7 @@ extends Control
 var dragging := false
 var drag_origin := Vector2()
 
-@onready var background = $Background
+@onready var background = $bg/bg
 
 var node_spacing_x := 250
 var node_spacing_y := 150
@@ -30,6 +30,7 @@ func _ready():
 func _process(delta):
 	#background.position = camera.position
 	close_button.position = Vector2(100, 100)
+	background.position = camera.position
 
 # ==============================
 # Node Rendering
@@ -77,6 +78,7 @@ func render_node(node: BranchNode, position: Vector2, locked: bool):
 			var scene_path = node.scene_path
 			var branch_id = node.title.replace(" ", "_").to_lower()
 			var logged := SaveManager.log_scene_completion(scene_path, branch_id)
+			self.queue_free()
 			if logged:
 				print("📌 Scene logged:", scene_path)
 			else:
@@ -136,7 +138,7 @@ func render_unlocked_nodes(node: BranchNode, position: Vector2, saved_paths: Arr
 
 		if debug_show_all or saved_paths.has(child.scene_path):
 			var line = Line2D.new()
-			line.width = 2
+			line.width = 5
 			line.default_color = Color.SKY_BLUE
 			line.add_point(parent_center)
 			line.add_point(child_pos + Vector2(64, 64))
@@ -167,6 +169,9 @@ func get_saved_scene_paths() -> Array:
 # ==============================
 # Camera Controls
 # ==============================
+var min_zoom := Vector2(0.5, 0.5)   # smallest zoom-in
+var max_zoom := Vector2(2.0, 2.0)   # largest zoom-out
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -179,10 +184,16 @@ func _unhandled_input(event):
 			camera.zoom *= 0.9
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			camera.zoom *= 1.1
+
+		# ✅ Always clamp after zoom changes
+		camera.zoom.x = clamp(camera.zoom.x, min_zoom.x, max_zoom.x)
+		camera.zoom.y = clamp(camera.zoom.y, min_zoom.y, max_zoom.y)
+
 	elif event is InputEventMouseMotion and dragging:
 		var delta = drag_origin - event.position
 		camera.position += delta
 		drag_origin = event.position
+
 
 func _on_CloseButton_pressed():
 	var previous_scene = get_meta("previous_scene")

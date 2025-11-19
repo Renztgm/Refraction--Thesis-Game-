@@ -42,10 +42,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5061, 0.5, -2.17044)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.93, 0.5, 37.6545)
 
 [node name="Alleyroad" parent="RoadLayout" instance=ExtResource("2_8s368")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -97.006, 0.5, 21.1603)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -97.006, 0.65, 24.860298)
 
 [node name="Alleyroad2" parent="RoadLayout" instance=ExtResource("2_8s368")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -97.006, 0.5, 67.9127)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -97.006, 0.65, 71.9127)
 
 [node name="Building" type="Node3D" parent="."]
 
@@ -113,10 +113,10 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -118.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.439, 0, 61.2248)
 
 [node name="Building17" parent="Building" instance=ExtResource("4_egncs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.185, 0.722464, 81.4812)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.185, 0.722464, 88.4812)
 
 [node name="Building18" parent="Building" instance=ExtResource("4_egncs")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -80.2871, 0.722464, 85.0962)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -80.2871, 0.722464, 92.0962)
 
 [node name="Walls" type="Node3D" parent="."]
 
@@ -161,7 +161,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.500006, 0.19999999, 29.3)
 metadata/_edit_group_ = true
 
 [node name="BuildingSafeHouse" parent="." instance=ExtResource("12_8s368")]
-transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, -65.000015, 1, 86.99999)
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, -65.000015, 0.19999999, 93.99999)
 
 [node name="Node3D" type="Node3D" parent="."]
 

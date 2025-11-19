@@ -53,19 +53,26 @@ func _ready():
 
 func save_memory_shard(shard_name: String, description: String, icon_path: String, scene_location: String) -> bool:
 	var timestamp = Time.get_datetime_string_from_system()
-	var existing = db.select_rows("memory_shards", "shard_name = '%s'" % shard_name, ["*"])
-	if existing.size() > 0:
-		print("Memory shard '%s' already collected" % shard_name)
+
+	# Check if already exists
+	var res = db.select_rows("memory_shards", "shard_name = '%s'" % shard_name, ["*"])
+	if res.size() > 0:
+		print("⚠️ Memory shard '%s' already collected" % shard_name)
 		return false
 
-	var query = """
+	# Insert safely
+	var ok = db.query_with_bindings("""
         INSERT INTO memory_shards (shard_name, description, icon_path, collected_at, scene_location)
-        VALUES ('%s', '%s', '%s', '%s', '%s');
-	""" % [shard_name, description, icon_path, timestamp, scene_location]
+        VALUES (?, ?, ?, ?, ?);
+	""", [shard_name, description, icon_path, timestamp, scene_location])
 
-	db.query(query)
-	print("Memory shard '%s' saved to database" % shard_name)
+	if not ok:
+		print("❌ Failed to save shard:", db.error_message)
+		return false
+
+	print("✅ Memory shard '%s' saved to database" % shard_name)
 	return true
+
 
 func get_all_memory_shards() -> Array:
 	return db.select_rows("memory_shards", "", ["*"])

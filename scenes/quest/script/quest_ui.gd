@@ -77,3 +77,8 @@ func _on_quest_updated(quest_id: String):
 			narrative.set_flag("picture_restored", true)
 
 	refresh_quests()
+
+
+func _on_completed_container_visibility_changed() -> void:
+	if visible:
+		refresh_quests()

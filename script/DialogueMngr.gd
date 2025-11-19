@@ -7,6 +7,12 @@ signal dialogue_finished
 @onready var next_button = $NextButton
 @onready var options_container = $Options
 
+@export var camera: Camera3D
+@export var player: Node3D
+@export var companion: Node3D
+@export var monster: Node3D
+
+
 var dialogue: Dictionary = {}
 var current_node: String = "start"
 
@@ -75,34 +81,66 @@ func show_node(node_name: String):
 		return
 
 	current_node = node_name
-	var node = dialogue[node_name]
+	var node: Dictionary = dialogue[node_name]
 
+	# --- Speaker name ---
 	npc_name_label.text = node.get("name", "Unknown")
 
+	# --- Sentences ---
 	sentences = node.get("sentences", [])
 	current_sentence = 0
 
+	# --- Reset UI ---
 	_clear_options()
 	options_container.visible = false
 	next_button.visible = false
 
-	var opts = node.get("options", [])
+	# --- Options ---
+	var opts: Array = node.get("options", [])
 	for option in opts:
-		var btn = Button.new()
+		var btn := Button.new()
 		btn.text = option["text"]
 		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		btn.pressed.connect(func(): _on_option_selected(option))
 		options_container.add_child(btn)
 
-	# Store auto-next if provided
+	# --- Store auto-next if provided ---
 	pending_next_node = node.get("next", "")
 
+	# --- Cinematic extensions ---
+	if node.has("focus"):
+		match node["focus"]:
+			"Player":
+				if player and camera:
+					camera.look_at(player.global_transform.origin, Vector3.UP)
+			"Companion":
+				if companion and camera:
+					camera.look_at(companion.global_transform.origin, Vector3.UP)
+			"Monster":
+				if monster and camera:
+					camera.look_at(monster.global_transform.origin, Vector3.UP)
+
+	if node.has("animation"):
+		var anim_name: String = node["animation"]
+		if npc_name_label.text == "EchoBeast" and monster and monster.has_method("play"):
+			monster.play(anim_name)
+
+	if node.has("sound"):
+		var sound_path: String = node["sound"]
+		if ResourceLoader.exists(sound_path):
+			var audio_stream: AudioStream = load(sound_path)
+			var sfx_player := AudioStreamPlayer.new()
+			sfx_player.stream = audio_stream
+			add_child(sfx_player)
+			sfx_player.play()
+
+
+	# --- Dialogue flow ---
 	if sentences.size() > 0:
 		_start_sentence()
 	elif opts.size() > 0:
 		options_container.visible = true
 	elif pending_next_node != "":
-		# No sentences or options → jump to next node
 		show_node(pending_next_node)
 	else:
 		_close_dialogue()

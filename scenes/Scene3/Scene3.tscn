@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://crieuya1rk71"]
+[gd_scene load_steps=33 format=3 uid="uid://crieuya1rk71"]
 
 [ext_resource type="PackedScene" uid="uid://b42g54u5kjqbp" path="res://scenes/Map/OutsideMap.tscn" id="1_m7g27"]
 [ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_tf8eh"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="13_qt3ua"]
 [ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_kv2g0"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="15_fnou3"]
+[ext_resource type="Script" uid="uid://dgpkxn01o1wmr" path="res://scenes/Scene3/MemoryShard.gd" id="15_m7g27"]
 [ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/NPCs/Npc2_No_sound.tscn" id="15_u4lah"]
+[ext_resource type="Texture2D" uid="uid://cl87ahsoj60p4" path="res://addons/pngs/shard_sprite.png" id="16_fnou3"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="17_tf8eh"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="18_ljopq"]
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_7j4dl"]
@@ -65,7 +67,52 @@ size = Vector3(250, 1, 250)
 size = Vector3(80.70187, 10.4154, 1.56982)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q0b6v"]
-size = Vector3(14.4083, 9.09265, 11.1161)
+size = Vector3(2.9207795, 5.2274475, 3.214755)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnou3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otrxq"]
+atlas = ExtResource("16_fnou3")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hrhf"]
+atlas = ExtResource("16_fnou3")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j4dl"]
+atlas = ExtResource("16_fnou3")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt3ua"]
+atlas = ExtResource("16_fnou3")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq0lp"]
+atlas = ExtResource("16_fnou3")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tf8eh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otrxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hrhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j4dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt3ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq0lp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="Scene3" type="Node3D"]
 
@@ -178,21 +225,41 @@ shape = SubResource("BoxShape3D_xcpug")
 
 [node name="Structures" parent="." instance=ExtResource("1_m7g27")]
 
-[node name="Bookstore" type="Node3D" parent="Structures"]
+[node name="Bookstore" type="Node3D" parent="Structures" groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.431274, 0, 14.253796)
 
 [node name="Area3D" type="Area3D" parent="Structures/Bookstore"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -82.6216, 0.30444336, 10.800048)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2.1664352, 0, -2.4048157)
 collision_mask = 4
 script = ExtResource("8_ljopq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Structures/Bookstore/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56866455, 4.04633, -2.0993032)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7046204, 2.1137285, 0.5528383)
 shape = SubResource("BoxShape3D_q0b6v")
+debug_color = Color(0.9554098, 1.1551381e-06, 0.54590815, 0.41960785)
 
 [node name="BookstoreMarker" type="Node3D" parent="Structures/Bookstore"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.05491, 1.6978092, 8.283383)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9391785, 0, -12.704528)
 script = ExtResource("9_ynfyr")
 
 [node name="Building14" parent="Structures/Bookstore" instance=ExtResource("7_tf8eh")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -82.6216, 0.30444336, 13.2583)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 visible = false
+
+[node name="Shard" type="Node3D" parent="." groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.753742, 0, 56.65093)
+
+[node name="Area3D" type="Area3D" parent="Shard"]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("15_m7g27")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shard/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.164978, 0)
+shape = SubResource("BoxShape3D_fnou3")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Shard/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7147343, 0)
+sprite_frames = SubResource("SpriteFrames_tf8eh")
+autoplay = "default"
+frame_progress = 0.7937855

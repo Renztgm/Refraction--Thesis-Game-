@@ -1,0 +1,25 @@
+{
+  "EchoBeast": {
+	"start": {
+	  "name": "EchoBeast",
+	  "sentences": [
+        "You @%$*! everything, you $%^&&^%$ (*&*&$% behind..."
+	  ],
+	  "next": "reply"
+	},
+	"reply": {
+	  "name": "You",
+	  "sentences": [
+        "What? -what are you saying?"
+	  ],
+	  "next": "roars"
+	},
+	"roars": {
+	  "name": "EchoBeast",
+	  "sentences": [
+        "*Roars*"
+	  ],
+	  "next": "end"
+	}
+  }
+}
