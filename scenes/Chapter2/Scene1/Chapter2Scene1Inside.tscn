@@ -1,6 +1,5 @@
-[gd_scene load_steps=30 format=3 uid="uid://cgsfj5ixafi17"]
+[gd_scene load_steps=29 format=3 uid="uid://cgsfj5ixafi17"]
 
-[ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/Scene4/AlleyScene.gdshader" id="1_8eirh"]
 [ext_resource type="PackedScene" uid="uid://c0qchlpr70m27" path="res://assets/item/banig.tscn" id="4_hbq5d"]
 [ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="5_utqkt"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="10_1ouo1"]
@@ -16,23 +15,42 @@
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_1jk15"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="20_tv60d"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3eqev"]
-shader = ExtResource("1_8eirh")
-shader_parameter/emerald = Color(0.31, 0.78, 0.47, 1)
-shader_parameter/dull_gray = Color(0.66, 0.66, 0.66, 1)
-shader_parameter/flicker = 0.0
-
-[sub_resource type="Sky" id="Sky_sknra"]
-sky_material = SubResource("ShaderMaterial_3eqev")
-
-[sub_resource type="Environment" id="Environment_r1ps4"]
-background_mode = 2
-sky = SubResource("Sky_sknra")
-ambient_light_source = 2
-ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_0bpwq"]
 size = Vector3(21, 1, 18)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u3faq"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_axqst"]
+sky_material = SubResource("ProceduralSkyMaterial_u3faq")
+
+[sub_resource type="Environment" id="Environment_0bpwq"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_axqst")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+reflected_light_source = 2
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_bloom = 0.85
+glow_hdr_threshold = 1.75
+glow_hdr_luminance_cap = 46.29
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1571
+volumetric_fog_emission_energy = 110.71
+volumetric_fog_anisotropy = 0.9
+volumetric_fog_temporal_reprojection_amount = 0.99
+adjustment_enabled = true
+adjustment_brightness = 0.79
+adjustment_contrast = 1.07
+adjustment_saturation = 1.46
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_mv0i7"]
 vertices = PackedVector3Array(-105.5, 1, -109.5, -105.5, 1, 89.5, 93.5, 1, 89.5, 93.5, 1, -109.5)
@@ -68,14 +86,6 @@ size = Vector3(0.2, 1.9, 7)
 
 [node name="Environment" type="Node3D" parent="."]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_r1ps4")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-light_color = Color(0.647059, 1, 0.478431, 1)
-sky_mode = 1
-
 [node name="Plane" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.8288655, 13, -3.372229)
 visible = false
@@ -89,6 +99,19 @@ size = Vector3(21.6, 1, 11.8)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 13.2, -3.5)
 shape = SubResource("BoxShape3D_0bpwq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.10762203, -0.33931252, -0.934497, -0.8203471, -0.56131655, 0.10933622, -0.5616477, 0.7548447, -0.33876413, 0, 0, 0)
+light_color = Color(0.64705884, 1, 0.47843137, 1)
+shadow_enabled = true
+shadow_bias = 2.944
+shadow_normal_bias = 2.05
+shadow_transmittance_bias = 1.33
+shadow_blur = 1.12
+directional_shadow_max_distance = 200.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_0bpwq")
 
 [node name="DialogueManager" parent="." instance=ExtResource("10_1ouo1")]
 z_index = 4096

@@ -4,15 +4,15 @@ extends CharacterBody3D
 @onready var camera_mount: Node3D = $Camera_Mount
 @onready var camera_3d: Camera3D = $Camera_Mount/Camera3D
 
-# Access the PauseMenu through the CanvasPause autoload
 @onready var pause_menu: Control = CanvasPause.pause_menu
 
-# InventoryUI.Tcsn
 @onready var inventory_ui: Control = null
 @onready var quest_ui: CanvasLayer = $"../UI/QuestUi"
-@onready var quest_button: Button = $hud/questButton
+@onready var quest_button: Button = $hud/AspectRatioContainer/VBoxContainer/questButton
+@onready var branch_ui: Control = null
 
-@onready var audio_manager = get_node("/root/Main/AudioMgr")
+
+#@onready var audio_manager = get_node("/root/AudioMgr")
 
 var last_direction: String = "down"
 const SPEED = 5.0
@@ -29,8 +29,8 @@ func _ready():
 	# -----------------------------
 	#  Quest
 	# -----------------------------
-	quest_button.pressed.connect(_on_quest_button_pressed)
-	
+	if quest_ui:
+		quest_ui.quest_ui_closed.connect(_on_quest_ui_closed)
 	# -----------------------------
 	#  InventoryUI
 	# -----------------------------
@@ -76,8 +76,6 @@ func _ready():
 	# -----------------------------
 	print_player_debug()
 	
-
-
 # -----------------------------
 # Helper: Spawn point setup
 # -----------------------------
@@ -87,8 +85,8 @@ func _set_spawn_position() -> void:
 		position = spawn_point.global_position
 		print("Player spawned at scene spawn point:", position)
 	else:
-		print("⚠️ No spawn point found! Using default position:", position)
-
+		print("⚠️ No spawn point found! Using default position:", position) 
+		
 func get_last_direction() -> String:
 	return last_direction
 
@@ -109,8 +107,6 @@ func freeze_player() -> void:
 	# Force idle animation
 	if animated_sprite_3d:
 		animated_sprite_3d.play("idle_" + last_direction)
-	
-	print("DEBUG: Player frozen")
 
 func unfreeze_player() -> void:
 	if not is_frozen:
@@ -135,14 +131,15 @@ func _input(event):
 		return
 		
 	if event.is_action_pressed("ui_cancel"):  # ESC
+		print("MouseMode BEFORE pause:", Input.get_mouse_mode())
 		CanvasPause.toggle_pause_menu()
 		return
 	
 	if get_tree().paused:
 		return
 		
-	if event.is_action_pressed("quest"):
-		_on_quest_button_pressed()
+	#if event.is_action_pressed("quest"):
+		#_on_quest_button_pressed()
 		
 
 func save_game_here():
@@ -152,6 +149,9 @@ func save_game_here():
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory()
+		
+	if Input.is_action_just_pressed("quest"):
+		_on_quest_button_pressed()
 
 func _on_inventory_button_pressed() -> void:
 	toggle_inventory()
@@ -252,18 +252,46 @@ func print_player_debug():
 		  "| Position:", position, 
 		  "| Direction:", last_direction)
 
+var is_quest_ui_open = false
+
+func _quest_toggled():
+	if not quest_ui:
+		return
+	
+	is_quest_ui_open = not is_quest_ui_open
+	quest_ui.visible = is_quest_ui_open
+	
+	print("Quest UI toggled:", is_quest_ui_open)
+	
+	if is_quest_ui_open:
+		freeze_player()
+		QuestManager.load_all_quests()
+		quest_ui.refresh_quests()
+	else:
+		unfreeze_player()
 
 func _on_quest_button_pressed():
-	if quest_ui:
-		quest_ui.visible = not quest_ui.visible
-		print("Quest UI toggled:", quest_ui.visible)
-		
-		# ✅ Only refresh when opening
-		if quest_ui.visible:
-			QuestManager.load_all_quests()   # reload from DB or file
-			quest_ui.refresh_quests()        # rebuild UIq
+	_quest_toggled()
 
+func _on_quest_ui_closed():
+	if is_quest_ui_open:
+		_quest_toggled()
 
 func _on_pause_button_pressed() -> void:
 	CanvasPause.toggle_pause_menu()
 	
+func _on_branch_pressed() -> void:
+	var ui_layer = get_tree().current_scene
+	var branch_scene = preload("res://scenes/branch selection/BranchMapViewer.tscn")
+	branch_ui = branch_scene.instantiate()
+	ui_layer.add_child(branch_ui)
+
+	branch_ui.set_meta("previous_scene", self)
+	var minimap = get_parent().has_node("Minimap")
+	# Hide Minimap (it's a sibling)
+	
+	if minimap:
+		get_parent().get_node("Minimap").visible = false
+		print(minimap)
+	print(minimap)
+	self.visible = false

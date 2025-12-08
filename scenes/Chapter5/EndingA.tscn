@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://efxwyfkmhhsu"]
+
+[ext_resource type="Script" uid="uid://eapecq7s5yxu" path="res://scenes/Chapter5/Ending_script.gd" id="1_e76fn"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="1_wq47g"]
+[ext_resource type="Texture2D" uid="uid://b4oglffiivu4g" path="res://assets/Ending_images/ENDING A – Awaken.png" id="2_b1vot"]
+
+[node name="EndingA" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e76fn")
+ending_text = "You are awake, but incomplete."
+
+[node name="DialogueManager" parent="." instance=ExtResource("1_wq47g")]
+layout_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_b1vot")
+
+[node name="EndingText" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Label" type="Label" parent="EndingText"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)

@@ -1,0 +1,11 @@
+[
+	{
+	"id": "aligning_the_picture",
+	"title": "Align the Pictures",
+	"description": "Now go inside the cylinder shape structure and try to align the pictures",
+	"objectives": [
+	  { "id": "go_inside_the_cylinder_structure", "text": "Go inside the cylinder structure", "is_completed": false },
+	  { "id": "aligning_pictures", "text": "Go inside and check what will happened next.", "is_completed": false }
+	]
+  }
+]

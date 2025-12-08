@@ -1,0 +1,123 @@
+[gd_scene load_steps=18 format=3 uid="uid://du7ew35f2868i"]
+
+[ext_resource type="Script" uid="uid://qe2apgjbclqy" path="res://scenes/Chapter4/Scene2/chapter_4_scene_2_memory_core_room.gd" id="1_cpvdf"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="3_tsd2j"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="4_2u7pt"]
+[ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="5_0d183"]
+[ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="6_qugda"]
+[ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="7_v8nox"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="8_qaolp"]
+[ext_resource type="PackedScene" uid="uid://2kojisra112b" path="res://scenes/NPCs/Chapter4Scene2NPC.tscn" id="9_0d183"]
+[ext_resource type="PackedScene" uid="uid://db6dlxp2p48mt" path="res://scenes/NPCs/Guardian.tscn" id="10_qugda"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pbrki"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2u7pt"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qugda"]
+albedo_color = Color(0.48178947, 0.48178947, 0.48178947, 1)
+uv1_triplanar = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v8nox"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+ground_bottom_color = Color(1, 1, 1, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_kmnfm"]
+sky_material = SubResource("ProceduralSkyMaterial_v8nox")
+
+[sub_resource type="Environment" id="Environment_qaolp"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 1.5
+sky = SubResource("Sky_kmnfm")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+reflected_light_source = 2
+glow_enabled = true
+glow_bloom = 0.85
+glow_hdr_threshold = 1.75
+glow_hdr_luminance_cap = 46.29
+fog_sun_scatter = 0.13
+fog_aerial_perspective = 0.705
+fog_height_density = 16.0
+fog_depth_begin = 0.0
+fog_depth_end = 500.0
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.64705884, 1, 0.47843137, 1)
+volumetric_fog_anisotropy = 0.9
+volumetric_fog_length = 203.92
+volumetric_fog_temporal_reprojection_amount = 0.99
+adjustment_enabled = true
+adjustment_brightness = 0.79
+adjustment_contrast = 1.07
+adjustment_saturation = 1.46
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_qlfrw"]
+vertices = PackedVector3Array(-249.5, 1, -249.5, -249.5, 1, 249.5, 249.5, 1, 249.5, 249.5, 1, -249.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a5xfn"]
+size = Vector3(500, 1, 500)
+
+[node name="Chapter4Scene2MemoryCoreRoom" type="Node3D"]
+script = ExtResource("1_cpvdf")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_pbrki")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9500122, 0, 1.449997)
+shape = SubResource("BoxShape3D_2u7pt")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_qugda")
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(100, 1, 100)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.9900237, 0.059324276, -0.12780361, -1.5859261e-07, 0.90704393, 0.42103586, 0.14090113, 0.4168354, -0.8979952, 0, 0, 0)
+light_indirect_energy = 1.09
+light_volumetric_fog_energy = 10.0
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_qaolp")
+
+[node name="Player3d" parent="." groups=["player2"] instance=ExtResource("3_tsd2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("4_2u7pt")]
+
+[node name="QuestUi" parent="UI" instance=ExtResource("5_0d183")]
+visible = false
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["grid"]]
+navigation_mesh = SubResource("NavigationMesh_qlfrw")
+script = ExtResource("6_qugda")
+grid_dimensions = Vector2i(2, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+visible = false
+mesh = SubResource("BoxMesh_a5xfn")
+
+[node name="Minimap" parent="." groups=["minimap"] instance=ExtResource("7_v8nox")]
+
+[node name="DialogueManager" parent="." instance=ExtResource("8_qaolp")]
+z_index = 4096
+
+[node name="Npc2" parent="." groups=["npc"] instance=ExtResource("9_0d183")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.3, 30)
+
+[node name="Guardian" parent="." groups=["monster"] instance=ExtResource("10_qugda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -30)

@@ -2,6 +2,7 @@ extends Area3D
 
 @export var jumpscare_duration: float = 3.0  # How long to show the jumpscare
 @onready var jumpscare_camera: Camera3D = $"../JumpscareCamera"  # Camera positioned in front of NPC
+@onready var dialogue_manager: Control = $"../DialogueManager"
 
 var player_camera: Camera3D
 var player: Node3D
@@ -10,7 +11,6 @@ var jumpscare_timer: float = 0.0
 
 func _ready():
 	body_entered.connect(_on_body_entered)
-	# Make sure jumpscare camera is disabled at start
 	if jumpscare_camera:
 		jumpscare_camera.current = false
 
@@ -18,11 +18,14 @@ func _on_body_entered(body):
 	# Check if the player entered
 	if body.is_in_group("player") and not is_jumpscaring:
 		player = body
-		# Find the camera inside the player node
+		
 		player_camera = find_camera_in_node(player)
 		
 		if player_camera and jumpscare_camera:
 			trigger_jumpscare()
+			
+			await get_tree().create_timer(3).timeout
+			dialogue_manager.load_dialogue("res://dialogues/what_is_that.json", "what_is_that")
 		else:
 			if not player_camera:
 				push_error("No Camera3D found in player!")

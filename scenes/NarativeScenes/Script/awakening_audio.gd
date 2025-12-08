@@ -43,7 +43,7 @@ func play_soft_humming():
 	 #You would load actual audio files like this:
 	var hum_sound = preload("res://assets/audio/ambient/humming.mp3")
 	ambient_player.stream = hum_sound
-	ambient_player.volume_db = -30
+	ambient_player.volume_db = -12
 	ambient_player.play()
 
 func fade_in_from_black():

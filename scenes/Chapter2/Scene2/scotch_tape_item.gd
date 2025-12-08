@@ -2,7 +2,7 @@ extends Area3D  # or Area2D if you're in 2D
 
 @export var item_id: int = 10
 @export var objective_id: String = "find_sticky_tape"
-@export var item_name: String = "scotch tape"
+@export var item_name: String = "Tape"
 @export var item_description: String = "A roll of scotch tape, useful for sticking fragments together."
 
 func _ready():
@@ -22,7 +22,7 @@ func _on_body_entered(body):
 		collect_item()
 
 func collect_item():
-	print("🎒 Collecting item:", item_id)
+	print("🎒 Collecting item:", item_name)
 
 	var icon_path = "res://assets/ui/scotch_tape.png"
 	if not ResourceLoader.exists(icon_path):

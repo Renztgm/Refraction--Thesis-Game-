@@ -1,69 +1,50 @@
 extends Node
 
-# --------------------
-# Audio Stream Players (scene nodes)
-# --------------------
-@onready var BackgroundMusicPlayer: AudioStreamPlayer = $BackgroundMusic
-@onready var UISoundPlayer: AudioStreamPlayer = $UISounds
-@onready var WaterPlayer: AudioStreamPlayer = $WaterPlayer
-@onready var WindPlayer: AudioStreamPlayer = $WindPlayer
-
-# --------------------
-# Preloaded audio
-# --------------------
-var wind_sound: AudioStream = preload("res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3")
-var water_sound: AudioStream = preload("res://assets/audio/ambient/BirdChirping.mp3")
-var click_sound: AudioStream = preload("res://assets/audio/ui/Click_sound.wav")
-var background_music: AudioStream = preload("res://assets/audio/music/time_for_adventure.mp3")
+var pool: Array[AudioStreamPlayer] = []
+@export var pool_size := 10
 
 func _ready():
-	print("📂 AudioManager ready")
-	setup_ambient_sounds()
-	start_background_music()
+	# Pre-create some stream players
+	for i in range(pool_size):
+		var p = AudioStreamPlayer.new()
+		p.bus = "SFX"
+		add_child(p)
+		pool.append(p)
 
-# --------------------
-# Ambient Sounds
-# --------------------
-func setup_ambient_sounds():
-	if WindPlayer:
-		WindPlayer.stream = wind_sound
-		WindPlayer.volume_db = -8
-		WindPlayer.play()  # loops automatically if audio file is imported with loop enabled
 
-	if WaterPlayer:
-		WaterPlayer.stream = water_sound
-		WaterPlayer.volume_db = -15
-		WaterPlayer.play()  # loops automatically
+# ----------------------------------------------------------
+# Public: Play UI sound by filepath OR AudioStream
+# ----------------------------------------------------------
+func play_ui_sound(sound):
+	var stream := _get_stream(sound)
+	if stream:
+		_play_sound(stream)
 
-# --------------------
-# Background Music
-# --------------------
-func start_background_music():
-	if BackgroundMusicPlayer:
-		BackgroundMusicPlayer.stream = background_music
-		BackgroundMusicPlayer.volume_db = -10
-		BackgroundMusicPlayer.play()  # loops automatically if imported with loop enabled
 
-func stop_background_music():
-	if BackgroundMusicPlayer:
-		BackgroundMusicPlayer.stop()
+# ----------------------------------------------------------
+# Internal helpers
+# ----------------------------------------------------------
+func _get_stream(sound) -> AudioStream:
+	if sound is AudioStream:
+		return sound
+	if sound is String:
+		return load(sound)
+	push_warning("Invalid sound: expected String path or AudioStream")
+	return null
 
-# --------------------
-# UI Sounds
-# --------------------
-func play_ui_sound():
-	if UISoundPlayer:
-		UISoundPlayer.stop()  # optional: stop previous sound
-		UISoundPlayer.stream = click_sound
-		UISoundPlayer.play()
+func _play_sound(stream: AudioStream):
+	var p := _get_free_player()
+	p.stream = stream
+	p.play()
 
-# --------------------
-# Stop All Music
-# --------------------
-func stop_all_music():
-	if WindPlayer:
-		WindPlayer.stop()
-	if WaterPlayer:
-		WaterPlayer.stop()
-	if BackgroundMusicPlayer:
-		BackgroundMusicPlayer.stop()
+func _get_free_player() -> AudioStreamPlayer:
+	for p in pool:
+		if !p.playing:
+			return p
+
+	# None available → create new one
+	var np = AudioStreamPlayer.new()
+	np.bus = "SFX"
+	add_child(np)
+	pool.append(np)
+	return np

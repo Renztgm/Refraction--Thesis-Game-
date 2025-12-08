@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd21er8xsq2ib"]
+
+[ext_resource type="Script" uid="uid://ddh8joh4sj7sg" path="res://scenes/Scene1/Prologue/prologue.gd" id="1_swvb6"]
+
+[node name="Prologue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_swvb6")
+
+[node name="BlackBG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.5
+offset_top = -119.5
+offset_right = 266.5
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Line1" type="Label" parent="TextVBox"]
+layout_mode = 2
+text = "They say memories define who we are."
+
+[node name="Line2" type="Label" parent="TextVBox"]
+layout_mode = 2
+text = "But what happens when they fracture?"
+
+[node name="Line3" type="Label" parent="TextVBox"]
+layout_mode = 2
+text = " When pieces of yourself slip through the cracks, and all that’s left…"
+
+[node name="Line4" type="Label" parent="TextVBox"]
+layout_mode = 2
+text = "…is the echo of who you used to be?"
+
+[node name="Line5" type="Label" parent="TextVBox"]
+layout_mode = 2
+text = " You’re not dead."
+
+[node name="Line6" type="Label" parent="TextVBox"]
+layout_mode = 2
+text = "Not yet."
+
+[node name="Line7" type="Label" parent="TextVBox"]
+layout_mode = 2
+text = " You’re caught between remembering and forgetting."
+
+[node name="Line8" type="Label" parent="TextVBox"]
+layout_mode = 2
+text = " Wake up."
+
+[node name="Line9" type="Label" parent="TextVBox"]
+layout_mode = 2
+text = "There’s still time to find yourself."
+
+[node name="TitleMain" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TitleSub" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SFX_Static" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX_Heartbeat" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX_Chime" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX_Wind" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX_Inhale" type="AudioStreamPlayer" parent="."]

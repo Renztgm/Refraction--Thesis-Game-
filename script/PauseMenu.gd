@@ -9,6 +9,8 @@ extends Control
 var is_paused = false
 
 func _ready():
+	
+	
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	z_index = 100
 	process_mode = Node.PROCESS_MODE_ALWAYS   # Interactive while paused
@@ -26,29 +28,29 @@ func focus_resume_button():
 
 func toggle_pause():
 	print("able to call the togglepause from pausemenu")
-	AudioMgr.play_ui_sound()
+	AudioMgr.play_ui_sound("res://assets/audio/ui/Click_sound.wav")
 	is_paused = not is_paused
 	
 	if is_paused:
 		show()
 		get_tree().paused = true
 		resume_button.grab_focus()
+		await get_tree().process_frame
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		_on_resume_pressed()
-
-	# ✅ Always enforce fullscreen no matter what
+		
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-
-
-
+		
+		
 func _on_resume_pressed():
-	AudioMgr.play_ui_sound()
+	AudioMgr.play_ui_sound("res://assets/audio/ui/Click_sound.wav")
 	is_paused = false
 	hide()
 	get_tree().paused = false
 
 func _on_settings_pressed():
-	AudioMgr.play_ui_sound()
+	AudioMgr.play_ui_sound("res://assets/audio/ui/Click_sound.wav")
 	var settings = load("res://scenes/UI/SettingsUI.tscn").instantiate()
 	
 	# Connect to signal for when Settings closes
@@ -58,10 +60,10 @@ func _on_settings_pressed():
 	)
 	
 	get_tree().root.add_child(settings)
-	hide()  # hide Pause Menu while Settings is open
+	hide()
 
 func _on_save_pressed():
-	AudioMgr.play_ui_sound()
+	AudioMgr.play_ui_sound("res://assets/audio/ui/Click_sound.wav")
 	print("PauseMenu: Save button pressed")
 	
 	var ok := false
@@ -102,9 +104,22 @@ func show_saved_message(msg: String):
 		tween.tween_callback(func(): saved_label.hide())
 
 func _on_main_menu_pressed():
-	AudioMgr.play_ui_sound()
-	
+	AudioMgr.play_ui_sound("res://assets/audio/ui/Click_sound.wav")
 	get_tree().paused = false
 	is_paused = false
 	hide()
 	get_tree().change_scene_to_file("res://scenes/Main Menu/main_menu.tscn")
+
+
+func _on_help_pressed() -> void:
+	AudioMgr.play_ui_sound("res://assets/audio/ui/Click_sound.wav")
+	var help = load("res://scenes/UI/help.tscn").instantiate()
+	
+	# Connect to signal for when Settings closes
+	help.closed.connect(func():
+		show()
+		resume_button.grab_focus()
+	)
+	
+	get_tree().root.add_child(help)
+	hide()  # hide Pause Menu while Settings is open

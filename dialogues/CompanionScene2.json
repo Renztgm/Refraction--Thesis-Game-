@@ -6,6 +6,7 @@
 		"You finally woke up.",
 		"I was starting to think you were just another echo wandering the cracks."
 	  ],
+	  "focus": "Companion", 
 	  "options": [
 		{
 		  "text": "💬 Who are you?",
@@ -55,6 +56,7 @@
 		"Somewhere between what was and what isn’t.",
 		"A seam, a broken place where things that shouldn’t touch… do."
 	  ],
+	"focus": "Companion",
 	  "options": [
 		{
 		  "text": "💬 That doesn’t explain much.",
@@ -79,6 +81,7 @@
 		"…Silent type. That’s okay.",
 		"This place prefers quiet. It listens more than it speaks."
 	  ],
+	"focus": "Companion",
 	  "options": [
 		{
 		  "text": "💬 This place?",
@@ -103,6 +106,7 @@
 		"Most don’t remember much when they first arrive.",
 		"Memory here is like water—slipping, pooling, evaporating when you reach for it."
 	  ],
+	"focus": "Companion",
 	  "options": [
 		{
 		  "text": "💬 Can I get them back?",
@@ -128,6 +132,7 @@
 		"*The Companion tilts their head, eyes catching starlight.*",
 		"This place doesn’t invite—it swallows."
 	  ],
+	"focus": "Companion",
 	  "options": [
 		{
 		  "text": "💬 So I was pulled here?",
@@ -152,6 +157,7 @@
 		"‘Real’ is a fragile word.",
 		"Does it feel real? Does it hurt? Do you fear it? Then it’s real enough."
 	  ],
+	"focus": "Companion",
 	  "options": [
 		{
 		  "text": "💬 That’s not comforting.",

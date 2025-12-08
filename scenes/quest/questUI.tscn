@@ -1,8 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsc2rl8o0kypo"]
+[gd_scene load_steps=8 format=3 uid="uid://bsc2rl8o0kypo"]
 
 [ext_resource type="Script" uid="uid://gpburvopnpqp" path="res://scenes/quest/script/quest_ui.gd" id="1_jly6o"]
 [ext_resource type="Texture2D" uid="uid://brry7rdwawx3g" path="res://assets/ui/close.png" id="2_24e3a"]
 [ext_resource type="Texture2D" uid="uid://dyesvrdup0jst" path="res://assets/ui/background_inventory.png" id="2_ehxvs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uxvl"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+draw_center = false
+
+[sub_resource type="Theme" id="Theme_k12j4"]
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_0uxvl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehxvs"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+draw_center = false
+
+[sub_resource type="Theme" id="Theme_0uxvl"]
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_ehxvs")
 
 [node name="QuestUi" type="CanvasLayer"]
 layer = 2
@@ -40,7 +60,7 @@ grow_vertical = 2
 theme_override_constants/separation = 30
 
 [node name="ActiveContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(500, 700)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -54,11 +74,18 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="ActiveList" type="VBoxContainer" parent="Panel/HBoxContainer/ActiveContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HBoxContainer/ActiveContainer"]
+custom_minimum_size = Vector2(500, 700)
 layout_mode = 2
+theme = SubResource("Theme_k12j4")
+
+[node name="ActiveList" type="VBoxContainer" parent="Panel/HBoxContainer/ActiveContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
 
 [node name="CompletedContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(500, 700)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -72,8 +99,15 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="CompletedList" type="VBoxContainer" parent="Panel/HBoxContainer/CompletedContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HBoxContainer/CompletedContainer"]
+custom_minimum_size = Vector2(500, 700)
 layout_mode = 2
+theme = SubResource("Theme_0uxvl")
+
+[node name="CompletedList" type="VBoxContainer" parent="Panel/HBoxContainer/CompletedContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
 
 [node name="CloseButton" type="Button" parent="Panel"]
 layout_mode = 0

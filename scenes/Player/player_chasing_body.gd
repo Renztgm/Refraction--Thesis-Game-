@@ -1,6 +1,3 @@
-# This script simuilates like a minecraft Third Person view 
-#
-
 
 extends CharacterBody3D
 
@@ -14,7 +11,10 @@ extends CharacterBody3D
 @onready var quest_button: Button = $hud/questButton
 @onready var death_ui: CanvasLayer = $deathui
 
-const SPEED = 5.0
+@export var walk_speed: float = 5.0
+@export var sprint_speed: float = 10.0
+
+var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 const MIN_CAMERA_DISTANCE: float = 0.3   # how close camera can get to player
@@ -66,8 +66,11 @@ func _input(event):
 		return
 		
 	if event.is_action_pressed("ui_cancel"):  # ESC
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		CanvasPause.toggle_pause_menu()
 		return
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	if get_tree().paused:
 		return
@@ -97,7 +100,11 @@ func _physics_process(delta: float) -> void:
 	var forward = -camera_mount.transform.basis.z
 	var right   = camera_mount.transform.basis.x
 	var move_dir = (forward * input_dir.y + right * input_dir.x).normalized()
-
+	
+	if Input.is_key_pressed(KEY_SHIFT):
+		SPEED = sprint_speed
+	else:
+		SPEED = walk_speed
 	if move_dir != Vector3.ZERO:
 		velocity.x = move_dir.x * SPEED
 		velocity.z = move_dir.z * SPEED
@@ -122,9 +129,18 @@ func set_animation(move_dir: Vector3):
 			last_direction = "right" if local_dir.x > 0 else "left"
 		else:
 			last_direction = "up" if local_dir.z < 0 else "down"
+
 		animated_sprite_3d.play("run_" + last_direction)
+
+		# ✅ Adjust speed scale based on sprint
+		if Input.is_key_pressed(KEY_SHIFT):
+			animated_sprite_3d.speed_scale = 2.0   # sprint faster
+		else:
+			animated_sprite_3d.speed_scale = 1.0   # normal run
 	else:
 		animated_sprite_3d.play("idle_" + last_direction)
+		animated_sprite_3d.speed_scale = 1.0
+
 
 func freeze_player() -> void:
 	if is_frozen:
@@ -169,8 +185,10 @@ func toggle_inventory():
 		print("Inventory toggled:", inventory_ui.visible)
 
 		if inventory_ui.visible:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			freeze_player()
 		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			unfreeze_player()
 
 

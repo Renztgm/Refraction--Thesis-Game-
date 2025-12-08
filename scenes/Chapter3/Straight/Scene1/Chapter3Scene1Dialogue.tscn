@@ -675,3 +675,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.283447, 0, -7.92395)
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -14.307617, 4.1885376, -16.601685)
 sprite_frames = SubResource("SpriteFrames_f7730")
+autoplay = "default"
+frame_progress = 0.43563825

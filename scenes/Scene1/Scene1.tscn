@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://c86wt7sw6gv5p" path="res://script/NarrativeSceneScripts/camera_controller.gd" id="7_pp1vh"]
 [ext_resource type="Script" uid="uid://dc2jevgscgkfi" path="res://script/NarrativeSceneScripts/dialogue_ui.gd" id="8_4igs4"]
 [ext_resource type="PackedScene" uid="uid://ccpff6cjmmbl4" path="res://addons/tree/trees.tscn" id="8_t2ff0"]
-[ext_resource type="ArrayMesh" uid="uid://c3dio60jp4vd3" path="res://assets/nature/grass.res" id="9_m7pfs"]
+[ext_resource type="ArrayMesh" uid="uid://cwf8nnckee4vn" path="res://assets/nature/grass.res" id="9_m7pfs"]
 [ext_resource type="Script" uid="uid://b16kko6yesh4g" path="res://scenes/NarativeScenes/Script/awakening_audio.gd" id="9_t2ff0"]
 [ext_resource type="Script" uid="uid://dcf0677e4iaao" path="res://scenes/NarativeScenes/Script/awakening_narrative.gd" id="10_722yh"]
 [ext_resource type="Texture2D" uid="uid://8g4clas8oawq" path="res://assets/Character/Justine -Character/idle_down_mc-Sheet-final.png" id="10_m7pfs"]

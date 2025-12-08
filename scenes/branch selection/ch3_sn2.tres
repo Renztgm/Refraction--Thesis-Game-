@@ -7,6 +7,6 @@
 [resource]
 script = ExtResource("1_4umc2")
 title = "Chapter 3 Scene 2"
-scene_path = "res://scenes/Chapter3/Straight/Scene2/Chapter3Scene2.tscn"
+scene_path = "res://scenes/Chapter3/Straight/Scene2/Chapter3Scene2A.tscn"
 children = Array[ExtResource("1_4umc2")]([ExtResource("2_ovjim"), ExtResource("3_4i4kx")])
 metadata/_custom_type_script = "uid://bdblq5joux0oh"

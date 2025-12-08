@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhshtkqj6blyb"]
+[gd_scene load_steps=8 format=3 uid="uid://dhshtkqj6blyb"]
 
 [ext_resource type="Script" uid="uid://5w8bp5qmr0ma" path="res://script/DialogueMngr.gd" id="1_xi3yh"]
 [ext_resource type="Texture2D" uid="uid://ciy5wirfs7ih" path="res://addons/pngs/Dialoguepng.png" id="2_01vcs"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_ebjfy"]
 [ext_resource type="Theme" uid="uid://bwdlb307ymess" path="res://Tres/ButtonTheme.tres" id="4_ebjfy"]
+[ext_resource type="Script" uid="uid://bc48klt8h66o6" path="res://script/audio_manager.gd" id="5_kilx2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m70fm"]
 
@@ -72,10 +73,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 191.0
+offset_left = 240.0
 offset_top = -124.0
-offset_right = -193.0
-offset_bottom = -74.0
+offset_right = -232.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.917647, 0.917647, 0.917647, 1)
@@ -83,6 +84,7 @@ theme_override_fonts/font = SubResource("FontVariation_ebjfy")
 theme_override_font_sizes/font_size = 30
 text = "Dialogue"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Options" type="VBoxContainer" parent="."]
 layout_direction = 2
@@ -113,3 +115,7 @@ mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_ebjfy")
 theme_override_font_sizes/font_size = 16
 flat = true
+
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("5_kilx2")
+metadata/_custom_type_script = "uid://bc48klt8h66o6"

@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0mkhe168w680"]
+
+[ext_resource type="Script" uid="uid://x85h3iqixuua" path="res://main_menu_press_start.gd" id="1_kh42p"]
+[ext_resource type="Texture2D" uid="uid://ibd23y72atom" path="res://assets/MainMenu/New/background.png" id="2_813fk"]
+[ext_resource type="Texture2D" uid="uid://7qtjpn5hjmh2" path="res://assets/MainMenu/New/title.png" id="3_1ci5f"]
+[ext_resource type="Script" uid="uid://dwecxepib76am" path="res://scenes/Main Menu/title.gd" id="4_m42uh"]
+[ext_resource type="Texture2D" uid="uid://bfuwk86r0omqw" path="res://assets/MainMenu/New/shadow.png" id="5_iyijr"]
+[ext_resource type="Script" uid="uid://b3il4c2b8icww" path="res://scenes/Main Menu/shadow.gd" id="6_e546r"]
+[ext_resource type="Texture2D" uid="uid://dtrhq84oqsqn4" path="res://assets/MainMenu/New/broken glass.png" id="7_30ld1"]
+[ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="8_gvlia"]
+[ext_resource type="Script" uid="uid://1pik73h8bu46" path="res://scenes/Main Menu/brokenglass.gd" id="8_ui1in"]
+[ext_resource type="Texture2D" uid="uid://6lis47x0t7h8" path="res://assets/MainMenu/New/PRESS START.png" id="9_h276m"]
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kh42p")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(1.115, 1.115)
+
+[node name="Background" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+texture = ExtResource("2_813fk")
+
+[node name="Title" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+texture = ExtResource("3_1ci5f")
+script = ExtResource("4_m42uh")
+
+[node name="Shadow" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(98.65471, -8.071749)
+scale = Vector2(2, 2)
+texture = ExtResource("5_iyijr")
+script = ExtResource("6_e546r")
+
+[node name="Brokenglass" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+texture = ExtResource("7_30ld1")
+script = ExtResource("8_ui1in")
+
+[node name="Button" type="Button" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -168.0
+offset_right = -75.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3.36, 3.36)
+focus_mode = 0
+theme_override_fonts/font = ExtResource("8_gvlia")
+flat = true
+
+[node name="icon" type="TextureRect" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.952389
+offset_top = -11.904763
+offset_right = 26.714264
+offset_bottom = 5.333336
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_h276m")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.7619047
+offset_bottom = -4.7619057
+grow_horizontal = 2
+grow_vertical = 2
+text = "press start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

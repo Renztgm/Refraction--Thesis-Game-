@@ -1,0 +1,10 @@
+[
+	{
+	"id": "follow_hum",
+	"title": "The Mysterious Humming",
+	"description": "A strange humming sound echoes nearby. Investigate its source.",
+	"objectives": [
+	  { "id": "follow_hum", "text": "Follow the humming sound to its source", "is_completed": false }
+	]
+  }
+]

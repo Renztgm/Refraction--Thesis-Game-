@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv1g7eu2exr7f"]
+[gd_scene load_steps=4 format=3 uid="uid://dv1g7eu2exr7f"]
 
 [ext_resource type="Script" uid="uid://mbu6xc0o3ygl" path="res://script/endchapterscene.gd" id="1_2t5ef"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="2_gc076"]
+[ext_resource type="Texture2D" uid="uid://dyesvrdup0jst" path="res://assets/ui/background_inventory.png" id="2_qndjj"]
 
 [node name="Endchapterscene" type="Control"]
 layout_mode = 3
@@ -20,6 +21,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 112.0
+offset_right = 1664.0
+offset_bottom = 896.0
+texture = ExtResource("2_qndjj")
+expand_mode = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -28,49 +38,80 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Chapter Completed!!"
+theme_override_font_sizes/font_size = 60
+text = "Chapter Completed!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShardsPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ShardsPanel"]
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 30
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ShardsPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Shards Obtained"
+theme_override_font_sizes/font_size = 40
+text = "Shards Obtained: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShardsCount" type="Label" parent="MarginContainer/VBoxContainer/ShardsPanel/VBoxContainer"]
+[node name="ShardsCount" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 
-[node name="InventoryButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="InventoryButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
 text = "Inventory"
+flat = true
+alignment = 0
 
-[node name="NextChapterButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="NextChapterButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
 text = "Next Chapter"
+flat = true
+alignment = 0
 
-[node name="BranchButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="BranchButton" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer/ButtonContainer"]
 layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
 text = "Branches"
+flat = true
+alignment = 0
+
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer/ButtonContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+flat = true
+alignment = 0
 
 [node name="UI" type="CanvasLayer" parent="."]
 

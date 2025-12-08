@@ -1,0 +1,10 @@
+[
+	{
+	"id": "explore_the_bookstore",
+	"title": "Secrets in the Stacks",
+	"description": "The bookstore's interior is dim and filled with towering shelves that seem to stretch endlessly into shadow. Your companion has led you here for a reason—somewhere among these countless volumes and forgotten documents lies a specific paper, one that holds crucial information. The musty air and creaking floorboards suggest this place guards its secrets well. You'll need to search carefully through the maze of literature to uncover what you're looking for.",
+	"objectives": [
+	  { "id": "explore_the_bookstore_1", "text": "Explore the bookstore and find the paper", "is_completed": false },
+	]
+  }
+]

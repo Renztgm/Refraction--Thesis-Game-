@@ -4,7 +4,7 @@ extends CharacterBody3D
 # =========================
 # CONFIG
 # =========================
-@export var move_speed: float = 5.0
+@export var move_speed: float = 10.0
 @export var acceleration: float = 10.0
 @export var rotation_speed: float = 8.0
 @export var path_update_rate: float = 0.5

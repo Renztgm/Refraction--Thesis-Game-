@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=31 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://cef51xksnix0e" path="res://assets/Building/LibraryRoom.tscn" id="1_3alfa"]
+[ext_resource type="Script" uid="uid://cbsq0vtywjpnp" path="res://scenes/Scene3/bookstore_location.gd" id="1_lbmbb"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="1_u6ydm"]
 [ext_resource type="Script" uid="uid://cgw4bnye5bdnx" path="res://script/Notebook.gd" id="2_cedyu"]
 [ext_resource type="PackedScene" uid="uid://dl1oxf6kjobol" path="res://assets/item/paper/torn_paper_item.gltf" id="6_vasej"]
@@ -56,7 +57,6 @@ adjustment_contrast = 1.07
 adjustment_saturation = 1.46
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_abmj1"]
-size = Vector3(3.4082112, 4.82605, 6.53577)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l061f"]
 size = Vector3(28.71936, 2.8309937, 1.5541992)
@@ -81,6 +81,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 size = Vector3(100, 1, 100)
 
 [node name="Bookstore" type="Node3D"]
+script = ExtResource("1_lbmbb")
 
 [node name="LibraryRoom" parent="." instance=ExtResource("1_3alfa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3327713, -0.1828872, 3.1910305)
@@ -125,20 +126,19 @@ show_path_debug = null
 
 [node name="Player3d" parent="." groups=["player2"] instance=ExtResource("1_u6ydm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6065106, 0.06136185, 14.107786)
-collision_layer = 4
 collision_mask = 7
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0606918, 1.1087046, 3.116619)
+[node name="Area3D" type="Area3D" parent="." groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0606918, 1.1087046, 10.231573)
 collision_mask = 4
 script = ExtResource("2_cedyu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66563964, 1.9130201, 2.76788)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66563964, 1.9130201, 0.3104515)
 shape = SubResource("BoxShape3D_abmj1")
 
 [node name="blockbench_export" parent="Area3D" instance=ExtResource("6_vasej")]
-transform = Transform3D(-4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 0, 0.879109, 0)
+transform = Transform3D(-4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 0, -0.2041024, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.379782)
@@ -295,3 +295,5 @@ mesh = SubResource("BoxMesh_d83rn")
 [node name="Minimap" parent="." instance=ExtResource("13_3alfa")]
 
 [node name="FadeOutCanvas" parent="." instance=ExtResource("14_x0oou")]
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]

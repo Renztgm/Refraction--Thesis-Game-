@@ -1,0 +1,10 @@
+[
+	{
+	"id": "talk_to_companion",
+	"title": "Rest After Darkness",
+	"description": " The encounter with the Shadow has left you shaken and weary. Though it faded away before a true battle could begin, its presence lingers in your mind like a dark omen. Your companion sees the toll this brief meeting has taken on you and suggests finding a place to rest. You need sleep to process what you've witnessed and gather strength for whatever lies ahead. The Shadow's appearance was no coincidence—something darker is stirring.",
+	"objectives": [
+	  { "id": "talk_to_companion_1", "text": "Talk to the Companion", "is_completed": false }
+	]
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "Lyra": {
+	"start": {
+	  "name": "Lyra",
+	  "sentences": [
+		"Your mind built this place to protect you… but it’s breaking because a part of you is finally ready to wake up.",
+		"The fractures you’re seeing aren’t dangers. They’re memories trying to surface.",
+        "Every step you take is pulling the truth closer."
+	  ],
+	  "options": [
+		{
+		  "text": "Why didn’t you tell me?",
+		  "next": "choice_why_not"
+		},
+		{
+		  "text": "So you're… just a part of me?",
+		  "next": "choice_part_of_me"
+		},
+		{
+		  "text": "Then help me remember.",
+		  "next": "choice_help_remember"
+		}
+	  ]
+	},
+
+	"choice_why_not": {
+	  "name": "Lyra",
+	  "sentences": [
+		"I wasn’t allowed to. I was made from the pieces you sealed away—your fear, your regret, the echoes of someone you lost.",
+		"If I told you too soon, you would’ve rejected all of this. You would’ve rejected me.",
+		"You had to choose to look back, not be forced to.",
+        "And now… you’re finally doing it."
+	  ],
+	  "next": "memorycore_door"
+	},
+
+	"choice_part_of_me": {
+	  "name": "Lyra",
+	  "sentences": [
+		"Not just a part. I’m the part you trust the most.",
+		"I’m everything you didn’t want to face alone.",
+		"But you’re growing whole again, piece by piece.",
+		"When you step into the Memory Core… you won’t need me in the same way.",
+        "Will you still want me here?"
+	  ],
+	  "next": "memorycore_door"
+	},
+
+	"choice_help_remember": {
+	  "name": "Lyra",
+	  "sentences": [
+		"That’s what I’ve been waiting for you to say.",
+		"Follow the cracks in the walls. They’re not damage—they’re pathways.",
+		"Each one leads to a truth you buried the day the collapse happened.",
+        "When we reach the Memory Core Room… everything you’ve hidden will demand to be seen."
+	  ],
+	  "next": "memorycore_door"
+	},
+
+	"memorycore_door": {
+	  "name": "Lyra",
+	  "sentences": [
+		"This is where the fragments converge.",
+		"Once we step inside, you won’t be able to look away from the truth.",
+		"If Lyra’s memory is calling you back… it’s because you’re ready.",
+		"Take a breath.",
+		"When you open this door, you’ll remember the moment everything changed.",
+        "And the moment you lost her."
+	  ],
+	  "next": "end"
+	},
+
+	"end": {
+	  "name": "Lyra",
+	  "sentences": [
+		"Whatever happens in there…",
+        "you won’t face it alone."
+	  ]
+	}
+  }
+}

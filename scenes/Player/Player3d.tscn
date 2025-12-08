@@ -1,15 +1,16 @@
-[gd_scene load_steps=72 format=3 uid="uid://c8jfqypwf5vw5"]
+[gd_scene load_steps=74 format=3 uid="uid://c8jfqypwf5vw5"]
 
 [ext_resource type="Script" uid="uid://cw3dugmb5cg08" path="res://script/player_3d.gd" id="1_526tg"]
 [ext_resource type="Texture2D" uid="uid://8g4clas8oawq" path="res://assets/Character/Justine -Character/idle_down_mc-Sheet-final.png" id="10_3y08u"]
+[ext_resource type="Texture2D" uid="uid://ci1c83wsgovd8" path="res://assets/ui/box 2.png" id="10_mawlu"]
 [ext_resource type="Texture2D" uid="uid://b8exmjschf3cw" path="res://assets/ui/bag.png" id="10_mvv3u"]
-[ext_resource type="Texture2D" uid="uid://rl4gq0r5o1cv" path="res://assets/ui/box.png" id="11_vxnrg"]
 [ext_resource type="Texture2D" uid="uid://duc6va48lnma5" path="res://assets/Character/Justine -Character/Sprite-0001.png" id="11_w3ql0"]
 [ext_resource type="Texture2D" uid="uid://bo6w73881rkl8" path="res://assets/Character/Justine -Character/idle_right_mc-sheet.png" id="12_516wo"]
 [ext_resource type="Texture2D" uid="uid://btutaow4chjfc" path="res://assets/ui/quest.png" id="12_vxnrg"]
 [ext_resource type="Texture2D" uid="uid://cfq4rlx0nlk7v" path="res://assets/Character/Justine -Character/Mc-forward-idle-Sheet.png" id="13_17lr3"]
 [ext_resource type="Texture2D" uid="uid://dge13aqje2e6f" path="res://assets/ui/Menu Button.png" id="13_mawlu"]
 [ext_resource type="Texture2D" uid="uid://uwg82a4m3lh5" path="res://assets/Character/Justine -Character/mc_walk_down-sheet.png" id="14_qa5ne"]
+[ext_resource type="Texture2D" uid="uid://dbud877hrofdx" path="res://assets/ui/Branch.png" id="14_s0o5g"]
 [ext_resource type="Texture2D" uid="uid://cmfefjl288qp8" path="res://assets/Character/Justine -Character/walk-left-animation-Sheet.png" id="15_cnjxn"]
 [ext_resource type="Texture2D" uid="uid://dcffst62irmrm" path="res://assets/Character/Justine -Character/walk-right-animation-Sheet.png" id="16_jbebn"]
 [ext_resource type="Texture2D" uid="uid://bq3k5itqo8x2y" path="res://assets/Character/Justine -Character/walk-forward-animation-Sheet.png" id="17_k65kc"]
@@ -453,8 +454,10 @@ animations = [{
 "speed": 5.5
 }]
 
+[sub_resource type="ImageTexture" id="ImageTexture_s0o5g"]
+
 [node name="Player3d" type="CharacterBody3D" groups=["player"]]
-collision_layer = 6
+collision_layer = 4
 collision_mask = 6
 script = ExtResource("1_526tg")
 
@@ -483,69 +486,100 @@ autoplay = "run_right"
 frame_progress = 0.47339892
 
 [node name="hud" type="CanvasLayer" parent="."]
+layer = 0
 
-[node name="leftHud" type="TextureRect" parent="hud"]
-y_sort_enabled = true
-offset_left = 1760.0
-offset_right = 1866.6666
-offset_bottom = 213.33331
-scale = Vector2(1.5, 1.5)
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="hud"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
-texture = ExtResource("11_vxnrg")
-expand_mode = 3
-stretch_mode = 4
-metadata/_edit_group_ = true
+stretch_mode = 0
+alignment_vertical = 0
 
-[node name="questButton" type="Button" parent="hud"]
+[node name="TextureRect" type="TextureRect" parent="hud/AspectRatioContainer"]
+custom_minimum_size = Vector2(150, 410)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("10_mawlu")
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="hud/AspectRatioContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="PauseButton" type="Button" parent="hud/AspectRatioContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="hud/AspectRatioContainer/VBoxContainer/PauseButton"]
+z_index = 1
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 0
+offset_left = 38.0
+offset_top = 16.0
+offset_right = 113.0
+offset_bottom = 91.0
+texture = ExtResource("13_mawlu")
+expand_mode = 1
+
+[node name="questButton" type="Button" parent="hud/AspectRatioContainer/VBoxContainer"]
 z_index = 4096
 y_sort_enabled = true
-offset_left = 1768.0
-offset_top = 112.0
-offset_right = 1904.0
-offset_bottom = 208.0
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
 icon = ExtResource("12_vxnrg")
 flat = true
 icon_alignment = 1
 expand_icon = true
+metadata/_edit_use_anchors_ = true
 
-[node name="inventoryButton" type="Button" parent="hud"]
+[node name="inventoryButton" type="Button" parent="hud/AspectRatioContainer/VBoxContainer"]
 z_index = 4096
 y_sort_enabled = true
-custom_minimum_size = Vector2(30, 30)
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -144.0
-offset_top = -864.0
-offset_right = 496.0
-offset_bottom = -384.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.2, 0.2)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
 icon = ExtResource("10_mvv3u")
 flat = true
 icon_alignment = 1
 expand_icon = true
+metadata/_edit_use_anchors_ = true
 
-[node name="PauseButton" type="Button" parent="hud"]
-offset_left = 1776.0
-offset_top = 16.0
-offset_right = 1904.0
-offset_bottom = 96.0
+[node name="branchbutton" type="Button" parent="hud/AspectRatioContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+icon = SubResource("ImageTexture_s0o5g")
 flat = true
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="hud/PauseButton"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 0
-offset_left = 32.0
-offset_top = 8.0
-offset_right = 96.0
-offset_bottom = 72.0
-texture = ExtResource("13_mawlu")
+[node name="TextureRect" type="TextureRect" parent="hud/AspectRatioContainer/VBoxContainer/branchbutton"]
+z_index = 1
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.11100001
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.65002
+offset_right = -15.999985
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_s0o5g")
 expand_mode = 1
 
-[connection signal="pressed" from="hud/questButton" to="." method="_on_quest_button_pressed"]
-[connection signal="pressed" from="hud/inventoryButton" to="." method="_on_inventory_button_pressed"]
-[connection signal="pressed" from="hud/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="hud/AspectRatioContainer/VBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="hud/AspectRatioContainer/VBoxContainer/questButton" to="." method="_on_quest_button_pressed"]
+[connection signal="pressed" from="hud/AspectRatioContainer/VBoxContainer/inventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="hud/AspectRatioContainer/VBoxContainer/branchbutton" to="." method="_on_branch_pressed"]

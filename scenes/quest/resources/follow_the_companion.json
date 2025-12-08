@@ -1,0 +1,10 @@
+[
+	{
+	"id": "to_the_mirror_hall",
+	"title": "To the Mirror Hall",
+	"description": "Your companion is ready to lead you to the Mirror Hall. Follow her closely and stay alert.",
+	"objectives": [
+	  { "id": "to_the_mirror_hall_1", "text": "Follow your companion to the Mirror Hall", "is_completed": false }
+	]
+  }
+]

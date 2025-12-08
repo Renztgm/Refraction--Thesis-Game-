@@ -6,6 +6,9 @@ var db: SQLite
 var current_chapter: int = 1
 var next_chapter_scene_path: String = ""
 
+var active_profile_id: int:
+	get: return ProfileManager.active_profile_id
+
 
 var game_data: Dictionary = {
 	"player_name": "Player",
@@ -24,52 +27,70 @@ func _ready() -> void:
 func init_db() -> bool:
 	db = SQLite.new()
 	db.path = db_path
-	print("🔧 Initializing database at: ", ProjectSettings.globalize_path(db.path))
 
 	if not db.open_db():
 		push_error("❌ Failed to open database")
 		return false
 
-	print("✅ Database opened successfully")
+	db.query("PRAGMA foreign_keys = ON;")
 
+	# 1. Profiles
+	var create_profiles_table := db.query("""
+		CREATE TABLE IF NOT EXISTS profiles (
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			player_name TEXT NOT NULL,
+			created_at TEXT,
+			last_played TEXT
+		);
+	""")
+	print("Profiles table:", create_profiles_table)
+
+	# 2. Save Data
 	var create_save_table := db.query("""
-        CREATE TABLE IF NOT EXISTS save_data (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            player_name TEXT,
-            current_scene TEXT,
-            pos_x REAL,
-            pos_y REAL,
-            pos_z REAL,
-            direction TEXT,
-            has_save INTEGER
-        );
+		CREATE TABLE IF NOT EXISTS save_data (
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			profile_id INTEGER NOT NULL,
+			player_name TEXT,
+			current_scene TEXT,
+			pos_x REAL,
+			pos_y REAL,
+			pos_z REAL,
+			direction TEXT,
+			has_save INTEGER,
+			FOREIGN KEY(profile_id) REFERENCES profiles(id) ON DELETE CASCADE
+		);
 	""")
+	print("Save table:", create_save_table)
 
-	var create_quest_table := db.query("""
-	    CREATE TABLE IF NOT EXISTS quests (
-	        id TEXT PRIMARY KEY,
-	        title TEXT,
-	        description TEXT,
-	        is_completed INTEGER,
-	        objectives TEXT
-	    );
+	# 3. Quests
+	var create_quests_table := db.query("""
+		CREATE TABLE IF NOT EXISTS quests (
+			id TEXT,
+			profile_id INTEGER NOT NULL,
+			title TEXT,
+			description TEXT,
+			is_completed INTEGER,
+			objectives TEXT,
+			PRIMARY KEY (id, profile_id),
+			FOREIGN KEY(profile_id) REFERENCES profiles(id) ON DELETE CASCADE
+		);
 	""")
+	print("Quests table:", create_quests_table)
 
-
-
-
-	var create_branch_table := db.query("""
-        CREATE TABLE IF NOT EXISTS game_path (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            scene_path TEXT,
-            branch_id TEXT,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-        );
+	# 4. Game Path
+	var create_game_path_table := db.query("""
+		CREATE TABLE IF NOT EXISTS game_path (
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			profile_id INTEGER NOT NULL,
+			scene_path TEXT,
+			branch_id TEXT,
+			timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+			FOREIGN KEY(profile_id) REFERENCES profiles(id) ON DELETE CASCADE
+		);
 	""")
+	print("Game path table:", create_game_path_table)
 
-	print("🔧 Save table creation result: ", create_save_table)
-	print("🔧 Branch table creation result: ", create_branch_table)
-	return create_save_table and create_branch_table and create_quest_table
+	return create_profiles_table and create_save_table and create_quests_table and create_game_path_table
 
 
 # -----------------------
@@ -130,14 +151,15 @@ func save_game() -> bool:
 
 	print("🔧 Data to save: ", game_data)
 
-	db.query("DELETE FROM save_data;")
+	db.query("DELETE FROM save_data WHERE profile_id = %d;" % active_profile_id)
 
 	var insert_sql := """
-        INSERT INTO save_data (
-            player_name, current_scene, pos_x, pos_y, pos_z, direction, has_save
-        ) VALUES (?, ?, ?, ?, ?, ?, ?);
+		INSERT INTO save_data 
+		(profile_id, player_name, current_scene, pos_x, pos_y, pos_z, direction, has_save)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 	"""
 	var params: Array = [
+		active_profile_id,
 		game_data["player_name"],
 		game_data["current_scene"],
 		game_data["player_position"]["x"],
@@ -197,7 +219,7 @@ func load_game() -> bool:
 		if not init_db():
 			return false
 
-	db.query("SELECT * FROM save_data;")
+	db.query("SELECT * FROM save_data WHERE profile_id = %d LIMIT 1;" % active_profile_id)
 	if db.query_result.size() == 0:
 		print("⚠️ No save data found")
 		return false
@@ -250,7 +272,15 @@ func continue_game() -> bool:
 # Start new game
 # -----------------------
 func start_new_game() -> void:
+	if ProfileManager == null or ProfileManager.active_profile_id == 0:
+		push_error("❌ No active profile found. Cannot start new game.")
+		return
+
+	var active_id = ProfileManager.active_profile_id
+
+	# Reset local game_data for this profile
 	game_data = {
+		"profile_id": active_id,
 		"player_name": "Player",
 		"current_scene": "",
 		"player_position": {"x": 0.0, "y": 0.0, "z": 0.0},
@@ -264,46 +294,79 @@ func start_new_game() -> void:
 			"quests",
 			"quest_objectives",
 			"game_path",
-			"items",
 			"inventory",
 			"memory_shards"
-			# Note: Do NOT clear `items` unless you want to reset your item definitions
 		]
 
 		for table_name in tables_to_clear:
-			var result := db.query("DELETE FROM %s;" % table_name)
+			var result := db.query("DELETE FROM %s WHERE profile_id = %d;" % [table_name, active_id])
 			if result:
-				print("🧹 Cleared table:", table_name)
+				print("🧹 Cleared table for profile_id %d: %s" % [active_id, table_name])
 			else:
-				push_error("❌ Failed to clear table: %s" % table_name)
-
-
+				push_error("❌ Failed to clear table %s for profile_id %d" % [table_name, active_id])
+				
+	if QuestManager:
+		QuestManager.active_quests.clear()
 # -----------------------
 # Branching Progress
 # -----------------------
-func log_scene_completion(scene_path: String, branch_id: String = "") -> bool:
+# SaveManager.gd
+func log_scene_completion(scene_path: String, branch_id: String = "", profile_id: int = -1) -> bool:
+	# If caller didn't pass a profile_id, use the active profile
+	if profile_id == -1:
+		if ProfileManager == null:
+			push_error("❌ ProfileManager not available; cannot log scene.")
+			return false
+		profile_id = ProfileManager.active_profile_id
+
+	if profile_id == -1 or profile_id == 0:
+		push_error("❌ No active profile selected; cannot log scene.")
+		return false
+
 	if db == null:
 		if not init_db():
 			return false
 
-	var success := db.query_with_bindings("SELECT COUNT(*) AS count FROM game_path WHERE scene_path = ?", [scene_path])
-	if success and db.query_result.size() > 0 and int(db.query_result[0]["count"]) > 0:
-		print("ℹ️ Scene already logged:", scene_path)
+	# Check if this scene is already logged for THIS profile only
+	var check := db.query_with_bindings(
+		"SELECT COUNT(*) AS count FROM game_path WHERE scene_path = ? AND profile_id = ?;",
+		[scene_path, profile_id]
+	)
+
+	if not check:
+		push_error("❌ Failed to query game_path for duplicates.")
 		return false
 
+	if db.query_result.size() > 0 and int(db.query_result[0]["count"]) > 0:
+		print("ℹ️ Scene already logged for profile:", profile_id, " scene:", scene_path)
+		return false
+
+	# Insert new scene entry for this profile
 	var insert := db.query_with_bindings(
-		"INSERT INTO game_path (scene_path, branch_id) VALUES (?, ?)",
-		[scene_path, branch_id]
+		"INSERT INTO game_path (scene_path, branch_id, profile_id) VALUES (?, ?, ?);",
+		[scene_path, branch_id, profile_id]
 	)
-	print("📌 Scene logged:", scene_path, "Branch:", branch_id)
-	return insert
+
+	if insert:
+		print("📌 Scene logged:", scene_path, "Profile:", profile_id, "Branch:", branch_id)
+		return true
+	else:
+		push_error("❌ Failed to insert scene log")
+		return false
+
 
 func get_visited_scene_paths() -> Array:
 	if db == null:
 		if not init_db():
 			return []
-	
-	var success := db.query("SELECT scene_path FROM game_path")
+	var profile_id = ProfileManager.active_profile_id
+	if profile_id <= 0:
+		return []
+
+	var success := db.query_with_bindings(
+		"SELECT scene_path FROM game_path WHERE profile_id = ?;",
+		[profile_id]
+	)
 	if success and db.query_result.size() > 0:
 		var paths: Array = []
 		for row in db.query_result:
@@ -315,11 +378,17 @@ func get_last_scene_path() -> String:
 	if db == null:
 		if not init_db():
 			return ""
-	
-	var success := db.query("SELECT scene_path FROM game_path ORDER BY timestamp DESC LIMIT 1")
+	var profile_id = ProfileManager.active_profile_id
+	if profile_id <= 0:
+		return ""
+	var success := db.query_with_bindings(
+		"SELECT scene_path FROM game_path WHERE profile_id = ? ORDER BY timestamp DESC LIMIT 1;",
+		[profile_id]
+	)
 	if success and db.query_result.size() > 0:
 		return db.query_result[0]["scene_path"]
 	return ""
+
 
 
 # -----------------------
@@ -344,12 +413,24 @@ func get_memory_shard_count() -> int:
 	if db == null:
 		if not init_db():
 			return 0
-	var success := db.query("SELECT COUNT(*) AS count FROM memory_shards;")
+
+	var profile_id = ProfileManager.active_profile_id
+	if profile_id == 0:
+		push_error("❌ No active profile found.")
+		return 0
+
+	# Count memory shards only for this profile
+	var success := db.query_with_bindings(
+		"SELECT COUNT(*) AS count FROM memory_shards WHERE profile_id = ?;",
+		[profile_id]
+	)
+
 	if success and db.query_result.size() > 0:
 		return int(db.query_result[0]["count"])
 	else:
-		push_error("❌ Failed to query memory_shards count or table is empty.")
+		push_error("❌ Failed to query memory_shards count or table is empty for profile_id %d." % profile_id)
 		return 0
+
 
 func set_current_chapter(chapter: int) -> void:
 	current_chapter = chapter
@@ -374,3 +455,6 @@ func is_quest_completed(quest_id: String) -> bool:
 		return false
 
 	return int(db.query_result[0]["is_completed"]) == 1
+	
+func get_profile_id() -> int:
+	return ProfileManager.active_profile_id

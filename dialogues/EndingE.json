@@ -1,0 +1,67 @@
+{
+  "awaken": {
+	"start": {
+	  "name": "You",
+	  "sentences": [
+        "(Awakening, eyes narrowed, calculating) (The voice is icy, hollow) The convention. I remember the speed."
+	  ],
+		"next": "lyra_perfect_smile"
+	},
+	"lyra_perfect_smile": {
+	  "name": "Lyra",
+	  "sentences": [
+        "(Wakes abruptly, staring, relief turning to sheer terror) You remember! Oh, thank God! You're back!"
+	  ],
+	  "next": "ranting"
+	},
+	"ranting": {
+	  "name": "You",
+	  "sentences": [
+        "(Cutting her off, the accusation is deadly quiet) You were driving. And you didn't get a scratch. That entire dream was a desperate fabrication. A jail."
+	  ],
+	  "next": "guardian_said"
+	},
+	"guardian_said": {
+	  "name": "Lyra",
+	  "sentences": [
+        "(Whispering, pleading) No! I just needed to be near you! I never wanted to hurt you! I stayed here every day—"
+	  ],
+	  "next": "echo_said"
+	},
+	"echo_said": {
+	  "name": "You",
+	  "sentences": [
+        "(Fiercely) That was your penance! Not my recovery! You are the Guardian! You want me to stay weak, to stay in limbo!"
+	  ],
+	  "next": "touching_face"
+	},
+	"touching_face": {
+	  "name": "You",
+	  "sentences": [
+        "(Whisper, Narrative Text) The truth is revealed. The scar is guilt. Deny the jailer."
+	  ],
+	  "next": "guardian_saying"
+	},
+	"guardian_saying": {
+	  "name": "Narrator",
+	  "sentences": [
+        "(You strains, pulling violently at the IV restraints)"
+	  ],
+	  "next": "get_away"
+	},
+	"get_away": {
+	  "name": "Lyra",
+	  "sentences": [
+        "Get away from me! I won't let you keep me here! I won't!"
+	  ],
+	  "next": "rushing"
+	},
+	"rushing": {
+	  "name": "Lyra",
+	  "sentences": [
+        "(Rushing to restrain MC, panicked) Stop! You're hurting yourself! Please, calm down!"
+	  ],
+	  "next": "end"
+	}
+  }
+}

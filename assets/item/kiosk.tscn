@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://nv7clg27nvtw"]
+
+[ext_resource type="PackedScene" uid="uid://cq53m8yfuchdg" path="res://assets/item/kiosk/Kioskk finished.glb" id="1_6kq3g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6kq3g"]
+size = Vector3(2.7, 4.5, 2.4)
+
+[node name="Kiosk" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_6kq3g")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05000007, 2.25, 0)
+shape = SubResource("BoxShape3D_6kq3g")

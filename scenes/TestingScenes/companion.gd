@@ -4,9 +4,10 @@ extends Node3D
 @export var dialogue_file: String = "res://dialogues/CompanionScene2.json"
 @onready var hum_player: AudioStreamPlayer3D = $hum_player
 
+var quest = "follow_hum"
 var player_in_range = false
 var dialogue_started = false
-var player_ref: Node = null  # store reference to player
+var player_ref: Node = null
 
 func _ready():
 	hum_player.stream = preload("res://assets/audio/ambient/humming.mp3")
@@ -14,7 +15,7 @@ func _ready():
 	hum_player.attenuation_model = AudioStreamPlayer3D.ATTENUATION_DISABLED
 	hum_player.unit_size = 5.0
 	hum_player.max_distance = 100.0
-	hum_player.volume_db = -6
+	hum_player.volume_db = 30
 	hum_player.play()
 	
 	$Area3D.body_entered.connect(_on_body_entered)
@@ -24,8 +25,8 @@ func _on_body_entered(body):
 	if body.is_in_group("player"):
 		player_in_range = true
 		player_ref = body
-
-		# Automatically start dialogue when entering area (only once)
+		QuestManager.complete_objective(quest, quest)
+		ItemPopUp.show_message("Quest Completed : Who is humming", 0.84,)
 		if not dialogue_started:
 			dialogue_started = true
 
@@ -52,12 +53,19 @@ func _input(event):
 func _on_dialogue_finished():
 		# ✅ Log scene completion for branching system
 	if SaveManager:
+		var saved := SaveManager.save_game()
+		if saved:
+			print("💾 Game state saved successfully")
+		else:
+			print("❌ Failed to save game state")
+
+	# ✅ Log scene completion for branching system
+	if SaveManager:
 		var scene_path = get_tree().current_scene.scene_file_path
-		var branch_id = "First_Exploration"  # You can use a meaningful ID like the BranchNode title or event name
+		var branch_id = "First Exploration"  # Or any meaningful branch ID
 		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
 		if logged:
 			print("📌 Scene logged to game_path:", scene_path)
-			ItemPopUp.show_message("Saving...")
 		else:
 			print("ℹ️ Scene already logged or failed to log.")
 			

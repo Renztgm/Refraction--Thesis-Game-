@@ -40,17 +40,17 @@ func _interact() -> void:
 	
 	var dialogue_manager = get_node("../../DialogueManager")
 	
-	if not quest_exist:
-		dialogue_manager.load_dialogue(dialogue, dialogue_name)
-		dialogue_manager.show_node("quest_not_exist")
-		return
-	
-	if quest_done:
-		if dialogue_manager:
-			print("quest_done dialogue triggered")
-			dialogue_manager.load_dialogue(dialogue, dialogue_name)
-			dialogue_manager.show_node("quest_already_done")
-		return
+	#if not quest_exist:
+		#dialogue_manager.load_dialogue(dialogue, dialogue_name)
+		#dialogue_manager.show_node("quest_not_exist")
+		#return
+	#
+	#if quest_done:
+		#if dialogue_manager:
+			#print("quest_done dialogue triggered")
+			#dialogue_manager.load_dialogue(dialogue, dialogue_name)
+			#dialogue_manager.show_node("quest_already_done")
+		#return
 
 	if not has_scotch_tape:
 		if dialogue_manager:

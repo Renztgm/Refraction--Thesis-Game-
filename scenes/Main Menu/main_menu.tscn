@@ -1,19 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq2ix7cgwm5b"]
+[gd_scene load_steps=15 format=3 uid="uid://dq2ix7cgwm5b"]
 
 [ext_resource type="Script" uid="uid://bbr3ag0pe55xm" path="res://scenes/Main Menu/main_menu.gd" id="1_hk6sr"]
-[ext_resource type="Texture2D" uid="uid://d0iauasyqnr50" path="res://assets/background/Frame 2.png" id="2_1o70l"]
-[ext_resource type="Texture2D" uid="uid://bwivixqba5yfe" path="res://assets/background/Group 2.png" id="3_iscfu"]
+[ext_resource type="Texture2D" uid="uid://ibd23y72atom" path="res://assets/MainMenu/New/background.png" id="2_mqky1"]
+[ext_resource type="Texture2D" uid="uid://7qtjpn5hjmh2" path="res://assets/MainMenu/New/title.png" id="3_4sfdd"]
+[ext_resource type="Script" uid="uid://dwecxepib76am" path="res://scenes/Main Menu/title.gd" id="4_bnuun"]
 [ext_resource type="FontFile" uid="uid://bvrundhiy7tsu" path="res://assets/fonts/KumarOne-Regular.ttf" id="4_iscfu"]
-[ext_resource type="Texture2D" uid="uid://cr43kayxip62v" path="res://assets/MainMenu/Glasses/GlassBase.png" id="5_3e4a6"]
-[ext_resource type="Texture2D" uid="uid://bowcieu5it7wf" path="res://assets/MainMenu/Glasses/Glass1.png" id="6_gc41w"]
+[ext_resource type="Texture2D" uid="uid://bfuwk86r0omqw" path="res://assets/MainMenu/New/shadow.png" id="5_bso06"]
+[ext_resource type="Script" uid="uid://b3il4c2b8icww" path="res://scenes/Main Menu/shadow.gd" id="6_xpnd4"]
+[ext_resource type="Texture2D" uid="uid://dtrhq84oqsqn4" path="res://assets/MainMenu/New/broken glass.png" id="7_xlgyj"]
+[ext_resource type="Script" uid="uid://1pik73h8bu46" path="res://scenes/Main Menu/brokenglass.gd" id="8_bqibv"]
+[ext_resource type="Script" uid="uid://bv3ouh4wn8khv" path="res://scenes/Main Menu/hovereffect.gd" id="10_ghmdy"]
+[ext_resource type="Texture2D" uid="uid://6lis47x0t7h8" path="res://assets/MainMenu/New/PRESS START.png" id="10_ss42s"]
+[ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="12_ro6tp"]
 
 [sub_resource type="FontVariation" id="FontVariation_3e4a6"]
 base_font = ExtResource("4_iscfu")
 
 [sub_resource type="FontVariation" id="FontVariation_gc41w"]
-base_font = ExtResource("4_iscfu")
-
-[sub_resource type="FontVariation" id="FontVariation_uq0hi"]
 base_font = ExtResource("4_iscfu")
 
 [node name="Main_Menu" type="Control"]
@@ -25,29 +28,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hk6sr")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_1o70l")
-expand_mode = 1
+[node name="Final Menu" type="Node2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(1.115, 1.115)
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -127.0
-offset_top = -95.0
-offset_right = 97.0
-offset_bottom = 141.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_iscfu")
-expand_mode = 2
+[node name="Background" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+texture = ExtResource("2_mqky1")
+
+[node name="Title" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+position = Vector2(0.89686096, -190.13452)
+texture = ExtResource("3_4sfdd")
+script = ExtResource("4_bnuun")
+
+[node name="Shadow" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+position = Vector2(98.65471, -8.071749)
+scale = Vector2(2, 2)
+texture = ExtResource("5_bso06")
+script = ExtResource("6_xpnd4")
+
+[node name="Brokenglass" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+texture = ExtResource("7_xlgyj")
+script = ExtResource("8_bqibv")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -56,49 +61,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
+theme_override_constants/margin_left = 250
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 120
-
-[node name="Seperator" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+theme_override_constants/margin_bottom = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 18
+size_flags_horizontal = 4
+theme_override_constants/separation = 60
 alignment = 1
-
-[node name="Seperator5" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Seperator6" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Seperator7" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Seperator3" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Seperator4" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Seperator8" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Seperator9" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="Seperator10" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -112,70 +89,166 @@ layout_mode = 2
 [node name="Seperator13" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("texture", "target_button")]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = SubResource("FontVariation_3e4a6")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
+flat = true
+alignment = 0
+script = ExtResource("10_ghmdy")
+texture = NodePath("icon")
+target_button = NodePath(".")
+
+[node name="icon" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/ContinueButton"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -50.0
+offset_right = 358.0
+offset_bottom = 50.0
+grow_vertical = 2
+texture = ExtResource("10_ss42s")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/ContinueButton"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.5
+offset_right = 300.0
+offset_bottom = 30.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_ro6tp")
+theme_override_font_sizes/font_size = 60
 text = "Continue"
-flat = true
-
-[node name="NewGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
-layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_3e4a6")
-theme_override_font_sizes/font_size = 20
-text = "Start Game"
-flat = true
-
-[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 32)
-layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_gc41w")
-theme_override_font_sizes/font_size = 20
-text = "Exit Game"
-flat = true
-
-[node name="Refraction - Title" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 12.0
-offset_top = 132.0
-offset_right = 1140.0
-offset_bottom = 293.0
-theme_override_fonts/font = SubResource("FontVariation_uq0hi")
-theme_override_font_sizes/font_size = 90
-text = "Refraction"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GlassBase" type="TextureRect" parent="."]
-visible = false
+[node name="NewGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("texture", "target_button")]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = SubResource("FontVariation_3e4a6")
+theme_override_font_sizes/font_size = 40
+flat = true
+alignment = 0
+script = ExtResource("10_ghmdy")
+texture = NodePath("icon")
+target_button = NodePath(".")
+
+[node name="icon" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/NewGameButton"]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -67.0
-offset_top = -46.0
-offset_right = 58.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = -50.0
+offset_right = 414.0
 offset_bottom = 50.0
-grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_3e4a6")
+texture = ExtResource("10_ss42s")
 expand_mode = 1
 
-[node name="Glass1" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 934.0
-offset_top = 451.0
-offset_right = 1279.0
-offset_bottom = 804.0
-texture = ExtResource("6_gc41w")
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/NewGameButton"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.5
+offset_right = 300.0
+offset_bottom = 30.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_ro6tp")
+theme_override_font_sizes/font_size = 60
+text = "New Game"
+vertical_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("texture", "target_button")]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = SubResource("FontVariation_3e4a6")
+theme_override_font_sizes/font_size = 40
+flat = true
+alignment = 0
+script = ExtResource("10_ghmdy")
+texture = NodePath("icon")
+target_button = NodePath(".")
+
+[node name="icon" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/SettingsButton"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -226.0
+offset_top = -54.0
+offset_right = 390.0
+offset_bottom = 46.0
+grow_vertical = 2
+texture = ExtResource("10_ss42s")
 expand_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SettingsButton"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.5
+offset_right = 300.0
+offset_bottom = 30.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_ro6tp")
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("texture", "target_button")]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = SubResource("FontVariation_gc41w")
+theme_override_font_sizes/font_size = 40
+flat = true
+alignment = 0
+script = ExtResource("10_ghmdy")
+texture = NodePath("icon")
+target_button = NodePath(".")
+
+[node name="icon" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/QuitButton"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -54.0
+offset_right = 230.0
+offset_bottom = 46.0
+grow_vertical = 2
+texture = ExtResource("10_ss42s")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/QuitButton"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.5
+offset_right = 300.0
+offset_bottom = 30.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_ro6tp")
+theme_override_font_sizes/font_size = 60
+text = "Quit"
+vertical_alignment = 1

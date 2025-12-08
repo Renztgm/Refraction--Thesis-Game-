@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvdu11flixmyj"]
+
+[ext_resource type="PackedScene" uid="uid://d0c6qmuto55m3" path="res://assets/Building/Broken Bridge/Island towerss broken bridge.gltf" id="1_hbvfn"]
+
+[node name="BrokenBridge" type="Node3D"]
+transform = Transform3D(0.9998477, 0, 0.017452406, 0, 1, 0, -0.017452406, 0, 0.9998477, 0, 0, 0)
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_hbvfn")]
+transform = Transform3D(185, 0, -6.616115e-07, 0, 185, 0, 6.616115e-07, 0, 185, 0, 0, 0)

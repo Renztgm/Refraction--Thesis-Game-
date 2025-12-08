@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://coobjoekr7vw3"]
+[gd_scene load_steps=43 format=3 uid="uid://coobjoekr7vw3"]
 
 [ext_resource type="Script" uid="uid://hs6qepgc50wr" path="res://scenes/Chapter3/Straight/Scene1/chapter_3_scene_1.gd" id="1_iuooq"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="1_o7y2i"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://ckk3chuu7xipa" path="res://scenes/Player/PlayerChasingBody.tscn" id="7_fp63k"]
 [ext_resource type="PackedScene" uid="uid://11s4rkbtw64m" path="res://scenes/NPCs/NPC/Monster.tscn" id="8_sv4aa"]
 [ext_resource type="Script" uid="uid://br33gg4c7t8gh" path="res://scenes/Chapter3/Straight/Scene1/player_teleportation.gd" id="10_ti62v"]
+[ext_resource type="Script" uid="uid://dgpkxn01o1wmr" path="res://scenes/Scene3/MemoryShard.gd" id="11_skf7c"]
+[ext_resource type="Texture2D" uid="uid://cl87ahsoj60p4" path="res://addons/pngs/shard_sprite.png" id="12_kel5d"]
+[ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="13_kel5d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hlusy"]
 
@@ -105,6 +108,36 @@ size = Vector3(2, 2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5gbf"]
 size = Vector3(17.388733, 2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s4gh2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otrxq"]
+atlas = ExtResource("12_kel5d")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmoyf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otrxq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="FontVariation" id="FontVariation_dux23"]
+base_font = ExtResource("13_kel5d")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7aiqe"]
+bg_color = Color(0.3032328, 0.30323285, 0.30323276, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_jjr34"]
+Panel/styles/panel = SubResource("StyleBoxFlat_7aiqe")
 
 [node name="Chapter3Scene1" type="Node3D"]
 script = ExtResource("1_iuooq")
@@ -232,16 +265,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.36896, 0.26, -72.203766)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.36896, 0.26, -32.203766)
 
 [node name="LongAlley10" parent="Alley" instance=ExtResource("6_eiwfd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.888374, 0.26, -10.852364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.488375, 0.26, -10.852364)
 
 [node name="LongAlley13" parent="Alley" instance=ExtResource("6_eiwfd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.888374, 0.26, -30.852364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.488375, 0.26, -30.852364)
 
 [node name="LongAlley14" parent="Alley" instance=ExtResource("6_eiwfd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.888374, 0.26, -50.852364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.488375, 0.26, -50.852364)
 
 [node name="LongAlley48" parent="Alley" instance=ExtResource("6_eiwfd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.111626, 0.26, -38.852364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.111626, 0.26, -39.852364)
 
 [node name="LongAlley5" parent="Alley" instance=ExtResource("6_eiwfd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28, 0.26, -25.252363)
@@ -603,7 +636,7 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_7bcrv")
 
 [node name="Player3d" parent="." groups=["player2"] instance=ExtResource("7_fp63k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, 0.6, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -7)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 0, 15)
@@ -615,4 +648,101 @@ script = ExtResource("10_ti62v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3926697, 0.5, -1)
 shape = SubResource("BoxShape3D_f5gbf")
 
+[node name="Shard" type="Node3D" parent="." groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.198801, 0, -41.70493)
+
+[node name="Area3D" type="Area3D" parent="Shard"]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("11_skf7c")
+shard_name = "memory_shard_3"
+shard_text = "A small, folded medical ID band, partially torn. The printed name is too blurred to read, but the date is stamped clearly: \"Admission 11/13\" (today's date in the real world). The plastic smells faintly of sanitizer and a metallic tang. You remember a paralyzing fear not of dying, but of waking up different, and someone squeezing your hand, telling you, \"Whatever happens, I'll still be right here.\""
+objective_id = "memory_shard_3"
+shard_scene_location = "Collapsed Alley"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shard/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.164978, 0)
+shape = SubResource("BoxShape3D_s4gh2")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Shard/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7147343, 0)
+billboard = 2
+shaded = true
+sprite_frames = SubResource("SpriteFrames_pmoyf")
+autoplay = "default"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+follow_viewport_enabled = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -20.5
+offset_right = 220.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_dux23")
+theme_override_font_sizes/font_size = 40
+text = "You can use sprint. "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="countdown" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -84.0
+offset_right = 216.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_dux23")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(100, 64)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = 36.0
+offset_right = 64.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jjr34")
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SHIFT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="gui_input" from="CanvasLayer/Panel" to="." method="_on_panel_gui_input"]

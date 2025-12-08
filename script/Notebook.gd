@@ -21,6 +21,7 @@ var typewriter_tween: Tween = null
 var full_text: String = ""
 
 func _ready():
+	float_object_up()
 	body_entered.connect(_on_body_entered)
 
 	if next_button:
@@ -62,20 +63,25 @@ func show_typewriter_text(text: String, auto_advance: bool = false) -> void:
 		var partial = text.substr(0, i + 1)
 		typewriter_tween.tween_callback(func(): dialogue_label.text = partial)
 		typewriter_tween.tween_interval(typewriter_speed)
-
-	# ✅ When finished, optionally auto‑advance
+		
 	if auto_advance:
-		typewriter_tween.tween_interval(2.0)  # delay
+		typewriter_tween.tween_interval(2.0)
 		typewriter_tween.tween_callback(func(): go_to_next_scene())
-
-
+		
 func go_to_next_scene():
 	hide_text()
 	ItemPopUp.show_message("Saving...")
+	if SaveManager:
+		var saved := SaveManager.save_game()
+		if saved:
+			print("💾 Game state saved successfully")
+		else:
+			print("❌ Failed to save game state")
+
 	# ✅ Log scene completion for branching system
 	if SaveManager:
 		var scene_path = get_tree().current_scene.scene_file_path
-		var branch_id = "Scene_3"  # You can use a meaningful ID like the BranchNode title or event name
+		var branch_id = "awakening"  # Or any meaningful branch ID
 		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
 		if logged:
 			print("📌 Scene logged to game_path:", scene_path)
@@ -96,12 +102,20 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		has_triggered = true
 		player_ref = body
-
+		quest_completed()
 		if player_ref.has_method("freeze_player"):
 			player_ref.freeze_player()
-
+		
+		
 		glitch_flash_effect()
 
+func quest_completed():
+	var is_quest_completed = QuestManager.is_quest_completed("explore_the_bookstore")
+	if not is_quest_completed:
+		QuestManager.complete_objective("explore_the_bookstore", "explore_the_bookstore_1")
+		ItemPopUp.show_message("Quest Completed: Secrets in the Stacks", 0.83)
+	else: 
+		push_error("Quest Completed Already!")
 
 func glitch_flash_effect() -> void:
 	if not flash_screen:
@@ -180,3 +194,14 @@ func hide_text() -> void:
 		next_button.visible = false
 	if panel:
 		panel.visible = false
+
+
+func float_object_up():
+	var tween = create_tween()
+	tween.tween_property(self, "position", position + Vector3(0,1,0), 1)
+	tween.tween_callback(float_object_down)
+
+func float_object_down(): 
+	var tween = create_tween()
+	tween.tween_property(self, "position", position + Vector3(0,-1,0), 1)
+	tween.tween_callback(float_object_up)

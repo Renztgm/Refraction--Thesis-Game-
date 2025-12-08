@@ -47,7 +47,7 @@ func collect_item():
 
 	# 🔔 Show notification
 # 🔔 Show popup via autoload
-	ItemPopUp.show_message("📦 Collected: " + objective_id, 2.0, Color.GREEN)
+	ItemPopUp.item_obtained_message(item_name, 2.0)
 
 
 	var ui = get_tree().get_nodes_in_group("inventory_ui")

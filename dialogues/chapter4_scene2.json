@@ -1,0 +1,86 @@
+{
+  "Lyra": {
+	"start": {
+	  "name": "Lyra",
+	  "sentences": [
+		"I was created from your fear of waking up alone…",
+		"But now you remember enough to see me clearly.",
+        "You're almost there. The person you were… is waiting on the other side."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 I don’t want to lose you.",
+		  "full_text": "I don’t want to lose you.",
+		  "next": "dont_want_to_lose"
+		},
+		{
+		  "text": "💬 Thank you… for staying.",
+		  "full_text": "Thank you… for staying.",
+		  "next": "thank_you_staying"
+		},
+		{
+		  "text": "💬 You’ll always be a part of me.",
+		  "full_text": "You’ll always be a part of me.",
+		  "next": "always_part_of_me"
+		}
+	  ]
+	},
+	"dont_want_to_lose": {
+	  "name": "Lyra",
+	  "sentences": [
+		"You’re not losing me.",
+        "You're learning where I truly belonged."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 Then stay with me a little longer.",
+		  "full_text": "Then stay with me a little longer.",
+		  "next": "stay_longer"
+		},
+		{
+		  "text": "💬 If you’re part of my fear… what happens when I let go?",
+		  "full_text": "If you're part of my fear… what happens when I let go?",
+		  "next": "what_happens_let_go"
+		}
+	  ]
+	},
+	"thank_you_staying": {
+	  "name": "Lyra",
+	  "sentences": [
+		"I stayed because you couldn’t face this place alone.",
+        "And now… you can."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 I’m not sure I can.",
+		  "full_text": "I’m not sure I can.",
+		  "next": "not_sure_can"
+		},
+		{
+		  "text": "💬 Then guide me through the rest.",
+		  "full_text": "Then guide me through the rest.",
+		  "next": "guidance_request"
+		}
+	  ]
+	},
+	"always_part_of_me": {
+	  "name": "Lyra",
+	  "sentences": [
+		"Then remember me kindly.",
+        "Not as fear… but as the thing that walked you through it."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 I will.",
+		  "full_text": "I will.",
+		  "next": "affirmation"
+		},
+		{
+		  "text": "💬 What happens to you now?",
+		  "full_text": "What happens to you now?",
+		  "next": "her_fate"
+		}
+	  ]
+	}
+  }
+}

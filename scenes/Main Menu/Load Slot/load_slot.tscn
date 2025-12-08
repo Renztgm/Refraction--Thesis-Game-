@@ -1,0 +1,123 @@
+[gd_scene load_steps=12 format=3 uid="uid://conyo30nnwm5y"]
+
+[ext_resource type="Script" uid="uid://2b3xs2x6mbo1" path="res://scenes/Main Menu/Load Slot/load_slot.gd" id="1_ddxgp"]
+[ext_resource type="Texture2D" uid="uid://brry7rdwawx3g" path="res://assets/ui/close.png" id="3_026c7"]
+[ext_resource type="Texture2D" uid="uid://ibd23y72atom" path="res://assets/MainMenu/New/background.png" id="3_pw22m"]
+[ext_resource type="Texture2D" uid="uid://7qtjpn5hjmh2" path="res://assets/MainMenu/New/title.png" id="4_woqd1"]
+[ext_resource type="Script" uid="uid://dwecxepib76am" path="res://scenes/Main Menu/title.gd" id="5_q7l0g"]
+[ext_resource type="Texture2D" uid="uid://bfuwk86r0omqw" path="res://assets/MainMenu/New/shadow.png" id="6_e8vu7"]
+[ext_resource type="Script" uid="uid://b3il4c2b8icww" path="res://scenes/Main Menu/shadow.gd" id="7_s5igo"]
+[ext_resource type="Texture2D" uid="uid://dtrhq84oqsqn4" path="res://assets/MainMenu/New/broken glass.png" id="8_tjlat"]
+[ext_resource type="Script" uid="uid://1pik73h8bu46" path="res://scenes/Main Menu/brokenglass.gd" id="9_3iscx"]
+[ext_resource type="PackedScene" uid="uid://cgo8372xuep72" path="res://scenes/Main Menu/CustomDeleteDialog.tscn" id="10_woqd1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pw22m"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.09411765, 0.09411765, 0.09411765, 0.78431374)
+border_width_bottom = 500
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="LoadSlot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ddxgp")
+
+[node name="Final Menu" type="Node2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(1.115, 1.115)
+
+[node name="Background" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+texture = ExtResource("3_pw22m")
+
+[node name="Title" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+position = Vector2(0.89686096, -190.13452)
+texture = ExtResource("4_woqd1")
+script = ExtResource("5_q7l0g")
+
+[node name="Shadow" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+position = Vector2(98.65471, -8.071749)
+scale = Vector2(2, 2)
+texture = ExtResource("6_e8vu7")
+script = ExtResource("7_s5igo")
+
+[node name="Brokenglass" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+texture = ExtResource("8_tjlat")
+script = ExtResource("9_3iscx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 330
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VScrollBar" type="ScrollContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pw22m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VScrollBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 192.0
+offset_bottom = 192.0
+focus_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_026c7")
+expand_mode = 1
+
+[node name="CustomDeleteDialog" parent="." instance=ExtResource("10_woqd1")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

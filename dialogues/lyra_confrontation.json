@@ -1,0 +1,55 @@
+{
+  "Lyra": {
+	"start": {
+	  "name": "You",
+	  "sentences": [
+		"That's... really you.",
+        "Why does it feel like I've known you longer than this place?"
+	  ],
+	  "next": "mirror_lies"
+	},
+	"mirror_lies": {
+	  "name": "Lyra",
+	  "sentences": [
+		"It was.",
+		"Maybe still is.",
+		"Your voice... it's clearer than I remember. I don’t have much time left.",
+		"This room, the mirror… they’re only echoes. I’m fading with them.",
+        "But you— you were never supposed to forget me."
+	  ],
+	  "start_quest": "res://scenes/quest/resources/MemoryCoreRoom.json",
+	  "next": "memory_return"
+	},
+	"memory_return": {
+	  "name": "You",
+	  "sentences": [
+		"Lyra…",
+		"I— I remember now.",
+		"You were with me before the collapse. Before everything fractured.",
+		"You stayed behind so I could escape.",
+        "I thought you were gone forever."
+	  ],
+	  "next": "lyra_fading"
+	},
+	"lyra_fading": {
+	  "name": "Lyra",
+	  "sentences": [
+		"I tried to follow you. I really did.",
+		"But my body didn’t make it out. Only this… imprint did.",
+		"I’ve been holding on, waiting for you to come back.",
+		"And now that you remember—",
+        "I can let go."
+	  ],
+	  "next": "end"
+	},
+	"end": {
+	  "name": "Companion",
+	  "sentences": [
+		"When the mirror breaks...",
+		"don’t rebuild me out of guilt.",
+		"Remember me because you choose to.",
+        "Not because I’m all that’s left."
+	  ]
+	}
+  }
+}

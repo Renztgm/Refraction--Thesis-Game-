@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://db6dlxp2p48mt"]
+
+[ext_resource type="Texture2D" uid="uid://l37i5mxvtb01" path="res://assets/Guardian/Guardian.png" id="1_46onu"]
+[ext_resource type="Script" uid="uid://co3d8o0smp8vu" path="res://scenes/NPCs/guardian_script.gd" id="2_tg5br"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qfyjq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_46onu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g2gs1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_46onu"]
+radius = 10.0
+
+[node name="Guardian" type="CharacterBody3D"]
+script = ExtResource("2_tg5br")
+
+[node name="Guardian" type="AnimatedSprite3D" parent="." groups=["npc"]]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_qfyjq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("CylinderShape3D_g2gs1")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_46onu")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
