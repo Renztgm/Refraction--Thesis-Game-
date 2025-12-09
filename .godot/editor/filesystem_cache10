@@ -1,7 +1,7 @@
 72322a848ab928aa5c89f0cb78209805
-::res://::1765219667
+::res://::1765243324
 concre.png::CompressedTexture2D/CompressedTexture2D::4619939674361576101::1763510549::1763510549::1::::<><><>0<>0<>dbfb887bacae4516670e9fd45b7e85b6<>res://.godot/imported/concre.png-178989d46e63488dc300b46c1114b3a5.s3tc.ctex<*>res://.godot/imported/concre.png-178989d46e63488dc300b46c1114b3a5.etc2.ctex::
-export_presets.cfg::TextFile::-1::1765218907::0::1::::<><><>0<>0<><>::
+export_presets.cfg::TextFile::-1::1765221693::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::7329119823398826953::1763510549::1763510549::1::::<><><>0<>0<>f913826a0a9dd0288fab745b67c51ede<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex<*>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.etc2.ctex::
 main_menu_press_start.gd::GDScript::1684303363649870256::1764620760::0::1::::<>Control<><>0<>0<><>::
 README.md::TextFile::-1::1763510549::0::1::::<><><>0<>0<><>::
@@ -17,7 +17,7 @@ godot-sqlite.gd::GDScript::6354497535622739150::1763510719::0::1::::<>EditorPlug
 LICENSE.md::TextFile::-1::1763510719::0::1::::<><><>0<>0<><>::
 plugin.cfg::TextFile::-1::1763510719::0::1::::<><><>0<>0<><>::
 README.md::TextFile::-1::1763510719::0::1::::<><><>0<>0<><>::
-::res://addons/godot-sqlite/bin/::1765219653
+::res://addons/godot-sqlite/bin/::1765243314
 ::res://addons/godot-sqlite/bin/libgdsqlite.ios.template_debug.xcframework/::1763510720
 ::res://addons/godot-sqlite/bin/libgdsqlite.ios.template_debug.xcframework/ios-arm64/::1763510720
 ::res://addons/godot-sqlite/bin/libgdsqlite.ios.template_debug.xcframework/ios-arm64_x86_64-simulator/::1763510720
@@ -966,8 +966,8 @@ Trashbag.gltf::PackedScene/PackedScene::526447906324753595::1763510739::17635107
 Trashbag_0.png::CompressedTexture2D/CompressedTexture2D::522614715032050741::1763510739::1763510739::1::::<><><>0<>0<>3799710887d1ff48cd68aa3965884cfc<>res://.godot/imported/Trashbag_0.png-712f97aae41f62e1b7e41c045acc967e.s3tc.ctex<*>res://.godot/imported/Trashbag_0.png-712f97aae41f62e1b7e41c045acc967e.etc2.ctex::
 Trashbag_1.png::CompressedTexture2D/CompressedTexture2D::2704213142263017390::1763510739::1763510739::1::::<><><>0<>0<>4c4cbff5e9fce0554985abe7c2b8798c<>res://.godot/imported/Trashbag_1.png-9376c192c37d98b5265801fab970f050.s3tc.ctex<*>res://.godot/imported/Trashbag_1.png-9376c192c37d98b5265801fab970f050.etc2.ctex::
 Trashbag_2.png::CompressedTexture2D/CompressedTexture2D::5831324505848351908::1763510739::1763510739::1::::<><><>0<>0<>15ea10556f8e2b876aed28a989d61e4c<>res://.godot/imported/Trashbag_2.png-bc0bed6ead4478c793809d467b4a4eaf.s3tc.ctex<*>res://.godot/imported/Trashbag_2.png-bc0bed6ead4478c793809d467b4a4eaf.etc2.ctex::
-::res://assets/nature/::1765016590
-grass.gdshader::Shader::4475409272084852312::1765016590::0::1::::<><><>0<>0<><>::
+::res://assets/nature/::1765219763
+grass.gdshader::Shader::4475409272084852312::1765219763::0::1::::<><><>0<>0<><>::
 grass.glb::PackedScene::6519894458769923824::1763510739::1764612394::1::::<><><>0<>0<>4113bb6b9050400fcc7aad1de71a0347<>res://.godot/imported/grass.glb-25d63d44f81e6d754ef954559693547f.scn::uid://c3dio60jp4vd3::::res://assets/nature/grass.res
 grass.res::ArrayMesh::6329345378628322155::1764903933::0::1::::<><><>0<>0<><>::
 ::res://assets/roads/::1763510739
@@ -1337,10 +1337,10 @@ pathfindingsystem.gd::GDScript::1816907780612793385::1763510746::0::1::::Pathfin
 Scene3.tscn::PackedScene::175966075790566698::1765208379::0::1::::<><><>0<>0<><>::uid://b42g54u5kjqbp::::res://scenes/Map/OutsideMap.tscn<>uid://vq5qvu2yvsnw::::res://scenes/Scene3/scene_3.gd<>uid://btnevx6tvo7sf::::res://assets/Building/Building7.tscn<>uid://xdktxpaee1d::::res://scenes/Scene3/bookstore.gd<>uid://bdt2j4ph8b8no::::res://script/BookstoreMarker.gd<>uid://c8jfqypwf5vw5::::res://scenes/Player/Player3d.tscn<>uid://d3eleqvy3v1op::::res://assets/audio/ui/Click_sound.wav<>uid://cg5f5at0x4msp::::res://discarded/dubai_clouds.glb<>uid://jqndmx6wqtfy::::res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3<>uid://cqyi4xmd21ksa::::res://scenes/TestingScenes/gridsystem2.0.gd<>uid://dgpkxn01o1wmr::::res://scenes/Scene3/MemoryShard.gd<>uid://cc2bs557jdqgg::::res://scenes/NPCs/Npc2_No_sound.tscn<>uid://cl87ahsoj60p4::::res://addons/pngs/shard_sprite.png<>uid://crr85kvm8e1vw::::res://scenes/Inventory/InventoryUI.tscn<>uid://bsc2rl8o0kypo::::res://scenes/quest/questUI.tscn<>uid://bqgyp1ip2dc01::::res://scenes/UI/Minimap.tscn
 Scene3old.tscn::PackedScene::4284150894270010351::1763510746::0::1::::<><><>0<>0<><>::uid://ujnfad0nogiu::::res://assets/materials/road.tscn<>uid://05eg81tfg5nx::::res://scenes/Scene3/pathfindingsystem.gd<>uid://c51atvquonid3::::res://assets/Building/Building1.tscn<>uid://bf66clec7ik28::::res://assets/Building/Building2.tscn<>uid://cyby2eli2s01s::::res://assets/Building/Building3.tscn<>uid://cwa4jhihkwg0h::::res://assets/Building/Building5.tscn<>uid://ce3d7ovhkpl5l::::res://assets/Building/Building6.tscn<>uid://btnevx6tvo7sf::::res://assets/Building/Building7.tscn<>uid://xdktxpaee1d::::res://scenes/Scene3/bookstore.gd<>uid://bdt2j4ph8b8no::::res://script/BookstoreMarker.gd<>uid://dtfgqr0mqat3g::::res://addons/walls/Walls.tscn<>uid://c8jfqypwf5vw5::::res://scenes/Player/Player3d.tscn<>uid://kc6yxx08keph::::res://assets/audio/music/background_music.wav<>uid://d3eleqvy3v1op::::res://assets/audio/ui/Click_sound.wav<>uid://jqndmx6wqtfy::::res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3<>uid://cc2bs557jdqgg::::res://scenes/NPCs/Npc2_No_sound.tscn<>uid://bd0jlfvbuskwa::::res://scenes/Scene3/grid.gd
 scene_3.gd::GDScript::1508846978095225248::1764936316::0::1::::<>Node3D<><>0<>0<><>::
-::res://scenes/Scene4/::1765208686
+::res://scenes/Scene4/::1765219763
 AlleyScene.gdshader::Shader::7962764647144580196::1763510746::0::1::::<><><>0<>0<><>::
 AlleyScene.tscn::PackedScene::479323343812935843::1765208686::0::1::::<><><>0<>0<><>::uid://ujnfad0nogiu::::res://assets/materials/road.tscn<>uid://mr5s52tyupua::::res://scenes/Scene4/alley_scene.gd<>uid://c51atvquonid3::::res://assets/Building/Building1.tscn<>uid://cfktk12g8ivvp::::res://assets/roads/alleyroad.tscn<>uid://bf66clec7ik28::::res://assets/Building/Building2.tscn<>uid://cyby2eli2s01s::::res://assets/Building/Building3.tscn<>uid://cwa4jhihkwg0h::::res://assets/Building/Building5.tscn<>uid://ce3d7ovhkpl5l::::res://assets/Building/Building6.tscn<>uid://btnevx6tvo7sf::::res://assets/Building/Building7.tscn<>uid://bdt2j4ph8b8no::::res://script/BookstoreMarker.gd<>uid://dtfgqr0mqat3g::::res://addons/walls/Walls.tscn<>uid://dlphtnlt7a0vw::::res://scenes/Scene4/AlleyScene.gdshader<>uid://c8jfqypwf5vw5::::res://scenes/Player/Player3d.tscn<>uid://cuby3fgy78mac::::res://script/Trigger_Flicker.gd<>uid://dhshtkqj6blyb::::res://scenes/UI/DialogueManager.tscn<>uid://c1boiuwcd58i6::::res://assets/hollow echo/Idle silo.png<>uid://b7xyc2jckr8uq::::res://assets/audio/ambient/Static_Sound.mp3<>uid://p2trvwfmiiq6::::res://scenes/Scene4/AlleySceneScreenWarp.gdshader<>uid://crr85kvm8e1vw::::res://scenes/Inventory/InventoryUI.tscn<>uid://bsc2rl8o0kypo::::res://scenes/quest/questUI.tscn<>uid://jjwwj1v4ia2::::res://scenes/NPCs/Npc2_follow.tscn<>uid://4gntmajsnftj::::res://scenes/Scene4/jump_scare.gd<>uid://dpvkvaejbmaf1::::res://assets/Building/Skybox/Skybox.tscn
-AlleySceneScreenWarp.gdshader::Shader::1109755972508633343::1765016590::0::1::::<><><>0<>0<><>::
+AlleySceneScreenWarp.gdshader::Shader::1109755972508633343::1765219763::0::1::::<><><>0<>0<><>::
 alley_scene.gd::GDScript::879215817855059620::1764942719::0::1::::<>Node3D<><>0<>0<><>::
 jump_scare.gd::GDScript::2048686613731146827::1764943512::0::1::::<>Area3D<><>0<>0<><>::
 ::res://scenes/Scene5/::1764950547
@@ -1366,7 +1366,7 @@ TestingGrounds.tscn::PackedScene::6482488726950635825::1763510747::0::1::::<><><
 testing_npc.gd::GDScript::6529848121975530522::1763510747::0::1::::<>Node3D<><>0<>0<><>::
 test_area.gd::GDScript::6958881362220049819::1763510747::0::1::::<>RefCounted<><>0<>0<><>::
 test_library.tscn::PackedScene::5539181523183007017::1763630118::0::1::::<><><>0<>0<><>::uid://bjtscvuo6f5bk::::res://assets/Building/LibraryRoom/libraryRoom.gltf
-::res://scenes/UI/::1765219511
+::res://scenes/UI/::1765220096
 CanvasPause.tscn::PackedScene::6166576849236557987::1763989030::0::1::::<><><>0<>0<><>::uid://es15vvar8ks7::::res://scenes/UI/canvas_pause.gd<>uid://cowfut2pi6gjg::::res://scenes/UI/PauseMenu.tscn<>uid://dhtiik766w01r::::res://scenes/UI/SettingsUI.tscn
 canvas_pause.gd::GDScript::319547525209553156::1764625096::0::1::::<>Control<><>0<>0<><>::
 ControlHint.tscn::PackedScene::1866537077221608321::1763510747::0::1::::<><><>0<>0<><>::uid://bld37rayw8bvd::::res://assets/ui/ControlHints.png
@@ -1390,12 +1390,12 @@ Minimap.tscn::PackedScene::3523313821844219036::1764672622::0::1::::<><><>0<>0<>
 MinimapRoot.tscn::PackedScene::7329564216943406029::1763510747::0::1::::<><><>0<>0<><>::uid://dhd42cjg8fyqg::::res://scenes/UI/minimap_root.gd<>uid://clbw1ghira5e7::::res://assets/ui/Dot.png
 minimap_button.gd::GDScript::2032482739211326816::1764523336::0::1::::<>Control<><>0<>0<><>::
 minimap_root.gd::GDScript::7658586218300245310::1763510747::0::1::::<>Node<><>0<>0<><>::
-new_chapter_scene.tscn::PackedScene::4105521391259999838::1765219511::0::1::::<><><>0<>0<><>::uid://d2cjpdi7fpupg::::res://script/new_chapter_scene.gd<>uid://bcbpvais3v8cv::::res://assets/fonts/CONSOLA.TTF
+new_chapter_scene.tscn::PackedScene::4105521391259999838::1765220096::0::1::::<><><>0<>0<><>::uid://d2cjpdi7fpupg::::res://script/new_chapter_scene.gd<>uid://bcbpvais3v8cv::::res://assets/fonts/CONSOLA.TTF
 PauseMenu.tscn::PackedScene::5801241830096720488::1764623479::0::1::::<><><>0<>0<><>::uid://twc3ucts3ymp::::res://script/PauseMenu.gd<>uid://dyesvrdup0jst::::res://assets/ui/background_inventory.png<>uid://bcbpvais3v8cv::::res://assets/fonts/CONSOLA.TTF
 SaveConfirmDialog.tscn::PackedScene::5319457789754607412::1763510748::0::1::::<><><>0<>0<><>::res://script/save_confirm_dialog.gd<>uid://dvth77lm03vyw::::res://assets/fonts/PixelifySans-VariableFont_wght.ttf
 SettingsUI.tscn::PackedScene::7690307732284098281::1764528215::0::1::::<><><>0<>0<><>::uid://dalqm6nay3tlx::::res://script/SettingsUI.gd<>uid://bcbpvais3v8cv::::res://assets/fonts/CONSOLA.TTF
 ShardNotification.tscn::PackedScene::3120005876622669787::1764576655::0::1::::<><><>0<>0<><>::uid://deonnfpmlkp2h::::res://script/shard_notification.gd
-::res://script/::1765219511
+::res://script/::1765219875
 AudioManager.gd::GDScript::6099164403607234055::1764836141::0::1::::<>Node<><>0<>0<><>::
 BookstoreMarker.gd::GDScript::2637867369595617924::1763510748::0::1::::<>Node3D<><>0<>0<><>::
 ch_2_scene_1npc.gd::GDScript::8726370961761418775::1763549514::0::1::::<>CharacterBody3D<><>0<>0<><>::
@@ -1412,7 +1412,7 @@ LoadingScreen.gd::GDScript::4634138353558510523::1763510748::0::1::::<>Control<>
 main.gd::GDScript::3685381906816740442::1763510748::0::1::::<>Node3D<><>0<>0<><>::
 MinimapGridOverlay.gd::GDScript::4064514457977772405::1764521233::0::1::::<>Control<><>0<>0<><>::
 NarrativeProgression.gd::GDScript::7130114846235448705::1765164855::0::1::::<>Node<><>0<>0<><>::
-new_chapter_scene.gd::GDScript::9059062996047482908::1765219511::0::1::::<>CanvasLayer<><>0<>0<><>::
+new_chapter_scene.gd::GDScript::9059062996047482908::1765219875::0::1::::<>CanvasLayer<><>0<>0<><>::
 Notebook.gd::GDScript::5241154038488576709::1765115989::0::1::::<>Area3D<><>0<>0<><>::
 npc_1.gd::GDScript::2367658227749554380::1763510748::0::1::::<>CharacterBody3D<><>0<>0<><>::
 npc_2.gd::GDScript::7752584722416629477::1763510748::0::1::::<>CharacterBody3D<><>0<>0<><>::

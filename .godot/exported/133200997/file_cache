@@ -117,7 +117,7 @@ res://scenes/Chapter2/Scene1/Chapter2Scene1Outside.tscn::4643bcd9de250ddcb3033e9
 res://scenes/Chapter2/Scene2/Chapter2Scene2.tscn::0fad0b414df404db6d99cb702e205b37::1765101560::res://.godot/exported/133200997/export-c78e4d6cdf2aea04df83433327a11bae-Chapter2Scene2.scn
 res://scenes/Map/OutsideMap.tscn::ccba685f8a9bb05fb9179e7668f718ed::1763510745::res://.godot/exported/133200997/export-79e3ec9cde436b9ccc8ffbaf919b8eb3-OutsideMap.scn
 res://scenes/quest/request/picture_fragments.tres::9cd7afb4a794a2171da70f7f8f2e76b5::1763510746::res://.godot/exported/133200997/export-c1162ec2cbb9033472955ed50d3a5aee-picture_fragments.res
-res://scenes/quest/QuestEntry.tscn::b62da07667118b7344b90dfc8a51bfe6::1765218121::res://.godot/exported/133200997/export-a4eb9cc4c8cd164766d71df79e621630-QuestEntry.scn
+res://scenes/quest/QuestEntry.tscn::78599c7e27c1573c44e37bd00ca718db::1765219266::res://.godot/exported/133200997/export-a4eb9cc4c8cd164766d71df79e621630-QuestEntry.scn
 res://scenes/quest/questUI.tscn::5f93ffd8d1b9f153a4ce4c3d2862adca::1765216397::res://.godot/exported/133200997/export-a6eaf07aa52c378e49daac46bcde1bcc-questUI.scn
 res://scenes/UI/ItemPopUp.tscn::4b3558713190df1afe513bffe59ccdcc::1763510747::res://.godot/exported/133200997/export-b1e35cf95f80da4b3f76f1a6b2b900d1-ItemPopUp.scn
 res://assets/Building/Skybox/Skybox.tscn::adcf358c59feafcda695ae38041c5eee::1763510735::res://.godot/exported/133200997/export-982028c17d84fcbfd2b87ed970f53279-Skybox.scn
@@ -192,4 +192,4 @@ res://Tres/main_menu_press_start.tres::fe1efff41d252586d484677da633869e::1764619
 res://scenes/Chapter3/Straight/Scene2/Alternate/IncompleteMemory.tscn::7680718a856fe4488ecedeabb8fdf487::1765163673::res://.godot/exported/133200997/export-76c2923002bcb6da4947e78bb96ce5c9-IncompleteMemory.scn
 res://scenes/Main Menu/CustomDeleteDialog.tscn::7dc2fad6181a97fd82f63c25167f0761::1765185040::res://.godot/exported/133200997/export-99b8ef602c17984737f275f41060b8c7-CustomDeleteDialog.scn
 res://scenes/quest/QuestListItem.tscn::068eb9e4ba6f96f2f79eb305e0590dfd::1765211566::res://.godot/exported/133200997/export-4ab5c4c117ddb0245aaebcc4bcb99488-QuestListItem.scn
-res://scenes/UI/new_chapter_scene.tscn::35b0d708458c3ae5310a57db127e7081::1765124008::res://.godot/exported/133200997/export-f10e5b043db9a5fdb834af26ea6c925a-new_chapter_scene.scn
+res://scenes/UI/new_chapter_scene.tscn::35b0d708458c3ae5310a57db127e7081::1765220096::res://.godot/exported/133200997/export-f10e5b043db9a5fdb834af26ea6c925a-new_chapter_scene.scn
