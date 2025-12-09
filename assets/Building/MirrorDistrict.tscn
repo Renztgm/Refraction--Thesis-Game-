@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://babci3ubwf6o6"]
+
+[ext_resource type="PackedScene" uid="uid://dv4jenfd5po0w" path="res://assets/Building/Mirror/Beta Mirror mesh type.gltf" id="1_ri380"]
+
+[node name="MirrorDistrict" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_ri380")]
+transform = Transform3D(6500, 0, 0, 0, 6500, 0, 0, 0, 6500, 0, -0.8, 0)

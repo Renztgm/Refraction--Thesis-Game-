@@ -1,0 +1,10 @@
+[
+	{
+	"id": "talk_to_lyra",
+	"title": "Talk to Lyra",
+	"description": "Talk to lyra to find some clues",
+	"objectives": [
+	  { "id": "talk_to_her", "text": "talk to her...", "is_completed": false }
+	]
+  }
+]

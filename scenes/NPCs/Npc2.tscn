@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cgm1g5r63m2yc" path="res://addons/Walk.png" id="1_2bvor"]
 [ext_resource type="Script" uid="uid://dipn6482q8rld" path="res://script/npc_2.gd" id="1_2xsjv"]
 [ext_resource type="Texture2D" uid="uid://cfg0mj1tupnyu" path="res://addons/Idle.png" id="1_7goet"]
-[ext_resource type="AudioStream" uid="uid://cdh2jej0q16ow" path="res://assets/audio/ambient/humming.mp3" id="4_sexoq"]
+[ext_resource type="AudioStream" uid="uid://cdh2jej0q16ow" path="res://assets/audio/deprecated_sounds/humming.mp3" id="4_sexoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ykmp"]
 atlas = ExtResource("1_7goet")

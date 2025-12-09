@@ -24,7 +24,7 @@ func _process(delta):
 		completion_label.text = ""
 		ItemPopUp.show_message("Picture Obtained!")
 		QuestManager.complete_objective("complete_picture", str(objective_id))
-
+		remove_old_items()
 		var workbench_root = get_parent()  # PuzzleManager is child of Workingbench
 		if workbench_root:
 			# Wait 10 seconds before starting fade
@@ -41,8 +41,6 @@ func _process(delta):
 
 			# Optional: fade back in if you want to return to gameplay
 			FadeOutCanvas.fade_in(1.0)
-
-			
 
 func disassemble_picture():
 	var rng = RandomNumberGenerator.new()
@@ -65,3 +63,45 @@ func is_puzzle_complete() -> bool:
 		if frag.position.distance_to(frag.correct_position) > 1.0:
 			return false
 	return true
+	
+func remove_old_items():
+		InventoryManager.remove_item_id(1)
+		InventoryManager.remove_item_id(2)
+		InventoryManager.remove_item_id(3)
+		InventoryManager.remove_item_id(4)
+		InventoryManager.remove_item_id(10)
+		picture_obtained()
+		
+func picture_obtained():
+	var item_id = 11
+	var item_name = "Picture of the Past"
+	var item_description = "“One breathes without breathing,
+		One watches without seeing.
+		One lies in stillness,
+		One walks in dreaming.
+		When the path of the waking touches the path of the slept,
+		There, your truth is kept.”"
+
+	var icon_path = "res://assets/icons/default.png"
+	if not ResourceLoader.exists(icon_path):
+		icon_path = "res://assets/icons/default.png"
+
+	var item_data = {
+		"id": item_id,
+		"name": item_name,
+		"description": item_description,
+		"icon_path": icon_path,
+		"stack_size": 1,
+		"is_completed": true
+	}
+
+	InventoryManager.save_item_to_items_table(item_data)
+
+	var slot_id = InventoryManager.get_next_available_slot()
+	InventoryManager.add_item(slot_id, item_id, 1)
+
+	ItemPopUp.show_message("📦 Collected: " + objective_id, 2.0, Color.GREEN)
+
+	var ui = get_tree().get_nodes_in_group("inventory_ui")
+	if ui.size() > 0 and ui[0].active_tab == "items":
+		ui[0].load_inventory()

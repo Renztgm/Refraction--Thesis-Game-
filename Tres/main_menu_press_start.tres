@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bl548hy01uu4a"]
+
+[ext_resource type="Texture2D" uid="uid://6lis47x0t7h8" path="res://assets/MainMenu/New/PRESS START.png" id="1_ay8bd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8bq4f"]
+texture = ExtResource("1_ay8bd")
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxTexture_8bq4f")

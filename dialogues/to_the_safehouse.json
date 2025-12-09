@@ -1,0 +1,18 @@
+{
+  "Companion": {
+	"start": {
+	  "name": "Stranger",
+	  "sentences": [
+		"It's almost night, let's go to the safe house. It's down that alley."
+	  ],
+	  "next": "lets_go"
+	},
+	"lets_go": {
+	  "name": "You",
+	  "sentences": [
+		"Let's go—"
+	  ],
+	  "next": "end"
+	}
+  }
+}

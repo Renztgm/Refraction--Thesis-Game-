@@ -1,5 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://tyasr24qos6a"]
+[gd_scene load_steps=36 format=3 uid="uid://tyasr24qos6a"]
 
+[ext_resource type="Script" uid="uid://ceh2erav0tlid" path="res://scenes/Chapter2/Scene1/chapter_2_scene_1_outside.gd" id="1_5v14d"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="5_t7hhd"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="6_u854x"]
 [ext_resource type="PackedScene" uid="uid://b42g54u5kjqbp" path="res://scenes/Map/OutsideMap.tscn" id="8_mthr6"]
@@ -108,6 +109,7 @@ animations = [{
 }]
 
 [node name="Chapter2Scene1Outside" type="Node3D"]
+script = ExtResource("1_5v14d")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -164,7 +166,6 @@ visible = false
 
 [node name="Player3d" parent="." groups=["player2"] instance=ExtResource("17_cj6ks")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.40884, 0.8313031, -74.49312)
-collision_layer = 4
 collision_mask = 7
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["grid"]]

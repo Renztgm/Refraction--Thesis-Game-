@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var button: Button = $restartButton
 
@@ -16,6 +16,7 @@ func _on_restart_pressed() -> void:
 	pass
 
 func _on_restart_button_pressed() -> void:
+	AudioMgr.play_ui_sound("res://assets/audio/ui/Click_sound.wav")
 	print("Restart button pressed!")
 	get_tree().paused = false
 	visible = false

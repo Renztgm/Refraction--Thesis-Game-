@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://dct3d46n2q7pv"]
+
+[ext_resource type="Script" uid="uid://ciiyd68qdq57u" path="res://scenes/Main Menu/Create Proflie/create_profile.gd" id="1_oola6"]
+[ext_resource type="Texture2D" uid="uid://brry7rdwawx3g" path="res://assets/ui/close.png" id="2_xq8jn"]
+[ext_resource type="Texture2D" uid="uid://ibd23y72atom" path="res://assets/MainMenu/New/background.png" id="3_7li3f"]
+[ext_resource type="Texture2D" uid="uid://7qtjpn5hjmh2" path="res://assets/MainMenu/New/title.png" id="4_jt020"]
+[ext_resource type="Script" uid="uid://dwecxepib76am" path="res://scenes/Main Menu/title.gd" id="5_i1a5a"]
+[ext_resource type="Texture2D" uid="uid://bfuwk86r0omqw" path="res://assets/MainMenu/New/shadow.png" id="6_k46b3"]
+[ext_resource type="Script" uid="uid://b3il4c2b8icww" path="res://scenes/Main Menu/shadow.gd" id="7_485qb"]
+[ext_resource type="Texture2D" uid="uid://dtrhq84oqsqn4" path="res://assets/MainMenu/New/broken glass.png" id="8_g7rco"]
+[ext_resource type="Script" uid="uid://1pik73h8bu46" path="res://scenes/Main Menu/brokenglass.gd" id="9_d17jo"]
+
+[node name="CreateProfile" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oola6")
+
+[node name="Final Menu" type="Node2D" parent="."]
+position = Vector2(959, 540)
+scale = Vector2(1.115, 1.115)
+
+[node name="Background" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+texture = ExtResource("3_7li3f")
+
+[node name="Title" type="Sprite2D" parent="Final Menu"]
+visible = false
+texture_filter = 1
+position = Vector2(0.89686096, -190.13452)
+texture = ExtResource("4_jt020")
+script = ExtResource("5_i1a5a")
+
+[node name="Shadow" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+position = Vector2(98.65471, -8.071749)
+scale = Vector2(2, 2)
+texture = ExtResource("6_k46b3")
+script = ExtResource("7_485qb")
+
+[node name="Brokenglass" type="Sprite2D" parent="Final Menu"]
+texture_filter = 1
+texture = ExtResource("8_g7rco")
+script = ExtResource("9_d17jo")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -33.0
+offset_right = 35.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NameInput" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 192.0
+offset_bottom = 192.0
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xq8jn")
+expand_mode = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

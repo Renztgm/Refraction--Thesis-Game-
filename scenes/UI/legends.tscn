@@ -1,0 +1,131 @@
+[gd_scene load_steps=4 format=3 uid="uid://blilji8qb56sh"]
+
+[ext_resource type="Script" uid="uid://bjplj22epncro" path="res://scenes/UI/legends.gd" id="1_vuowh"]
+
+[sub_resource type="Gradient" id="Gradient_4to3o"]
+colors = PackedColorArray(0, 0, 0, 0.47058824, 0, 0, 0, 0.47058824)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vuowh"]
+gradient = SubResource("Gradient_4to3o")
+
+[node name="Legends" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vuowh")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 0
+offset_left = 424.0
+offset_top = -8.0
+offset_right = 776.0
+offset_bottom = 447.0
+
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_vuowh")
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Legends: "
+vertical_alignment = 1
+
+[node name="Player" type="HBoxContainer" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Player"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+color = Color(0, 1, 0, 1)
+
+[node name="Label" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Player"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Player"
+
+[node name="NPC" type="HBoxContainer" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer/MarginContainer/VBoxContainer/NPC"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+color = Color(0.6, 0, 0.8, 1)
+
+[node name="Label" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer/NPC"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "NPC"
+
+[node name="Item" type="HBoxContainer" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Item"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+color = Color(1, 1, 0, 1)
+
+[node name="Label" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Item"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Item"
+
+[node name="Interactables" type="HBoxContainer" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Interactables"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+color = Color(0.20392157, 0.36078432, 0.8784314, 1)
+
+[node name="Label" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Interactables"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Interactables"
+
+[node name="Walkable Path" type="HBoxContainer" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Walkable Path"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Label" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Walkable Path"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Walkables Path"
+
+[node name="Void_Barrier_Obstacles" type="HBoxContainer" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Void_Barrier_Obstacles"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer/Void_Barrier_Obstacles"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Void/Obstacles"

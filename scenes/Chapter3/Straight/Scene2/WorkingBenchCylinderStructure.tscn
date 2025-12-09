@@ -1,0 +1,124 @@
+[gd_scene load_steps=15 format=3 uid="uid://ck8mt2o2ie5mf"]
+
+[ext_resource type="Texture2D" uid="uid://dmsnb3a6klasc" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-1-column-1.png" id="1_k35re"]
+[ext_resource type="Script" uid="uid://dxfiargl6u18p" path="res://scenes/Chapter2/Scene2/fragment.gd" id="2_csafj"]
+[ext_resource type="Texture2D" uid="uid://bggpd1sldax8o" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-1-column-2.png" id="3_smn8m"]
+[ext_resource type="Texture2D" uid="uid://d3rprwl4vn0gv" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-2-column-1.png" id="4_fa53s"]
+[ext_resource type="Texture2D" uid="uid://cqxw3p80qpvtp" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-2-column-2.png" id="5_el4g3"]
+[ext_resource type="Texture2D" uid="uid://c7tabcq4c054x" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-3-column-1.png" id="6_o6equ"]
+[ext_resource type="Script" uid="uid://gdn8uwri7xte" path="res://scenes/Chapter3/Straight/Scene2/puzzle_manager.gd" id="6_yxck6"]
+[ext_resource type="Texture2D" uid="uid://mcw43buh4cde" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-3-column-2.png" id="7_fe0ms"]
+[ext_resource type="Texture2D" uid="uid://b6muudlodp82p" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-4-column-1.png" id="8_a4uti"]
+[ext_resource type="Texture2D" uid="uid://dysotdame4115" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-4-column-2.png" id="9_pw5lm"]
+[ext_resource type="Texture2D" uid="uid://dkpc3tk7daekc" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-5-column-1.png" id="10_pp1mf"]
+[ext_resource type="Texture2D" uid="uid://c31kb0hpcnrqc" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-5-column-2.png" id="11_ikwbk"]
+[ext_resource type="Texture2D" uid="uid://dyvdk4ceor27a" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-6-column-1.png" id="12_uh243"]
+[ext_resource type="Texture2D" uid="uid://cs0xvqiksnr61" path="res://scenes/Chapter3/Straight/Scene2/pictures/row-6-column-2.png" id="13_2wjny"]
+
+[node name="WorkingBench" type="CanvasLayer"]
+layer = 5
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 504.0
+offset_top = 104.0
+offset_right = 1416.0
+offset_bottom = 1000.0
+
+[node name="FragmentsContainer" type="Node2D" parent="."]
+position = Vector2(96, 8)
+
+[node name="Fragment1" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(649.99994, 185)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_k35re")
+script = ExtResource("2_csafj")
+
+[node name="Fragment2" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(1080.5, 184)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_smn8m")
+script = ExtResource("2_csafj")
+
+[node name="Fragment3" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(650.4998, 328.00003)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_fa53s")
+script = ExtResource("2_csafj")
+
+[node name="Fragment4" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(1081.5002, 327.00003)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_el4g3")
+script = ExtResource("2_csafj")
+
+[node name="Fragment5" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(648.4998, 471)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_o6equ")
+script = ExtResource("2_csafj")
+
+[node name="Fragment6" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(1079.5, 471)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("7_fe0ms")
+script = ExtResource("2_csafj")
+
+[node name="Fragment7" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(651.49994, 615.00006)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_a4uti")
+script = ExtResource("2_csafj")
+
+[node name="Fragment8" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(1082.5, 615.00006)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_pw5lm")
+script = ExtResource("2_csafj")
+
+[node name="Fragment9" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(649.49994, 758.00006)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_pp1mf")
+script = ExtResource("2_csafj")
+
+[node name="Fragment10" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(1080.5, 758.00006)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("11_ikwbk")
+script = ExtResource("2_csafj")
+
+[node name="Fragment11" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(649.49994, 901.00006)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_uh243")
+script = ExtResource("2_csafj")
+
+[node name="Fragment12" type="Sprite2D" parent="FragmentsContainer"]
+position = Vector2(1080.5, 901.00006)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_2wjny")
+script = ExtResource("2_csafj")
+
+[node name="PuzzleManager" type="Node2D" parent="."]
+script = ExtResource("6_yxck6")
+
+[node name="CompletionLabel" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -155.0
+offset_top = -56.0
+offset_right = -22.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1920.0
+offset_bottom = 1088.0
+color = Color(0, 0, 0, 1)

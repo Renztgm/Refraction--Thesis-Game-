@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck6hrma3617sf"]
+
+[ext_resource type="PackedScene" uid="uid://bjtscvuo6f5bk" path="res://assets/Building/LibraryRoom/libraryRoom.gltf" id="1_s7v3r"]
+
+[node name="blockbench_export" instance=ExtResource("1_s7v3r")]
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="." index="14"]

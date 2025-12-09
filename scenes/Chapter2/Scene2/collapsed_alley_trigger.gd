@@ -37,7 +37,7 @@ func go_to_end_chapter():
 
 		# ✅ Set chapter info for next scene
 		SaveManager.set_current_chapter(2)
-		SaveManager.set_next_scene_path("res://scenes/Chapter3/Straight/Scene1/Chapter3Scene1.tscn")
+		SaveManager.set_next_scene_path("res://scenes/Chapter3/Straight/Scene1/Chapter3Scene1Dialogue.tscn")
 
 	# Load end chapter scene
 	get_tree().change_scene_to_file("res://scenes/UI/endchapterscene.tscn")

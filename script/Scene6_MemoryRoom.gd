@@ -126,7 +126,7 @@ func _process(delta):
 		5: phase_wake_up_text()
 		6: phase_voice_line()
 		7: phase_mc_thought()
-		8: phase_memory_fragment()
+		8: complete_sequence()
 	
 	# Advance only if NOT the shard phase
 	if scene_phase < PHASE_TIMES.size() - 1 and phase_timer >= PHASE_TIMES[scene_phase]:
@@ -202,71 +202,71 @@ func phase_mc_thought():
 		mc_thought_text.visible = true
 		phase_started = true
 
-func phase_memory_fragment():
-	if not phase_started:
-		print("➡ Phase 8: Memory Shard Appears (final)")
-		_show_background(shard_memory)
-
-		# Fade in shard + text
-		shard_memory.visible = true
-		shard_memory.modulate.a = 0.0
-		shard_text.text = "A broken shard of memory surfaces..."
-		shard_text.visible = true
-		shard_text.modulate.a = 0.0
-
-		if fade_overlay:
-			fade_overlay.color = Color(0, 0, 0, 0)
-
-		var tween = create_tween()
-
-		# Fade IN
-		tween.parallel().tween_property(shard_memory, "modulate:a", 1.0, 2.0)
-		tween.parallel().tween_property(shard_text,  "modulate:a", 1.0, 2.0)
-
-		# Wait 1 second
-		tween.tween_interval(1.0)
-
-		# Fade OUT
-		tween.parallel().tween_property(shard_memory, "modulate:a", 0.0, 2.0)
-		tween.parallel().tween_property(shard_text,  "modulate:a", 0.0, 2.0)
-
-		phase_started = true
-
-		# Save the memory shard to the database
-		var saved = InventoryManager.save_memory_shard(
-			"Memory Shard 2",
-			"A broken shard of memory surfaces...",
-			"res://icons/memory_shard.png",
-			"Get while sleeping..."
-		)
-		if saved:
-			print("✓ Memory shard saved")
-
-		# Optionally add a reward item to inventory
-		InventoryManager.add_item(2, 1, 1)  # slot_id = 2, item_id = 1 (Potion), quantity = 1
-		print("✓ Reward item added to inventory")
-
-		# After showing for a while, fade out
-		await get_tree().create_timer(3.0).timeout
-		_fade_out_shard()
-
-
-func _fade_out_shard():
-	print("✨ Fading shard out, preparing scene transition...")
-
-	var tween = create_tween()
-	if shard_memory:
-		tween.tween_property(shard_memory, "modulate:a", 0.0, 2.0)
-	if shard_text:
-		tween.tween_property(shard_text, "modulate:a", 0.0, 2.0)
-	if fade_overlay:
-		tween.tween_property(fade_overlay, "color", Color(0, 0, 0, 1), 2.0)
-
-	tween.connect("finished", Callable(self, "_on_shard_fade_complete"))
-
-func _on_shard_fade_complete():
-	print("➡ Shard fade complete → load next scene")
-	complete_sequence()
+#func phase_memory_fragment():
+	#if not phase_started:
+		#print("➡ Phase 8: Memory Shard Appears (final)")
+		#_show_background(shard_memory)
+#
+		## Fade in shard + text
+		#shard_memory.visible = true
+		#shard_memory.modulate.a = 0.0
+		#shard_text.text = "A broken shard of memory surfaces..."
+		#shard_text.visible = true
+		#shard_text.modulate.a = 0.0
+#
+		#if fade_overlay:
+			#fade_overlay.color = Color(0, 0, 0, 0)
+#
+		#var tween = create_tween()
+#
+		## Fade IN
+		#tween.parallel().tween_property(shard_memory, "modulate:a", 1.0, 2.0)
+		#tween.parallel().tween_property(shard_text,  "modulate:a", 1.0, 2.0)
+#
+		## Wait 1 second
+		#tween.tween_interval(1.0)
+#
+		## Fade OUT
+		#tween.parallel().tween_property(shard_memory, "modulate:a", 0.0, 2.0)
+		#tween.parallel().tween_property(shard_text,  "modulate:a", 0.0, 2.0)
+#
+		#phase_started = true
+#
+		## Save the memory shard to the database
+		#var saved = InventoryManager.save_memory_shard(
+			#"Memory Shard 2",
+			#"A broken shard of memory surfaces...",
+			#"res://icons/memory_shard.png",
+			#"Get while sleeping..."
+		#)
+		#if saved:
+			#print("✓ Memory shard saved")
+#
+		## Optionally add a reward item to inventory
+		#InventoryManager.add_item(2, 1, 1)  # slot_id = 2, item_id = 1 (Potion), quantity = 1
+		#print("✓ Reward item added to inventory")
+#
+		## After showing for a while, fade out
+		#await get_tree().create_timer(3.0).timeout
+		#_fade_out_shard()
+#
+#
+#func _fade_out_shard():
+	#print("✨ Fading shard out, preparing scene transition...")
+#
+	#var tween = create_tween()
+	#if shard_memory:
+		#tween.tween_property(shard_memory, "modulate:a", 0.0, 2.0)
+	#if shard_text:
+		#tween.tween_property(shard_text, "modulate:a", 0.0, 2.0)
+	#if fade_overlay:
+		#tween.tween_property(fade_overlay, "color", Color(0, 0, 0, 1), 2.0)
+#
+	#tween.connect("finished", Callable(self, "_on_shard_fade_complete"))
+#
+#func _on_shard_fade_complete():
+	#print("➡ Shard fade complete → load next scene")
+	#complete_sequence()
 
 # -----------------------
 # SEQUENCE CONTROL
@@ -289,15 +289,23 @@ func complete_sequence():
 	print("✅ Memory Room sequence complete! → Loading Scene7")
 	sequence_completed.emit()
 
+	# ✅ Save current game state (player position, scene, etc.)
+	if SaveManager:
+		var saved := SaveManager.save_game()
+		if saved:
+			print("💾 Game state saved successfully")
+		else:
+			print("❌ Failed to save game state")
+
 	# ✅ Log scene completion for branching system
 	if SaveManager:
 		var scene_path = get_tree().current_scene.scene_file_path
-		var branch_id = "scene_6"  # Use a meaningful ID for this scene
+		var branch_id = "awakening"  # Or any meaningful branch ID
 		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
 		if logged:
-			print("📌 Scene 6 logged:", scene_path)
+			print("📌 Scene logged to game_path:", scene_path)
 		else:
-			print("ℹ️ Scene 6 already logged or failed to log.")
+			print("ℹ️ Scene already logged or failed to log.")
 
 	var next_scene_path = "res://scenes/Scene7/Scene7.tscn"
 	if ResourceLoader.exists(next_scene_path):

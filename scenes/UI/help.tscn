@@ -1,0 +1,282 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbqvsi0o68i8x"]
+
+[ext_resource type="Script" uid="uid://sxc2mruwfv74" path="res://scenes/UI/help.gd" id="1_1eyev"]
+
+[sub_resource type="Gradient" id="Gradient_tav0q"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q4t18"]
+gradient = SubResource("Gradient_tav0q")
+
+[node name="KeybindGuide" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1eyev")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button1" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/Button1"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Move Forward"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button1"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_q4t18")
+
+[node name="Key" type="Label" parent="VBoxContainer/Button1/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -11.5
+offset_right = 55.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/Button2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Move Backward"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button2"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_q4t18")
+
+[node name="Key" type="Label" parent="VBoxContainer/Button2/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -11.5
+offset_right = 55.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/Button3"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Move Left"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button3"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_q4t18")
+
+[node name="Key" type="Label" parent="VBoxContainer/Button3/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -11.5
+offset_right = 55.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/Button4"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Move Right"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button4"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_q4t18")
+
+[node name="Key" type="Label" parent="VBoxContainer/Button4/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -11.5
+offset_right = 55.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/Button5"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Pause"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button5"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_q4t18")
+
+[node name="Key" type="Label" parent="VBoxContainer/Button5/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -11.5
+offset_right = 55.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ESC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button6" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/Button6"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Interact"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button6"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_q4t18")
+
+[node name="Key" type="Label" parent="VBoxContainer/Button6/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -11.5
+offset_right = 55.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button7" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/Button7"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Inventory"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button7"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_q4t18")
+
+[node name="Key" type="Label" parent="VBoxContainer/Button7/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -11.5
+offset_right = 55.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "I"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button8" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/Button8"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Quest Box"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Button8"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_q4t18")
+
+[node name="Key" type="Label" parent="VBoxContainer/Button8/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -11.5
+offset_right = 55.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tab"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 136.0
+offset_bottom = 136.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,11 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://crieuya1rk71"]
+[gd_scene load_steps=29 format=3 uid="uid://crieuya1rk71"]
 
 [ext_resource type="PackedScene" uid="uid://b42g54u5kjqbp" path="res://scenes/Map/OutsideMap.tscn" id="1_m7g27"]
+[ext_resource type="Script" uid="uid://vq5qvu2yvsnw" path="res://scenes/Scene3/scene_3.gd" id="1_otrxq"]
 [ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_tf8eh"]
 [ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/Scene3/bookstore.gd" id="8_ljopq"]
 [ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_ynfyr"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="11_aq08c"]
-[ext_resource type="AudioStream" uid="uid://kc6yxx08keph" path="res://assets/audio/music/background_music.wav" id="12_ogqrk"]
 [ext_resource type="AudioStream" uid="uid://d3eleqvy3v1op" path="res://assets/audio/ui/Click_sound.wav" id="13_foqjr"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="13_qt3ua"]
 [ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_kv2g0"]
@@ -75,46 +75,19 @@ size = Vector3(2.9207795, 5.2274475, 3.214755)
 atlas = ExtResource("16_fnou3")
 region = Rect2(0, 0, 256, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8hrhf"]
-atlas = ExtResource("16_fnou3")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7j4dl"]
-atlas = ExtResource("16_fnou3")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qt3ua"]
-atlas = ExtResource("16_fnou3")
-region = Rect2(768, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yq0lp"]
-atlas = ExtResource("16_fnou3")
-region = Rect2(1024, 0, 256, 256)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_tf8eh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_otrxq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8hrhf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7j4dl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qt3ua")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yq0lp")
 }],
 "loop": true,
 "name": &"default",
-"speed": 8.0
+"speed": 4.0
 }]
 
 [node name="Scene3" type="Node3D"]
+script = ExtResource("1_otrxq")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -146,7 +119,6 @@ environment = SubResource("Environment_ljopq")
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
-stream = ExtResource("12_ogqrk")
 autoplay = true
 bus = &"Music"
 playback_type = 1
@@ -177,7 +149,6 @@ visible = false
 
 [node name="Player3d" parent="." groups=["player2"] instance=ExtResource("11_aq08c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59115887, 0.8313031, 67.50688)
-collision_layer = 4
 collision_mask = 7
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["grid"]]
@@ -247,7 +218,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 visible = false
 
 [node name="Shard" type="Node3D" parent="." groups=["quest_item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.753742, 0, 56.65093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.801199, 0, -37.70493)
 
 [node name="Area3D" type="Area3D" parent="Shard"]
 collision_layer = 2
@@ -262,4 +233,4 @@ shape = SubResource("BoxShape3D_fnou3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7147343, 0)
 sprite_frames = SubResource("SpriteFrames_tf8eh")
 autoplay = "default"
-frame_progress = 0.7937855
+frame_progress = 0.8540429

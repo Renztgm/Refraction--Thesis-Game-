@@ -7,10 +7,10 @@ signal dialogue_finished
 @onready var next_button = $NextButton
 @onready var options_container = $Options
 
-@export var camera: Camera3D
-@export var player: Node3D
-@export var companion: Node3D
-@export var monster: Node3D
+var camera: Camera3D
+var player: Node3D
+var companion: Node3D
+var monster: Node3D
 
 
 var dialogue: Dictionary = {}
@@ -28,9 +28,9 @@ var is_typing: bool = false
 var pending_next_node: String = ""
 var pending_mc_text: String = ""
 
+
 func _ready():
 	hide()
-
 	typing_timer = Timer.new()
 	typing_timer.wait_time = typing_speed
 	typing_timer.one_shot = false
@@ -38,9 +38,13 @@ func _ready():
 	typing_timer.timeout.connect(_on_typing_step)
 
 	next_button.pressed.connect(_on_next_pressed)
-
+	
+	self.gui_input.connect(_on_dialogue_gui_input)
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	
 # --- Load dialogue from JSON file ---
 func load_dialogue(file_path: String, npc_id: String):
+	_find_scene_nodes()
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	if not file:
 		push_error("Cannot open file: " + file_path)
@@ -75,14 +79,20 @@ func show_node(node_name: String):
 	if node_name == "end":
 		_close_dialogue()
 		return
-
+		
 	if not dialogue.has(node_name):
 		push_error("Dialogue node not found: " + node_name)
 		return
-
+	
 	current_node = node_name
 	var node: Dictionary = dialogue[node_name]
-
+	
+	# --- Play sound if defined ---
+	play_node_sfx(node)
+	
+	if node.has("start_quest"):
+		_start_quest_from_path(node["start_quest"])
+	
 	# --- Speaker name ---
 	npc_name_label.text = node.get("name", "Unknown")
 
@@ -103,37 +113,61 @@ func show_node(node_name: String):
 		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		btn.pressed.connect(func(): _on_option_selected(option))
 		options_container.add_child(btn)
-
+	
 	# --- Store auto-next if provided ---
 	pending_next_node = node.get("next", "")
-
+	
+	
+	
+	print("Checking node: ", node)
+	print("Node has focus? ", node.has("focus"))
+	print("Camera exists? ", camera != null)
+	print("Camera variable: ", camera)
+	print("Node contents: ", node)
+	print("Node keys: ", node.keys() if node is Dictionary else "Not a dictionary")
+	
 	# --- Cinematic extensions ---
-	if node.has("focus"):
+	if node.has("focus") and camera:
+		var target_position: Vector3
+		
+		# Default camera settings
+		var camera_offset := Vector3(0, 3, 4.5)
+		var look_at_offset := Vector3(0, 2, 0)
+		
+		# Override with custom values if provided
+		if node.has("camera_offset"):
+			print("Found camera_offset: ", node["camera_offset"])
+			camera_offset = str_to_vector3(node["camera_offset"])
+			print("Parsed camera_offset: ", camera_offset)
+		if node.has("look_at_offset"):
+			print("Found look_at_offset: ", node["look_at_offset"])
+			look_at_offset = str_to_vector3(node["look_at_offset"])
+			print("Parsed look_at_offset: ", look_at_offset)
+		
 		match node["focus"]:
 			"Player":
-				if player and camera:
-					camera.look_at(player.global_transform.origin, Vector3.UP)
+				if player:
+					target_position = player.global_transform.origin
 			"Companion":
-				if companion and camera:
-					camera.look_at(companion.global_transform.origin, Vector3.UP)
+				if companion:
+					target_position = companion.global_transform.origin
 			"Monster":
-				if monster and camera:
-					camera.look_at(monster.global_transform.origin, Vector3.UP)
+				if monster:
+					target_position = monster.global_transform.origin
+					print("Monster position: ", target_position)
+		
+		if target_position:
+			print("BEFORE MOVE - Camera position: ", camera.global_position)
+			camera.global_position = target_position + camera_offset
+			print("AFTER MOVE - Camera position: ", camera.global_position)
+			print("Target was: ", target_position)
+			print("Offset applied: ", camera_offset)
+			camera.look_at(target_position + look_at_offset, Vector3.UP)
 
 	if node.has("animation"):
 		var anim_name: String = node["animation"]
 		if npc_name_label.text == "EchoBeast" and monster and monster.has_method("play"):
 			monster.play(anim_name)
-
-	if node.has("sound"):
-		var sound_path: String = node["sound"]
-		if ResourceLoader.exists(sound_path):
-			var audio_stream: AudioStream = load(sound_path)
-			var sfx_player := AudioStreamPlayer.new()
-			sfx_player.stream = audio_stream
-			add_child(sfx_player)
-			sfx_player.play()
-
 
 	# --- Dialogue flow ---
 	if sentences.size() > 0:
@@ -144,6 +178,44 @@ func show_node(node_name: String):
 		show_node(pending_next_node)
 	else:
 		_close_dialogue()
+
+# Helper function to convert string to Vector3
+func str_to_vector3(value) -> Vector3:
+	if value is String:
+		var coords = value.split(",")
+		if coords.size() == 3:
+			return Vector3(float(coords[0]), float(coords[1]), float(coords[2]))
+	return value if value is Vector3 else Vector3.ZERO
+
+func _start_quest_from_path(quest_path: String):
+	print("📦 Auto-starting quest:", quest_path)
+
+	if not FileAccess.file_exists(quest_path):
+		push_error("❌ Quest file not found at: " + quest_path)
+		return
+
+	var file = FileAccess.open(quest_path, FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+
+	var quest_data = JSON.parse_string(content)
+	if typeof(quest_data) != TYPE_ARRAY:
+		push_error("❌ Invalid quest JSON structure in " + quest_path)
+		return
+
+	if QuestManager and QuestManager.has_method("import_quests_from_json"):
+		QuestManager.import_quests_from_json(quest_path)
+		QuestManager.load_all_quests()
+		QuestManager.save_all_quests()
+
+		for q in quest_data:
+			var quest_id = q.get("id", "unknown")
+			var quest_title = q.get("title", quest_id)
+			print("🧩 Quest auto-started:", quest_id)
+			ItemPopUp.show_message("🧭 New Quest Started: " + quest_title, 3.0, Color.CYAN)
+	else:
+		push_error("❌ QuestManager missing or import method unavailable!")
+
 
 # --- Start typing a sentence ---
 func _start_sentence():
@@ -289,6 +361,19 @@ func _clear_options():
 	for c in options_container.get_children():
 		c.queue_free()
 
+func _on_dialogue_gui_input(event: InputEvent):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.double_click:   # ✅ Godot 4
+			_skip_sentence()
+
+
+func _skip_sentence():
+	if is_typing:
+		typing_timer.stop()
+		dialogue_label.text = full_text   # Show entire sentence immediately
+		is_typing = false
+		next_button.visible = true        # Allow player to continue
+
 # --- Close dialogue ---
 func _close_dialogue():
 	if typing_timer and not typing_timer.is_stopped():
@@ -299,3 +384,61 @@ func _close_dialogue():
 	next_button.visible = false
 	hide()
 	emit_signal("dialogue_finished")
+	
+# Helper function to play a sound from a dialogue node
+func play_node_sfx(node: Dictionary):
+	if not node.has("sound"):
+		return
+	
+	var sound_path: String = node["sound"]
+	if not ResourceLoader.exists(sound_path):
+		push_error("Dialogue SFX not found: " + sound_path)
+		return
+	
+	var audio_stream: AudioStream = load(sound_path)
+	if not audio_stream:
+		push_error("Failed to load audio: " + sound_path)
+		return
+	
+	# Create player
+	var sfx_player := AudioStreamPlayer.new()
+	add_child(sfx_player)  # Must add to scene first
+	sfx_player.stream = audio_stream
+	sfx_player.play()
+	
+	# Determine duration (fallback if unknown)
+	var duration := 3.0
+	if audio_stream.has_method("get_length"):
+		duration = audio_stream.get_length()
+	
+	# Queue free player after it finishes
+	var t := Timer.new()
+	t.one_shot = true
+	t.wait_time = duration
+	add_child(t)
+	t.start()
+	t.timeout.connect(Callable(sfx_player, "queue_free"))
+
+func _find_scene_nodes():
+	# Find player
+	player = get_tree().get_first_node_in_group("player")
+	if not player:
+		var current_scene = get_tree().current_scene
+		player = current_scene.get_node_or_null("Player3d")
+	
+	# Get camera from player
+	if player:
+		camera = player.get_node_or_null("Camera_Mount/Camera3D")
+		print("✅ Found player and camera")
+	else:
+		push_warning("❌ Player not found!")
+	
+	# Find companion
+	companion = get_tree().get_first_node_in_group("companion")
+	if companion:
+		print("✅ Found companion")
+	
+	# Find monster
+	monster = get_tree().get_first_node_in_group("monster")
+	if monster:
+		print("✅ Found monster")

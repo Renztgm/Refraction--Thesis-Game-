@@ -10,13 +10,16 @@ config_version=5
 
 [application]
 
-config/name="Test"
-run/main_scene="uid://dq2ix7cgwm5b"
+config/name="Test (Copy)"
+run/main_scene="uid://c0mkhe168w680"
+config/auto_accept_quit=false
 config/features=PackedStringArray("4.5", "Forward Plus")
-boot_splash/show_image=false
-boot_splash/fullsize=false
-boot_splash/use_filter=false
 config/icon="uid://dcojsd18ujskf"
+run/use_filter=true
+run/show_image=true
+run/fullsize=true
+run/auto_accept_quit=false
+run/size/no_focus=true
 
 [audio]
 
@@ -38,14 +41,17 @@ ItemPopUp="*res://scenes/UI/ItemPopUp.tscn"
 FadeOutCanvas="*res://scenes/UI/FadeOutCanvas.tscn"
 GameState="*res://script/GameState.gd"
 GameOverUi="*res://scenes/UI/DeathUI.tscn"
+ProfileManager="*res://scenes/Main Menu/Load Slot/ProfileManager.gd"
+NewChapterScene="*res://scenes/UI/new_chapter_scene.tscn"
+NarrativeProgression="*res://script/NarrativeProgression.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
-window/size/resizable=false
 window/size/borderless=true
+window/size/no_focus=true
 
 [dotnet]
 
@@ -86,3 +92,4 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+occlusion_culling/use_occlusion_culling=true

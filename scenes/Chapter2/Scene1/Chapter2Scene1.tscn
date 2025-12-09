@@ -99,7 +99,7 @@ shadow_blur = 5.0
 z_index = 4096
 
 [node name="Player3d" parent="." groups=["player2"] instance=ExtResource("11_aihtp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0938816, 13.491306, -8.687232)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9061184, 13.491306, -3.687232)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

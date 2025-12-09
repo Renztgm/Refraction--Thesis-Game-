@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0t7raq1cnanl"]
+
+[ext_resource type="Script" uid="uid://cube3u8ujd3mi" path="res://scenes/UI/game_not_finished.gd" id="1_l62qv"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="2_u41s6"]
+
+[node name="GameNotFinished" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l62qv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Label" type="Label" parent="MarginContainer/BoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "The game still not finish... We will update the game on itch.io
+
+Thank you !
+
+-Black Triad"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/BoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="FoldableContainer" type="FoldableContainer" parent="MarginContainer/BoxContainer/VBoxContainer"]
+layout_mode = 2
+folded = true
+title = "Game Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BoxContainer/VBoxContainer/FoldableContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Branches" type="Button" parent="MarginContainer/BoxContainer/VBoxContainer/FoldableContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 4
+layout_mode = 2
+text = "Branches"
+
+[node name="Inventory" type="Button" parent="MarginContainer/BoxContainer/VBoxContainer/FoldableContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Inventory"
+
+[node name="MainMenu" type="Button" parent="MarginContainer/BoxContainer/VBoxContainer/FoldableContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("2_u41s6")]
+
+[node name="UISounds" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="MarginContainer/BoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/Branches" to="." method="_on_branches_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxContainer/VBoxContainer/FoldableContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

@@ -1,0 +1,12 @@
+[
+	{
+	"id": "reconstruction",
+	"title": "Reconstruct the words",
+	"description": "Check each pedestal and find the words showing",
+	"objectives": [
+	  	{ "id": "pedestal1", "text": "Know the hidden words on the pedestal 1...", "is_completed": false },
+		{ "id": "pedestal2", "text": "Know the hidden words on the pedestal 2...", "is_completed": false },
+		{ "id": "pedestal3", "text": "Know the hidden words on the pedestal 3...", "is_completed": false }
+	]
+  }
+]

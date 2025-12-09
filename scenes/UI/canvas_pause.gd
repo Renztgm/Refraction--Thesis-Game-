@@ -101,24 +101,31 @@ func get_settings_ui() -> Control:
 
 func ipakita_pause_menu():
 	print("Pumunta sa ipakita_pause_menu")
+
 	if pause_menu:
-		# Directly show and control the pause menu
+		push_warning("PauseMenu visible before show(): ", pause_menu.visible)
+
+		# 1️⃣ Show UI immediately
 		pause_menu.show()
-		get_tree().paused = true
 		naka_pause = true
 		
-		# Focus on the resume button if it exists
+		# 2️⃣ Ensure mouse is visible right now
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+		# 3️⃣ Wait one frame before pausing → stops black flash & mouse disappearing
+		await get_tree().process_frame
+
+		# 4️⃣ NOW pause the tree (no black screen)
+		get_tree().paused = true
+
+		# 5️⃣ Force cursor visible again
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+		# 6️⃣ Focus resume button if available
 		if pause_menu.has_method("focus_resume_button"):
 			pause_menu.focus_resume_button()
 		elif pause_menu.get("resume_button"):
 			pause_menu.resume_button.grab_focus()
-
-#func itago_pause_menu():
-	#print("Pumunta sa itago_pause_menu")
-	#if pause_menu:
-		#pause_menu.hide()
-		#get_tree().paused = false
-		#naka_pause = false
 
 func toggle_pause_menu():
 	print("Pumunta sa toggle_pause_menu")

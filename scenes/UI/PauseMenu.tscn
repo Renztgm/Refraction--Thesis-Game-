@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cowfut2pi6gjg"]
+[gd_scene load_steps=5 format=3 uid="uid://cowfut2pi6gjg"]
 
 [ext_resource type="Script" uid="uid://twc3ucts3ymp" path="res://script/PauseMenu.gd" id="1_jvnd5"]
+[ext_resource type="Texture2D" uid="uid://dyesvrdup0jst" path="res://assets/ui/background_inventory.png" id="2_4r2wj"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_6q0ex"]
+
+[sub_resource type="FontVariation" id="FontVariation_4r2wj"]
+base_font = ExtResource("2_6q0ex")
 
 [node name="PauseMenu" type="Control"]
 z_index = 4090
@@ -11,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_behavior_recursive = 2
 script = ExtResource("1_jvnd5")
 metadata/_edit_use_anchors_ = true
 
@@ -21,6 +26,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1000, 1000)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -250.0
+offset_right = 320.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4r2wj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -36,32 +57,45 @@ offset_bottom = 99.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6q0ex")
+theme_override_font_sizes/font_size = 50
+text = "Resume
+"
+flat = true
+
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6q0ex")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
 text = "Save"
+flat = true
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6q0ex")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
 text = "Main Menu"
-
-[node name="ResumeButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_6q0ex")
-theme_override_font_sizes/font_size = 24
-text = "Resume
-"
+flat = true
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6q0ex")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
 text = "Settings"
+flat = true
+
+[node name="Help" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_4r2wj")
+theme_override_font_sizes/font_size = 50
+text = "Help"
+flat = true
 
 [node name="SavedLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6q0ex")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
+
+[connection signal="pressed" from="VBoxContainer/Help" to="." method="_on_help_pressed"]

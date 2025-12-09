@@ -39,11 +39,14 @@ func _ready():
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player") and not dialogue_triggered:
-		# Automatically start dialogue when player enters trigger area
+		var quest_completed = QuestManager.is_quest_completed("talk_to_companion")
+		if not quest_completed: 
+			QuestManager.complete_objective("talk_to_companion", "talk_to_companion_1")
+		else: 
+			push_warning("Quest already completed!")
 		start_dialogue()
 
 func _on_body_exited(body: Node) -> void:
-	# Optional: You can add any cleanup here if needed
 	pass
 
 # ==============================
@@ -60,7 +63,6 @@ func start_dialogue():
 	# Freeze the player
 	freeze_player()
 	
-	# Hide interact label during dialogue
 	if interact_label:
 		interact_label.visible = false
 	
@@ -130,15 +132,23 @@ func fade_to_sleep():
 	)
 
 func change_to_next_scene():
+	# ✅ Save current game state (player position, scene, etc.)
+	if SaveManager:
+		var saved := SaveManager.save_game()
+		if saved:
+			print("💾 Game state saved successfully")
+		else:
+			print("❌ Failed to save game state")
+
 	# ✅ Log scene completion for branching system
 	if SaveManager:
 		var scene_path = get_tree().current_scene.scene_file_path
-		var branch_id = "scene_5"  # Use a meaningful ID for this scene
+		var branch_id = "awakening"  # Or any meaningful branch ID
 		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
 		if logged:
-			print("📌 Scene 5 logged:", scene_path)
+			print("📌 Scene logged to game_path:", scene_path)
 		else:
-			print("ℹ️ Scene 5 already logged or failed to log.")
+			print("ℹ️ Scene already logged or failed to log.")
 
 	# Change to next scene
 	get_tree().change_scene_to_file(next_scene_path)

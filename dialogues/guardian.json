@@ -1,0 +1,181 @@
+{
+  "Guardian": {
+	"start": {
+	  "name": "Guardian",
+	  "sentences": [
+		"Child of fractured memory… you've come far.",
+        "But you do not need to go further."
+	  ],
+	  "focus": "Monster",
+	  "camera_offset": "0,0,15",
+	  "look_at_offset": "0,-4,0",
+	  "options": [
+		{
+		  "text": "💬 …Who are you?",
+		  "full_text": "…Who are you?",
+		  "next": "who_are_you"
+		}
+	  ]
+	},
+
+	"who_are_you": {
+	  "name": "Guardian",
+	  "sentences": [
+		"I am the quiet between your breaths.",
+		"The stillness that kept you alive while the world moved without you.",
+        "I am the choice to rest."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 Why stop me?",
+		  "full_text": "Why are you stopping me?",
+		  "next": "guardian_offers_rest"
+		},
+		{
+		  "text": "💬 What is this place?",
+		  "full_text": "What is this place?",
+		  "next": "guardian_offers_rest"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "…",
+		  "next": "guardian_offers_rest"
+		}
+	  ]
+	},
+
+	"guardian_offers_rest": {
+	  "name": "Guardian",
+	  "sentences": [
+		"Stay.",
+		"Here, nothing hurts.",
+        "Here, every wound fades before it can scar."
+	  ],
+	  "options": [
+		{
+		  "text": "💬You're lying. These aren't real.",
+		  "full_text": "These memories are too perfect. They're what I wish happened… not what did.",
+		  "next": "choice_A"
+		},
+		{
+		  "text": "💬 Choice B — I'm tired. I don't know if I can face what's waiting.",
+		  "full_text": "I'm tired. I don't know if I can face what's waiting.",
+		  "next": "choice_B"
+		},
+		{
+		  "text": "💬I miss them. I can't stay here.",
+		  "full_text": "I miss the people waiting for me. Even if I barely remember their faces.",
+		  "next": "choice_C"
+		},
+		{
+		  "text": "💬If the Companion was just a creation… why do I still feel something?",
+		  "full_text": "If the Companion was just a creation… why do I still feel something?",
+		  "next": "choice_D"
+		}
+	  ]
+	},
+
+	"choice_A": {
+	  "name": "Guardian",
+	  "sentences": [
+		"Does that make them unworthy?",
+		"Pain does not make truth more noble."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 'Avoiding the truth keeps me trapped.'",
+		  "full_text": "Avoiding the truth keeps me trapped.",
+		  "next": "breakdown"
+		}
+	  ]
+	},
+
+	"choice_B": {
+	  "name": "Guardian",
+	  "sentences": [
+		"It is alright to be afraid.",
+		"Sleep asks nothing of you."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 'Waking up means I still have a chance.'",
+		  "full_text": "But waking up… means I still have a chance.",
+		  "next": "breakdown"
+		}
+	  ]
+	},
+
+	"choice_C": {
+	  "name": "Guardian",
+	  "sentences": [
+		"They have cried for you.",
+		"Years of it.",
+		"Why return to a world that may not forgive you?"
+	  ],
+	  "options": [
+		{
+		  "text": "💬 'Because I want to try.'",
+		  "full_text": "…Because I want to try.",
+		  "next": "breakdown"
+		}
+	  ]
+	},
+
+	"choice_D": {
+	  "name": "Guardian",
+	  "sentences": [
+		"Because they were the part that refused to let you die.",
+		"And if you wake… they may never come back."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 'I'll face that.'",
+		  "full_text": "…I'll face that.",
+		  "next": "breakdown"
+		}
+	  ]
+	},
+
+	"breakdown": {
+	  "name": "Guardian",
+	  "sentences": [
+		"You do not understand.",
+		"Once you choose truth… the dreaming world collapses.",
+		"I collapse."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 'You were never my enemy.'",
+		  "full_text": "You were never my enemy.",
+		  "next": "guardian_final"
+		}
+	  ]
+	},
+
+	"guardian_final": {
+	  "name": "Guardian",
+	  "sentences": [
+		"No.",
+		"I was your shelter.",
+		"…But you no longer need me, do you?"
+	  ],
+	  "options": [
+		{
+		  "text": "💬 'I'm ready.'",
+		  "full_text": "I'm ready.",
+		  "next": "final_line"
+		}
+	  ]
+	},
+
+	"final_line": {
+	  "name": "Guardian",
+	  "sentences": [
+		"Then go.",
+		"Remember who you were…",
+		"and choose who you will become."
+	  ],
+	  "options": []
+	}
+  }
+}

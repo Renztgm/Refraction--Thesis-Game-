@@ -1,3 +1,215 @@
-[gd_scene format=3 uid="uid://bhdr8a65t5d0"]
+[gd_scene load_steps=27 format=3 uid="uid://bhdr8a65t5d0"]
+
+[ext_resource type="PackedScene" uid="uid://babci3ubwf6o6" path="res://assets/Building/MirrorDistrict.tscn" id="1_0dbvt"]
+[ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="2_ufpr2"]
+[ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="3_gpteg"]
+[ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="4_y3bdr"]
+[ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="5_lqeyp"]
+[ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="6_yarfe"]
+[ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="7_kmnfm"]
+[ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="8_u20f0"]
+[ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="9_2f6ys"]
+[ext_resource type="PackedScene" uid="uid://d2hferx53pyw8" path="res://scenes/NPCs/Chapter3Scene2NPC.tscn" id="11_kmnfm"]
+[ext_resource type="Script" uid="uid://c8lf6fnamop4t" path="res://scenes/Chapter3/Straight/Scene2/Dialogue_The_Reflection.gd" id="11_u20f0"]
+
+[sub_resource type="GDScript" id="GDScript_yarfe"]
+script/source = "extends Node3D
+
+@onready var player = get_tree().get_first_node_in_group(\"player\")
+@onready var next_scene: String = \"res://scenes/Chapter3/Straight/Scene2/Chapter3Scene2CylinderStructure.tscn\"
+var quest_file: String = \"res://scenes/quest/resources/follow_the_companion.json\"
+func _ready() -> void:
+	FadeOutCanvas.fade_in(1)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	QuestManager.import_quests_from_json(quest_file)
+	ItemPopUp.quest_show_message(\"To the Mirror Hall\")
+
+func entering_to_cylinder_structure(body: Node3D) -> void:
+	if body == player:
+		FadeOutCanvas.fade_out(1.5)
+		await get_tree().create_timer(2.0).timeout
+		get_tree().change_scene_to_file(next_scene)
+"
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_16enw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_81pdu"]
+size = Vector3(600, 1, 600)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqeyp"]
+albedo_texture = ExtResource("3_gpteg")
+uv1_triplanar = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yarfe"]
+sky_top_color = Color(0.455, 0.7, 0.56525, 1)
+sky_horizon_color = Color(0, 0.588235, 0.364706, 1)
+sky_cover_modulate = Color(0.658824, 0.901961, 0.811765, 1)
+ground_bottom_color = Color(0, 0.588235, 0.364706, 1)
+ground_horizon_color = Color(0.454902, 0.701961, 0.564706, 1)
+
+[sub_resource type="Sky" id="Sky_kmnfm"]
+sky_material = SubResource("ProceduralSkyMaterial_yarfe")
+
+[sub_resource type="Environment" id="Environment_kmnfm"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_kmnfm")
+ambient_light_source = 2
+ambient_light_color = Color(0.674815, 0.674815, 0.674815, 1)
+reflected_light_source = 2
+glow_enabled = true
+glow_bloom = 0.85
+glow_hdr_threshold = 1.75
+glow_hdr_luminance_cap = 46.29
+fog_sun_scatter = 0.13
+fog_aerial_perspective = 0.705
+fog_height_density = 16.0
+fog_depth_begin = 0.0
+fog_depth_end = 500.0
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.64705884, 1, 0.47843137, 1)
+volumetric_fog_anisotropy = 0.9
+volumetric_fog_length = 203.92
+volumetric_fog_temporal_reprojection_amount = 0.99
+adjustment_enabled = true
+adjustment_brightness = 0.79
+adjustment_contrast = 1.07
+adjustment_saturation = 1.46
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_7kvay"]
+vertices = PackedVector3Array(-299.5, 1, -299.5, -299.5, 1, 299.5, 299.5, 1, 299.5, 299.5, 1, -299.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qnw1i"]
+size = Vector3(600, 1, 600)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7kvay"]
+size = Vector3(7, 2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yarfe"]
+size = Vector3(91.498535, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kmnfm"]
+size = Vector3(1, 1, 35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u20f0"]
+size = Vector3(1, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2f6ys"]
+size = Vector3(21, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qnw1i"]
+size = Vector3(13, 1, 1)
 
 [node name="Chapter3Scene2" type="Node3D"]
+script = SubResource("GDScript_yarfe")
+
+[node name="MirrorDistrict" parent="." instance=ExtResource("1_0dbvt")]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Sky" parent="Environment" instance=ExtResource("2_ufpr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.841215, 5.63674, 1.0905099)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_16enw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9500122, 0, 1.449997)
+shape = SubResource("BoxShape3D_81pdu")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_lqeyp")
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(600, 1, 600)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.10762203, -0.33931252, -0.934497, -0.8203471, -0.56131655, 0.10933622, -0.5616477, 0.7548447, -0.33876413, 0, 0, 0)
+light_color = Color(0.64705884, 1, 0.47843137, 1)
+light_indirect_energy = 1.09
+light_volumetric_fog_energy = 10.0
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_kmnfm")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="UI" instance=ExtResource("5_lqeyp")]
+
+[node name="QuestUi" parent="UI" instance=ExtResource("6_yarfe")]
+visible = false
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["grid"]]
+navigation_mesh = SubResource("NavigationMesh_7kvay")
+script = ExtResource("8_u20f0")
+grid_size = 4.0
+grid_dimensions = Vector2i(5, 5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+visible = false
+mesh = SubResource("BoxMesh_qnw1i")
+
+[node name="Minimap" parent="." groups=["minimap"] instance=ExtResource("7_kmnfm")]
+
+[node name="DialogueManager" parent="." instance=ExtResource("9_2f6ys")]
+z_index = 4096
+
+[node name="Player3d" parent="." groups=["player2"] instance=ExtResource("4_y3bdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207, 0.39999998, 101)
+
+[node name="Bookmark" type="Node3D" parent="." groups=["bookmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61, 0, -46.596348)
+
+[node name="Area3D" type="Area3D" parent="Bookmark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.4036522)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("11_u20f0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bookmark/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4.5)
+shape = SubResource("BoxShape3D_7kvay")
+
+[node name="Barriers" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Barriers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157, 0, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7507324, 0, 70)
+shape = SubResource("BoxShape3D_yarfe")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, 0, 53)
+shape = SubResource("BoxShape3D_kmnfm")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.615616, 0, 60.5)
+shape = SubResource("BoxShape3D_u20f0")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Barriers/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.08409, 0, 34.370277)
+shape = SubResource("BoxShape3D_2f6ys")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 1, -60)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+shape = SubResource("BoxShape3D_qnw1i")
+
+[node name="Npc2" parent="." instance=ExtResource("11_kmnfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -210, 1, 99)
+
+[connection signal="body_entered" from="Bookmark/Area3D" to="Bookmark/Area3D" method="_on_body_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="entering_to_cylinder_structure"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

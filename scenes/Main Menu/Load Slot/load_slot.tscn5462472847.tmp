@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://conyo30nnwm5y"]
+
+[ext_resource type="Script" uid="uid://2b3xs2x6mbo1" path="res://scenes/Main Menu/Load Slot/load_slot.gd" id="1_ddxgp"]
+
+[node name="LoadSlot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ddxgp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1

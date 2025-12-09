@@ -1,0 +1,37 @@
+{
+  "Stranger": {
+	"start": {
+	  "name": "Stranger",
+	  "sentences": [
+		"You’re pretending this is about remembering.",
+		"You just want control."
+	  ],
+	  "next": "who_are_you"
+	},
+	"who_are_you": {
+	  "name": "You",
+	  "sentences": [
+		"No—"
+	  ],
+	  "next": "i_am"
+	},
+	"i_am": {
+	  "name": "Stranger",
+	  "sentences": [
+		"You don’t deserve the truth."
+	  ],
+		"options": [
+		{
+		  "text": "You're not real.",
+		  "full_text": "You're not real",
+		  "next": "end"
+		},
+		{
+		  "text": "I just want answers.",
+		  "full_text": "I just want answers.",
+		  "next": "end"
+		}
+	  ]
+	}
+  }
+}

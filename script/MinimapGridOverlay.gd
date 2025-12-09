@@ -117,12 +117,12 @@ func _draw():
 		var pos = entry["pos"]
 		var cell = entry["cell"]
 		var walkable = grid_ref.is_walkable(cell)
-		var color = Color(0.6, 0.6, 0.6, 1.0) if walkable else Color(0, 0, 0, 1.0)
+		var color = Color("999999ff") if walkable else Color(0, 0, 0, 1.0)
 
 		draw_rect(Rect2(pos, CELL_SIZE), color)
 		draw_rect(Rect2(pos, CELL_SIZE), Color(0.2, 0.2, 0.2, 0.5), false)
 
-	draw_rect(Rect2(center.floor(), CELL_SIZE), Color(0, 1, 0))
+	draw_rect(Rect2(center.floor(), CELL_SIZE), Color(0.0, 1.0, 0.0, 1.0))
 
 	if npc_refs.size() > 0:
 		var npc = npc_refs[0] as Node3D
@@ -131,7 +131,7 @@ func _draw():
 		var minimap_pos = center + offset * CELL_SIZE
 
 		if minimap_pos.x >= 0 and minimap_pos.x <= draw_size.x and minimap_pos.y >= 0 and minimap_pos.y <= draw_size.y:
-			draw_rect(Rect2(minimap_pos.floor(), CELL_SIZE), Color(0.6, 0.0, 0.8))
+			draw_rect(Rect2(minimap_pos.floor(), CELL_SIZE), Color(0.6, 0.0, 0.8, 1.0))
 
 	for item in quest_item_refs:
 		if not is_instance_valid(item) or not item is Node3D:
@@ -160,4 +160,4 @@ func _draw():
 		var minimap_pos = center + offset * CELL_SIZE
 
 		if minimap_pos.x >= 0 and minimap_pos.x <= draw_size.x and minimap_pos.y >= 0 and minimap_pos.y <= draw_size.y:
-			draw_rect(Rect2(minimap_pos.floor(), CELL_SIZE), Color(0.202, 0.361, 0.88, 1.0))  # ✅ Blue dot
+			draw_rect(Rect2(minimap_pos.floor(), CELL_SIZE), Color("345ce0ff"))  # ✅ Blue dot

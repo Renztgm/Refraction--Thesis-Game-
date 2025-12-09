@@ -1,0 +1,11 @@
+[
+  {
+	"id": "follow_her",
+	"title": "The Learned Friend",
+	"description": "A mysterious companion has appeared before you, gesturing urgently toward the old bookstore at the edge of town. Their eyes convey both wisdom and worry, as if they know something important awaits you within those dusty shelves. Perhaps the answers you seek lie hidden among the forgotten tomes.",
+	"objectives": [
+	  { "id": "follow_her_1", "text": "Follow the companion", "is_completed": false },
+	  { "id": "follow_her_2", "text": "Go inside the bookstore", "is_completed": false }
+	]
+  }
+]

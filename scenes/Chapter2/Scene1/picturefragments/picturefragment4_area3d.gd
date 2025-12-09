@@ -25,7 +25,7 @@ func _on_body_entered(body):
 func collect_item():
 	print("🎒 Collecting item:", item_id)
 
-	var icon_path = "res://assets/icons/picturefragment1.png"
+	var icon_path = "res://scenes/Chapter2/Scene2/Fragments/Fragment 4.png"
 	if not ResourceLoader.exists(icon_path):
 		icon_path = "res://assets/icons/default.png"
 
@@ -42,12 +42,11 @@ func collect_item():
 
 	var slot_id = InventoryManager.get_next_available_slot()
 	InventoryManager.add_item(slot_id, item_id, 1)
-
-	QuestManager.complete_objective("rebuild_picture", str(objective_id))
-
-	# 🔔 Show notification
-	ItemPopUp.show_message("📦 Collected: " + objective_id, 2.0, Color.GREEN)
-		
+	QuestManager.complete_objective("rebuild_picture", objective_id)
+	
+	ItemPopUp.item_obtained_message(item_name, 2.0)
+	
+	
 	var ui = get_tree().get_nodes_in_group("inventory_ui")
 	if ui.size() > 0 and ui[0].active_tab == "items":
 		ui[0].load_inventory()

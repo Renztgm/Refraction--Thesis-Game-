@@ -5,7 +5,6 @@ extends Node
 @onready var dialogue_ui = get_parent().get_node("UILayer/DialogueBox")
 @onready var choice_ui = get_parent().get_node("UILayer/ChoiceBox")
 @onready var fade_overlay = get_parent().get_node("UILayer/FadeOverlay")
-@onready var audio_manager = get_parent().get_node("AudioManager")
 @onready var player = get_parent().get_node("Characters/Player")
 
 var scene_state = "black_screen"
@@ -93,7 +92,6 @@ func start_awakening_sequence():
 
 func fade_in_from_black():
 	scene_state = "fading_in"
-	audio_manager.fade_in_from_black()
 	
 	var tween = create_tween()
 	tween.tween_property(fade_overlay, "modulate:a", 0.0, 4.0)
@@ -137,7 +135,6 @@ func show_choices(choices: Array):
 		container.add_child(button)
 
 func _on_choice_selected(choice_id: String):
-	audio_manager.play_choice_sound()
 	choice_ui.hide()
 	
 	var response = choice_responses[choice_id]
@@ -160,7 +157,6 @@ func _on_choice_selected(choice_id: String):
 
 func show_realization():
 	scene_state = "realization"
-	audio_manager.play_realization_sound()
 	
 	# Change camera to emphasize loneliness
 	camera_controller.wide_lonely_shot()
@@ -170,10 +166,18 @@ func show_realization():
 func end_scene():
 	print("Scene 1: Awakening completed")
 
+	# ✅ Save current game state (player position, scene, etc.)
+	if SaveManager:
+		var saved := SaveManager.save_game()
+		if saved:
+			print("💾 Game state saved successfully")
+		else:
+			print("❌ Failed to save game state")
+
 	# ✅ Log scene completion for branching system
 	if SaveManager:
 		var scene_path = get_tree().current_scene.scene_file_path
-		var branch_id = "awakening"  # You can use a meaningful ID like the BranchNode title or event name
+		var branch_id = "Awakening"  # Or any meaningful branch ID
 		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
 		if logged:
 			print("📌 Scene logged to game_path:", scene_path)

@@ -1,0 +1,10 @@
+[
+	{
+	"id": "memory_core_room",
+	"title": "Find the memory core room",
+	"description": "Need to find the memory core room to know what happened to the companion",
+	"objectives": [
+	  { "id": "memory_core", "text": "Find the room", "is_completed": false },
+	]
+  }
+]

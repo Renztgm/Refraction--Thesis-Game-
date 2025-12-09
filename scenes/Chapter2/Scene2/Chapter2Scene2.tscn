@@ -1,6 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://cvicw8o2rx05t"]
+[gd_scene load_steps=38 format=3 uid="uid://cvicw8o2rx05t"]
 
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="1_5fmib"]
+[ext_resource type="Script" uid="uid://c4o5f2p5abntc" path="res://scenes/Chapter2/Scene2/chapter_2_scene_2.gd" id="1_hn2qq"]
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="2_5m45q"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="2_p2jod"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="3_7tx5h"]
@@ -19,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://sn65cml7m8cp" path="res://assets/Building/bigasan.tscn" id="16_la8r1"]
 [ext_resource type="PackedScene" uid="uid://dwk03urdd1xyp" path="res://assets/Building/store.tscn" id="17_rhig5"]
 [ext_resource type="PackedScene" uid="uid://dg62nhrv67m03" path="res://assets/item/lanterns.tscn" id="19_y6mex"]
+[ext_resource type="Script" uid="uid://dgpkxn01o1wmr" path="res://scenes/Scene3/MemoryShard.gd" id="20_635dy"]
+[ext_resource type="Texture2D" uid="uid://cl87ahsoj60p4" path="res://addons/pngs/shard_sprite.png" id="21_hn2qq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7tx5h"]
 
@@ -82,7 +85,25 @@ size = Vector3(1, 7, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_c5t07"]
 size = Vector3(2, 1, 23)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2dxvu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otrxq"]
+atlas = ExtResource("21_hn2qq")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6j1p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otrxq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
 [node name="Chapter2Scene2" type="Node3D"]
+script = ExtResource("1_hn2qq")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -139,7 +160,7 @@ mesh = SubResource("BoxMesh_5m45q")
 [node name="Market" parent="." instance=ExtResource("7_n0bjb")]
 
 [node name="WorkBench" type="Node3D" parent="." groups=["interactable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 0, -36)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -81, 0, 4)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="WorkBench"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 0)
@@ -353,7 +374,7 @@ debug_color = Color(0.96392137, 0, 0.49870622, 0.41960785)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, -49)
 
 [node name="Karendirya2" parent="." instance=ExtResource("15_2iurd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, -30)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -80, 0, -2)
 
 [node name="Bigasan" parent="." instance=ExtResource("16_la8r1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 30, 0.5, -58)
@@ -363,3 +384,26 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 61.0
 
 [node name="Lanterns" parent="." instance=ExtResource("19_y6mex")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5000001, 29)
+
+[node name="Shard" type="Node3D" parent="." groups=["quest_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.8012, 0, -21.70493)
+
+[node name="Area3D" type="Area3D" parent="Shard"]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("20_635dy")
+shard_name = "memory_shard_2"
+shard_text = "A crumpled market receipt. The ink's mostly gone, but one line remains: \"Two apples. One promise.\" You remember the crisp autumn air and the weight of a secret shared on a day of small purchases. Someone held your hand, their thumb tracing patterns on your skin. The memory is sharp with the bittersweet ache of a promise kept or broken."
+objective_id = "memory_shard_2"
+shard_scene_location = "Market"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shard/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.164978, 0)
+shape = SubResource("BoxShape3D_2dxvu")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Shard/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7147343, 0)
+billboard = 2
+shaded = true
+sprite_frames = SubResource("SpriteFrames_m6j1p")
+autoplay = "default"

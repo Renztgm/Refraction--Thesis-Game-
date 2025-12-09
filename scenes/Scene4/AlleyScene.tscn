@@ -337,7 +337,7 @@ collision_mask = 4
 size = Vector3(500, 1, 250)
 
 [node name="Player3d" parent="." instance=ExtResource("11_oly33")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.284, 0.67160845, -4.2509)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.465, 0.38, -5.751)
 
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 

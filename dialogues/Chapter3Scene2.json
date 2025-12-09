@@ -1,0 +1,177 @@
+{
+  "Companion": {
+	"start": {
+	  "name": "Companion",
+	  "sentences": [
+		"What happened?",
+		"You finally stopped running.",
+		"The beast chased you.",
+        "I see… but now, catch your breath first."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 Where are we?",
+		  "full_text": "Where are we?",
+		  "next": "memory_pocket_explanation"
+		},
+		{
+		  "text": "💬 That beast… what was it?",
+		  "full_text": "That beast… what was it?",
+		  "next": "about_beast"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "…",
+		  "next": "memory_pocket_silence"
+		}
+	  ]
+	},
+	"memory_pocket_explanation": {
+	  "name": "Companion",
+	  "sentences": [
+		"You ran into a memory pocket.",
+		"A place that forms when you panic.",
+        "Not exactly your doing—your mind shaped it to protect you."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 So this is all my mind?",
+		  "full_text": "So this is all my mind’s doing?",
+		  "next": "mind_creates"
+		},
+		{
+		  "text": "💬 Why protect me?",
+		  "full_text": "Why would my mind protect me like this?",
+		  "next": "mind_protection"
+		},
+		{
+		  "text": "💬 What now?",
+		  "full_text": "What do we do now?",
+		  "next": "follow_me"
+		}
+	  ]
+	},
+	"about_beast": {
+	  "name": "Companion",
+	  "sentences": [
+		"The beast wasn’t chasing you.",
+		"It was chasing what you carried.",
+        "Fear has a scent here."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 What was I carrying?",
+		  "full_text": "What was I carrying?",
+		  "next": "what_you_carry"
+		},
+		{
+		  "text": "💬 Can it still find us?",
+		  "full_text": "Can it still find us?",
+		  "next": "danger_persists"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "…",
+		  "next": "memory_pocket_silence"
+		}
+	  ]
+	},
+	"memory_pocket_silence": {
+	  "name": "Companion",
+	  "sentences": [
+		"… Silence again.",
+        "That’s alright. Fear takes the words first."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 What is this place?",
+		  "full_text": "What is this place supposed to be?",
+		  "next": "memory_pocket_explanation"
+		},
+		{
+		  "text": "💬 Who are you?",
+		  "full_text": "Who are you, really?",
+		  "next": "who_are_you"
+		},
+		{
+		  "text": "💬 Let’s keep moving.",
+		  "full_text": "Let’s keep moving.",
+		  "next": "follow_me"
+		}
+	  ]
+	},
+	"mind_creates": {
+	  "name": "Companion",
+	  "sentences": [
+		"Your mind shapes without asking for permission.",
+		"When you panic, it builds pockets—rooms, corridors, entire landscapes.",
+        "All made to keep you from breaking."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 Then show me around.",
+		  "full_text": "Then show me around.",
+		  "next": "follow_me"
+		},
+		{
+		  "text": "💬 Can I control it?",
+		  "full_text": "Can I control these places?",
+		  "next": "control_places"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "…",
+		  "next": "memory_pocket_silence"
+		}
+	  ]
+	},
+	"mind_protection": {
+	  "name": "Companion",
+	  "sentences": [
+		"Even broken minds want to survive.",
+        "Protection here is instinct, not intention."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 So what triggered this?",
+		  "full_text": "So what triggered this reaction?",
+		  "next": "trigger_event"
+		},
+		{
+		  "text": "💬 Can we leave this place?",
+		  "full_text": "Can we leave this place?",
+		  "next": "can_leave"
+		},
+		{
+		  "text": "💬 (Stay silent)",
+		  "full_text": "…",
+		  "next": "memory_pocket_silence"
+		}
+	  ]
+	},
+	"follow_me": {
+	  "name": "Companion",
+	  "sentences": [
+		"Good. Follow me.",
+        "If we check around, we might find clues about the riddle buried in this place."
+	  ],
+	  "options": [
+		{
+		  "text": "💬 A riddle?",
+		  "full_text": "A riddle? What kind of riddle?",
+		  "next": "about_riddle"
+		},
+		{
+		  "text": "💬 Lead the way.",
+		  "full_text": "Alright. Lead the way.",
+		  "next": "begin_exploration"
+		},
+		{
+		  "text": "💬 Why should I trust you?",
+		  "full_text": "Why should I trust you?",
+		  "next": "trust_question"
+		}
+	  ]
+	}
+  }
+}

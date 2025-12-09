@@ -6,21 +6,28 @@ var current_chapter: int = 1
 var next_chapter_scene_path: String = ""
 
 # Node references
-@onready var title_label: Label = $MarginContainer/VBoxContainer/TitleLabel
-@onready var shards_label: Label = $MarginContainer/VBoxContainer/ShardsPanel/VBoxContainer/ShardsCount
-@onready var next_chapter_button: Button = $MarginContainer/VBoxContainer/ButtonContainer/NextChapterButton
-@onready var branch_button: Button = $MarginContainer/VBoxContainer/ButtonContainer/BranchButton
-@onready var inventory_button: Button = $MarginContainer/VBoxContainer/ButtonContainer/InventoryButton
+@onready var title_label: Label = $MarginContainer/VBoxContainer2/TitleLabel
+@onready var shards_label: Label = $MarginContainer/VBoxContainer2/VBoxContainer/VBoxContainer/ShardsCount
+@onready var next_chapter_button: Button = $MarginContainer/VBoxContainer2/VBoxContainer/ButtonContainer/NextChapterButton
+@onready var branch_button: Button = $MarginContainer/VBoxContainer2/VBoxContainer/ButtonContainer/BranchButton
+@onready var inventory_button: Button = $MarginContainer/VBoxContainer2/VBoxContainer/ButtonContainer/InventoryButton
 @onready var inventory_ui: Control = $UI/InventoryUI # Make sure this path matches your scene
 @onready var branch_map_viewer: Control = $BranchMapViewer
-
+@onready var main_menu: Button = $MarginContainer/VBoxContainer2/VBoxContainer/ButtonContainer/MainMenu
+var chapter = SaveManager.get_current_chapter()
 func _ready() -> void:
-	FadeOutCanvas.fade_in(5.0)
-	var chapter = SaveManager.get_current_chapter()
+	FadeOutCanvas.fade_in(1.0)
+	
 	var next_scene = SaveManager.get_next_scene_path()
+	
+	if chapter == 5:
+		if next_chapter_button:
+			next_chapter_button.visible = false
+			main_menu.visible = true
+			
+			
 	print("Initializing ChapterCompleteUI with chapter:", chapter, "next scene:", next_scene)
 	setup_end_chapter_from_db(chapter, next_scene)
-	# Connect button signals with null checks
 	if inventory_button:
 		inventory_button.pressed.connect(_on_inventory_button_pressed)
 	else:
@@ -33,9 +40,14 @@ func _ready() -> void:
 		
 	if branch_button:
 		branch_button.pressed.connect(_on_branch_button_pressed)
-		#branch_button.visible = false
 	else:
 		push_error("BranchButton not found!")
+		
+	if main_menu:
+		main_menu.pressed.connect(_on_main_menu_pressed)
+	else:
+		push_error("MainMenu not found!")
+
 	
 	# Hide inventory UI initially
 	if inventory_ui:
@@ -85,7 +97,10 @@ func setup_end_chapter_from_db(chapter: int, next_scene: String = "") -> void:
 func update_display() -> void:
 	update_shards_display()
 	if title_label:
-		title_label.text = "Chapter %d Complete!" % current_chapter
+		if chapter == 5:
+			title_label.text = "Thanks for playing!"
+		else:
+			title_label.text = "Chapter %d Complete!" % current_chapter
 
 # Update the shards label
 func update_shards_display() -> void:
@@ -109,6 +124,8 @@ func _on_inventory_button_pressed() -> void:
 func _on_next_chapter_button_pressed() -> void:
 	print("Next scene path:", next_chapter_scene_path)
 	if next_chapter_scene_path != "":
+		var new_chapter = current_chapter + 1
+		NewChapterScene.transfer_scene(new_chapter)
 		get_tree().change_scene_to_file(next_chapter_scene_path)
 	else:
 		print("No next chapter scene path set")
@@ -120,10 +137,10 @@ func _on_branch_button_pressed():
 	self.visible = false
 	get_tree().root.add_child(branch_map)
 
-
-
-
-# Enable/disable the branch button (for optional feature)
 func enable_branch_button(enable: bool) -> void:
 	if branch_button:
 		branch_button.visible = enable
+
+
+func _on_main_menu_pressed() -> void:
+		get_tree().change_scene_to_file("res://scenes/Main Menu/main_menu.tscn")

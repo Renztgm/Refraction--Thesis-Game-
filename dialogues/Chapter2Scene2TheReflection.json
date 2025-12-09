@@ -1,0 +1,27 @@
+{
+  "Companion": {
+	"start": {
+	  "name": "You",
+	  "sentences": [
+		"These reflections...",
+        "they're acting on their own."
+	  ],
+	  "next": "mirror_lies"
+	},
+	"mirror_lies": {
+	  "name": "Companion",
+	  "sentences": [
+		"Mirrors lie. And sometimes... they tell truth before you're ready.",
+        "Try to go inside and align the pictures. Not perfectly... just enough to face yourself."
+	  ],
+	  "start_quest": "res://scenes/quest/resources/aligning_the_pictures.json",
+	  "next": "end"
+	},
+	"end": {
+	  "name": "Companion",
+	  "sentences": [
+        "When you're ready, the path will move with you."
+	  ]
+	}
+  }
+}

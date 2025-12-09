@@ -1,0 +1,25 @@
+{
+  "Lyra": {
+	"start": {
+	  "name": "You",
+	  "sentences": [
+		"Why do you look... uncertain?"
+	  ],
+	  "next": "uncertain"
+	},
+	"uncertain": {
+	  "name": "Lyra",
+	  "sentences": [
+		"Because you lost me before... and I'm afraid you'll lose me again."
+	  ],
+	  "start_quest": "res://scenes/quest/resources/reconstruct_the_wall.json",
+	  "next": "end"
+	},
+	"end": {
+	  "name": "Lyra",
+	  "sentences": [
+        "When you're ready, the path will move with you."
+	  ]
+	}
+  }
+}

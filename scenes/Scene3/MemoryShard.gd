@@ -8,13 +8,13 @@ extends Area3D
 @export var shard_scene_location: String = "Outside"
 
 func _ready():
+	float_object_up()
 	add_to_group("quest_item")
 
 	# Ensure Area3D can detect overlaps
 	monitoring = true
 	monitorable = true
 
-	# Safe check: if already collected, remove immediately
 	if InventoryManager.has_memory_shard(shard_name):
 		print("🧼 Shard already collected:", shard_name)
 		remove_minimap_marker()
@@ -25,6 +25,12 @@ func _ready():
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		var shard_notification = preload("res://scenes/UI/ShardNotification.tscn").instantiate()
+		shard_notification.shard_name = shard_name
+		shard_notification.shard_text = shard_text
+		shard_notification.shard_texture = shard_texture
+		get_tree().root.add_child(shard_notification)
+		get_tree().paused = true
 		collect_shard()
 
 func collect_shard() -> void:
@@ -71,3 +77,14 @@ func remove_minimap_marker() -> void:
 		if child.is_in_group("minimap_overlay") and child.has_method("remove_quest_item"):
 			child.remove_quest_item(get_parent())
 			return
+			
+			
+func float_object_up():
+	var tween = create_tween()
+	tween.tween_property(self, "position", position + Vector3(0,1,0), 1)
+	tween.tween_callback(float_object_down)
+
+func float_object_down(): 
+	var tween = create_tween()
+	tween.tween_property(self, "position", position + Vector3(0,-1,0), 1)
+	tween.tween_callback(float_object_up)

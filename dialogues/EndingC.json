@@ -1,0 +1,53 @@
+{
+  "awaken": {
+	"start": {
+	  "name": "You",
+	  "sentences": [
+        "(Voice clear, calm, final) The noise is gone. All the terrifying static, the collapsing walls... they've vanished. I feel utterly stable."
+	  ],
+		"next": "lyra_perfect_smile"
+	},
+	"lyra_perfect_smile": {
+	  "name": "Lyra",
+	  "sentences": [
+        "(Solid, perfect smile) You made the right choice, my love. Why would you ever leave this peace for the harsh, unpredictable edges of the outside?"
+	  ],
+	  "next": "ranting"
+	},
+	"ranting": {
+	  "name": "You",
+	  "sentences": [
+        "The Guardian showed me so many horrible things. So much collapse, so much raw pain hidden in the Residues..."
+	  ],
+	  "next": "guardian_said"
+	},
+	"guardian_said": {
+	  "name": "Guardian",
+	  "sentences": [
+        "(Echoing, soft, from the air) That was the echo of a past you did not need to claim. Here, there is no consequence for peace."
+	  ],
+	  "next": "echo_said"
+	},
+	"echo_said": {
+	  "name": "You",
+	  "sentences": [
+        "(A long, deep sigh of relinquishment) I feel... whole. Even if the details of who I was are still blurry. This world is safer than anything outside that door could offer."
+	  ],
+	  "next": "touching_face"
+	},
+	"touching_face": {
+	  "name": "You",
+	  "sentences": [
+        "(Final resolution) Then there is nothing left to search for. There is nothing left to remember."
+	  ],
+	  "next": "guardian_saying"
+	},
+	"guardian_saying": {
+	  "name": "Guardian",
+	  "sentences": [
+        "(Final, heavy word) Rest."
+	  ],
+	  "next": "end"
+	}
+  }
+}

@@ -23,22 +23,30 @@ func _on_door_entered(body):
 		go_to_end_chapter()
 
 func go_to_end_chapter():
-	# Fade to black
+	push_warning("calling...")
 	if fade_overlay:
 		fade_overlay.color = Color(0, 0, 0, 0)
 		var tween = create_tween()
 		tween.tween_property(fade_overlay, "color", Color(0, 0, 0, 1), 1.5)
 		await tween.finished
 
-	# ✅ Log scene completion
+	# ✅ Save current game state (player position, scene, etc.)
+	if SaveManager:
+		var saved := SaveManager.save_game()
+		if saved:
+			print("💾 Game state saved successfully")
+		else:
+			print("❌ Failed to save game state")
+
+	# ✅ Log scene completion for branching system
 	if SaveManager:
 		var scene_path = get_tree().current_scene.scene_file_path
-		var branch_id = "scene_7"
+		var branch_id = "awakening"  # Or any meaningful branch ID
 		var logged := SaveManager.log_scene_completion(scene_path, branch_id)
 		if logged:
-			print("📌 Scene 7 logged:", scene_path)
+			print("📌 Scene logged to game_path:", scene_path)
 		else:
-			print("ℹ️ Scene 7 already logged or failed to log.")
+			print("ℹ️ Scene already logged or failed to log.")
 
 		# ✅ Set chapter info for next scene
 		SaveManager.set_current_chapter(1)
