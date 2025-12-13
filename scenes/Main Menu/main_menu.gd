@@ -15,6 +15,9 @@ func _ready() -> void:
 	settings_button.pressed.connect(_on_settings_pressed)
 	var profiles = ProfileManager.get_profiles()
 	continue_button.disabled = profiles.size() < 1
+	
+	if continue_button.disabled:
+		$MarginContainer/HBoxContainer/VBoxContainer/ContinueButton.visible = false
 
 
 # --------------------

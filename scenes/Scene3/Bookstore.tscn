@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bf4bbr6ak5t7j"]
+[gd_scene load_steps=32 format=3 uid="uid://bf4bbr6ak5t7j"]
 
 [ext_resource type="PackedScene" uid="uid://cef51xksnix0e" path="res://assets/Building/LibraryRoom.tscn" id="1_3alfa"]
 [ext_resource type="Script" uid="uid://cbsq0vtywjpnp" path="res://scenes/Scene3/bookstore_location.gd" id="1_lbmbb"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c5utx7vxnxej0" path="res://addons/pngs/Button.png" id="10_cudmw"]
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="13_3alfa"]
 [ext_resource type="PackedScene" uid="uid://cbm6yi4s1r5bj" path="res://scenes/UI/FadeOutCanvas.tscn" id="14_x0oou"]
+[ext_resource type="AudioStream" uid="uid://dcdwke1h3bklh" path="res://assets/audio/mp3/library.mp3" id="17_l061f"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="18_qkotb"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="18_yli1t"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="19_nemvj"]
@@ -297,3 +298,9 @@ mesh = SubResource("BoxMesh_d83rn")
 [node name="FadeOutCanvas" parent="." instance=ExtResource("14_x0oou")]
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+
+[node name="background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_l061f")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true

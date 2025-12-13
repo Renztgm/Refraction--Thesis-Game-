@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dct3d46n2q7pv"]
+[gd_scene load_steps=11 format=3 uid="uid://dct3d46n2q7pv"]
 
 [ext_resource type="Script" uid="uid://ciiyd68qdq57u" path="res://scenes/Main Menu/Create Proflie/create_profile.gd" id="1_oola6"]
 [ext_resource type="Texture2D" uid="uid://brry7rdwawx3g" path="res://assets/ui/close.png" id="2_xq8jn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://b3il4c2b8icww" path="res://scenes/Main Menu/shadow.gd" id="7_485qb"]
 [ext_resource type="Texture2D" uid="uid://dtrhq84oqsqn4" path="res://assets/MainMenu/New/broken glass.png" id="8_g7rco"]
 [ext_resource type="Script" uid="uid://1pik73h8bu46" path="res://scenes/Main Menu/brokenglass.gd" id="9_d17jo"]
+[ext_resource type="AudioStream" uid="uid://bi6a0aijxpml4" path="res://assets/audio/ambient/main menu.mp3" id="10_i1a5a"]
 
 [node name="CreateProfile" type="Control"]
 layout_mode = 3
@@ -97,5 +98,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_xq8jn")
 expand_mode = 1
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_i1a5a")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,14 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://crieuya1rk71"]
+[gd_scene load_steps=30 format=3 uid="uid://crieuya1rk71"]
 
 [ext_resource type="PackedScene" uid="uid://b42g54u5kjqbp" path="res://scenes/Map/OutsideMap.tscn" id="1_m7g27"]
 [ext_resource type="Script" uid="uid://vq5qvu2yvsnw" path="res://scenes/Scene3/scene_3.gd" id="1_otrxq"]
+[ext_resource type="AudioStream" uid="uid://cbwlp4dc0xryj" path="res://assets/audio/mp3/chapter 1 looking for & following companion.mp3" id="3_otrxq"]
 [ext_resource type="PackedScene" uid="uid://btnevx6tvo7sf" path="res://assets/Building/Building7.tscn" id="7_tf8eh"]
 [ext_resource type="Script" uid="uid://xdktxpaee1d" path="res://scenes/Scene3/bookstore.gd" id="8_ljopq"]
 [ext_resource type="Script" uid="uid://bdt2j4ph8b8no" path="res://script/BookstoreMarker.gd" id="9_ynfyr"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="11_aq08c"]
 [ext_resource type="AudioStream" uid="uid://d3eleqvy3v1op" path="res://assets/audio/ui/Click_sound.wav" id="13_foqjr"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="13_qt3ua"]
-[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_kv2g0"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_kv2g0"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="15_fnou3"]
 [ext_resource type="Script" uid="uid://dgpkxn01o1wmr" path="res://scenes/Scene3/MemoryShard.gd" id="15_m7g27"]
 [ext_resource type="PackedScene" uid="uid://cc2bs557jdqgg" path="res://scenes/NPCs/Npc2_No_sound.tscn" id="15_u4lah"]
@@ -119,9 +120,11 @@ environment = SubResource("Environment_ljopq")
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("3_otrxq")
 autoplay = true
 bus = &"Music"
 playback_type = 1
+parameters/looping = true
 
 [node name="UISounds" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource("13_foqjr")
@@ -132,6 +135,7 @@ bus = &"Music"
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource("14_kv2g0")
+volume_db = -20.0
 autoplay = true
 bus = &"Music"
 playback_type = 1

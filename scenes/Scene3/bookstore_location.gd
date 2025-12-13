@@ -12,4 +12,4 @@ func _ready() -> void:
 	if not new_quest_completed:
 		var quest_location: String = "res://scenes/quest/resources/explore_the_bookstore_quest.json"
 		QuestManager.import_quests_from_json(quest_location)
-		ItemPopUp.quest_show_message("Secrets in the Stacks")	
+		QuestNotification.show_quest("Secrets in the Stacks")

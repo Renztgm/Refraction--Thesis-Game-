@@ -45,7 +45,7 @@
 	"guardian_saying": {
 	  "name": "Guardian",
 	  "sentences": [
-        "(Final, heavy word) Rest."
+        "Rest."
 	  ],
 	  "next": "end"
 	}

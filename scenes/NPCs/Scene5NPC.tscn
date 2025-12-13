@@ -194,6 +194,7 @@ bus = &"Music"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1226053, 0)
 collision_layer = 0
 collision_mask = 4
+audio_bus_name = &"Music"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12060881, 0, 0.028721333)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://coobjoekr7vw3"]
+[gd_scene load_steps=47 format=3 uid="uid://coobjoekr7vw3"]
 
 [ext_resource type="Script" uid="uid://hs6qepgc50wr" path="res://scenes/Chapter3/Straight/Scene1/chapter_3_scene_1.gd" id="1_iuooq"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="1_o7y2i"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" uid="uid://dgpkxn01o1wmr" path="res://scenes/Scene3/MemoryShard.gd" id="11_skf7c"]
 [ext_resource type="Texture2D" uid="uid://cl87ahsoj60p4" path="res://addons/pngs/shard_sprite.png" id="12_kel5d"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="13_kel5d"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_dux23"]
+[ext_resource type="AudioStream" uid="uid://d3vayey4hy7xo" path="res://assets/audio/ambient/echo_sound.wav" id="15_7aiqe"]
+[ext_resource type="AudioStream" uid="uid://bc1wbd16ub5eh" path="res://assets/audio/ambient/chase scene music.mp3" id="16_jjr34"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hlusy"]
 
@@ -107,7 +110,7 @@ size = Vector3(1, 2, 14)
 size = Vector3(2, 2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f5gbf"]
-size = Vector3(17.388733, 2, 3)
+size = Vector3(22, 2, 17)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s4gh2"]
 
@@ -138,6 +141,9 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_jjr34"]
 Panel/styles/panel = SubResource("StyleBoxFlat_7aiqe")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmoyf"]
+size = Vector3(28, 1, 20)
 
 [node name="Chapter3Scene1" type="Node3D"]
 script = ExtResource("1_iuooq")
@@ -286,7 +292,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28, 
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 59, 0.26, -55.44212)
 
 [node name="LongAlley12" parent="Alley" instance=ExtResource("6_eiwfd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0.26, -25.252363)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.2, 0.26, -25.252363)
 
 [node name="LongAlley49" parent="Alley" instance=ExtResource("6_eiwfd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13, 0.26, -55.39116)
@@ -636,16 +642,16 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_7bcrv")
 
 [node name="Player3d" parent="." groups=["player2"] instance=ExtResource("7_fp63k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -6)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 0, 15)
 collision_layer = 6
-collision_mask = 6
+collision_mask = 4
 script = ExtResource("10_ti62v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3926697, 0.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91296387, 0.5, 6)
 shape = SubResource("BoxShape3D_f5gbf")
 
 [node name="Shard" type="Node3D" parent="." groups=["quest_item"]]
@@ -672,7 +678,7 @@ sprite_frames = SubResource("SpriteFrames_pmoyf")
 autoplay = "default"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 10
+layer = 21
 follow_viewport_enabled = true
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
@@ -743,6 +749,34 @@ grow_vertical = 2
 text = "SHIFT"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, 16)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 3.5)
+shape = SubResource("BoxShape3D_pmoyf")
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_dux23")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="echo_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_7aiqe")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_jjr34")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="gui_input" from="CanvasLayer/Panel" to="." method="_on_panel_gui_input"]

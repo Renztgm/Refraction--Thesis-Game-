@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://bj111x3valukd"]
+[gd_scene load_steps=28 format=3 uid="uid://bj111x3valukd"]
 
+[ext_resource type="Script" uid="uid://do054la5643hp" path="res://scenes/Chapter2/Scene1/chapter_2_scene_1.gd" id="1_vtpxn"]
 [ext_resource type="PackedScene" uid="uid://c0qchlpr70m27" path="res://assets/item/banig.tscn" id="4_aihtp"]
 [ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="5_vtpxn"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="10_jq7dr"]
@@ -7,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="13_cto0d"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="13_kc280"]
 [ext_resource type="PackedScene" uid="uid://00s06lhieu5e" path="res://scenes/NPCs/Ch2Scene1NPC.tscn" id="13_mc64s"]
+[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/deprecated_sounds/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="13_mfh66"]
+[ext_resource type="AudioStream" uid="uid://ced1qtds5m8lc" path="res://assets/audio/mp3/safe house.mp3" id="14_mc64s"]
 [ext_resource type="PackedScene" uid="uid://divlh86tcj7iw" path="res://assets/Building/Building-SafeHouse.tscn" id="15_mfh66"]
 [ext_resource type="Script" uid="uid://dmybqcpulihgk" path="res://scenes/Chapter2/Scene1/going_out.gd" id="18_fboxb"]
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_wt8n1"]
@@ -69,6 +72,7 @@ size = Vector3(1, 1, 2.8)
 size = Vector3(0.2, 1.9, 7)
 
 [node name="Chapter2Scene1" type="Node3D"]
+script = ExtResource("1_vtpxn")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -186,3 +190,16 @@ shape = SubResource("BoxShape3D_og56q")
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Structures/barriers/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999996, 14.549999, -8.4)
 shape = SubResource("BoxShape3D_6avhk")
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_mfh66")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_mc64s")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true

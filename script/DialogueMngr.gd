@@ -7,11 +7,17 @@ signal dialogue_finished
 @onready var next_button = $NextButton
 @onready var options_container = $Options
 
-var camera: Camera3D
-var player: Node3D
-var companion: Node3D
-var monster: Node3D
+@export var camera: Camera3D
+@export var player: Node3D
+@export var companion: Node3D
+@export var monster: Node3D
 
+# Character voice sound paths
+@export var companion_voice_sfx: String = "res://assets/sounds/Companion_Dialogue_short.wav"
+@export var player_voice_sfx: String = "res://assets/sounds/MC_dialogue_short.wav"
+@export var guardian_voice_sfx: String = ""
+@export var stranger_voice_sfx: String = ""
+@export var hollow_voice_sfx: String = ""
 
 var dialogue: Dictionary = {}
 var current_node: String = "start"
@@ -28,6 +34,8 @@ var is_typing: bool = false
 var pending_next_node: String = ""
 var pending_mc_text: String = ""
 
+var character_voice_player: AudioStreamPlayer
+
 
 func _ready():
 	hide()
@@ -42,9 +50,12 @@ func _ready():
 	self.gui_input.connect(_on_dialogue_gui_input)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	
+	# Setup voice player
+	character_voice_player = AudioStreamPlayer.new()
+	add_child(character_voice_player)
+
 # --- Load dialogue from JSON file ---
 func load_dialogue(file_path: String, npc_id: String):
-	_find_scene_nodes()
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	if not file:
 		push_error("Cannot open file: " + file_path)
@@ -117,52 +128,18 @@ func show_node(node_name: String):
 	# --- Store auto-next if provided ---
 	pending_next_node = node.get("next", "")
 	
-	
-	
-	print("Checking node: ", node)
-	print("Node has focus? ", node.has("focus"))
-	print("Camera exists? ", camera != null)
-	print("Camera variable: ", camera)
-	print("Node contents: ", node)
-	print("Node keys: ", node.keys() if node is Dictionary else "Not a dictionary")
-	
 	# --- Cinematic extensions ---
-	if node.has("focus") and camera:
-		var target_position: Vector3
-		
-		# Default camera settings
-		var camera_offset := Vector3(0, 3, 4.5)
-		var look_at_offset := Vector3(0, 2, 0)
-		
-		# Override with custom values if provided
-		if node.has("camera_offset"):
-			print("Found camera_offset: ", node["camera_offset"])
-			camera_offset = str_to_vector3(node["camera_offset"])
-			print("Parsed camera_offset: ", camera_offset)
-		if node.has("look_at_offset"):
-			print("Found look_at_offset: ", node["look_at_offset"])
-			look_at_offset = str_to_vector3(node["look_at_offset"])
-			print("Parsed look_at_offset: ", look_at_offset)
-		
+	if node.has("focus"):
 		match node["focus"]:
 			"Player":
-				if player:
-					target_position = player.global_transform.origin
+				if player and camera:
+					camera.look_at(player.global_transform.origin, Vector3.UP)
 			"Companion":
-				if companion:
-					target_position = companion.global_transform.origin
+				if companion and camera:
+					camera.look_at(companion.global_transform.origin, Vector3.UP)
 			"Monster":
-				if monster:
-					target_position = monster.global_transform.origin
-					print("Monster position: ", target_position)
-		
-		if target_position:
-			print("BEFORE MOVE - Camera position: ", camera.global_position)
-			camera.global_position = target_position + camera_offset
-			print("AFTER MOVE - Camera position: ", camera.global_position)
-			print("Target was: ", target_position)
-			print("Offset applied: ", camera_offset)
-			camera.look_at(target_position + look_at_offset, Vector3.UP)
+				if monster and camera:
+					camera.look_at(monster.global_transform.origin, Vector3.UP)
 
 	if node.has("animation"):
 		var anim_name: String = node["animation"]
@@ -178,14 +155,6 @@ func show_node(node_name: String):
 		show_node(pending_next_node)
 	else:
 		_close_dialogue()
-
-# Helper function to convert string to Vector3
-func str_to_vector3(value) -> Vector3:
-	if value is String:
-		var coords = value.split(",")
-		if coords.size() == 3:
-			return Vector3(float(coords[0]), float(coords[1]), float(coords[2]))
-	return value if value is Vector3 else Vector3.ZERO
 
 func _start_quest_from_path(quest_path: String):
 	print("📦 Auto-starting quest:", quest_path)
@@ -225,7 +194,44 @@ func _start_sentence():
 	is_typing = true
 	dialogue_label.text = ""
 	next_button.visible = false
+	
+	# Play character voice when starting new sentence
+	play_character_voice()
+	
 	typing_timer.start()
+
+# --- NEW: Play voice based on who's speaking ---
+func play_character_voice():
+	var speaker_name = npc_name_label.text
+	var voice_path = ""
+	var volume_db = 0.0  # Default volume
+	
+	# Check speaker and assign appropriate voice + volume
+	if speaker_name == "You":
+		voice_path = player_voice_sfx
+		volume_db = -5.0  
+	elif speaker_name == "Lyra" or speaker_name == "Companion":
+		voice_path = companion_voice_sfx
+		volume_db = -15.0  
+	elif speaker_name == "Guardian":
+		voice_path = guardian_voice_sfx
+		volume_db = 0.0 
+	elif speaker_name == "Hollow":
+		voice_path = hollow_voice_sfx
+		volume_db = 0.0 
+	elif speaker_name == "Stranger":
+		voice_path = stranger_voice_sfx
+		volume_db = 0.0 
+	
+	#checking if sound_player have correct variables.
+	if voice_path != "" and ResourceLoader.exists(voice_path):
+		var audio_stream: AudioStream = load(voice_path)
+		if audio_stream:
+			character_voice_player.stream = audio_stream
+			character_voice_player.volume_db = volume_db  # Set volume
+			character_voice_player.play()
+	elif voice_path != "":
+		push_warning("Character voice not found: " + voice_path)
 
 # --- Typing effect ---
 func _on_typing_step():
@@ -281,6 +287,10 @@ func _on_next_pressed():
 
 		dialogue_label.text = ""
 		next_button.visible = false
+		
+		# Play player voice
+		play_character_voice()
+		
 		typing_timer.start()
 		return
 
@@ -363,21 +373,22 @@ func _clear_options():
 
 func _on_dialogue_gui_input(event: InputEvent):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.double_click:   # ✅ Godot 4
+		if event.double_click:
 			_skip_sentence()
-
 
 func _skip_sentence():
 	if is_typing:
 		typing_timer.stop()
-		dialogue_label.text = full_text   # Show entire sentence immediately
+		dialogue_label.text = full_text
 		is_typing = false
-		next_button.visible = true        # Allow player to continue
+		next_button.visible = true
 
 # --- Close dialogue ---
 func _close_dialogue():
 	if typing_timer and not typing_timer.is_stopped():
 		typing_timer.stop()
+	if character_voice_player and character_voice_player.playing:
+		character_voice_player.stop()
 	dialogue_label.text = ""
 	_clear_options()
 	options_container.visible = false
@@ -402,7 +413,7 @@ func play_node_sfx(node: Dictionary):
 	
 	# Create player
 	var sfx_player := AudioStreamPlayer.new()
-	add_child(sfx_player)  # Must add to scene first
+	add_child(sfx_player)
 	sfx_player.stream = audio_stream
 	sfx_player.play()
 	
@@ -418,27 +429,3 @@ func play_node_sfx(node: Dictionary):
 	add_child(t)
 	t.start()
 	t.timeout.connect(Callable(sfx_player, "queue_free"))
-
-func _find_scene_nodes():
-	# Find player
-	player = get_tree().get_first_node_in_group("player")
-	if not player:
-		var current_scene = get_tree().current_scene
-		player = current_scene.get_node_or_null("Player3d")
-	
-	# Get camera from player
-	if player:
-		camera = player.get_node_or_null("Camera_Mount/Camera3D")
-		print("✅ Found player and camera")
-	else:
-		push_warning("❌ Player not found!")
-	
-	# Find companion
-	companion = get_tree().get_first_node_in_group("companion")
-	if companion:
-		print("✅ Found companion")
-	
-	# Find monster
-	monster = get_tree().get_first_node_in_group("monster")
-	if monster:
-		print("✅ Found monster")

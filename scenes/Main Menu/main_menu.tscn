@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dq2ix7cgwm5b"]
+[gd_scene load_steps=16 format=3 uid="uid://dq2ix7cgwm5b"]
 
 [ext_resource type="Script" uid="uid://bbr3ag0pe55xm" path="res://scenes/Main Menu/main_menu.gd" id="1_hk6sr"]
 [ext_resource type="Texture2D" uid="uid://ibd23y72atom" path="res://assets/MainMenu/New/background.png" id="2_mqky1"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bv3ouh4wn8khv" path="res://scenes/Main Menu/hovereffect.gd" id="10_ghmdy"]
 [ext_resource type="Texture2D" uid="uid://6lis47x0t7h8" path="res://assets/MainMenu/New/PRESS START.png" id="10_ss42s"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="12_ro6tp"]
+[ext_resource type="AudioStream" uid="uid://bi6a0aijxpml4" path="res://assets/audio/ambient/main menu.mp3" id="13_mqky1"]
 
 [sub_resource type="FontVariation" id="FontVariation_3e4a6"]
 base_font = ExtResource("4_iscfu")
@@ -90,7 +91,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("texture", "target_button")]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(250, 48)
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = SubResource("FontVariation_3e4a6")
@@ -131,7 +132,7 @@ text = "Continue"
 vertical_alignment = 1
 
 [node name="NewGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("texture", "target_button")]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(250, 48)
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = SubResource("FontVariation_3e4a6")
@@ -172,7 +173,7 @@ text = "New Game"
 vertical_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("texture", "target_button")]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(250, 48)
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = SubResource("FontVariation_3e4a6")
@@ -213,7 +214,7 @@ text = "Settings"
 vertical_alignment = 1
 
 [node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("texture", "target_button")]
-custom_minimum_size = Vector2(120, 32)
+custom_minimum_size = Vector2(250, 48)
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = SubResource("FontVariation_gc41w")
@@ -252,3 +253,8 @@ theme_override_fonts/font = ExtResource("12_ro6tp")
 theme_override_font_sizes/font_size = 60
 text = "Quit"
 vertical_alignment = 1
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_mqky1")
+autoplay = true
+parameters/looping = true

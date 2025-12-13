@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cgsfj5ixafi17"]
+[gd_scene load_steps=31 format=3 uid="uid://cgsfj5ixafi17"]
 
 [ext_resource type="PackedScene" uid="uid://c0qchlpr70m27" path="res://assets/item/banig.tscn" id="4_hbq5d"]
 [ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="5_utqkt"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="13_g4khw"]
 [ext_resource type="PackedScene" uid="uid://00s06lhieu5e" path="res://scenes/NPCs/Ch2Scene1NPC.tscn" id="14_6x4kg"]
 [ext_resource type="PackedScene" uid="uid://divlh86tcj7iw" path="res://assets/Building/Building-SafeHouse.tscn" id="15_0bpwq"]
+[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/deprecated_sounds/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="15_acq7a"]
 [ext_resource type="Script" uid="uid://xf2crlmvno8x" path="res://scenes/Chapter2/Scene1/picturefragment1_area3d.gd" id="15_w5sbn"]
 [ext_resource type="PackedScene" uid="uid://dl1oxf6kjobol" path="res://assets/item/paper/torn_paper_item.gltf" id="16_086ud"]
+[ext_resource type="AudioStream" uid="uid://ced1qtds5m8lc" path="res://assets/audio/mp3/safe house.mp3" id="16_acq7a"]
 [ext_resource type="Script" uid="uid://duhr5p7qmru8o" path="res://scenes/quest/items/picturefragment1.gd" id="17_qf3k6"]
 [ext_resource type="Script" uid="uid://dmybqcpulihgk" path="res://scenes/Chapter2/Scene1/going_out.gd" id="18_xaba7"]
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_1jk15"]
@@ -220,3 +222,16 @@ shape = SubResource("BoxShape3D_mv0i7")
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Structures/barriers/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999996, 14.549999, -8.4)
 shape = SubResource("BoxShape3D_hbq5d")
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_acq7a")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_acq7a")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true

@@ -44,6 +44,7 @@ GameOverUi="*res://scenes/UI/DeathUI.tscn"
 ProfileManager="*res://scenes/Main Menu/Load Slot/ProfileManager.gd"
 NewChapterScene="*res://scenes/UI/new_chapter_scene.tscn"
 NarrativeProgression="*res://script/NarrativeProgression.gd"
+QuestNotification="*res://scenes/UI/Quest Notification.tscn"
 
 [display]
 

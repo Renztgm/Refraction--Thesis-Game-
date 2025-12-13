@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://blfung8dlbhsi" path="res://scenes/UI/fade_out_canvas.gd" id="1_eu106"]
 
 [node name="FadeOutCanvas" type="CanvasLayer"]
+layer = 20
 visible = false
 script = ExtResource("1_eu106")
 

@@ -1,18 +1,24 @@
 extends Area3D
 
 @export var jumpscare_duration: float = 3.0  # How long to show the jumpscare
+@export var music_fade_duration: float = 1.5  # How long the fade out takes
 @onready var jumpscare_camera: Camera3D = $"../JumpscareCamera"  # Camera positioned in front of NPC
 @onready var dialogue_manager: Control = $"../DialogueManager"
+@onready var background_music: AudioStreamPlayer = $"../AudioManager/BackgroundMusic"
 
 var player_camera: Camera3D
 var player: Node3D
 var is_jumpscaring: bool = false
 var jumpscare_timer: float = 0.0
+var jumpscare_sound = AudioStreamPlayer.new()
+var music_tween: Tween
 
 func _ready():
 	body_entered.connect(_on_body_entered)
 	if jumpscare_camera:
 		jumpscare_camera.current = false
+	add_child(jumpscare_sound)
+	jumpscare_sound.stream = load("res://assets/audio/ambient/Eerrie_Sound.mp3")
 
 func _on_body_entered(body):
 	# Check if the player entered
@@ -22,6 +28,7 @@ func _on_body_entered(body):
 		player_camera = find_camera_in_node(player)
 		
 		if player_camera and jumpscare_camera:
+			fade_out_music()  # Add fade out here
 			trigger_jumpscare()
 			
 			await get_tree().create_timer(3).timeout
@@ -31,6 +38,17 @@ func _on_body_entered(body):
 				push_error("No Camera3D found in player!")
 			if not jumpscare_camera:
 				push_error("JumpscareCamera not found! Make sure it exists in the scene.")
+
+func fade_out_music():
+	if background_music and background_music.playing:
+		# Kill previous tween if it exists
+		if music_tween:
+			music_tween.kill()
+		
+		# Create new tween
+		music_tween = create_tween()
+		music_tween.tween_property(background_music, "volume_db", -80, music_fade_duration)
+		music_tween.tween_callback(background_music.stop)
 
 func find_camera_in_node(node: Node) -> Camera3D:
 	# Check if this node is a camera
@@ -48,7 +66,7 @@ func find_camera_in_node(node: Node) -> Camera3D:
 func trigger_jumpscare():
 	is_jumpscaring = true
 	jumpscare_timer = 0.0
-	
+	jumpscare_sound.play() 
 	# Switch to jumpscare camera
 	jumpscare_camera.current = true
 	

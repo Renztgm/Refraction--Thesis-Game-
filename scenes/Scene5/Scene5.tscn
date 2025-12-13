@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://du6qcuvatfwy4"]
+[gd_scene load_steps=25 format=3 uid="uid://du6qcuvatfwy4"]
 
 [ext_resource type="Script" uid="uid://bcdsk0drc88rs" path="res://scenes/Scene5/scene_5.gd" id="1_a7c34"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="2_42mrx"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="2_uyai8"]
 [ext_resource type="PackedScene" uid="uid://divlh86tcj7iw" path="res://assets/Building/Building-SafeHouse.tscn" id="4_aeluw"]
 [ext_resource type="PackedScene" uid="uid://dw8pkwvdjmuhe" path="res://scenes/NPCs/Scene5NPC.tscn" id="4_sknra"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="9_a7c34"]
 [ext_resource type="PackedScene" uid="uid://c0qchlpr70m27" path="res://assets/item/banig.tscn" id="9_og53i"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="10_a7c34"]
+[ext_resource type="AudioStream" uid="uid://ced1qtds5m8lc" path="res://assets/audio/mp3/safe house.mp3" id="12_00p4s"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="13_ksnm8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_og53i"]
@@ -106,6 +108,12 @@ size = Vector3(36.698242, 1, 15.2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 13.2, -3.5)
 shape = SubResource("BoxShape3D_a7c34")
 
+[node name="wind" type="AudioStreamPlayer" parent="Environment"]
+stream = ExtResource("2_42mrx")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
 [node name="Structures" type="Node3D" parent="."]
 
 [node name="Banig" parent="Structures" instance=ExtResource("9_og53i")]
@@ -174,3 +182,20 @@ script = ExtResource("10_a7c34")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -10)
 visible = false
 mesh = SubResource("BoxMesh_00p4s")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="fade_overlay" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_00p4s")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true

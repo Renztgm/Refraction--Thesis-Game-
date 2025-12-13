@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bd21er8xsq2ib"]
+[gd_scene load_steps=3 format=3 uid="uid://bd21er8xsq2ib"]
 
 [ext_resource type="Script" uid="uid://ddh8joh4sj7sg" path="res://scenes/Scene1/Prologue/prologue.gd" id="1_swvb6"]
+[ext_resource type="AudioStream" uid="uid://sro1mymhxb8m" path="res://assets/audio/ambient/intro.wav" id="2_gp6hv"]
 
 [node name="Prologue" type="Control"]
 layout_mode = 3
@@ -90,3 +91,8 @@ offset_bottom = 23.0
 [node name="SFX_Wind" type="AudioStreamPlayer" parent="."]
 
 [node name="SFX_Inhale" type="AudioStreamPlayer" parent="."]
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gp6hv")
+autoplay = true
+bus = &"Music"

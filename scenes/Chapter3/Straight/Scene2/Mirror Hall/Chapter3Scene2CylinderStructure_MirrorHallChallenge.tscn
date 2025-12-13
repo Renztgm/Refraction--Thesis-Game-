@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://tavcoc1uswke"]
+[gd_scene load_steps=26 format=3 uid="uid://tavcoc1uswke"]
 
 [ext_resource type="Script" uid="uid://diwixgy2ma3t" path="res://scenes/Chapter3/Straight/Scene2/Mirror Hall/chapter_3_scene_2_cylinder_structure_mirror_hall_challenge.gd" id="1_1crng"]
 [ext_resource type="PackedScene" uid="uid://de73jnwst0ddy" path="res://assets/Building/CylinderStructure.tscn" id="2_c3qkp"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://duf46vtmwqm2" path="res://scenes/Chapter3/Straight/Scene2/Mirror Hall/pedestal.gd" id="12_1crng"]
 [ext_resource type="PackedScene" uid="uid://fva57a6t81jh" path="res://scenes/NPCs/Ch2Scene1NPC_nOSPEAKING.tscn" id="13_fcbco"]
 [ext_resource type="PackedScene" uid="uid://bgfr07k2sfaei" path="res://assets/item/Pedestal/Pedestal.glb" id="13_ue65h"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_ue65h"]
+[ext_resource type="AudioStream" uid="uid://on4p1mn4omhc" path="res://assets/audio/mp3/chapter 3 after chase & circular room.mp3" id="15_m58v8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2os2a"]
 
@@ -208,6 +210,17 @@ size = Vector3(2, 5, 2)
 
 [node name="blockbench_export" parent="Pedestal 3" instance=ExtResource("13_ue65h")]
 transform = Transform3D(16.73, 0, 0, 0, 16.73, 0, 0, 0, 16.73, 0, 0.72499996, 0)
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_ue65h")
+volume_db = -25.0
+autoplay = true
+bus = &"Music"
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_m58v8")
+autoplay = true
+bus = &"Music"
 
 [connection signal="body_entered" from="Pedestal" to="Pedestal" method="_on_body_entered"]
 [connection signal="body_exited" from="Pedestal" to="Pedestal" method="_on_body_exited"]

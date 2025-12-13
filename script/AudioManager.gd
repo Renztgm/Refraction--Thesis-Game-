@@ -42,7 +42,6 @@ func _get_free_player() -> AudioStreamPlayer:
 		if !p.playing:
 			return p
 
-	# None available → create new one
 	var np = AudioStreamPlayer.new()
 	np.bus = "SFX"
 	add_child(np)

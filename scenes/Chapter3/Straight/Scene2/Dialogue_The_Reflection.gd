@@ -33,6 +33,7 @@ func _on_dialogue_finished():
 	dialogue_active = false
 	if player and player.has_method("unfreeze_player"):
 		player.unfreeze_player()		
+		QuestNotification.show_quest("Align the Pictures")
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):

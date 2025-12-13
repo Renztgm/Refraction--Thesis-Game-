@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cf8vngdhaswj2"]
+[gd_scene load_steps=24 format=3 uid="uid://cf8vngdhaswj2"]
 
 [ext_resource type="PackedScene" uid="uid://de73jnwst0ddy" path="res://assets/Building/CylinderStructure.tscn" id="1_d7o7f"]
 [ext_resource type="Script" uid="uid://de5tbbn5rinpj" path="res://scenes/Chapter3/Straight/Scene2/chapter_3_scene_2_cylinder_structure.gd" id="1_dvfyx"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="10_dvfyx"]
 [ext_resource type="PackedScene" uid="uid://btac1tufiohnq" path="res://scenes/NPCs/Chapter3Scene2Halls.tscn" id="12_oggqk"]
 [ext_resource type="Script" uid="uid://ggsewgy8ma85" path="res://scenes/Chapter3/Straight/Scene2/Chapter3Scene3Area3D.gd" id="12_r75nm"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="13_oggqk"]
+[ext_resource type="AudioStream" uid="uid://on4p1mn4omhc" path="res://assets/audio/mp3/chapter 3 after chase & circular room.mp3" id="14_bmlic"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2os2a"]
 
@@ -145,6 +147,18 @@ text = "Press E to Interact"
 
 [node name="Hall NPC" parent="." groups=["npc"] instance=ExtResource("12_oggqk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.6, -21)
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_oggqk")
+volume_db = -25.0
+autoplay = true
+bus = &"Music"
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("14_bmlic")
+autoplay = true
+bus = &"Music"
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

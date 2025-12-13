@@ -247,10 +247,13 @@ func update_animation():
 	
 	if angle > -PI/4 and angle <= PI/4:
 		companion_sprite.play("walk_left")
+		push_warning("left")
 	elif angle > PI/4 and angle <= 3*PI/4:
-		companion_sprite.play("walk_right")
+		companion_sprite.play("walk_left")
+		push_warning("right")
 	elif angle <= -PI/4 and angle > -3*PI/4:
 		companion_sprite.play("walk_backward")
+		push_warning("use forward for backward")
 	else:
 		companion_sprite.play("walk_forward")
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://du7ew35f2868i"]
+[gd_scene load_steps=24 format=3 uid="uid://du7ew35f2868i"]
 
 [ext_resource type="Script" uid="uid://qe2apgjbclqy" path="res://scenes/Chapter4/Scene2/chapter_4_scene_2_memory_core_room.gd" id="1_cpvdf"]
+[ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="2_qaolp"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="3_tsd2j"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="4_2u7pt"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="5_0d183"]
@@ -9,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="8_qaolp"]
 [ext_resource type="PackedScene" uid="uid://2kojisra112b" path="res://scenes/NPCs/Chapter4Scene2NPC.tscn" id="9_0d183"]
 [ext_resource type="PackedScene" uid="uid://db6dlxp2p48mt" path="res://scenes/NPCs/Guardian.tscn" id="10_qugda"]
+[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/deprecated_sounds/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="10_v8nox"]
+[ext_resource type="AudioStream" uid="uid://5p8q232t42ph" path="res://assets/audio/ambient/chimes.mp3" id="11_v8nox"]
+[ext_resource type="AudioStream" uid="uid://c01m32ya5j1hq" path="res://assets/audio/mp3/guardian music.mp3" id="13_qlfrw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pbrki"]
 
@@ -17,7 +21,11 @@ size = Vector3(100, 1, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qugda"]
 albedo_color = Color(0.48178947, 0.48178947, 0.48178947, 1)
+albedo_texture = ExtResource("2_qaolp")
+anisotropy_enabled = true
 uv1_triplanar = true
+uv1_triplanar_sharpness = 0.085377686
+uv1_world_triplanar = true
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v8nox"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -62,6 +70,12 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [sub_resource type="BoxMesh" id="BoxMesh_a5xfn"]
 size = Vector3(500, 1, 500)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qaolp"]
+size = Vector3(500, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qlfrw"]
+size = Vector3(1, 5, 500)
+
 [node name="Chapter4Scene2MemoryCoreRoom" type="Node3D"]
 script = ExtResource("1_cpvdf")
 
@@ -84,6 +98,7 @@ size = Vector3(100, 1, 100)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-0.9900237, 0.059324276, -0.12780361, -1.5859261e-07, 0.90704393, 0.42103586, 0.14090113, 0.4168354, -0.8979952, 0, 0, 0)
+light_energy = 0.7
 light_indirect_energy = 1.09
 light_volumetric_fog_energy = 10.0
 shadow_enabled = true
@@ -121,3 +136,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.3, 30)
 
 [node name="Guardian" parent="." groups=["monster"] instance=ExtResource("10_qugda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -30)
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_v8nox")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+playback_type = 1
+parameters/looping = true
+
+[node name="Chimes" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_v8nox")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+playback_type = 1
+parameters/looping = true
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+shape = SubResource("BoxShape3D_qaolp")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49)
+shape = SubResource("BoxShape3D_qaolp")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 0, 0)
+shape = SubResource("BoxShape3D_qlfrw")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 0, 0)
+shape = SubResource("BoxShape3D_qlfrw")
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_qlfrw")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

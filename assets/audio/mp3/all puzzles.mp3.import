@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bma5ffwinf6sh"
+path="res://.godot/imported/all puzzles.mp3-42c842b08466136d246d1b246f22772f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/mp3/all puzzles.mp3"
+dest_files=["res://.godot/imported/all puzzles.mp3-42c842b08466136d246d1b246f22772f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

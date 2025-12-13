@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://jqndmx6wqtfy"
+path="res://.godot/imported/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3-60da0ded05c8917c4f09a97da63fc0df.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/deprecated_sounds/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3"
+dest_files=["res://.godot/imported/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3-60da0ded05c8917c4f09a97da63fc0df.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

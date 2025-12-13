@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2ce4vq7lbpma"]
+[gd_scene load_steps=27 format=3 uid="uid://d2ce4vq7lbpma"]
 
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="2_s72in"]
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="3_wnljb"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://nv7clg27nvtw" path="res://assets/item/kiosk.tscn" id="12_aaytj"]
 [ext_resource type="PackedScene" uid="uid://bvdu11flixmyj" path="res://assets/Building/brokenBridge.tscn" id="13_f47wp"]
 [ext_resource type="PackedScene" uid="uid://cw5qo1hywpps1" path="res://assets/materials/road/Road.glb" id="13_xmajx"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_xmajx"]
+[ext_resource type="AudioStream" uid="uid://dptvu7g03hwuq" path="res://assets/audio/mp3/chapter 4 before meeting guardian.mp3" id="15_df741"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yarfe"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -194,6 +196,20 @@ transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, -4, 0.435, 23.759998)
 
 [node name="blockbench_export5" parent="." instance=ExtResource("13_xmajx")]
 transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, -4, 0.435, 44.79)
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("14_xmajx")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="background" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("15_df741")
+autoplay = true
+parameters/looping = true
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

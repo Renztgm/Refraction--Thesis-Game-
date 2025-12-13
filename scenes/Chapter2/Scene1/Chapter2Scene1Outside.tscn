@@ -1,6 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://tyasr24qos6a"]
+[gd_scene load_steps=38 format=3 uid="uid://dkui83ro2dttc"]
 
 [ext_resource type="Script" uid="uid://ceh2erav0tlid" path="res://scenes/Chapter2/Scene1/chapter_2_scene_1_outside.gd" id="1_5v14d"]
+[ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="2_5v14d"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="5_t7hhd"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="6_u854x"]
 [ext_resource type="PackedScene" uid="uid://b42g54u5kjqbp" path="res://scenes/Map/OutsideMap.tscn" id="8_mthr6"]
@@ -8,10 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dl1oxf6kjobol" path="res://assets/item/paper/torn_paper_item.gltf" id="12_luyfs"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="13_rmxp3"]
 [ext_resource type="Script" uid="uid://c1jp55hao6r3b" path="res://scenes/Chapter2/Scene1/picturefragments/picturefragment2_area3d.gd" id="14_luyfs"]
-[ext_resource type="AudioStream" uid="uid://kc6yxx08keph" path="res://assets/audio/music/background_music.wav" id="14_xlsfn"]
 [ext_resource type="AudioStream" uid="uid://d3eleqvy3v1op" path="res://assets/audio/ui/Click_sound.wav" id="15_h5l5s"]
 [ext_resource type="Script" uid="uid://bk7bh8s2vdgpy" path="res://scenes/Chapter2/Scene1/picturefragments/picturefragment3_area3d.gd" id="15_jweqw"]
-[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="16_104w6"]
+[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/deprecated_sounds/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="16_104w6"]
 [ext_resource type="Script" uid="uid://hamb1he4k7er" path="res://scenes/Chapter2/Scene1/picturefragments/picturefragment4_area3d.gd" id="16_brjns"]
 [ext_resource type="Script" uid="uid://cwbhdlkybs557" path="res://scenes/Chapter2/Scene1/going_in.gd" id="16_xs032"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="17_cj6ks"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="18_3x1ch"]
 [ext_resource type="Texture2D" uid="uid://cl87ahsoj60p4" path="res://addons/pngs/shard_sprite.png" id="18_5v14d"]
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="19_jaf3d"]
+[ext_resource type="AudioStream" uid="uid://dq2koxoxv84l8" path="res://assets/audio/mp3/chapter 2 looking for pieces & marketplace.mp3" id="20_4s1jw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a24s8"]
 sky_top_color = Color(0.455, 0.7, 0.56525, 1)
@@ -49,6 +50,10 @@ adjustment_saturation = 1.6
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjs00"]
 size = Vector3(250, 1, 250)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1ome"]
+albedo_texture = ExtResource("2_5v14d")
+uv1_triplanar = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ahr8w"]
 vertices = PackedVector3Array(-124.5, 1, -124.5, -124.5, 1, 124.5, 124.5, 1, 124.5, 124.5, 1, -124.5)
@@ -130,6 +135,7 @@ physics_material_override = SubResource("PhysicsMaterial_rhfvj")
 shape = SubResource("BoxShape3D_jjs00")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_q1ome")
 size = Vector3(250, 1, 250)
 
 [node name="Sky" parent="Environment" instance=ExtResource("13_rmxp3")]
@@ -138,7 +144,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.841215, 5.63674, 2.09051)
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
-stream = ExtResource("14_xlsfn")
 autoplay = true
 bus = &"Music"
 playback_type = 1
@@ -152,6 +157,7 @@ bus = &"Music"
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource("16_104w6")
+volume_db = -10.0
 autoplay = true
 bus = &"Music"
 playback_type = 1
@@ -240,7 +246,7 @@ shape = SubResource("BoxShape3D_brjns")
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 0, -1, 0)
 
 [node name="Entrance" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.84321, 1.1322818, -81.40962)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.84321, 1.1322818, -87.40962)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("16_xs032")
@@ -265,3 +271,10 @@ shape = SubResource("BoxShape3D_q1ome")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7147343, 0)
 sprite_frames = SubResource("SpriteFrames_4s1jw")
 autoplay = "default"
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_4s1jw")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true

@@ -3,42 +3,42 @@
 	"start": {
 	  "name": "You",
 	  "sentences": [
-        "(Awakening, slow, absolute clarity) (First real word, calm, integrated) The convention."
+        "The convention."
 	  ],
 		"next": "lyra_perfect_smile"
 	},
 	"lyra_perfect_smile": {
 	  "name": "Lyra",
 	  "sentences": [
-        "(Wakes abruptly, staring, tears welling) (Whispering, barely audible) You... you remember all of it?"
+        "You... you remember all of it?"
 	  ],
 	  "next": "ranting"
 	},
 	"ranting": {
 	  "name": "You",
 	  "sentences": [
-        "(Slight smile, overwhelming compassion) The crash. On the way to the convention. You were driving too fast because we were late. And you were wearing that ridiculous costume under your jacket. You kept that secret even in my dream."
+        "The crash. On the way to the convention. You were driving too fast because we were late. And you were wearing that ridiculous costume under your jacket. You kept that secret even in my dream."
 	  ],
 	  "next": "guardian_said"
 	},
 	"guardian_said": {
 	  "name": "Guardian",
 	  "sentences": [
-        "(Breaks down, head in hands) I'm so sorry. I should have driven slower. I never meant... I just kept sketching because I couldn't bear to leave you alone."
+        "I'm so sorry. I should have driven slower. I never meant... I just kept sketching because I couldn't bear to leave you alone."
 	  ],
 	  "next": "echo_said"
 	},
 	"echo_said": {
 	  "name": "You",
 	  "sentences": [
-        "(Whisper, Narrative Text, audible only to MC) You forgave them long ago. I am the forgiveness you kept."
+        "You forgave them long ago. I am the forgiveness you kept."
 	  ],
 	  "next": "touching_face"
 	},
 	"touching_face": {
 	  "name": "You",
 	  "sentences": [
-        "(Gently touching Lyra's face, a gesture of absolution) It's okay. The dream was the war, Lyra, and we won. The fault doesn't matter now."
+        "It's okay. The dream was the war, Lyra, and we won. The fault doesn't matter now."
 	  ],
 	  "next": "guardian_saying"
 	},

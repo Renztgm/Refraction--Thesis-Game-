@@ -16,16 +16,6 @@ func _on_body_entered(body: Node3D) -> void:
 				print("💾 Game state saved successfully")
 			else:
 				print("❌ Failed to save game state")
+		get_tree().change_scene_to_file("res://scenes/Chapter2/Scene1/Chapter2Scene1Inside.tscn")
 
-		# ✅ Log scene completion for branching system
-		if SaveManager:
-			var scene_path = get_tree().current_scene.scene_file_path
-			var branch_id = "awakening"  # Or any meaningful branch ID
-			var logged := SaveManager.log_scene_completion(scene_path, branch_id)
-			if logged:
-				print("📌 Scene logged to game_path:", scene_path)
-			else:
-				print("ℹ️ Scene already logged or failed to log.")
-			
-			get_tree().change_scene_to_file(target_scene_path)
 	

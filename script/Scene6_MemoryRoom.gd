@@ -101,7 +101,7 @@ func start_memory_room():
 
 	if static_player and static_audio:
 		static_player.stream = static_audio
-		static_player.volume_db = -15.0
+		static_player.volume_db = -20.0
 		static_player.play()
 		print("🎵 Static playing:", static_audio)
 
@@ -153,6 +153,11 @@ func phase_hospital_flash():
 		_show_background(hospital_bed)
 		phase_started = true
 	hospital_bed.visible = randf() > 0.5
+	if heartbeat_player and heartbeat_audio:
+		heartbeat_player.stream = heartbeat_audio
+		heartbeat_player.volume_db = -6.0
+		heartbeat_player.play()
+		print("🎵 Whispers playing:", heartbeat_audio)
 
 func phase_hallway_flash():
 	if not phase_started:
@@ -286,9 +291,14 @@ func advance_phase():
 
 func complete_sequence():
 	is_scene_active = false
+	picture_1()
+	picture_2()
+	picture_3()
 	print("✅ Memory Room sequence complete! → Loading Scene7")
 	sequence_completed.emit()
+		
 
+	
 	# ✅ Save current game state (player position, scene, etc.)
 	if SaveManager:
 		var saved := SaveManager.save_game()
@@ -312,7 +322,8 @@ func complete_sequence():
 		get_tree().change_scene_to_file(next_scene_path)
 	else:
 		push_error("❌ Could not find next scene: " + next_scene_path)
-
+	
+	
 # -----------------------
 # BACKGROUND CONTROL
 # -----------------------
@@ -325,3 +336,72 @@ func _show_background(bg_node: Node):
 	
 	if bg_node:
 		bg_node.visible = true
+
+func picture_1():
+	var icon_path = "res://assets/images/calendar.png"
+	if not ResourceLoader.exists(icon_path):
+		icon_path = "res://assets/icons/default.png"
+
+	var item_data = {
+		"id": 101,
+		"name": "Photo 1",
+		"description": "You know the calendar, but you forgotten.",
+		"icon_path": icon_path,
+		"stack_size": 1,
+		"is_completed": true
+	}
+
+	InventoryManager.save_item_to_items_table(item_data)
+
+	var slot_id = InventoryManager.get_next_available_slot()
+	InventoryManager.add_item(slot_id, 101, 1)
+
+	var ui = get_tree().get_nodes_in_group("inventory_ui")
+	if ui.size() > 0 and ui[0].active_tab == "items":
+		ui[0].load_inventory()
+
+func picture_2():
+	var icon_path = "res://assets/images/hallway.png"
+	if not ResourceLoader.exists(icon_path):
+		icon_path = "res://assets/icons/default.png"
+
+	var item_data = {
+		"id": 102,
+		"name": "Photo 2",
+		"description": "this hallway seems familiar.",
+		"icon_path": icon_path,
+		"stack_size": 1,
+		"is_completed": true
+	}
+
+	InventoryManager.save_item_to_items_table(item_data)
+
+	var slot_id = InventoryManager.get_next_available_slot()
+	InventoryManager.add_item(slot_id, 102, 1)
+
+	var ui = get_tree().get_nodes_in_group("inventory_ui")
+	if ui.size() > 0 and ui[0].active_tab == "items":
+		ui[0].load_inventory()
+
+func picture_3():
+	var icon_path = "res://assets/images/hospitalBed.png"
+	if not ResourceLoader.exists(icon_path):
+		icon_path = "res://assets/icons/default.png"
+
+	var item_data = {
+		"id": 103,
+		"name": "Photo 3",
+		"description": "You can't remember the past.",
+		"icon_path": icon_path,
+		"stack_size": 1,
+		"is_completed": true
+	}
+
+	InventoryManager.save_item_to_items_table(item_data)
+
+	var slot_id = InventoryManager.get_next_available_slot()
+	InventoryManager.add_item(slot_id, 103, 1)
+
+	var ui = get_tree().get_nodes_in_group("inventory_ui")
+	if ui.size() > 0 and ui[0].active_tab == "items":
+		ui[0].load_inventory()

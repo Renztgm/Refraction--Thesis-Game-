@@ -5,9 +5,10 @@ extends Area3D
 # Reference to the player when inside
 var player_in_area: Node = null
 @export var objective_id: String = "go_to_market_shop"
+@onready var player_node = get_tree().get_first_node_in_group("player")
 
 func _ready() -> void:
-	# Connect signals for entering/exiting
+	# Connect signals for entering/exitinga
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	connect("body_exited", Callable(self, "_on_body_exited"))
 
@@ -31,7 +32,6 @@ func _process(delta: float) -> void:
 
 func _interact() -> void:
 	print("Workbench interaction triggered!")
-
 	var has_scotch_tape: bool = InventoryManager.has_item(10)
 	var quest_done: bool = QuestManager.is_quest_completed("complete_picture")
 	var quest_exist: bool = QuestManager.quest_exists("complete_picture")
@@ -66,7 +66,12 @@ func _interact() -> void:
 	get_tree().root.add_child(ui)
 	dialogue_manager.load_dialogue(dialogue, dialogue_name)
 	dialogue_manager.show_node("complete_quest")
+	player_node.freeze_player()
+	if not dialogue_manager.is_connected("dialogue_finished", Callable(self, "_on_dialogue_finished")):
+		dialogue_manager.connect("dialogue_finished", Callable(self, "_on_dialogue_finished"))
 
+func _on_dialogue_finished():
+	player_node.unfreeze_player()
 
 func show_text(msg: String):
 	label3d.text = msg

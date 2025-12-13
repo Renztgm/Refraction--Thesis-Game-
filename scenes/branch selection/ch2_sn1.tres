@@ -13,6 +13,6 @@ metadata/_custom_type_script = "uid://bdblq5joux0oh"
 [resource]
 script = ExtResource("1_g5yio")
 title = "Chapter 2 Scene 1"
-scene_path = "res://scenes/Chapter2/Scene2/Chapter2Scene2.tscn"
+scene_path = "res://scenes/Chapter2/Scene1/Chapter2Scene1.tscn"
 children = Array[ExtResource("1_g5yio")]([SubResource("Resource_ne50c")])
 metadata/_custom_type_script = "uid://bdblq5joux0oh"

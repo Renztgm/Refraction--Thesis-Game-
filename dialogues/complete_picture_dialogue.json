@@ -53,17 +53,10 @@
 	  ],	  
 		"options": [
 		{
-		  "text": "Collapse Alley",
+		  "text": "Let's go to the Collapse Alley",
 		  "full_text": "Head toward the Collapse Alley way",
 		  "set_flag": "Collapsed_alley_adventure",
 		  "start_quest": "res://scenes/quest/resources/go_to_mirror_district.json",
-		  "next": "lets_go"
-		},
-		{
-		  "text": "Different Path",
-		  "full_text": "I am going to a different path",
-		  "set_flag": "different_path",
-		  "start_quest": "res://scenes/quest/resources/different_path.json",
 		  "next": "lets_go"
 		}
 	  ]

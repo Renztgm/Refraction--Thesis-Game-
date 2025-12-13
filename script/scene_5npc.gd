@@ -15,6 +15,8 @@ var dialogue_file_path: String = "res://dialogues/Scene5Dialogue.json"  # Path t
 var npc_id: String = "Scene5Dialogue"  # ID of this NPC in the dialogue file
 var next_scene_path: String = "res://scenes/Scene6/Scene6.tscn"  # Path to next scene
 var player_node: Node = null
+@onready var fade_overlay: ColorRect = $"../CanvasLayer/fade_overlay"
+@onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
 
 func _ready():
 	# Find player node
@@ -111,19 +113,20 @@ func unfreeze_player():
 # Fade and Scene Transition
 # ==============================
 func fade_to_sleep():
-	# Create fade overlay
-	var fade_overlay = ColorRect.new()
-	fade_overlay.color = Color.BLACK
-	fade_overlay.color.a = 0.0  # Start transparent
-	fade_overlay.z_index = 100  # Make sure it's on top
-	fade_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	
-	# Add to scene
-	get_tree().current_scene.add_child(fade_overlay)
+	## Create fade overlay
+	#var fade_overlay = ColorRect.new()
+	#fade_overlay.color = Color.BLACK
+	#fade_overlay.color.a = 0.0  # Start transparent
+	#fade_overlay.z_index = 4067  # Make sure it's on top
+	#fade_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	canvas_layer.visible = true
+	## Add to scene
+	#get_tree().current_scene.add_child(fade_overlay)
 	
 	# Create tween for fade effect
+	fade_overlay.modulate.a = 0.0  # Start transparent
 	var tween = create_tween()
-	tween.tween_property(fade_overlay, "color:a", 1.0, 2.0)  # Fade to black over 2 seconds
+	tween.tween_property(fade_overlay, "modulate:a", 1.0, 2.0)  # Go to opaque  # Fade to black over 2 seconds
 	
 	# Wait a moment in black, then change scene
 	tween.tween_callback(func(): 
