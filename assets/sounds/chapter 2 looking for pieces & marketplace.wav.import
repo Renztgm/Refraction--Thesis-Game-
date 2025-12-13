@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vysqmaey6n05"
+path="res://.godot/imported/chapter 2 looking for pieces & marketplace.wav-4f50183597931f85a24852d061658ebb.sample"
+
+[deps]
+
+source_file="res://assets/sounds/chapter 2 looking for pieces & marketplace.wav"
+dest_files=["res://.godot/imported/chapter 2 looking for pieces & marketplace.wav-4f50183597931f85a24852d061658ebb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

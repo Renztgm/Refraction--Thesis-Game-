@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://damdcitec257m"]
+[gd_scene load_steps=11 format=3 uid="uid://damdcitec257m"]
 
 [ext_resource type="Script" uid="uid://dwvj44qtr8i7u" path="res://script/Scene6_MemoryRoom.gd" id="1_aa3rn"]
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="2_l7kix"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://0bqn6rqmg6yq" path="res://addons/pngs/shard.png" id="5_7pom5"]
 [ext_resource type="Texture2D" uid="uid://bk786tha43l53" path="res://assets/images/Mirrored MC reflection.png" id="5_xndlj"]
 [ext_resource type="AudioStream" uid="uid://b7xyc2jckr8uq" path="res://assets/audio/ambient/Static_Sound.mp3" id="8_vkyml"]
+[ext_resource type="AudioStream" uid="uid://cplry43ilk7vv" path="res://assets/audio/mp3/heartbeat ambient.mp3" id="9_2i06q"]
+[ext_resource type="AudioStream" uid="uid://yaxhuktlwey3" path="res://assets/audio/mp3/Chapter 1 scene 6 .mp3" id="10_t7h4m"]
 
 [node name="Scene6" type="Node3D"]
 
@@ -174,9 +176,16 @@ bus = &"Music"
 [node name="WhisperPlayer" type="AudioStreamPlayer" parent="Control"]
 
 [node name="HeartbeatPlayer" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("9_2i06q")
 
 [node name="VoicePlayer" type="AudioStreamPlayer" parent="Control"]
 
 [node name="tinnitusPlayer" type="AudioStreamPlayer" parent="Control"]
 
 [node name="footstepPlayer" type="AudioStreamPlayer" parent="Control"]
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_t7h4m")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

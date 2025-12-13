@@ -82,7 +82,7 @@ func picture_obtained():
 		When the path of the waking touches the path of the slept,
 		There, your truth is kept.”"
 
-	var icon_path = "res://assets/icons/default.png"
+	var icon_path = "res://assets/images/puzzle.png"
 	if not ResourceLoader.exists(icon_path):
 		icon_path = "res://assets/icons/default.png"
 

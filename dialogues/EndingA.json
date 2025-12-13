@@ -31,28 +31,28 @@
 	"echo_said": {
 	  "name": "Echo",
 	  "sentences": [
-        "(Whisper, Narrative Text, audible only to MC) You forgave them long ago. I am the forgiveness you kept."
+        "You forgave them long ago. I am the forgiveness you kept."
 	  ],
 	  "next": "touching_face"
 	},
 	"touching_face": {
 	  "name": "Companion",
 	  "sentences": [
-        "(A furrowed brow, a persistent ache of failure) But there's a hole. A final, crucial piece is missing. I can't quite grasp... what was just before the final darkness."
+        "But there's a hole. A final, crucial piece is missing. I can't quite grasp... what was just before the final darkness."
 	  ],
 	  "next": "sfx"
 	},
 	"sfx": {
 	  "name": "Lyra",
 	  "sentences": [
-        "(Slight hesitation, then firmly) It doesn't matter, my love. That piece is gone. You're here. We'll face whatever is next, together. But the forgetting is over."
+        "It doesn't matter, my love. That piece is gone. You're here. We'll face whatever is next, together. But the forgetting is over."
 	  ],
 	  "next": "whole_now"
 	},
 	"whole_now": {
 	  "name": "You",
 	  "sentences": [
-        "(Quiet acceptance of the loss) I'll face it. I'll live with the ghost of that missing truth."
+        "I'll face it. I'll live with the ghost of that missing truth."
 	  ],
 	  "next": "end"
 	}

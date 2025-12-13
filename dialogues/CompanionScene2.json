@@ -6,7 +6,7 @@
 		"You finally woke up.",
 		"I was starting to think you were just another echo wandering the cracks."
 	  ],
-	  "focus": "Companion", 
+	  "focus": "Companion",
 	  "options": [
 		{
 		  "text": "💬 Who are you?",

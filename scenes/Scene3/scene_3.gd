@@ -9,8 +9,8 @@ func _ready() -> void:
 		if not quest_active:
 			QuestManager.import_quests_from_json("res://scenes/quest/resources/follow_her_quest.json")
 			await get_tree().create_timer(0.3).timeout
-			ItemPopUp.quest_show_message("Follow Her")
 		else: 
 			push_warning("quest is active!")
+		QuestNotification.show_quest("The Learned Friend")
 	else: 
 		push_warning("quest is completed!")

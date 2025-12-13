@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://biy3lko537lrt"
+path="res://.godot/imported/doppleganger music.mp3-ea0da2bcd37f97e4b86d5d8c0950732f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/mp3/doppleganger music.mp3"
+dest_files=["res://.godot/imported/doppleganger music.mp3-ea0da2bcd37f97e4b86d5d8c0950732f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

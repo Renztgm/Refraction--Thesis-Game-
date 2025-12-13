@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vbojvb6ld45g"
+path="res://.godot/imported/main menu.wav-e5c9a527583f47c851c217fb564db42c.sample"
+
+[deps]
+
+source_file="res://assets/audio/ambient/main menu.wav"
+dest_files=["res://.godot/imported/main menu.wav-e5c9a527583f47c851c217fb564db42c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

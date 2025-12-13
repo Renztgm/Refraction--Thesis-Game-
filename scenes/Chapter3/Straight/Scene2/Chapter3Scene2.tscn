@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bhdr8a65t5d0"]
+[gd_scene load_steps=29 format=3 uid="uid://bhdr8a65t5d0"]
 
 [ext_resource type="PackedScene" uid="uid://babci3ubwf6o6" path="res://assets/Building/MirrorDistrict.tscn" id="1_0dbvt"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="2_ufpr2"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="9_2f6ys"]
 [ext_resource type="PackedScene" uid="uid://d2hferx53pyw8" path="res://scenes/NPCs/Chapter3Scene2NPC.tscn" id="11_kmnfm"]
 [ext_resource type="Script" uid="uid://c8lf6fnamop4t" path="res://scenes/Chapter3/Straight/Scene2/Dialogue_The_Reflection.gd" id="11_u20f0"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="12_u20f0"]
+[ext_resource type="AudioStream" uid="uid://on4p1mn4omhc" path="res://assets/audio/mp3/chapter 3 after chase & circular room.mp3" id="13_2f6ys"]
 
 [sub_resource type="GDScript" id="GDScript_yarfe"]
 script/source = "extends Node3D
@@ -209,6 +211,17 @@ shape = SubResource("BoxShape3D_qnw1i")
 
 [node name="Npc2" parent="." instance=ExtResource("11_kmnfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -210, 1, 99)
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_u20f0")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_2f6ys")
+autoplay = true
+bus = &"Music"
 
 [connection signal="body_entered" from="Bookmark/Area3D" to="Bookmark/Area3D" method="_on_body_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="entering_to_cylinder_structure"]

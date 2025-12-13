@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0mkhe168w680"]
+[gd_scene load_steps=12 format=3 uid="uid://c0mkhe168w680"]
 
 [ext_resource type="Script" uid="uid://x85h3iqixuua" path="res://main_menu_press_start.gd" id="1_kh42p"]
 [ext_resource type="Texture2D" uid="uid://ibd23y72atom" path="res://assets/MainMenu/New/background.png" id="2_813fk"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="8_gvlia"]
 [ext_resource type="Script" uid="uid://1pik73h8bu46" path="res://scenes/Main Menu/brokenglass.gd" id="8_ui1in"]
 [ext_resource type="Texture2D" uid="uid://6lis47x0t7h8" path="res://assets/MainMenu/New/PRESS START.png" id="9_h276m"]
+[ext_resource type="AudioStream" uid="uid://bi6a0aijxpml4" path="res://assets/audio/ambient/main menu.mp3" id="11_h276m"]
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -69,9 +70,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -30.952389
+offset_left = -35.11906
 offset_top = -11.904763
-offset_right = 26.714264
+offset_right = 22.547592
 offset_bottom = 5.333336
 grow_horizontal = 2
 grow_vertical = 2
@@ -90,6 +91,11 @@ grow_vertical = 2
 text = "press start"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_h276m")
+autoplay = true
+parameters/looping = true
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

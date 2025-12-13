@@ -158,7 +158,7 @@ func is_quest_finished():
 			print("✅ Good ending path - Remembered:", remembered_count, "words")
 		else:
 			# Bad path - remembered 0 or 1 word
-			next_scene = "res://scenes/Chapter3/Straight/Scene2/Alternate/IncompleteMemory.tscn"
+			next_scene = "res://scenes/Chapter5/EndingE.tscn"
 			print("❌ Alternate path - Only remembered:", remembered_count, "words")
 		
 		get_tree().change_scene_to_file(next_scene)

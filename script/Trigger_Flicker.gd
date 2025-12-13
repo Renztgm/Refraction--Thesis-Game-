@@ -6,7 +6,7 @@ extends Area3D
 @onready var shadow: CharacterBody3D = $"../shadow"
 @onready var static_audio: AudioStreamPlayer = $"../StaticAudio"
 @onready var dialogue_manager: Control = $"../DialogueManager"
-@onready var screen_warp: Control = $"../ScreenWarp"
+@onready var screen_warp: Control = $"../warp/ScreenWarp"
 
 var has_triggered := false
 var next_scene_path := "res://scenes/Scene5/Scene5.tscn"  # 🔹 change this to your target scene path
@@ -78,9 +78,6 @@ func _trigger_event() -> void:
 				print("ℹ️ Scene 4 already logged or failed to log.")
 
 		get_tree().change_scene_to_file(next_scene_path)
-
-
-	print("Shadow vanished, screen faded to black, transitioning to next scene.")
 
 func flicker_burst() -> void:
 	var sky_states = [0.0, 1.0]

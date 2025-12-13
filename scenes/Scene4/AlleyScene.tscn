@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://g3gndto2e636"]
+[gd_scene load_steps=45 format=3 uid="uid://g3gndto2e636"]
 
 [ext_resource type="PackedScene" uid="uid://ujnfad0nogiu" path="res://assets/materials/road.tscn" id="1_6er7q"]
 [ext_resource type="Script" uid="uid://mr5s52tyupua" path="res://scenes/Scene4/alley_scene.gd" id="1_s15yi"]
@@ -14,6 +14,8 @@
 [ext_resource type="Shader" uid="uid://dlphtnlt7a0vw" path="res://scenes/Scene4/AlleyScene.gdshader" id="11_lkvvi"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="11_oly33"]
 [ext_resource type="Script" uid="uid://cuby3fgy78mac" path="res://script/Trigger_Flicker.gd" id="12_hjv4e"]
+[ext_resource type="AudioStream" uid="uid://cbwlp4dc0xryj" path="res://assets/audio/mp3/chapter 1 looking for & following companion.mp3" id="14_miysg"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="14_or3v1"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="15_kqxkw"]
 [ext_resource type="Texture2D" uid="uid://c1boiuwcd58i6" path="res://assets/hollow echo/Idle silo.png" id="15_nn26f"]
 [ext_resource type="AudioStream" uid="uid://b7xyc2jckr8uq" path="res://assets/audio/ambient/Static_Sound.mp3" id="16_21pj3"]
@@ -342,7 +344,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.465, 0.38, -5.751)
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("14_miysg")
+autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="UISounds" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
@@ -351,7 +356,11 @@ bus = &"Music"
 bus = &"Music"
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("14_or3v1")
+volume_db = -20.0
+autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="Spawnpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.2066, 0, -3.55206)
@@ -387,17 +396,18 @@ z_index = 4096
 [node name="StaticAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_21pj3")
 
-[node name="ScreenWarp" type="ColorRect" parent="."]
+[node name="warp" type="CanvasLayer" parent="."]
+
+[node name="ScreenWarp" type="ColorRect" parent="warp"]
 visible = false
-z_index = -4090
-y_sort_enabled = true
+z_index = 4096
 material = SubResource("ShaderMaterial_21pj3")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 color = Color(0.00392157, 0.00392157, 0.00392157, 0)
 
 [node name="UI" type="CanvasLayer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cvicw8o2rx05t"]
+[gd_scene load_steps=40 format=3 uid="uid://cvicw8o2rx05t"]
 
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="1_5fmib"]
 [ext_resource type="Script" uid="uid://c4o5f2p5abntc" path="res://scenes/Chapter2/Scene2/chapter_2_scene_2.gd" id="1_hn2qq"]
@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://dg62nhrv67m03" path="res://assets/item/lanterns.tscn" id="19_y6mex"]
 [ext_resource type="Script" uid="uid://dgpkxn01o1wmr" path="res://scenes/Scene3/MemoryShard.gd" id="20_635dy"]
 [ext_resource type="Texture2D" uid="uid://cl87ahsoj60p4" path="res://addons/pngs/shard_sprite.png" id="21_hn2qq"]
+[ext_resource type="AudioStream" uid="uid://jqndmx6wqtfy" path="res://assets/audio/deprecated_sounds/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="23_2dxvu"]
+[ext_resource type="AudioStream" uid="uid://dq2koxoxv84l8" path="res://assets/audio/mp3/chapter 2 looking for pieces & marketplace.mp3" id="24_m6j1p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7tx5h"]
 
@@ -407,3 +409,18 @@ billboard = 2
 shaded = true
 sprite_frames = SubResource("SpriteFrames_m6j1p")
 autoplay = "default"
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="wind" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("23_2dxvu")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_m6j1p")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true

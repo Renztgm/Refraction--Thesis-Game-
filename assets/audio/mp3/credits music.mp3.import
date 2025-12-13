@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bykala7sr06y3"
+path="res://.godot/imported/credits music.mp3-1b4cbe0df497693c0f455c377cfd6aec.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/mp3/credits music.mp3"
+dest_files=["res://.godot/imported/credits music.mp3-1b4cbe0df497693c0f455c377cfd6aec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

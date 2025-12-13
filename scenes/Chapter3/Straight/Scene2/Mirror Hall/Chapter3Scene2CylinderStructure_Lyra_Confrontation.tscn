@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://vafcjrdn0vgw"]
+[gd_scene load_steps=22 format=3 uid="uid://vafcjrdn0vgw"]
 
 [ext_resource type="Script" uid="uid://diwixgy2ma3t" path="res://scenes/Chapter3/Straight/Scene2/Mirror Hall/chapter_3_scene_2_cylinder_structure_mirror_hall_challenge.gd" id="1_kk6s3"]
 [ext_resource type="PackedScene" uid="uid://5y4as0q6nakj" path="res://scenes/NPCs/Lyra_Confrontation.tscn" id="2_4ljwr"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="8_yah1p"]
 [ext_resource type="PackedScene" uid="uid://crr85kvm8e1vw" path="res://scenes/Inventory/InventoryUI.tscn" id="10_yd4u5"]
 [ext_resource type="PackedScene" uid="uid://bsc2rl8o0kypo" path="res://scenes/quest/questUI.tscn" id="11_tma4e"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="12_kk6s3"]
+[ext_resource type="AudioStream" uid="uid://on4p1mn4omhc" path="res://assets/audio/mp3/chapter 3 after chase & circular room.mp3" id="13_08eb0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2os2a"]
 
@@ -126,3 +128,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.4, 1)
 
 [node name="QuestUi" parent="UI" instance=ExtResource("11_tma4e")]
 visible = false
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_kk6s3")
+volume_db = -25.0
+autoplay = true
+bus = &"Music"
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_08eb0")
+autoplay = true
+bus = &"Music"

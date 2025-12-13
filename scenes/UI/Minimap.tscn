@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqgyp1ip2dc01"]
+[gd_scene load_steps=7 format=3 uid="uid://bqgyp1ip2dc01"]
 
 [ext_resource type="Script" uid="uid://37sxt80vtd1y" path="res://scenes/UI/minimap_button.gd" id="1_3yla1"]
 [ext_resource type="Script" uid="uid://bx547u66vlnwn" path="res://script/MinimapGridOverlay.gd" id="1_nkwr6"]
 [ext_resource type="Texture2D" uid="uid://cpgasfotq46cb" path="res://assets/ui/map vine.png" id="2_ayqj5"]
+[ext_resource type="Texture2D" uid="uid://duiajxyf04q72" path="res://assets/ui/Info Button.png" id="4_pbqgr"]
 
 [sub_resource type="Gradient" id="Gradient_3yla1"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -85,12 +86,24 @@ flip_h = true
 flip_v = true
 
 [node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 0
 offset_left = 334.0
-offset_right = 366.0
-offset_bottom = 32.0
+offset_right = 382.0
+offset_bottom = 48.0
 focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_pbqgr")
+expand_mode = 1
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

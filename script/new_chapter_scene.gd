@@ -2,16 +2,21 @@ extends CanvasLayer
 
 var NextChapter : int = 0
 var player = null
+var title = ["Waking Dust","The Fractured Path","False Reflection","Recognition","Collision"]
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	
 func transfer_scene(chapter_num: int) -> void:
 	self.visible = true
 	var tween = create_tween()
 	tween.tween_property($Panel, "modulate:a", 1.0, 0.0)
 	NextChapter = chapter_num
-	$Label.text = "New Chapter " + str(NextChapter)
-
+	$Label.text = "Chapter " + str(NextChapter)
+	
+	var title_index = clamp(NextChapter - 1, 0, title.size() - 1)
+	$titleName.text = title[title_index]
+	
 func close_panel():
 	var tween = create_tween()
 	tween.tween_property($Panel, "modulate:a", 0.0, 0.5)
@@ -21,5 +26,4 @@ func close_panel():
 	
 func _on_button_pressed() -> void:
 	AudioMgr.play_ui_sound("res://assets/audio/ui/Click_sound.wav")
-	
 	close_panel()

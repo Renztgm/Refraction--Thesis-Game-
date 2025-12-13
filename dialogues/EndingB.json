@@ -3,28 +3,28 @@
 	"start": {
 	  "name": "You",
 	  "sentences": [
-        "[SFX: Heartbeat (Distant, slightly echoing). Faint static hiss and wind.]"
+        "..."
 	  ],
 		"next": "next_dia"
 	},
 	"next_dia": {
 	  "name": "You",
 	  "sentences": [
-        "(Sitting up slowly, eyes darting between the real and the dream) I'm awake... I can feel the sheets, the heat of the room... But the air is still thin, and the sky is the wrong color."
+        "I'm awake... I can feel the sheets, the heat of the room... But the air is still thin, and the sky is the wrong color."
 	  ],
 	  "next": "slight_smile"
 	},
 	"slight_smile": {
 	  "name": "Lyra",
 	  "sentences": [
-        "(Translucent, sketching a half-real landscape) You found a tether. You anchored yourself to the threshold."
+        "You found a tether. You anchored yourself to the threshold."
 	  ],
 	  "next": "lyra_sorry"
 	},
 	"lyra_sorry": {
 	  "name": "You",
 	  "sentences": [
-        "(Reaches out, hand passes through floating dream matter) I remember the hospital... I remember wanting to wake up. But every time I try to let go of this world, the fear pulls me back. It feels... safer here."
+        "I remember the hospital... I remember wanting to wake up. But every time I try to let go of this world, the fear pulls me back. It feels... safer here."
 	  ],
 	  "next": "echo_said"
 	},
@@ -45,7 +45,7 @@
 	"sfx": {
 	  "name": "Lyra",
 	  "sentences": [
-		"(Voice softens, a rare moment of sadness) She is waiting by your side, trapped by the reality of your body.",
+		"She is waiting by your side, trapped by the reality of your body.",
 		"And you are here, trapped by the reality of your mind."
 	  ],
 	  "next": "whole_now"
@@ -53,14 +53,14 @@
 	"whole_now": {
 	  "name": "You",
 	  "sentences": [
-        "(Acceptance, despair, leaning back onto the hospital pillow) I can't choose. I guess... I guess I'll wait here, too."
+        "I can't choose. I guess... I guess I'll wait here, too."
 	  ],
 	  "next": "ending"
 	},
 	"ending": {
 	  "name": "You",
 	  "sentences": [
-        "(Acceptance, despair, leaning back onto the hospital pillow) I can't choose. I guess... I guess I'll wait here, too."
+        "I can't choose. I guess... I guess I'll wait here, too."
 	  ],
 	  "next": "end"
 	}

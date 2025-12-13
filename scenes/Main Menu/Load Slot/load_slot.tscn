@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://conyo30nnwm5y"]
+[gd_scene load_steps=13 format=3 uid="uid://conyo30nnwm5y"]
 
 [ext_resource type="Script" uid="uid://2b3xs2x6mbo1" path="res://scenes/Main Menu/Load Slot/load_slot.gd" id="1_ddxgp"]
 [ext_resource type="Texture2D" uid="uid://brry7rdwawx3g" path="res://assets/ui/close.png" id="3_026c7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dtrhq84oqsqn4" path="res://assets/MainMenu/New/broken glass.png" id="8_tjlat"]
 [ext_resource type="Script" uid="uid://1pik73h8bu46" path="res://scenes/Main Menu/brokenglass.gd" id="9_3iscx"]
 [ext_resource type="PackedScene" uid="uid://cgo8372xuep72" path="res://scenes/Main Menu/CustomDeleteDialog.tscn" id="10_woqd1"]
+[ext_resource type="AudioStream" uid="uid://bi6a0aijxpml4" path="res://assets/audio/ambient/main menu.mp3" id="11_q7l0g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pw22m"]
 content_margin_left = 20.0
@@ -119,5 +120,10 @@ expand_mode = 1
 [node name="CustomDeleteDialog" parent="." instance=ExtResource("10_woqd1")]
 visible = false
 layout_mode = 1
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_q7l0g")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

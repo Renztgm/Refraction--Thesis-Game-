@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://on4p1mn4omhc"
+path="res://.godot/imported/chapter 3 after chase & circular room.mp3-939664572b30d4d22ae6c780edb2b505.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/mp3/chapter 3 after chase & circular room.mp3"
+dest_files=["res://.godot/imported/chapter 3 after chase & circular room.mp3-939664572b30d4d22ae6c780edb2b505.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

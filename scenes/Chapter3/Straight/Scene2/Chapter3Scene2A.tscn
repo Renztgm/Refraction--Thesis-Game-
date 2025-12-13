@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7361trwuy0e"]
+[gd_scene load_steps=22 format=3 uid="uid://c7361trwuy0e"]
 
 [ext_resource type="Script" uid="uid://j3rd8mgfqfi" path="res://scenes/Chapter3/Straight/Scene2/chapter_3_scene_2a.gd" id="1_878o5"]
 [ext_resource type="PackedScene" uid="uid://babci3ubwf6o6" path="res://assets/Building/MirrorDistrict.tscn" id="1_fiayl"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="8_hhepd"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="9_txcxm"]
 [ext_resource type="PackedScene" uid="uid://dv3auriqri11b" path="res://scenes/NPCs/Ch2Scene2NPC.tscn" id="10_fiayl"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="12_s0vqb"]
+[ext_resource type="AudioStream" uid="uid://on4p1mn4omhc" path="res://assets/audio/mp3/chapter 3 after chase & circular room.mp3" id="13_cvxuf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fiayl"]
 
@@ -101,7 +103,7 @@ directional_shadow_mode = 0
 environment = SubResource("Environment_dv64t")
 
 [node name="Player3d" parent="." groups=["player2"] instance=ExtResource("4_cvxuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -203, 0.39999998, 102)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -208, 0.39999998, 102)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -130,3 +132,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61, 0, -61)
 
 [node name="Npc2" parent="." instance=ExtResource("10_fiayl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -210, 0.5, 101)
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_s0vqb")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_cvxuf")
+autoplay = true
+bus = &"Music"

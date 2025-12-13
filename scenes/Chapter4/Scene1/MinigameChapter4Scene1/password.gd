@@ -96,6 +96,7 @@ func unlock_system():
 		# ✅ Set chapter info for next scene
 		SaveManager.set_current_chapter(3)
 		SaveManager.set_next_scene_path("res://scenes/Chapter4/Scene1/Chapter4Scene1.tscn")
+		#AudioMgr.play_ui_sound("res://assets/audio/ambient/main menu.wav")
 	await get_tree().create_timer(2).timeout	
 	get_tree().change_scene_to_file("res://scenes/Chapter4/Scene1/Chapter4Scene1PasswordUnlocked.tscn")
 	queue_free()

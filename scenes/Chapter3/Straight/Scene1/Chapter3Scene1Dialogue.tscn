@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cpo6rrctjmarv"]
+[gd_scene load_steps=45 format=3 uid="uid://cpo6rrctjmarv"]
 
 [ext_resource type="Script" uid="uid://cdom235df7q4d" path="res://scenes/Chapter3/Straight/Scene1/chapter_3_scene_1_dialogue.gd" id="1_2j0ii"]
 [ext_resource type="PackedScene" uid="uid://cg5f5at0x4msp" path="res://discarded/dubai_clouds.glb" id="1_pe6wb"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="7_1x2r5"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="8_y566l"]
 [ext_resource type="Texture2D" uid="uid://c1boiuwcd58i6" path="res://assets/hollow echo/Idle silo.png" id="9_jsm00"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="11_ayj2y"]
+[ext_resource type="AudioStream" uid="uid://dblaj77gx535r" path="res://assets/audio/mp3/chase scene music.mp3" id="12_8w2ws"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3y7bn"]
 
@@ -677,3 +679,13 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -14.307617, 4.1885376, -16.60
 sprite_frames = SubResource("SpriteFrames_f7730")
 autoplay = "default"
 frame_progress = 0.43563825
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ayj2y")
+volume_db = -15.0
+autoplay = true
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_8w2ws")
+volume_db = -10.0
+autoplay = true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://yaxhuktlwey3"
+path="res://.godot/imported/Chapter 1 scene 6 .mp3-b1c587cbdd365a3916d4faf73db7f466.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/mp3/Chapter 1 scene 6 .mp3"
+dest_files=["res://.godot/imported/Chapter 1 scene 6 .mp3-b1c587cbdd365a3916d4faf73db7f466.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

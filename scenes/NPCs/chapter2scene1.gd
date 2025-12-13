@@ -81,6 +81,9 @@ func _on_dialogue_finished() -> void:
 	if player_ref and player_ref.has_method("unfreeze_player"):
 		player_ref.unfreeze_player()
 
+	if QuestManager.is_quest_completed("complete_picture"):
+		QuestNotification.show_quest("Rebuild the Picture")
+		
 	if gives_quest and not QuestManager.active_quests.has(quest_id):
 		QuestManager.import_quests_from_json(quest_json_path)
 		QuestManager.load_all_quests()
@@ -88,8 +91,6 @@ func _on_dialogue_finished() -> void:
 		
 		var quest = QuestManager.active_quests.get(quest_id, {})
 		var quest_title = quest.get("title", quest_id)
-		print("🧭 Quest received: " + quest_id)
-		ItemPopUp.show_message("🧭 New Quest Started: " + quest_title, 3.0, Color.CYAN)
 
 	if QuestManager.active_quests.has(quest_id):
 		var quest = QuestManager.active_quests[quest_id]
@@ -123,13 +124,10 @@ func _on_dialogue_finished() -> void:
 		if quest.get("is_completed", false):
 			var next_scene_path = "res://scenes/Chapter2/Scene2/Chapter2Scene2.tscn"
 			
-			print("🎬 Transitioning to next scene: ", next_scene_path)
-			
-				# ✅ Log scene completion for branching system
 			ItemPopUp.show_message("Saving...")
 			if SaveManager:
 				var scene_path = "res://scenes/Chapter2/Scene1/Chapter2Scene1.tscn"
-				var branch_id = "Chapter2 Scene 1"  # You can use a meaningful ID like the BranchNode title or event name
+				var branch_id = "Chapter2 Scene1"  # You can use a meaningful ID like the BranchNode title or event name
 				var logged := SaveManager.log_scene_completion(scene_path, branch_id)
 				if logged:
 					print("📌 Scene logged to game_path:", scene_path)
@@ -137,7 +135,6 @@ func _on_dialogue_finished() -> void:
 					print("ℹ️ Scene already logged or failed to log.")
 			
 			await get_tree().create_timer(1.0).timeout
-			
 			SceneTransitionManager.transition_to_scene(next_scene_path)
 
 

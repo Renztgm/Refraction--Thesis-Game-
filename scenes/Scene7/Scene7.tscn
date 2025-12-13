@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bxtxjayw7pphx"]
+[gd_scene load_steps=28 format=3 uid="uid://bxtxjayw7pphx"]
 
 [ext_resource type="Script" uid="uid://dqpaxoogojg4n" path="res://script/Scene7.gd" id="1_tq8mp"]
 [ext_resource type="PackedScene" uid="uid://fqfjbjf4um00" path="res://scenes/NPCs/Scene7NPC.tscn" id="2_ddao0"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cssip8ewykc7v" path="res://assets/Bookshelf/BS4.tscn" id="10_tspmt"]
 [ext_resource type="PackedScene" uid="uid://bqgyp1ip2dc01" path="res://scenes/UI/Minimap.tscn" id="11_ddao0"]
 [ext_resource type="Script" uid="uid://cqyi4xmd21ksa" path="res://scenes/TestingScenes/gridsystem2.0.gd" id="12_dqebc"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="13_y0ite"]
+[ext_resource type="AudioStream" uid="uid://ced1qtds5m8lc" path="res://assets/audio/mp3/safe house.mp3" id="14_3nsrw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ddao0"]
 size = Vector3(21, 1, 18)
@@ -196,3 +198,15 @@ transform = Transform3D(-4.222197e-08, 0.25881904, -0.9659258, 1.1313342e-08, 0.
 light_color = Color(0.647059, 1, 0.478431, 1)
 shadow_enabled = true
 shadow_blur = 5.0
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_y0ite")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_3nsrw")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true

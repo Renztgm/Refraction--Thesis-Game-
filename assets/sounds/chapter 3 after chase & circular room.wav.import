@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bdsilw8bsb1ac"
+path="res://.godot/imported/chapter 3 after chase & circular room.wav-482b0538486d2af42ecd522ca39fbbf9.sample"
+
+[deps]
+
+source_file="res://assets/sounds/chapter 3 after chase & circular room.wav"
+dest_files=["res://.godot/imported/chapter 3 after chase & circular room.wav-482b0538486d2af42ecd522ca39fbbf9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

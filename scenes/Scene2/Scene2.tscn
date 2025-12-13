@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://c4irk4i63ynmd"]
+[gd_scene load_steps=49 format=3 uid="uid://c4irk4i63ynmd"]
 
 [ext_resource type="Texture2D" uid="uid://b626y4td1wwc0" path="res://concre.png" id="1_5s2s3"]
 [ext_resource type="Script" uid="uid://gsr7rwimwbl2" path="res://scenes/Scene2/scene_2.gd" id="1_obh7m"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bi1lugsasrj5" path="res://addons/Station/rails/RailTrack.tscn" id="7_j1gm7"]
 [ext_resource type="PackedScene" uid="uid://ccpff6cjmmbl4" path="res://addons/tree/trees.tscn" id="8_qoist"]
 [ext_resource type="AudioStream" uid="uid://c2rvrm728svig" path="res://assets/audio/ambient/BirdChirping.mp3" id="8_vkbmv"]
+[ext_resource type="AudioStream" uid="uid://cncjwn0awxrsm" path="res://assets/audio/ambient/Wind Sound SOUND EFFECT - No Copyright[Download Free].mp3" id="8_x64yq"]
 [ext_resource type="PackedScene" uid="uid://c3heuy5bku3an" path="res://assets/materials/trashbag/trash.tscn" id="9_7pkh2"]
+[ext_resource type="AudioStream" uid="uid://ced1qtds5m8lc" path="res://assets/audio/mp3/safe house.mp3" id="9_em40f"]
 [ext_resource type="PackedScene" uid="uid://c8jfqypwf5vw5" path="res://scenes/Player/Player3d.tscn" id="10_j4sli"]
 [ext_resource type="PackedScene" uid="uid://2dvrdykgrjqi" path="res://scenes/TestingScenes/Companion.tscn" id="11_701qu"]
 [ext_resource type="Script" uid="uid://cbr1ecxkwkf7" path="res://scenes/NarativeScenes/FadeLayer.gd" id="12_cxdkv"]
@@ -228,13 +230,18 @@ layer = 0
 [node name="AudioManager" type="Node" parent="." groups=["player"]]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("8_x64yq")
 bus = &"Music"
 
 [node name="UISounds" type="AudioStreamPlayer" parent="AudioManager"]
 bus = &"Music"
 
 [node name="WaterPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("9_em40f")
+volume_db = -10.0
+autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource("8_vkbmv")
