@@ -2,3 +2,4 @@ res://test_runner.gd
 res://scenes/Scene4/AlleySceneScreenWarp.gdshader
 res://assets/nature/grass.gdshader
 res://tests/test_save_manager.gd
+res://tests/test_inventory_manager.gd
