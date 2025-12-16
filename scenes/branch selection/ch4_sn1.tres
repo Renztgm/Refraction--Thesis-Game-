@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_abbgl")
 title = "Chapter 4 Scene 1"
+scene_path = "res://scenes/Chapter4/Scene1/Chapter4Scene1.tscn"
 children = Array[ExtResource("1_abbgl")]([ExtResource("2_4rln1")])
 metadata/_custom_type_script = "uid://bdblq5joux0oh"

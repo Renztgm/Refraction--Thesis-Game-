@@ -7,5 +7,6 @@
 [resource]
 script = ExtResource("1_odtdy")
 title = "Chapter 4 Scene 2"
+scene_path = "res://scenes/Chapter4/Scene2/Chapter4Scene2MemoryCoreRoom.tscn"
 children = Array[ExtResource("1_odtdy")]([ExtResource("2_5cnko"), ExtResource("3_jj37t")])
 metadata/_custom_type_script = "uid://bdblq5joux0oh"

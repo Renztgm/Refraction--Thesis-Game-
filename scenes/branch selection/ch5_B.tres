@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_aofli")
 title = "Ending B"
+scene_path = "res://scenes/Chapter5/EndingB.tscn"
 metadata/_custom_type_script = "uid://bdblq5joux0oh"
