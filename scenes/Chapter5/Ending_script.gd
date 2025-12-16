@@ -7,6 +7,7 @@ extends Control
 var tween: Tween
 
 func _ready():
+	FadeOutCanvas.fade_in(0.3)
 	label.modulate.a = 0.0
 	start_dialogue()
 	

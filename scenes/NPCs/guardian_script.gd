@@ -81,16 +81,29 @@ func narative_progression():
 	match shards_obtained:
 		1: 
 			print("Obtained shards: ", shards_obtained, "| Case 1 ", array[0])
-			get_tree().change_scene_to_file(array[0])
+			transition_sys(0)
+			#get_tree().change_scene_to_file(array[0])
 		2:
 			print("Obtained shards: ", shards_obtained, "| Case 2", array[1])
-			get_tree().change_scene_to_file(array[1])
+			transition_sys(1)
+			#get_tree().change_scene_to_file(array[1])
 		3: 
 			print("Obtained shards: ", shards_obtained, "| Case 3", array[2])
-			get_tree().change_scene_to_file(array[2])
+			transition_sys(2)
+			#get_tree().change_scene_to_file(array[2])
 		4:
 			print("Obtained shards: ", shards_obtained, "| Case 4", array[3])
-			get_tree().change_scene_to_file(array[3])
+			transition_sys(3)
+			#get_tree().change_scene_to_file(array[3])
 		_: 
 			print("Obtained shards: ", shards_obtained, "| Case default", array[4])
-			get_tree().change_scene_to_file(array[4])
+			transition_sys(4)
+			#get_tree().change_scene_to_file(array[4])
+
+
+func transition_sys(goto:int):
+	
+	FadeOutCanvas.fade_out(3)
+	await get_tree().create_timer(3).timeout
+	get_tree().change_scene_to_file(array[goto])
+	

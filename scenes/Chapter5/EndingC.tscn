@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnfygh0cr7h3e"]
+[gd_scene load_steps=5 format=3 uid="uid://bnfygh0cr7h3e"]
 
 [ext_resource type="Script" uid="uid://eapecq7s5yxu" path="res://scenes/Chapter5/Ending_script.gd" id="1_xc6oa"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="2_xbrw3"]
 [ext_resource type="Texture2D" uid="uid://ytegeqyehufw" path="res://assets/Ending_images/ENDING C – Refusal.png" id="3_xc6oa"]
+[ext_resource type="AudioStream" uid="uid://ccicju3x4bh6d" path="res://assets/sounds/endings/endingC.mp3" id="4_xbrw3"]
 
 [node name="EndingC" type="Control"]
 layout_mode = 3
@@ -45,3 +46,9 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xbrw3")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

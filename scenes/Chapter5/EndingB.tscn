@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqlscrsmni1gk"]
+[gd_scene load_steps=5 format=3 uid="uid://dqlscrsmni1gk"]
 
 [ext_resource type="Script" uid="uid://eapecq7s5yxu" path="res://scenes/Chapter5/Ending_script.gd" id="1_bhcj8"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="2_55ump"]
 [ext_resource type="Texture2D" uid="uid://cunxb2e8qe72u" path="res://assets/Ending_images/ENDING B – Merge.png" id="3_55ump"]
+[ext_resource type="AudioStream" uid="uid://12ogdwoo5osf" path="res://assets/sounds/endings/endingB.mp3" id="4_t5p2q"]
 
 [node name="EndingB" type="Control"]
 layout_mode = 3
@@ -45,3 +46,9 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_t5p2q")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
