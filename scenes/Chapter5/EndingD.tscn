@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://wuc5khid1nei"]
+[gd_scene load_steps=5 format=3 uid="uid://wuc5khid1nei"]
 
 [ext_resource type="Script" uid="uid://eapecq7s5yxu" path="res://scenes/Chapter5/Ending_script.gd" id="1_68s27"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="1_whu2f"]
 [ext_resource type="Texture2D" uid="uid://tenntc7deslu" path="res://assets/Ending_images/ENDING D – Refracted Truth.png" id="2_68s27"]
+[ext_resource type="AudioStream" uid="uid://dg2m740scuv5r" path="res://assets/Ending_images/Ending sounds/endingD.mp3" id="4_woxnp"]
 
 [node name="EndingD" type="Control"]
 layout_mode = 3
@@ -45,3 +46,8 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_woxnp")
+autoplay = true
+parameters/looping = true

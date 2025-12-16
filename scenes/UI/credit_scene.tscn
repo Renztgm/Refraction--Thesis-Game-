@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3vwi7adcsojv"]
+[gd_scene load_steps=6 format=3 uid="uid://b3vwi7adcsojv"]
 
 [ext_resource type="FontFile" uid="uid://bcbpvais3v8cv" path="res://assets/fonts/CONSOLA.TTF" id="1_1kpqi"]
+[ext_resource type="Script" uid="uid://c85elgtqqgsjh" path="res://scenes/UI/credit_scene.gd" id="1_bhfqj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhfqj"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_60rfe"]
+Panel/styles/panel = SubResource("StyleBoxFlat_bhfqj")
 
 [sub_resource type="FontVariation" id="FontVariation_bhfqj"]
 base_font = ExtResource("1_1kpqi")
 
 [node name="CreditScene" type="CanvasLayer"]
+script = ExtResource("1_bhfqj")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -13,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_60rfe")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
@@ -33,35 +42,22 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LabelName" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="name" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_bhfqj")
 theme_override_font_sizes/font_size = 60
-text = "Jhon Lorenz Bacon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LabelName2" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="position" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_1kpqi")
 theme_override_font_sizes/font_size = 40
-text = "Game Developer"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="MarginTexture" type="MarginContainer" parent="Panel/MarginContainer/HBoxContainer"]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer/MarginTexture"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2

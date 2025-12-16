@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://efxwyfkmhhsu"]
+[gd_scene load_steps=5 format=3 uid="uid://efxwyfkmhhsu"]
 
 [ext_resource type="Script" uid="uid://eapecq7s5yxu" path="res://scenes/Chapter5/Ending_script.gd" id="1_e76fn"]
 [ext_resource type="PackedScene" uid="uid://dhshtkqj6blyb" path="res://scenes/UI/DialogueManager.tscn" id="1_wq47g"]
 [ext_resource type="Texture2D" uid="uid://b4oglffiivu4g" path="res://assets/Ending_images/ENDING A – Awaken.png" id="2_b1vot"]
+[ext_resource type="AudioStream" uid="uid://u1fwlt8trbmk" path="res://assets/Ending_images/Ending sounds/endingA.mp3" id="4_wvssc"]
 
 [node name="EndingA" type="Control"]
 layout_mode = 3
@@ -29,7 +30,7 @@ grow_vertical = 2
 texture = ExtResource("2_b1vot")
 
 [node name="EndingText" type="CanvasLayer" parent="."]
-layer = 10
+layer = 70
 
 [node name="Label" type="Label" parent="EndingText"]
 anchors_preset = 8
@@ -46,3 +47,6 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="bg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wvssc")
+autoplay = true
+parameters/looping = true

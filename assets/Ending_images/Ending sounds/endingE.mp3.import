@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvtfnbvimbk10"
+path="res://.godot/imported/endingE.mp3-aa02ea9d47aa15308c5de6af51b58298.mp3str"
+
+[deps]
+
+source_file="res://assets/Ending_images/Ending sounds/endingE.mp3"
+dest_files=["res://.godot/imported/endingE.mp3-aa02ea9d47aa15308c5de6af51b58298.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

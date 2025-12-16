@@ -21,6 +21,8 @@ func before_each():
 			QuestManager.db.query("DELETE FROM quest_objectives WHERE profile_id = %d;" % test_profile_id)
 
 func after_each():
+	
+	
 	"""Cleanup after each test"""
 	# Clear quest data
 	if QuestManager and test_profile_id > 0:

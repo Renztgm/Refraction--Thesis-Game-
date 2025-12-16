@@ -23,16 +23,32 @@ func _on_dialogue_finished():
 	ending_text_label()
 
 func ending_text_label():
+	label.modulate.a = 0.0  # ✅ Force starting state
+	label.visible = true     # ✅ Ensure visibility
 	label.text = ending_text
+	
+	
 	tween = create_tween()
 	tween.tween_property(label, "modulate:a", 1.0, 1.5)
-	await get_tree().create_timer(5).timeout
+	await tween.finished  # ✅ Wait for tween instead of timer
+	await get_tree().create_timer(3.5).timeout  # Display time
 	ending_text_close()
 
 func ending_text_close():
 	tween = create_tween()
-	tween.tween_property(label, "modulate:a",0.0, 1.5)
-	await get_tree().create_timer(5).timeout
+	tween.tween_property(label, "modulate:a", 0.0, 1.5)
+	await tween.finished
+	
+	FadeOutCanvas.fade_in_white(0)
+	var credit_scene = preload("res://scenes/UI/credit_scene.tscn").instantiate()
+	get_tree().current_scene.add_child(credit_scene)
+	
+	# ✅ Wait for credits to finish (if it has a signal)
+	if credit_scene.has_signal("credits_finished"):
+		await credit_scene.credits_finished
+	else:
+		await get_tree().create_timer(15).timeout  # Fallback timer
+	
 	go_to_end_chapter()
 	
 	
@@ -58,5 +74,4 @@ func go_to_end_chapter():
 		SaveManager.set_current_chapter(5)
 		#SaveManager.set_next_scene_path("")
 
-	FadeOutCanvas.fade_in_white(0)
 	get_tree().change_scene_to_file("res://scenes/UI/endchapterscene.tscn")
