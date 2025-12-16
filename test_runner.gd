@@ -12,6 +12,5 @@ func _run_gut() -> void:
 	gut.call("run_tests")
 	
 	await self.create_timer(2.0).timeout
-	
-	# Exit - CI will check logs for pass/fail
+
 	quit()
