@@ -1,9 +1,7 @@
 name: CI
-
 on: [push]
   # push:
   #   branches: [ Checking-CI/DI ]
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -12,7 +10,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-
+    
     - name: Download Godot 4.5 headless
       run: |
         wget https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_linux.x86_64.zip -O godot.zip
@@ -23,42 +21,195 @@ jobs:
     - name: Import Godot project
       run: |
         $HOME/godot/godot --headless --path . --editor --quit --verbose
-
+    
     - name: Run GUT Tests
       run: |
         mkdir -p test_results logs
         timeout 120 $HOME/godot/godot --headless --path . \
           -s test_runner.gd \
           2>&1 | tee logs/tests_full.log || true
-
-    - name: Check test results
+    
+    - name: Process and format test results
       run: |
-        cat logs/tests_full.log
-        # Extract test summary
-        mkdir -p test_results
-        grep -A 20 "= Run Summary" logs/tests_full.log > test_results/summary.txt || true
-        cat test_results/summary.txt
+        # Create a formatted results file
+        cat > process_results.py << 'EOF'
+        import re
+        import sys
         
-        # Add summary to GitHub Actions job summary
-        echo "## 🧪 GUT Test Results" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        cat test_results/summary.txt >> $GITHUB_STEP_SUMMARY
+        def clean_ansi(text):
+            """Remove ANSI color codes"""
+            ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+            return ansi_escape.sub('', text)
         
-        # Check for actual test failures (not just script errors from loading)
-        if grep -q "Failing.*tests" logs/tests_full.log; then
+        def format_results():
+            try:
+                with open('logs/tests_full.log', 'r') as f:
+                    content = f.read()
+            except:
+                print("❌ Could not read test log file")
+                return False
+            
+            # Clean ANSI codes
+            content = clean_ansi(content)
+            
+            # Extract key information
+            summary_match = re.search(r'= Run Summary =+\s+(.*?)(?:----|\Z)', content, re.DOTALL)
+            totals_match = re.search(r'---- Totals ----\s+(.*?)(?:----|\Z)', content, re.DOTALL)
+            failures_match = re.search(r'---- \d+ failing tests? ----\s+(.*?)(?:Closed database|\Z)', content, re.DOTALL)
+            
+            # Check for passing message
+            all_passed = "All tests passed!" in content or "---- All tests passed! ----" in content
+            
+            # Parse totals
+            stats = {}
+            if totals_match:
+                totals_text = totals_match.group(1)
+                stats['scripts'] = re.search(r'Scripts\s+(\d+)', totals_text)
+                stats['tests'] = re.search(r'Tests\s+(\d+)', totals_text)
+                stats['passing'] = re.search(r'Passing\s+(\d+)', totals_text)
+                stats['failing'] = re.search(r'Failing\s+(\d+)', totals_text)
+                stats['risky'] = re.search(r'Risky/Pending\s+(\d+)', totals_text)
+                stats['asserts'] = re.search(r'Asserts\s+(\d+)', totals_text)
+                stats['time'] = re.search(r'Time\s+([\d.]+s)', totals_text)
+                stats['warnings'] = re.search(r'Warnings\s+(\d+)', totals_text)
+            
+            # Create formatted output
+            with open('test_results/formatted_summary.md', 'w') as f:
+                f.write("## 🧪 GUT Test Results\n\n")
+                
+                # Overall status
+                if all_passed:
+                    f.write("### ✅ All Tests Passed!\n\n")
+                else:
+                    failing_count = int(stats['failing'].group(1)) if stats.get('failing') else 0
+                    if failing_count > 0:
+                        f.write(f"### ❌ {failing_count} Test(s) Failed\n\n")
+                    else:
+                        f.write("### ⚠️ Tests Completed with Warnings\n\n")
+                
+                # Statistics table
+                f.write("| Metric | Count |\n")
+                f.write("|--------|-------|\n")
+                
+                if stats.get('scripts'):
+                    f.write(f"| 📄 Scripts | {stats['scripts'].group(1)} |\n")
+                if stats.get('tests'):
+                    f.write(f"| 🧪 Tests | {stats['tests'].group(1)} |\n")
+                if stats.get('passing'):
+                    passing = stats['passing'].group(1)
+                    f.write(f"| ✅ Passing | **{passing}** |\n")
+                if stats.get('failing'):
+                    failing = stats['failing'].group(1)
+                    if int(failing) > 0:
+                        f.write(f"| ❌ Failing | **{failing}** |\n")
+                if stats.get('risky'):
+                    risky = stats['risky'].group(1)
+                    if int(risky) > 0:
+                        f.write(f"| ⚠️ Risky/Pending | {risky} |\n")
+                if stats.get('asserts'):
+                    f.write(f"| 🔍 Assertions | {stats['asserts'].group(1)} |\n")
+                if stats.get('time'):
+                    f.write(f"| ⏱️ Time | {stats['time'].group(1)} |\n")
+                if stats.get('warnings'):
+                    warnings = stats['warnings'].group(1)
+                    if int(warnings) > 0:
+                        f.write(f"| ⚠️ Warnings | {warnings} |\n")
+                
+                # Failed tests details
+                if failures_match or (stats.get('failing') and int(stats['failing'].group(1)) > 0):
+                    f.write("\n### 🔴 Failed Tests\n\n")
+                    
+                    # Try to extract individual test failures
+                    test_failures = re.findall(
+                        r'res://tests/(.*?\.gd)\s*-\s*(test_\w+)\s*\[Failed\]:\s*(.*?)\s*at line (\d+)',
+                        content,
+                        re.DOTALL
+                    )
+                    
+                    if test_failures:
+                        f.write("```\n")
+                        for file, test_name, error, line in test_failures:
+                            f.write(f"📍 {file}\n")
+                            f.write(f"   Test: {test_name}\n")
+                            f.write(f"   Error: {error.strip()}\n")
+                            f.write(f"   Line: {line}\n")
+                            f.write("\n")
+                        f.write("```\n")
+                    elif failures_match:
+                        f.write("```\n")
+                        f.write(failures_match.group(1).strip())
+                        f.write("\n```\n")
+                
+                # Test file breakdown
+                f.write("\n### 📊 Test Files\n\n")
+                
+                test_files = re.findall(r'res://tests/(test_\w+\.gd)', content)
+                unique_files = list(dict.fromkeys(test_files))  # Remove duplicates, preserve order
+                
+                if unique_files:
+                    for test_file in unique_files:
+                        # Count tests in this file
+                        file_tests = re.findall(
+                            rf'{re.escape(test_file)}\s*-\s*(test_\w+)',
+                            content
+                        )
+                        
+                        # Count failures in this file
+                        file_failures = re.findall(
+                            rf'{re.escape(test_file)}\s*-\s*(test_\w+)\s*\[Failed\]',
+                            content
+                        )
+                        
+                        if file_failures:
+                            f.write(f"- ❌ `{test_file}` - {len(file_failures)} failed\n")
+                        else:
+                            f.write(f"- ✅ `{test_file}` - All passed\n")
+                
+                f.write("\n---\n")
+                f.write("*Generated by GUT Test Runner*\n")
+            
+            # Return whether tests passed
+            if stats.get('failing'):
+                return int(stats['failing'].group(1)) == 0
+            return all_passed
+        
+        # Run formatting
+        success = format_results()
+        sys.exit(0 if success else 1)
+        EOF
+        
+        python3 process_results.py
+        TEST_EXIT_CODE=$?
+        
+        echo "TEST_RESULT_CODE=$TEST_EXIT_CODE" >> $GITHUB_ENV
+    
+    - name: Display test results in job summary
+      if: always()
+      run: |
+        if [ -f test_results/formatted_summary.md ]; then
+          cat test_results/formatted_summary.md >> $GITHUB_STEP_SUMMARY
+        else
+          echo "## ⚠️ Test Results Not Found" >> $GITHUB_STEP_SUMMARY
+          echo "Could not generate formatted test results." >> $GITHUB_STEP_SUMMARY
+        fi
+    
+    - name: Check final test status
+      run: |
+        if [ "$TEST_RESULT_CODE" != "0" ]; then
           echo "❌ Tests failed"
           exit 1
         else
-          echo "✅ Tests passed"
+          echo "✅ All tests passed"
+          exit 0
         fi
-
+    
     - name: Upload test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: gut-test-results
         path: test_results/
-
+    
     - name: Upload debug logs
       if: always()
       uses: actions/upload-artifact@v4
