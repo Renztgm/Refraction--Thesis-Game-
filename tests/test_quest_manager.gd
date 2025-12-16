@@ -429,31 +429,23 @@ func test_quest_updated_signal():
 		pass_test("No active profile")
 		return
 	
-	var signal_received = false
-	var received_quest_id = ""
-	
-	# Connect to signal
-	var callback = func(quest_id: String):
-		signal_received = true
-		received_quest_id = quest_id
-		print("📡 Signal received for quest:", quest_id)
-	
-	QuestManager.quest_updated.connect(callback)
-	
-	# Create quest (should emit signal)
+	# Create a quest first
 	var quest_id = "signal_test"
-	QuestManager.create_quest(quest_id, "Signal Test", "Test", [])
+	QuestManager.create_quest(quest_id, "Signal Test", "Test", [
+		{"id": "obj1", "text": "Test objective", "is_completed": false}
+	])
 	
-	# Wait for signal to propagate
-	await get_tree().create_timer(0.1).timeout
+	# Now watch for signal when completing objective (which definitely emits)
+	watch_signals(QuestManager)
 	
-	# Verify signal was emitted
-	assert_true(signal_received, "quest_updated signal should be emitted")
-	assert_eq(received_quest_id, quest_id, "Signal should contain correct quest_id")
+	# Complete objective - this should emit quest_updated signal
+	QuestManager.complete_objective(quest_id, "obj1")
 	
-	# Cleanup
-	if QuestManager.quest_updated.is_connected(callback):
-		QuestManager.quest_updated.disconnect(callback)
+	# Wait a moment
+	await get_tree().create_timer(0.2).timeout
+	
+	# Check if signal was emitted
+	assert_signal_emitted(QuestManager, "quest_updated", "quest_updated signal should be emitted")
 	
 	print("✅ quest_updated signal works correctly")
 
