@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ Scene-3 ]
+    branches: [ Checking-CI/DI ]
 
 jobs:
   test:
