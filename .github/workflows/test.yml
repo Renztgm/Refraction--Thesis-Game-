@@ -1,8 +1,8 @@
 name: CI
 
-on:
-  push:
-    branches: [ Checking-CI/DI ]
+on: [push]
+  # push:
+  #   branches: [ Checking-CI/DI ]
 
 jobs:
   test:
