@@ -6,3 +6,4 @@ res://test_runner.gd
 res://tests/test_quest_manager.gd
 res://tests/test_example.gd
 res://tests/test_save_manager.gd
+res://README.md
