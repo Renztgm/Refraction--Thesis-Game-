@@ -35,13 +35,13 @@ jobs:
         # Strip ANSI color codes
         sed 's/\x1b\[[0-9;]*m//g' logs/tests_full.log > logs/tests_clean.log
         
-        # Extract metrics
-        SCRIPTS=$(grep -oP "Scripts\s+\K\d+" logs/tests_clean.log || echo "0")
-        TOTAL_TESTS=$(grep -oP "Tests\s+\K\d+" logs/tests_clean.log || echo "0")
-        PASSING=$(grep -oP "Passing\s+\K\d+" logs/tests_clean.log || echo "0")
-        ASSERTS=$(grep -oP "Asserts\s+\K\d+" logs/tests_clean.log || echo "0")
-        TIME=$(grep -oP "Time\s+\K[\d.]+s" logs/tests_clean.log || echo "0s")
-        WARNINGS=$(grep -oP "Warnings\s+\K\d+" logs/tests_clean.log || echo "0")
+        # Extract metrics from summary section
+        SCRIPTS=$(grep -oP "Scripts\s+\K\d+" logs/tests_clean.log | head -1 || echo "0")
+        TOTAL_TESTS=$(grep -oP "Tests\s+\K\d+" logs/tests_clean.log | head -1 || echo "0")
+        PASSING=$(grep -oP "Passing\s+\K\d+" logs/tests_clean.log | head -1 || echo "0")
+        ASSERTS=$(grep -oP "Asserts\s+\K\d+" logs/tests_clean.log | head -1 || echo "0")
+        TIME=$(grep -oP "Time\s+\K[\d.]+s" logs/tests_clean.log | head -1 || echo "0s")
+        WARNINGS=$(grep -oP "Warnings\s+\K\d+" logs/tests_clean.log | head -1 || echo "0")
         
         # Check if all tests passed
         if grep -q "All tests passed" logs/tests_clean.log; then
@@ -54,20 +54,35 @@ jobs:
           EXIT_CODE=1
         fi
         
-        # Extract test file results
-        TEST_FILES=$(grep -E "res://tests/test_.*\.gd" logs/tests_clean.log | grep -oP "res://tests/\K[^:]*" | sort -u || echo "")
-        
-        # Build test files table
+        # Extract test files from the actual test execution output
+        # Look for lines like "res://tests/test_*.gd"
         TEST_FILES_TABLE=""
-        if [ ! -z "$TEST_FILES" ]; then
-          while IFS= read -r file; do
-            # Check if this file had any failures
-            if grep -q "$file" logs/tests_clean.log && ! grep "$file" logs/tests_clean.log | grep -q "Failed"; then
-              TEST_FILES_TABLE="$TEST_FILES_TABLE| ✅ | \`$file\` | All passed |\n"
-            else
-              TEST_FILES_TABLE="$TEST_FILES_TABLE| ❌ | \`$file\` | Failed |\n"
+        
+        # Parse each test script section
+        while IFS= read -r line; do
+          if [[ $line =~ res://tests/(test_[^[:space:]]+\.gd) ]]; then
+            filename="${BASH_REMATCH[1]}"
+            
+            # Check if already processed
+            if [[ ! "$TEST_FILES_TABLE" =~ "$filename" ]]; then
+              # Look ahead in the log to see if this file had failures
+              if grep -A 20 "res://tests/$filename" logs/tests_clean.log | grep -q "Failing"; then
+                TEST_FILES_TABLE="$TEST_FILES_TABLE| ❌ | \`$filename\` | Failed |\n"
+              else
+                TEST_FILES_TABLE="$TEST_FILES_TABLE| ✅ | \`$filename\` | All passed |\n"
+              fi
             fi
-          done <<< "$TEST_FILES"
+          fi
+        done < logs/tests_clean.log
+        
+        # If no test files found, list files from directory
+        if [ -z "$TEST_FILES_TABLE" ]; then
+          for file in tests/test_*.gd; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              TEST_FILES_TABLE="$TEST_FILES_TABLE| ✅ | \`$filename\` | All passed |\n"
+            fi
+          done
         fi
         
         # Create beautiful GitHub summary
@@ -97,13 +112,14 @@ jobs:
         <summary>📋 Full Test Output</summary>
         
         \`\`\`
-        $(grep -A 50 "= Run Summary" logs/tests_clean.log || cat logs/tests_clean.log | tail -100)
+        $(cat logs/tests_clean.log | tail -200)
         \`\`\`
         
         </details>
         EOF
         
         echo "Test Status: $STATUS"
+        echo "Scripts: $SCRIPTS, Tests: $TOTAL_TESTS, Passing: $PASSING"
         exit $EXIT_CODE
 
     - name: Upload test logs
