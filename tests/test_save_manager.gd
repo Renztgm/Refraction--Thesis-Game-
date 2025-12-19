@@ -4,7 +4,7 @@
 # ==============================================================================
 extends GutTest
 
-var mock_player_scene = preload("res://scenes/Player/player.tscn") if FileAccess.file_exists("res://scenes/Player/player.tscn") else null
+var mock_player_scene = preload("res://scenes/Player/Player3d.tscn") if FileAccess.file_exists("res://scenes/Player/Player3d.tscn") else null
 var test_profile_id: int = -1
 
 func before_each():
