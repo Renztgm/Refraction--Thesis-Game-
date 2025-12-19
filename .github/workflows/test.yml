@@ -29,122 +29,62 @@ jobs:
           -s test_runner.gd \
           2>&1 | tee logs/tests_full.log || true
 
-    - name: Check test results
+    - name: Generate Test Summary
+      if: always()
       run: |
-        # Strip ANSI color codes for clean output
+        # Strip ANSI color codes
         sed 's/\x1b\[[0-9;]*m//g' logs/tests_full.log > logs/tests_clean.log
         
-        cat logs/tests_clean.log
+        # Extract metrics
+        SCRIPTS=$(grep -oP "Scripts\s+\K\d+" logs/tests_clean.log || echo "0")
+        TOTAL_TESTS=$(grep -oP "Tests\s+\K\d+" logs/tests_clean.log || echo "0")
+        PASSING=$(grep -oP "Passing\s+\K\d+" logs/tests_clean.log || echo "0")
+        ASSERTS=$(grep -oP "Asserts\s+\K\d+" logs/tests_clean.log || echo "0")
+        TIME=$(grep -oP "Time\s+\K[\d.]+s" logs/tests_clean.log || echo "0s")
+        WARNINGS=$(grep -oP "Warnings\s+\K\d+" logs/tests_clean.log || echo "0")
         
-        # Extract test summary
-        mkdir -p test_results
-        grep -A 20 "= Run Summary" logs/tests_clean.log > test_results/summary.txt || true
-        
-        # Add summary to GitHub Actions job summary
-        echo "## 🧪 GUT Test Results" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo '```' >> $GITHUB_STEP_SUMMARY
-        cat test_results/summary.txt >> $GITHUB_STEP_SUMMARY
-        echo '```' >> $GITHUB_STEP_SUMMARY
-        
-        # Parse test results
-        TOTAL_TESTS=$(grep -oP "Tests\s+\K\d+" test_results/summary.txt || echo "0")
-        PASSING_TESTS=$(grep -oP "Passing\s+\K\d+" test_results/summary.txt || echo "0")
-        
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**Total Tests:** $TOTAL_TESTS" >> $GITHUB_STEP_SUMMARY
-        echo "**Passing:** $PASSING_TESTS" >> $GITHUB_STEP_SUMMARY
-        
-        # Check for failures
+        # Check if all tests passed
         if grep -q "All tests passed" logs/tests_clean.log; then
-          echo "✅ All tests passed!" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Tests passed"
-          exit 0
-        elif grep -q "Failing" logs/tests_clean.log; then
-          echo "❌ Tests failed!" >> $GITHUB_STEP_SUMMARY
-          echo "❌ Tests failed"
-          exit 1
+          STATUS="✅ All Tests Passed!"
+          STATUS_COLOR="🟢"
+          EXIT_CODE=0
         else
-          echo "⚠️ Could not determine test status" >> $GITHUB_STEP_SUMMARY
-          echo "⚠️ Unknown test status"
-          exit 1
+          STATUS="❌ Tests Failed"
+          STATUS_COLOR="🔴"
+          EXIT_CODE=1
         fi
-
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: gut-test-results
-        path: test_results/
-
-    - name: Upload debug logs
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: godot-debug-logs
-        path: logs/
-
-    - name: Generate HTML Report
-      if: always()
-      run: |
-        cat > test_results/index.html << 'EOF'
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <title>GUT Test Results</title>
-          <style>
-            * { margin: 0; padding: 0; box-sizing: border-box; }
-            body {
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-              background: #1a1d23;
-              color: #e0e0e0;
-              padding: 2rem;
-            }
-            .container { max-width: 1200px; margin: 0 auto; }
-            h1 { font-size: 2rem; margin-bottom: 2rem; }
-            .status {
-              background: #2d5a3d;
-              color: #7dff7d;
-              padding: 1rem 1.5rem;
-              border-radius: 8px;
-              margin-bottom: 2rem;
-              font-weight: 600;
-            }
-            table {
-              width: 100%;
-              border-collapse: collapse;
-              background: #252930;
-              border-radius: 8px;
-              overflow: hidden;
-            }
-            th, td {
-              padding: 1rem;
-              text-align: left;
-              border-bottom: 1px solid #3a3f4a;
-            }
-            th { background: #2a2f38; font-weight: 600; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <h1>📝 GUT Test Results</h1>
-            <div class="status">✅ All Tests Passed!</div>
-            <table>
-              <tr><th>Metric</th><th>Count</th></tr>
-              <tr><td>Scripts</td><td>6</td></tr>
-              <tr><td>Tests</td><td>57</td></tr>
-              <tr><td>Passing</td><td>57</td></tr>
-              <tr><td>Assertions</td><td>116</td></tr>
-            </table>
-          </div>
-        </body>
-        </html>
+        
+        # Create beautiful GitHub summary
+        cat >> $GITHUB_STEP_SUMMARY << EOF
+        # 📝 GUT Test Results
+        
+        ## $STATUS_COLOR $STATUS
+        
+        | Metric | Count |
+        |--------|-------|
+        | 📄 Scripts | $SCRIPTS |
+        | 📝 Tests | $TOTAL_TESTS |
+        | ✅ Passing | $PASSING |
+        | 🔍 Assertions | $ASSERTS |
+        | ⏱️ Time | $TIME |
+        | ⚠️ Warnings | $WARNINGS |
+        
+        <details>
+        <summary>📋 Full Test Output</summary>
+        
+        \`\`\`
+        $(grep -A 30 "= Run Summary" logs/tests_clean.log || echo "No summary found")
+        \`\`\`
+        
+        </details>
         EOF
+        
+        echo "Test Status: $STATUS"
+        exit $EXIT_CODE
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Upload test logs
       if: always()
+      uses: actions/upload-artifact@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./test_results
+        name: test-logs
+        path: logs/
