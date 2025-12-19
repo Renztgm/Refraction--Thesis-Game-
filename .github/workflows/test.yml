@@ -1,8 +1,6 @@
 name: CI
 
 on: [push]
-  # push:
-    # branches: [ Checking-CI/DI ]
 
 jobs:
   test:
@@ -33,23 +31,43 @@ jobs:
 
     - name: Check test results
       run: |
-        cat logs/tests_full.log
+        # Strip ANSI color codes for clean output
+        sed 's/\x1b\[[0-9;]*m//g' logs/tests_full.log > logs/tests_clean.log
+        
+        cat logs/tests_clean.log
+        
         # Extract test summary
         mkdir -p test_results
-        grep -A 20 "= Run Summary" logs/tests_full.log > test_results/summary.txt || true
-        cat test_results/summary.txt
+        grep -A 20 "= Run Summary" logs/tests_clean.log > test_results/summary.txt || true
         
         # Add summary to GitHub Actions job summary
         echo "## 🧪 GUT Test Results" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
         cat test_results/summary.txt >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
         
-        # Check for actual test failures (not just script errors from loading)
-        if grep -q "Failing.*tests" logs/tests_full.log; then
+        # Parse test results
+        TOTAL_TESTS=$(grep -oP "Tests\s+\K\d+" test_results/summary.txt || echo "0")
+        PASSING_TESTS=$(grep -oP "Passing\s+\K\d+" test_results/summary.txt || echo "0")
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Total Tests:** $TOTAL_TESTS" >> $GITHUB_STEP_SUMMARY
+        echo "**Passing:** $PASSING_TESTS" >> $GITHUB_STEP_SUMMARY
+        
+        # Check for failures
+        if grep -q "All tests passed" logs/tests_clean.log; then
+          echo "✅ All tests passed!" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Tests passed"
+          exit 0
+        elif grep -q "Failing" logs/tests_clean.log; then
+          echo "❌ Tests failed!" >> $GITHUB_STEP_SUMMARY
           echo "❌ Tests failed"
           exit 1
         else
-          echo "✅ Tests passed"
+          echo "⚠️ Could not determine test status" >> $GITHUB_STEP_SUMMARY
+          echo "⚠️ Unknown test status"
+          exit 1
         fi
 
     - name: Upload test results
