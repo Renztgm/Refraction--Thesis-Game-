@@ -68,7 +68,6 @@ func test_continue_button_initial_state():
 	var continue_button = main_menu.find_child("ContinueButton", true, false)
 	assert_not_null(continue_button, "ContinueButton should exist")
 	
-	# Check that button disabled state matches SaveManager
 	var has_save = SaveManager.has_save_file() if SaveManager else false
 	var button_enabled = not continue_button.disabled
 	

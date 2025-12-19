@@ -36,7 +36,7 @@ res://assets/Building/Building7.tscn::562a9965a2f18f6fd0e0a412f6128293::17635107
 res://assets/materials/trashbag/trash.tscn::ad3eaf0aaf22c70aac6ec597b2641c09::1763510739::res://.godot/exported/133200997/export-7e74b4c12ed60987d426e4178e9a5143-trash.scn
 res://assets/materials/new_shader_material.tres::fd0c6a1ebc91676be1d9f588d7993b9a::1763510739::res://.godot/exported/133200997/export-e75ec965e57d33dfbbc1e95109425d68-new_shader_material.res
 res://assets/materials/road.tscn::974305a39ebd2b9d11203156c578ab83::1763510739::res://.godot/exported/133200997/export-106adda4ec12e2fd270c05778fa0532b-road.scn
-res://scenes/Main Menu/main_menu.tscn::211d5053e434a99edd2f8064244e6836::1765336023::res://.godot/exported/133200997/export-cf3226678ff38c25f692801215d6ab28-main_menu.scn
+res://scenes/Main Menu/main_menu.tscn::70cb3f7833d4a3a212160ec7f1bad797::1765607230::res://.godot/exported/133200997/export-cf3226678ff38c25f692801215d6ab28-main_menu.scn
 res://scenes/NarativeScenes/main.tscn::7e564bb5920e1ad55bc5a61d9db595cf::1763510745::res://.godot/exported/133200997/export-6ee6c5677f7be4892df849343ab701c4-main.scn
 res://scenes/TestingScenes/Companion.tscn::8a3fd9f92a543f29297ac37e4e8d9237::1765191549::res://.godot/exported/133200997/export-e0875d90e49c7bbcb32841c7233a3e5f-Companion.scn
 res://scenes/TestingScenes/farmer.tscn::6117b066487f8ecdd4e3956beaa54f5d::1763510747::res://.godot/exported/133200997/export-83062318a4e31265811493dac81b6046-farmer.scn
@@ -44,7 +44,7 @@ res://scenes/TestingScenes/node_3d.tscn::c0dde1394313b74b38d0fdb43b5faba2::17635
 res://scenes/TestingScenes/old_man.tscn::d9a12bf479797e8d15e95a5e73c40af1::1763510747::res://.godot/exported/133200997/export-e3889ba9eba2998d65c83cf4e9ebd97e-old_man.scn
 res://scenes/TestingScenes/TestArea.tscn::35c065ee41208071f5061833c32d9d14::1763510747::res://.godot/exported/133200997/export-847b231be339bef4ba30b8849cfc039a-TestArea.scn
 res://scenes/TestingScenes/TestingGrounds.tscn::779077addb958ba027f4cd00c90e5991::1763510747::res://.godot/exported/133200997/export-ac9f07dd0ab5678fe51135c43442e3a2-TestingGrounds.scn
-res://Tres/ButtonTheme.tres::eda3dbbea3012dc154564ff9e8ed55fa::1765331075::res://.godot/exported/133200997/export-bb9891aceabdb5396bf9c14cbcffe955-ButtonTheme.res
+res://Tres/ButtonTheme.tres::eda3dbbea3012dc154564ff9e8ed55fa::1765913663::res://.godot/exported/133200997/export-bb9891aceabdb5396bf9c14cbcffe955-ButtonTheme.res
 res://assets/Bookshelf/BS1.tscn::5fe034c2b9547014feabfa91e1db3588::1763510727::res://.godot/exported/133200997/export-8fa97a6f7aabae1a6c636915d7a67b59-BS1.scn
 res://assets/Bookshelf/BS2.tscn::1f8c10e53d5e9bd9b16f659e666aa34b::1763510727::res://.godot/exported/133200997/export-0b9384954a850704fdf9f7d8fa11d61e-BS2.scn
 res://assets/Bookshelf/BS3.tscn::f27c228a8ee88aff6ece976e2ba9d53f::1763510727::res://.godot/exported/133200997/export-31f04b75a9a6c6be1bb9dfd74249064b-BS3.scn
@@ -79,17 +79,17 @@ res://scenes/NPCs/Scene7NPC.tscn::a63ba4c8796e130abafe9b1920998d5b::1765191549::
 res://scenes/Player/Player3d.tscn::956e5dadaa9b31be90ede393881eddcd::1765303174::res://.godot/exported/133200997/export-d8703b2933c30fee22d66c9228404e53-Player3d.scn
 res://scenes/Player/Player.tscn::cb92fb131e470cb580d53308fd467284::1763510745::res://.godot/exported/133200997/export-550fbb119cee6aa8974563177fec2c2e-Player.scn
 res://scenes/Scene1/Scene1.tscn::1077248b657cb4cfcbf3847573383c01::1765309967::res://.godot/exported/133200997/export-eb04c93084b2d44ad378e8991cd9e910-Scene1.scn
-res://scenes/Scene2/Scene2.tscn::e3a88e4a112d0ac36d4c24eaf69bb820::1765338442::res://.godot/exported/133200997/export-85029e7197df6cd25b7419b98a0d9ac4-Scene2.scn
-res://scenes/Scene3/Bookstore.tscn::2025ad04a881764ea2649b33483d6ad8::1765305663::res://.godot/exported/133200997/export-d6292da78b64119cdb536c296befe75b-Bookstore.scn
-res://scenes/Scene3/Scene3.tscn::e30e6300d4ed02ee8ab3f550c83dacaf::1765319544::res://.godot/exported/133200997/export-c6be9b9c73720fef8fda158c04e6b891-Scene3.scn
+res://scenes/Scene2/Scene2.tscn::64172d649cd4e188db1d0db6835b8c55::1765608895::res://.godot/exported/133200997/export-85029e7197df6cd25b7419b98a0d9ac4-Scene2.scn
+res://scenes/Scene3/Bookstore.tscn::5dcab2ffa58f8775e6b5e675c35d3e16::1765595682::res://.godot/exported/133200997/export-d6292da78b64119cdb536c296befe75b-Bookstore.scn
+res://scenes/Scene3/Scene3.tscn::b9febe7b62df98f55fd65e12c43ffa45::1765591969::res://.godot/exported/133200997/export-c6be9b9c73720fef8fda158c04e6b891-Scene3.scn
 res://scenes/Scene3/Scene3old.tscn::5ed35fd0725baddc0d9bf7fddccf2cfe::1765316722::res://.godot/exported/133200997/export-9a841a9d2eb6a2781ff2a09c794ad39c-Scene3old.scn
-res://scenes/Scene4/AlleyScene.tscn::ee2a06d60328a6f71d9966e1ab13dc91::1765319574::res://.godot/exported/133200997/export-0c76fa3c4da4d0f4e0d23680e31f70d3-AlleyScene.scn
-res://scenes/Scene5/Scene5.tscn::b0d9be7ecde18c277374a7d74ede7d5f::1765319609::res://.godot/exported/133200997/export-a453e3d666113cb4157bf7a3db40b74d-Scene5.scn
-res://scenes/Scene6/Scene6.tscn::9c34c9ef71d0a50009decf356201dad2::1764573392::res://.godot/exported/133200997/export-4f4a7914676536282e2063a1b815556d-Scene6.scn
-res://scenes/Scene7/Scene7.tscn::86134f7b35655d13ecf49271293a6735::1765319666::res://.godot/exported/133200997/export-400ceb7ee30b9ede4a87a7d9cb71df83-Scene7.scn
+res://scenes/Scene4/AlleyScene.tscn::dc4bd2086dae602cbe3ffc2d5a4866b6::1765597348::res://.godot/exported/133200997/export-0c76fa3c4da4d0f4e0d23680e31f70d3-AlleyScene.scn
+res://scenes/Scene5/Scene5.tscn::90ccc10d7c5ef1b9f3e18b8a9e1effc6::1765598149::res://.godot/exported/133200997/export-a453e3d666113cb4157bf7a3db40b74d-Scene5.scn
+res://scenes/Scene6/Scene6.tscn::a508fda577ad08d9da1e32b94543c924::1765598218::res://.godot/exported/133200997/export-4f4a7914676536282e2063a1b815556d-Scene6.scn
+res://scenes/Scene7/Scene7.tscn::e59316845867fe2697c45b9f8ff9dc66::1765598736::res://.godot/exported/133200997/export-400ceb7ee30b9ede4a87a7d9cb71df83-Scene7.scn
 res://scenes/UI/CanvasPause.tscn::de22f46606be239632a7f71d73f7ee51::1763989030::res://.godot/exported/133200997/export-7c9514ed5b233c5a2948f239d4f5df5e-CanvasPause.scn
 res://scenes/UI/DialogueBox.tscn::7499aa6289e18859776bb3024052be1f::1763510747::res://.godot/exported/133200997/export-d96e3e20206d4b02350437d5cb7850db-DialogueBox.scn
-res://scenes/UI/DialogueManager.tscn::db57305d8c503333bc1aa30eeb9e3519::1765301634::res://.godot/exported/133200997/export-f03714b809c5468b2e5efef4d8bb35cf-DialogueManager.scn
+res://scenes/UI/DialogueManager.tscn::db57305d8c503333bc1aa30eeb9e3519::1765608239::res://.godot/exported/133200997/export-f03714b809c5468b2e5efef4d8bb35cf-DialogueManager.scn
 res://scenes/UI/endchapterscene.tscn::f850908372b5f29ab116680833fe922c::1765121845::res://.godot/exported/133200997/export-6211b946a8829badccb27b4dd5475286-endchapterscene.scn
 res://scenes/UI/LoadingScreen.tscn::78beeeba1c6c8d812a62752dd2c47a8c::1765306306::res://.godot/exported/133200997/export-184f8630e80a7a67236a2fb46b026c1b-LoadingScreen.scn
 res://scenes/UI/PauseMenu.tscn::ffcfbf3c317e6a0ffb1ab7aa7bc75c8e::1764623479::res://.godot/exported/133200997/export-837ba6420ea2254c926ef734b00706d8-PauseMenu.scn
@@ -103,7 +103,7 @@ res://assets/Building/woodfloor.tscn::19eca26bd4343a1bfe31c86ccea599d6::17635107
 res://assets/Building/WoodFloors5x5.tscn::b55291a40608258bd7bde9fbd38d5b59::1763510730::res://.godot/exported/133200997/export-0b16a0969edc4f0e42e25316ea9fb68a-WoodFloors5x5.scn
 res://assets/item/banig.tscn::330adad0159c6ec899b394fc58b3a743::1763510738::res://.godot/exported/133200997/export-84dd9bd459fab1ac4da2f7178f0d4280-banig.scn
 res://scenes/branch selection/ch2_sn1.tres::d7dde85600f1c49f03a0c58b8fe092bc::1765318171::res://.godot/exported/133200997/export-9c5d2587d7a5584d496a078f4d4c93c4-ch2_sn1.res
-res://scenes/Chapter2/Scene1/Chapter2Scene1.tscn::79c7fd6a971c4ab91753759f9ce58414::1765316722::res://.godot/exported/133200997/export-bc790d53f14cae625d5e5324aa398168-Chapter2Scene1.scn
+res://scenes/Chapter2/Scene1/Chapter2Scene1.tscn::bef8643ace67bd91d2b48c7e4799eea4::1765607718::res://.godot/exported/133200997/export-bc790d53f14cae625d5e5324aa398168-Chapter2Scene1.scn
 res://scenes/NPCs/Ch2Scene1NPC.tscn::2ca455dce61c006ed3316e06df1d8cb3::1765246654::res://.godot/exported/133200997/export-07852c45e2c2726b094aa66fef0a2ca5-Ch2Scene1NPC.scn
 res://scenes/UI/ControlHint.tscn::e56f707eac3b3cbf277785f832774cbd::1763510747::res://.godot/exported/133200997/export-09989327fd3f8260635ab73ad2749a33-ControlHint.scn
 res://scenes/UI/Minimap.tscn::198314e43564759506f97fef0b35da9b::1765303143::res://.godot/exported/133200997/export-45c5d254a244fdb5581fb9a07767d1a6-Minimap.scn
@@ -112,9 +112,9 @@ res://assets/Building/Market/Market.tscn::cf8f9d9a6f646631ce4a66e0bf11b198::1763
 res://assets/Building/Building-SafeHouse.tscn::1a8dd411a58a67162aa4d1454a9c4884::1765332284::res://.godot/exported/133200997/export-51fce93d90e0b7db4d9b4c631ac158e1-Building-SafeHouse.scn
 res://assets/Building/LibraryRoom.tscn::8408be6b9099f4d8118810996e8216b8::1763630473::res://.godot/exported/133200997/export-5b79df7805f0582682676227b5a7d062-LibraryRoom.scn
 res://assets/materials/road_single.tscn::6c7fe281e01cfd53b0bd8fa50b58ef1c::1763510739::res://.godot/exported/133200997/export-4da9635ad6b63c52cc3bbeac455920a5-road_single.scn
-res://scenes/Chapter2/Scene1/Chapter2Scene1Inside.tscn::cadbc46bcee9b46d9a22e2eb798e4196::1765318466::res://.godot/exported/133200997/export-b995f365bb64cb6106904d1e3b3f06a9-Chapter2Scene1Inside.scn
-res://scenes/Chapter2/Scene1/Chapter2Scene1Outside.tscn::0786faaf7dbaa0e2644130124ab81845::1765332803::res://.godot/exported/133200997/export-96e87a20567c06326b1cfeba815bebdd-Chapter2Scene1Outside.scn
-res://scenes/Chapter2/Scene2/Chapter2Scene2.tscn::9dad6fc4a0ea7b52c4402408128a48f2::1765321285::res://.godot/exported/133200997/export-c78e4d6cdf2aea04df83433327a11bae-Chapter2Scene2.scn
+res://scenes/Chapter2/Scene1/Chapter2Scene1Inside.tscn::0f9931fd1e99638204570fd410d55dbc::1765607726::res://.godot/exported/133200997/export-b995f365bb64cb6106904d1e3b3f06a9-Chapter2Scene1Inside.scn
+res://scenes/Chapter2/Scene1/Chapter2Scene1Outside.tscn::4d7c7d8142d9b7b74b441701e3a97265::1765607829::res://.godot/exported/133200997/export-96e87a20567c06326b1cfeba815bebdd-Chapter2Scene1Outside.scn
+res://scenes/Chapter2/Scene2/Chapter2Scene2.tscn::7f5cfc0e320baccc0fdc7336ae38f375::1765608054::res://.godot/exported/133200997/export-c78e4d6cdf2aea04df83433327a11bae-Chapter2Scene2.scn
 res://scenes/Map/OutsideMap.tscn::2b0431082136136497566235d65e22cd::1765335221::res://.godot/exported/133200997/export-79e3ec9cde436b9ccc8ffbaf919b8eb3-OutsideMap.scn
 res://scenes/quest/request/picture_fragments.tres::9cd7afb4a794a2171da70f7f8f2e76b5::1763510746::res://.godot/exported/133200997/export-c1162ec2cbb9033472955ed50d3a5aee-picture_fragments.res
 res://scenes/quest/QuestEntry.tscn::78599c7e27c1573c44e37bd00ca718db::1765246623::res://.godot/exported/133200997/export-a4eb9cc4c8cd164766d71df79e621630-QuestEntry.scn
@@ -132,17 +132,17 @@ res://scenes/branch selection/ch2_sn3.tres::a13fd7c4ce828ed120df148ac59a7d16::17
 res://scenes/branch selection/ch3_sn1.tres::dbe6312e526dbc9ad397041b2acee3bb::1763510743::res://.godot/exported/133200997/export-979e132c01d754852b78b9c9ae8d48aa-ch3_sn1.res
 res://scenes/branch selection/ch3_sn2.tres::5712e4b70429d85932a1fc8e193a5f33::1764227498::res://.godot/exported/133200997/export-504ab6714399259a424420f2ca74f470-ch3_sn2.res
 res://scenes/branch selection/ch3_sn_different_path.tres::95d2392b01781fe8e28b682e4ca130b6::1763510743::res://.godot/exported/133200997/export-cb885e667e023561099b9ac69dce8aa4-ch3_sn_different_path.res
-res://scenes/branch selection/ch4_sn1.tres::4f2d763e94c98878b58c1ad1c797f4ba::1765214005::res://.godot/exported/133200997/export-8a5e660fbb603e71b1a6632e32133355-ch4_sn1.res
-res://scenes/branch selection/ch4_sn2.tres::ff4c03b9c114c039503568062caed64a::1765214005::res://.godot/exported/133200997/export-15ba82d17900cdc246bf03501ce714e7-ch4_sn2.res
-res://scenes/branch selection/ch5_A.tres::dbf2e6b10cdf839c9e0cae49426d562b::1765214004::res://.godot/exported/133200997/export-0c99d2548aae79f7bed9c58cdbd09353-ch5_A.res
-res://scenes/branch selection/ch5_B.tres::bb40eb8e11f61fb7395f830d7c3f3edf::1765214005::res://.godot/exported/133200997/export-e597097c392e0a9005c9c56fd7589848-ch5_B.res
-res://scenes/branch selection/ch5_C.tres::1e3b63180349d63ccf7adaff497a632f::1765214005::res://.godot/exported/133200997/export-ed3c2bb11aa69317a494ad958fce3c60-ch5_C.res
-res://scenes/branch selection/ch5_D.tres::80682267a5a47a8522557a21561b2814::1765214005::res://.godot/exported/133200997/export-63f054bf465cc109ca3d201ab070f7a7-ch5_D.res
-res://scenes/branch selection/ch5_E.tres::cf48c4736a5684d57c22dae6f6446595::1765214005::res://.godot/exported/133200997/export-c05c4d3550f83c2ff51111a72c7b5a9f-ch5_E.res
+res://scenes/branch selection/ch4_sn1.tres::183da2ec4040fb05df60866765cf1448::1765914414::res://.godot/exported/133200997/export-8a5e660fbb603e71b1a6632e32133355-ch4_sn1.res
+res://scenes/branch selection/ch4_sn2.tres::b5498ba1e348eae2aa62f4a0bfb22393::1765913706::res://.godot/exported/133200997/export-15ba82d17900cdc246bf03501ce714e7-ch4_sn2.res
+res://scenes/branch selection/ch5_A.tres::ad8b455bb57c2eeeeacca054917d395d::1765913663::res://.godot/exported/133200997/export-0c99d2548aae79f7bed9c58cdbd09353-ch5_A.res
+res://scenes/branch selection/ch5_B.tres::7976749584edf2b31a54fe943d4bd214::1765913663::res://.godot/exported/133200997/export-e597097c392e0a9005c9c56fd7589848-ch5_B.res
+res://scenes/branch selection/ch5_C.tres::b6f3294d44ebb8caa9a59663e0440580::1765913663::res://.godot/exported/133200997/export-ed3c2bb11aa69317a494ad958fce3c60-ch5_C.res
+res://scenes/branch selection/ch5_D.tres::d4a96ec8a67ef6b38399ec176e5464bb::1765913671::res://.godot/exported/133200997/export-63f054bf465cc109ca3d201ab070f7a7-ch5_D.res
+res://scenes/branch selection/ch5_E.tres::61e3d1b30febc6b7999d68b1bceec57e::1765913680::res://.godot/exported/133200997/export-c05c4d3550f83c2ff51111a72c7b5a9f-ch5_E.res
 res://scenes/Chapter3/DifferentPath/Chapter3SceneDifferentPath.tscn::e4f2f4cace84d8ce6ea18f3d39d9bd35::1763510744::res://.godot/exported/133200997/export-06dfe098788be45aca67719bf2aea2a6-Chapter3SceneDifferentPath.scn
-res://scenes/Chapter3/Straight/Scene1/Chapter3Scene1.tscn::b854626df82e4b77c0ea9ced1bf00342::1765339310::res://.godot/exported/133200997/export-51d02361c22fd592909ac2270cf28de0-Chapter3Scene1.scn
-res://scenes/Chapter3/Straight/Scene1/Chapter3Scene1Dialogue.tscn::355c8e7a2118bb73ea45f1c234d0b247::1765319678::res://.godot/exported/133200997/export-d467b0bee1ce26d77dfa2de8d85ff2db-Chapter3Scene1Dialogue.scn
-res://scenes/Chapter3/Straight/Scene2/Chapter3Scene2.tscn::fc186ea601fedcab8a3371e58c550afd::1765320546::res://.godot/exported/133200997/export-153b49736fcc2a40b4f231274d1e4e27-Chapter3Scene2.scn
+res://scenes/Chapter3/Straight/Scene1/Chapter3Scene1.tscn::d9c167b9f8ef424d76df466f9def6852::1765609363::res://.godot/exported/133200997/export-51d02361c22fd592909ac2270cf28de0-Chapter3Scene1.scn
+res://scenes/Chapter3/Straight/Scene1/Chapter3Scene1Dialogue.tscn::336399dbcff12186393129c56af196d2::1765609348::res://.godot/exported/133200997/export-d467b0bee1ce26d77dfa2de8d85ff2db-Chapter3Scene1Dialogue.scn
+res://scenes/Chapter3/Straight/Scene2/Chapter3Scene2.tscn::8bdc87acc6f15f579cfbb52753b4a4f6::1765609455::res://.godot/exported/133200997/export-153b49736fcc2a40b4f231274d1e4e27-Chapter3Scene2.scn
 res://scenes/NPCs/NPC/Monster.tscn::55f3a1b6216236ddf0ca0ff6d64f5416::1765335384::res://.godot/exported/133200997/export-e1c2ffcfeb16751e3c08da664fc7c662-Monster.scn
 res://scenes/Player/PlayerChasingBody.tscn::4b86540fd963c4a9f95c96bd4a67551f::1763510745::res://.godot/exported/133200997/export-1c3e60092bb6763c9a38a6d35c2e704d-PlayerChasingBody.scn
 res://scenes/UI/DeathUI.tscn::a3d6890a5286ee2002e32062319c161e::1765082485::res://.godot/exported/133200997/export-18e937225af1d36214b8909f2429cf55-DeathUI.scn
@@ -153,27 +153,27 @@ res://assets/Building/Library.tscn::9e151f33502be1dfb4acd81dca0671f6::1763630799
 res://assets/Building/MirrorDistrict.tscn::62f8e53c366adc8d482e47b18ceacff6::1763738699::res://.godot/exported/133200997/export-cb128c157ed84878ab321e76027dce52-MirrorDistrict.scn
 res://assets/Building/Not Broken Bridge.tscn::77b519a89e3677eb1b11a892ae49352d::1764675464::res://.godot/exported/133200997/export-8645ccf4988c7803d7982e624fe562d9-Not Broken Bridge.scn
 res://assets/item/kiosk.tscn::0e8347a4ecd5e2cf126db9285277e685::1764524571::res://.godot/exported/133200997/export-9646a4d2c33199aca053f4029fd07aef-kiosk.scn
-res://scenes/Chapter3/Straight/Scene2/Dopplegangerhall/Chapter3Scene2Dopplegangerhall.tscn::d0f59ad115bd9e644c92dd76f2719eaf::1765304711::res://.godot/exported/133200997/export-98528950e00ae78bc44d50253b232f90-Chapter3Scene2Dopplegangerhall.scn
-res://scenes/Chapter3/Straight/Scene2/Mirror Hall/Chapter3Scene2CylinderStructure_Lyra_Confrontation.tscn::56b1c9001e20847ce1bc247768c74208::1765320028::res://.godot/exported/133200997/export-c3a8336ebff3f0b25825913ea6230fdb-Chapter3Scene2CylinderStructure_Lyra_Confrontation.scn
-res://scenes/Chapter3/Straight/Scene2/Mirror Hall/Chapter3Scene2CylinderStructure_MirrorHallChallenge.tscn::431a1ffa5efecd40fb810a8297b1a4f8::1765319877::res://.godot/exported/133200997/export-c295b6f2e3812a0e91ba1c1b27f500c8-Chapter3Scene2CylinderStructure_MirrorHallChallenge.scn
+res://scenes/Chapter3/Straight/Scene2/Dopplegangerhall/Chapter3Scene2Dopplegangerhall.tscn::588538a7c8ec3ddf357219d6638b5fa9::1765609631::res://.godot/exported/133200997/export-98528950e00ae78bc44d50253b232f90-Chapter3Scene2Dopplegangerhall.scn
+res://scenes/Chapter3/Straight/Scene2/Mirror Hall/Chapter3Scene2CylinderStructure_Lyra_Confrontation.tscn::445221574e128e0132d30e62ac5b7255::1765609570::res://.godot/exported/133200997/export-c3a8336ebff3f0b25825913ea6230fdb-Chapter3Scene2CylinderStructure_Lyra_Confrontation.scn
+res://scenes/Chapter3/Straight/Scene2/Mirror Hall/Chapter3Scene2CylinderStructure_MirrorHallChallenge.tscn::fa9a79a92a179c685dfa2a43760e7e26::1765609565::res://.godot/exported/133200997/export-c295b6f2e3812a0e91ba1c1b27f500c8-Chapter3Scene2CylinderStructure_MirrorHallChallenge.scn
 res://scenes/Chapter3/Straight/Scene2/Mirror Hall/hangaroo_game.tscn::e56bd0b4e957b3316e11b62f117ad466::1765332799::res://.godot/exported/133200997/export-9d842c64f64d1652c1ba063ffd40781c-hangaroo_game.scn
-res://scenes/Chapter3/Straight/Scene2/Chapter3Scene2A.tscn::fb402b00de80b036592d6f22e493cb9c::1765320340::res://.godot/exported/133200997/export-acb990fa48622888a0facd479489511a-Chapter3Scene2A.scn
-res://scenes/Chapter3/Straight/Scene2/Chapter3Scene2CylinderStructure.tscn::9b85c752a7c3268c28320e33c3a5e145::1765319862::res://.godot/exported/133200997/export-9ea0fa35e6a35917bc23f3c4530653d3-Chapter3Scene2CylinderStructure.scn
+res://scenes/Chapter3/Straight/Scene2/Chapter3Scene2A.tscn::b43e8d6dd6850f514a02e23cbc9751f0::1765609485::res://.godot/exported/133200997/export-acb990fa48622888a0facd479489511a-Chapter3Scene2A.scn
+res://scenes/Chapter3/Straight/Scene2/Chapter3Scene2CylinderStructure.tscn::02ee419e652abbf2ee7f70ca51c84c76::1765609676::res://.godot/exported/133200997/export-9ea0fa35e6a35917bc23f3c4530653d3-Chapter3Scene2CylinderStructure.scn
 res://scenes/Chapter3/Straight/Scene2/WorkingBenchCylinderStructure.tscn::c9fdd064daaa44cd04735d8fcd0095e7::1765118779::res://.godot/exported/133200997/export-9b34a21d6b010eecf3d8195b83b39411-WorkingBenchCylinderStructure.scn
-res://scenes/Chapter4/Scene1/MinigameChapter4Scene1/Password.tscn::37e8c9015a4c42c3b5ee5bcbd2619701::1765124331::res://.godot/exported/133200997/export-81bcdcfd82d2081a4fc40c82ad31265a-Password.scn
-res://scenes/Chapter4/Scene1/Chapter4Scene1.tscn::0c9e50963a3f997ac9d7fe82c6b7c59b::1765322834::res://.godot/exported/133200997/export-7029172e094d970f5c3417119c0dd85c-Chapter4Scene1.scn
-res://scenes/Chapter4/Scene1/Chapter4Scene1PasswordUnlocked.tscn::45d401862d80b62af7319e6b3d1d3293::1765324371::res://.godot/exported/133200997/export-26c1e32b22d933f441c183460cab70d2-Chapter4Scene1PasswordUnlocked.scn
+res://scenes/Chapter4/Scene1/MinigameChapter4Scene1/Password.tscn::37e8c9015a4c42c3b5ee5bcbd2619701::1765344238::res://.godot/exported/133200997/export-81bcdcfd82d2081a4fc40c82ad31265a-Password.scn
+res://scenes/Chapter4/Scene1/Chapter4Scene1.tscn::8bcef3bc15bd15b45e2bfa224cf87857::1765595588::res://.godot/exported/133200997/export-7029172e094d970f5c3417119c0dd85c-Chapter4Scene1.scn
+res://scenes/Chapter4/Scene1/Chapter4Scene1PasswordUnlocked.tscn::9b6cc80896416d2df6cc09da38602da4::1765914414::res://.godot/exported/133200997/export-26c1e32b22d933f441c183460cab70d2-Chapter4Scene1PasswordUnlocked.scn
 res://scenes/Chapter4/Scene1/WalkingDialogue.tscn::0ba9d25832b0c61f2e8cf72d6337c01f::1764311497::res://.godot/exported/133200997/export-69b2ea98274b2461429af80f981380b8-WalkingDialogue.scn
-res://scenes/Chapter4/Scene2/Chapter4Scene2MemoryCoreRoom.tscn::0fecfca67441d57910cc3a1e5306ca98::1765336483::res://.godot/exported/133200997/export-e1a71c4832062d27a63e9981ee20ad01-Chapter4Scene2MemoryCoreRoom.scn
-res://scenes/Chapter5/EndingA.tscn::efb86c30f6ad8174dd0ab7bc30579677::1765121295::res://.godot/exported/133200997/export-afe9c2c239559db976201615896514cf-EndingA.scn
-res://scenes/Chapter5/EndingB.tscn::0342d9f6f83703de43c14535d2d06462::1765121298::res://.godot/exported/133200997/export-4a9c52c1a919d584a310eee936a66323-EndingB.scn
-res://scenes/Chapter5/EndingC.tscn::c52d3ddc8d1cf285e9df422a4e642fc1::1765133300::res://.godot/exported/133200997/export-39c8a40400234a0b565a1c5440ff7832-EndingC.scn
-res://scenes/Chapter5/EndingD.tscn::ded42cf948f038f13abba2e145142c3f::1765121300::res://.godot/exported/133200997/export-35bd7eb300dee37ebc3cafcf21406741-EndingD.scn
-res://scenes/Chapter5/EndingE.tscn::c644eec8114f30f88afddb74623a1b74::1765121301::res://.godot/exported/133200997/export-e0bc15973120cfa24f0a737667778b07-EndingE.scn
-res://scenes/Main Menu/Create Proflie/CreateProfile.tscn::8b56654bfc97759a8d59647251eb0cc3::1764836140::res://.godot/exported/133200997/export-c47f08d276f9cbddf95eee23195aa731-CreateProfile.scn
-res://scenes/Main Menu/Load Slot/load_slot.tscn::9949a3bfab73ecdb2c6574bff0ae294b::1765185161::res://.godot/exported/133200997/export-acbedff3d5714ca93d373b1a947dfc15-load_slot.scn
+res://scenes/Chapter4/Scene2/Chapter4Scene2MemoryCoreRoom.tscn::18533b32e0db0c2d88e5a348d28be584::1765913724::res://.godot/exported/133200997/export-e1a71c4832062d27a63e9981ee20ad01-Chapter4Scene2MemoryCoreRoom.scn
+res://scenes/Chapter5/EndingA.tscn::945661e5426d6b13a33509d9fdc5ced5::1765914450::res://.godot/exported/133200997/export-afe9c2c239559db976201615896514cf-EndingA.scn
+res://scenes/Chapter5/EndingB.tscn::dd2ba600970c5df989bb074ec67a53b5::1765914526::res://.godot/exported/133200997/export-4a9c52c1a919d584a310eee936a66323-EndingB.scn
+res://scenes/Chapter5/EndingC.tscn::bf3b6276054660a0f2bb904f60a92a02::1765913462::res://.godot/exported/133200997/export-39c8a40400234a0b565a1c5440ff7832-EndingC.scn
+res://scenes/Chapter5/EndingD.tscn::8a47f7ee04fa73c8d991cad4bc9e67b2::1765913462::res://.godot/exported/133200997/export-35bd7eb300dee37ebc3cafcf21406741-EndingD.scn
+res://scenes/Chapter5/EndingE.tscn::464f9172ccbd4d7c5ae8c34f018b7a50::1765914502::res://.godot/exported/133200997/export-e0bc15973120cfa24f0a737667778b07-EndingE.scn
+res://scenes/Main Menu/Create Proflie/CreateProfile.tscn::e3f589d919ea666bb9f25286a01f26ba::1765607367::res://.godot/exported/133200997/export-c47f08d276f9cbddf95eee23195aa731-CreateProfile.scn
+res://scenes/Main Menu/Load Slot/load_slot.tscn::99d89d0577a652c29872405a9c2b1a14::1765607360::res://.godot/exported/133200997/export-acbedff3d5714ca93d373b1a947dfc15-load_slot.scn
 res://scenes/Main Menu/Load Slot/ProfileSlot.tscn::497d153b9bd2c3078558e13daf5d0ba2::1765303692::res://.godot/exported/133200997/export-d5a5090eeda4f026eaeedfaa7229a3f2-ProfileSlot.scn
-res://scenes/Main Menu/main_menu_press_start.tscn::e2518000b71a7383e5ec40dc4df355b4::1764656676::res://.godot/exported/133200997/export-72ca15266ec7ce5de0537220d1bc0c05-main_menu_press_start.scn
+res://scenes/Main Menu/main_menu_press_start.tscn::d9fe68ee77bb2223a7f41308b69496aa::1765607352::res://.godot/exported/133200997/export-72ca15266ec7ce5de0537220d1bc0c05-main_menu_press_start.scn
 res://scenes/NPCs/Ch2Scene1NPC_nOSPEAKING.tscn::360dc60fc9cb59351a2263bd18038cd2::1765191549::res://.godot/exported/133200997/export-8c6ba5dbcfe1c9b9e8e52959fbb8d668-Ch2Scene1NPC_nOSPEAKING.scn
 res://scenes/NPCs/Ch2Scene2NPC.tscn::06a5b8b64fe9cbf7a50a89c6847caa2d::1765191549::res://.godot/exported/133200997/export-b1fd882d9cbbd9859bf51e08608d8cd3-Ch2Scene2NPC.scn
 res://scenes/NPCs/Chapter3Scene2.tscn::18f9b1cd07f576b2ee6562164f056b4c::1765191549::res://.godot/exported/133200997/export-bd403444d64425e276d402bf97554507-Chapter3Scene2.scn
@@ -194,3 +194,4 @@ res://scenes/Main Menu/CustomDeleteDialog.tscn::7dc2fad6181a97fd82f63c25167f0761
 res://scenes/quest/QuestListItem.tscn::068eb9e4ba6f96f2f79eb305e0590dfd::1765211566::res://.godot/exported/133200997/export-4ab5c4c117ddb0245aaebcc4bcb99488-QuestListItem.scn
 res://scenes/UI/new_chapter_scene.tscn::a303a5f2b5c6bf04dbc131a17352a077::1765307847::res://.godot/exported/133200997/export-f10e5b043db9a5fdb834af26ea6c925a-new_chapter_scene.scn
 res://scenes/UI/Quest Notification.tscn::f310912e39e4b70d4add1d7e4fb23cff::1765304004::res://.godot/exported/133200997/export-8eca12c0ddfe4062a4437d192887bca6-Quest Notification.scn
+res://scenes/UI/credit_scene.tscn::79c461eaa0d7ab9bf00e42b8065241c0::1765913462::res://.godot/exported/133200997/export-9c781f6fda8806b77a2e77e39c0425d7-credit_scene.scn

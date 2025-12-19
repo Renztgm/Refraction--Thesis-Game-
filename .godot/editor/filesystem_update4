@@ -1,16 +1,7 @@
-res://scenes/Chapter5/EndingA.tscn
+res://scenes/Chapter5/EndingC.tscn
 res://Tres/ButtonTheme.tres
 res://scenes/Scene4/AlleySceneScreenWarp.gdshader
 res://assets/nature/grass.gdshader
-res://scenes/branch selection/ch5_A.tres
-res://scenes/branch selection/ch5_B.tres
-res://scenes/branch selection/ch5_C.tres
-res://scenes/branch selection/ch5_D.tres
-res://scenes/branch selection/ch5_E.tres
-res://scenes/Chapter4/Scene2/Chapter4Scene2MemoryCoreRoom.tscn
-res://scenes/branch selection/ch4_sn2.tres
-res://scenes/Chapter4/Scene1/Chapter4Scene1PasswordUnlocked.tscn
-res://scenes/Chapter4/Scene1/memory_core_room_entrance.gd
-res://scenes/branch selection/ch4_sn1.tres
-res://scenes/Chapter5/EndingE.tscn
-res://scenes/Chapter5/EndingB.tscn
+res://test_runner.gd
+res://tests/test_quest_manager.gd
+res://tests/test_example.gd

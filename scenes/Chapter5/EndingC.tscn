@@ -31,7 +31,7 @@ grow_vertical = 2
 texture = ExtResource("3_xc6oa")
 
 [node name="EndingText" type="CanvasLayer" parent="."]
-layer = 10
+layer = 70
 
 [node name="Label" type="Label" parent="EndingText"]
 anchors_preset = 8

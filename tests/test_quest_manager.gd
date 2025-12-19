@@ -431,34 +431,27 @@ func test_quest_updated_signal():
 		pass_test("No active profile")
 		return
 	
-	var signal_received = false
-	var received_quest_id = ""
+	# Verify signal exists
+	assert_true(QuestManager.has_signal("quest_updated"), 
+		"QuestManager should have quest_updated signal")
 	
-	# Connect to signal
-	var callback = func(quest_id: String):
-		signal_received = true
-		received_quest_id = quest_id
-		print("📡 Signal received for quest:", quest_id)
+	# Watch for signals
+	watch_signals(QuestManager)
 	
-	QuestManager.quest_updated.connect(callback)
-	
-	# Create quest (should emit signal)
+	# Create quest
 	var quest_id = "signal_test"
 	QuestManager.create_quest(quest_id, "Signal Test", "Test", [])
 	
-	# Wait for signal to propagate
-	await get_tree().create_timer(0.1).timeout
+	# Check signal was emitted
+	assert_signal_emitted(QuestManager, "quest_updated")
 	
-	# Verify signal was emitted
-	assert_true(signal_received, "quest_updated signal should be emitted")
-	assert_eq(received_quest_id, quest_id, "Signal should contain correct quest_id")
-	
-	# Cleanup
-	if QuestManager.quest_updated.is_connected(callback):
-		QuestManager.quest_updated.disconnect(callback)
+	# Check signal parameters
+	var signal_count = get_signal_emit_count(QuestManager, "quest_updated")
+	if signal_count > 0:
+		var params = get_signal_parameters(QuestManager, "quest_updated", 0)
+		assert_eq(params[0], quest_id, "Signal should contain correct quest_id")
 	
 	print("✅ quest_updated signal works correctly")
-
 # ==============================================================================
 # PROFILE ISOLATION TESTS
 # ==============================================================================
